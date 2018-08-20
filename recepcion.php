@@ -29,7 +29,7 @@ clientes;";
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>Calendar - Vali Admin</title>
+    <title>Recepcion</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +41,7 @@ clientes;";
   </head>
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: </a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -253,7 +253,7 @@ clientes;";
    title: 'Agregar cliente',
    html:
 
-   '<form action="new_cliente.php" method="post" name="data">'+
+   '<div class="col-lg-7"> <form action="new_cliente.php" method="post" name="data">'+
    '<label>Nombre(s)</label>' +
    '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" onkeypress="return validar(event)" required">' +
    '<label>Apellidos</label>' +
@@ -265,7 +265,7 @@ clientes;";
    '<label>Celular</label>' +
    '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required"></br>'+
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
-   '</form>',
+   '</form></div>',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
    cancelButtonColor: '#d33',
