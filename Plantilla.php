@@ -1,23 +1,7 @@
 <!DOCTYPE html>
-<?php
-session_start();
-include 'fuctions.php';
-include 'conexion.php';
-verificar_sesion();
-
-$var_name=$_SESSION['nombre'];
-$var_clave= $_SESSION['clave'];
-
-
-$consulta = "SELECT
-id_folio, nombre, apellidos, celular, correo, puntos
-FROM
-clientes;";
-
-?>
 <html lang="es">
   <head>
-   <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
     <!-- Twitter meta-->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@pratikborsadiya">
@@ -29,7 +13,7 @@ clientes;";
     <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-    <title>Calendar - Vali Admin</title>
+    <title>Blank Page - Vali Admin</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +21,6 @@ clientes;";
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
   </head>
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
@@ -111,9 +94,9 @@ clientes;";
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Recepcion</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label" href="recepcion.php" >Recepcion</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
-            <li><a class="treeview-item" onclick="alerta();" href="#"><i  class="icon fa fa-circle-o"></i> Nuevo cliente</a></li>
+            <li><a class="treeview-item" onclick="alerta();" href="#"><i class="icon fa fa-circle-o"></i> Nuevo cliente</a></li>
             <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Equipos sin solución</a></li>
             <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Equipos Reparados</a></li>
             <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Avisos</a></li>
@@ -131,90 +114,65 @@ clientes;";
 
 
 
-        
-   
+        <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
+            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
+            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
+            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
+          </ul>
+        </li>
+        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Form Components</a></li>
+            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
+            <li><a class="treeview-item" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
+            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
+          </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
+            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
+          </ul>
+        </li>
+        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item active" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
+            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
+            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
+            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
+            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
+            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
+            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
+            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
+          </ul>
+        </li>
+      </ul>
     </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Registro de nuevo cliente</h1>
-          <p>Dar un buen servicio es nuestra prioridad</p>
+          <h1><i class="fa fa-dashboard"></i> Blank Page</h1>
+          <p>Start a beautiful journey here</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
           <li class="breadcrumb-item"><a href="#">Blank Page</a></li>
         </ul>
       </div>
-     
-              
-
-
-    
-<div class="content-panel">
-
-
-          <div class="col-lg-7">
-            <p class="bs-component">
-              <button class="btn btn-primary" type="button" onclick="alerta();">Nuevo cliente</button>
-              <button class="btn btn-success" type="button">Equipos reparados</button>
-              <button class="btn btn-danger" type="button">Equipos sin solución</button>
-              <button class="btn btn-info" type="button">Avisos</button>
-              <button class="btn btn-warning" type="button">Ventas</button>
-           
-            </p>
-              <div class="row">
-  
-   
-          <input id="search" type="text" class='form-control' placeholder="Buscar clientes dentro de la tabla">
-          <table id="table" class="table">
-    <thead>
-        <!--<th data-field="state" data-checkbox="true"></th>-->
-        <th data-field="id">id</th>
-      <th data-field="fecha" data-sortable="true">Nombre</th>
-      <th data-field="estatus" data-sortable="true">Apellidos</th>
-      <th data-field="estatus" data-sortable="true">Celular</th>
-      <th data-field="estatus" data-sortable="true">Correo</th>
-
-    </thead>
-    <?php
-      $ejecutar = mysqli_query($conn, $consulta);
-    while($fila=mysqli_fetch_array($ejecutar)){
-        $id          = $fila['id_folio'];
-        $nom           = $fila['nombre'];
-        $ape          = $fila['apellidos'];
-        $cel        = $fila['celular'];
-        $cor        = $fila['correo'];
-       
-
-?>
-                    <tr>
-                        <td><?php echo $id ?></td>
-                        <td><?php echo $nom ?></td>
-                        <td><?php echo $ape ?></td>
-                        <td><?php echo $cel ?></td>
-                        <td><?php echo $cor ?></td>
-                     
-          </tr>
-        <?php } ?>
-        <tbody></br>
-            Resultado de clientes
-      </tbody>
-  </table>
-      </div>
-
-</div>
-</div>
-         
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <div class="tile-body">Create a beautiful dashboard</div>
+          </div>
         </div>
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
-    
-    <!-- Page specific javascripts-->
-    <!-- Google analytics script-->
-    <!-- js placed at the end of the document so the pages load faster -->
-   <!-- Essential javascripts for application to work-->
-   <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
@@ -225,12 +183,10 @@ clientes;";
     <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
     <script type="text/javascript">
-
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
-
-    <!--common script for all pages-->
-    <script src="assets/js/common-scripts.js"></script>
+    <!-- Page specific javascripts-->
+    <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -241,9 +197,7 @@ clientes;";
       	ga('send', 'pageview');
       }
     </script>
-    <div class="content-panel">
- <div class="col-lg-7">
-
+    
   <script type="text/javascript">
 
     function alerta(){
@@ -280,8 +234,7 @@ clientes;";
   };
   </script>
 
-</div>
-</div>
+
 
 
   <script>

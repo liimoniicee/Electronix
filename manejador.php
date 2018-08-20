@@ -9,7 +9,7 @@ if ( (isset($_POST['user'])) || (isset($_POST['pass'])) ){
 
 
     $var_user = $_POST['user'];
-	$var_contra = $_POST['pass'];
+	$var_contra = md5($_POST['pass']);
 
 
 
@@ -34,7 +34,7 @@ if($tipo == 'Traslado'){
 		//$id = $row["ID_USUARIO"];//
 	    $_SESSION['nombre']=$var_nombre;
 
-		header("location:inicio.php");
+		header("location:plantilla.php");
 	}
   if($tipo == 'Traslado'){
   		$_SESSION['clave'] = $row["id_personal"];
@@ -48,7 +48,7 @@ if($tipo == 'Traslado'){
     		//$id = $row["ID_USUARIO"];//
     	    $_SESSION['nombre']=$var_nombre;
 
-    		header("location:administrador.php");
+    		header("location:recepcion.php");
     	}
       if($tipo == 'Tecnico'){
       		$_SESSION['clave'] = $row["id_personal"];
