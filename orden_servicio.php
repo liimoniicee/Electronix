@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 include 'fuctions.php';
@@ -10,16 +9,18 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-id_folio, nombre, apellidos, celular, correo, puntos
+equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
-clientes;";
+reparar_tv
+WHERE
+estado = 'Sin solucion';";
 
 ?>
 <html lang="es">
   <head>
 
     <!-- Open Graph Meta-->
-    <title>Recepcion</title>
+    <title>Equipos sin reparación</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,7 +96,7 @@ clientes;";
     <aside class="app-sidebar">
 
         <div>
-          <p class="app-sidebar__user-name"><?php echo $var_name ?></p>
+          <p class="app-sidebar__user-name"><?php $var_name ?></p>
 
         </div>
       </div>
@@ -127,74 +128,132 @@ clientes;";
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Registro de nuevo cliente</h1>
-          <p>Dar un buen servicio es nuestra prioridad</p>
-        </div>
-
-      </div>
-
-
-
-
-
-<div class="content-panel">
-
-
-          <div class="col-lg-7">
-            <p class="bs-component">
-              <button class="btn btn-primary" type="button" onclick="alerta();">Nuevo cliente</button>
-              <button class="btn btn-success" type="button" onclick="location='e_reparados.php'">Equipos reparados</button>
-              <button class="btn btn-danger" type="button" onclick="location='e_sin_repar.php'">Equipos sin solución</button>
-              <button class="btn btn-info" type="button" onclick="location='avisos.php'">Avisos</button>
-              <button class="btn btn-warning" type="button">Ventas</button>
-
-            </p>
-              <div class="row">
-
-
-          <input id="search" type="text" class='form-control' placeholder="Buscar clientes dentro de la tabla">
-          <table id="a-table" class="table">
-    <thead>
-        <!--<th data-field="state" data-checkbox="true"></th>-->
-        <th data-field="id">id</th>
-      <th data-field="fecha" data-sortable="true">Nombre</th>
-      <th data-field="estatus" data-sortable="true">Apellidos</th>
-      <th data-field="estatus" data-sortable="true">Celular</th>
-      <th data-field="estatus" data-sortable="true">Correo</th>
-
-    </thead>
-    <?php
-      $ejecutar = mysqli_query($conn, $consulta);
-    while($fila=mysqli_fetch_array($ejecutar)){
-        $id          = $fila['id_folio'];
-        $nom           = $fila['nombre'];
-        $ape          = $fila['apellidos'];
-        $cel        = $fila['celular'];
-        $cor        = $fila['correo'];
-
-
-?>
-                    <tr>
-                        <td><?php echo $id ?></td>
-                        <td><?php echo $nom ?></td>
-                        <td><?php echo $ape ?></td>
-                        <td><?php echo $cel ?></td>
-                        <td><a href="#"><?php echo $cor ?></a></td>
-
-
-          </tr>
-        <?php } ?>
-        <tbody></br>
-            Resultado de clientes
-      </tbody>
-  </table>
-      </div>
-
-</div>
-</div>
+          <h1><i class="fa fa-dashboard"></i>Orden de servicio</h1>
 
         </div>
+
       </div>
+
+      <div class="col-lg-12 col-md-9">
+                              <div class="card">
+
+                                  <div class="card-content">
+                                      <form action="actual_perfil" method="post" name="datos">
+                                          <div class="row">
+
+      																			<div class="col-md-4">
+      																					<div class="form-group">
+      																							<label for="exampleInputEmail1">Orden de servicio</label>
+      																							<input type="text" name="user" maxlength="20" onkeypress="return validar(event)" required  class="form-control border-input" placeholder="Usuario">
+      																					</div>
+      																			</div>
+      																			<div class="col-md-8">
+      																					<div class="form-group">
+      																							<label for="exampleInputEmail1">Equipo</label>
+      																							<input type="text" name="nom" maxlength="25" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Nombre completo">
+      																					</div>
+      																			</div>
+
+                                          </div>
+
+      																		<div class="row">
+      																			<div class="col-md-4">
+      																					<div class="form-group">
+      																							<label for="exampleInputEmail1">Marca</label>
+      																							<input type="text" name="apep" maxlength="15" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Apellido">
+      																					</div>
+      																			</div>
+
+      																			<div class="col-md-4">
+      																					<div class="form-group">
+      																							<label for="exampleInputEmail1">Modelo</label>
+      																							<input type="text" name="apem" maxlength="15" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Apellido">
+      																					</div>
+      																			</div>
+      																			<div class="col-md-4">
+      																					<div class="form-group">
+      																							<label for="exampleInputEmail1">Falla</label>
+
+
+      																					</div>
+      																			</div>
+
+      																		</div>
+
+      																		<div class="row">
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Locacion</label>
+                                                      <input type="number" maxlength="10" required name="cel" class="form-control border-input" placeholder="Celular" >
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <div class="form-group">
+                                                      <label>Accesorios</label>
+                                                      <input type="number" name="tel" maxlength="10" required class="form-control border-input" placeholder="Telefono"  >
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Fecha de solicitud de servicio</label>
+                                                      <input type="text" name="dire" maxlength="35" required class="form-control border-input" placeholder="Dirección">
+                                                  </div>
+                                              </div>
+                                          </div>
+
+      																		<div class="row">
+                                              <div class="col-md-12">
+                                                  <div class="form-group">
+                                                      <label>Fecha de entrega</label>
+                                                      <input type="text" name="col" maxlength="15" required class="form-control border-input" placeholder="Colonia">
+                                                  </div>
+                                              </div>
+                                          </div>
+
+                                          <div class="row">
+                                              <div class="col-md-4">
+                                                  <div class="form-group">
+                                                      <label>Estado actual</label>
+                                                      <input type="date" name="fech" class="form-control border-input" min="1985-01-01" max="2007-12-01" placeholder="Fecha">
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-4">
+                                                  <div class="form-group">
+                                                      <label>Fecha de entrega e inicio de garantia</label>
+                                                      <input type="text" name="lug" maxlength="15" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Lugar" >
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-4">
+                                                  <div class="form-group">
+                                                      <label>Nombre</label>
+                                                      <input type="number" maxlength="5" name="cp" class="form-control border-input" placeholder="ZIP Code" >
+                                                  </div>
+                                              </div>
+                                          </div>
+
+
+
+
+                                          <div class="text-center">
+                                              <button type="submit" class="btn btn-info btn-fill btn-wd">Actualizar perfil</button>
+                                          </div>
+                                          <div class="clearfix"></div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                      </div>
+                  </div>
+              </div>
+
+
+
+
     </main>
     <!-- Essential javascripts for application to work-->
 
@@ -223,71 +282,11 @@ clientes;";
     <div class="content-panel">
  <div class="col-lg-7">
 
-  <script type="text/javascript">
-
-    function alerta(){
-
-
-    swal({
-   title: 'Agregar cliente',
-   html:
-
-   '<div class="col-lg-7"> <form action="new_cliente.php" method="post" name="data">'+
-   '<label>Nombre(s)</label>' +
-   '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
-   '<label>Apellidos</label>' +
-   '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
-   '<label>Direccion</label>' +
-   '<input input type="text" name="dire" id="dire" class="form-control border-input maxlength="25" required>' +
-   '<label>Correo</label>' +
-   '<input input type="email" name="cor" id="cor" class="form-control border-input requiered">' +
-   '<label>Celular</label>' +
-   '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
-   '</form></div>',
-   showCancelButton: true,
-   confirmButtonColor: '#3085d6',
-   cancelButtonColor: '#d33',
-   confirmButtonText: '</form> Actualizar solicitud',
-   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-   showConfirmButton: false,
-   focusConfirm: false,
-   buttonsStyling: false,
-    reverseButtons: true
-  })
-
-  };
-  </script>
-
 </div>
 </div>
 
-
-  <script>
-  //script para seleccionar fila en tabla
-
-  $(function () {
-  $('#a-table tr>*').click(function (e) {
-      var a = $(this).closest('tr').find('a')
-      e.preventDefault()
-      location.href = a.attr('href')
-  })
-})
-  </script>
 
 <!-- Script para buscar en tabla. -->
-<script>
-// captura el evento keyup cuando escribes en el input
-  $("#search").keyup(function(){
-      _this = this;
-      // Muestra los tr que concuerdan con la busqueda, y oculta los demás.
-      $.each($("#table tbody tr"), function() {
-          if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-             $(this).hide();
-          else
-             $(this).show();
-      });
-  });
-</script>
+
   </body>
 </html>
