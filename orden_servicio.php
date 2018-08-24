@@ -127,56 +127,82 @@ estado = 'Sin solucion';";
     </aside>
     <main class="app-content">
       <div class="app-title">
-        <div>
-          <h1><i class="fa fa-dashboard"></i>Orden de servicio</h1>
 
-        </div>
+          <h3><i class="fa fa-dashboard"></i>Electronica RSH</h3>
 
+          <div class="col-md-2">
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Orden de servicio</label>
+                  <input type="text"  maxlength="20" onkeypress="return validar(event)" required  class="form-control border-input">
+              </div>
+          </div>
       </div>
+                              <div class="card text-white bg-info mb-3">
+                                <div class="card-body">
 
-      <div class="col-lg-12 col-md-9">
-                              <div class="card">
-
-                                  <div class="card-content">
                                       <form action="actual_perfil" method="post" name="datos">
-                                          <div class="row">
 
-      																			<div class="col-md-4">
-      																					<div class="form-group">
-      																							<label for="exampleInputEmail1">Orden de servicio</label>
-      																							<input type="text" name="user" maxlength="20" onkeypress="return validar(event)" required  class="form-control border-input" placeholder="Usuario">
-      																					</div>
-      																			</div>
-      																			<div class="col-md-8">
+                                          <div class="row">
+      																			<div class="col-md-2">
       																					<div class="form-group">
       																							<label for="exampleInputEmail1">Equipo</label>
-      																							<input type="text" name="nom" maxlength="25" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Nombre completo">
+      																							<input type="text" name="nom" maxlength="25" required class="form-control border-input" >
       																					</div>
       																			</div>
-
+                                            <div class="col-md-2">
+      																					<div class="form-group">
+      																							<label for="exampleInputEmail1">Marca</label>
+      																							<input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+      																					</div>
+      																			</div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Modelo</label>
+                                                    <input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Falla</label>
+                                                    <input type="text" name="nom" maxlength="25"  required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Accesorios</label>
+                                                    <input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Locación</label>
+                                                    <input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+                                                </div>
+                                            </div>
                                           </div>
 
       																		<div class="row">
-      																			<div class="col-md-4">
+      																			<div class="col-md-2">
       																					<div class="form-group">
-      																							<label for="exampleInputEmail1">Marca</label>
-      																							<input type="text" name="apep" maxlength="15" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Apellido">
+      																							<label for="exampleInputEmail1">Fecha de solicitud de servicio</label>
+      																							<input type="text" name="apep" maxlength="15"  required class="form-control border-input">
       																					</div>
       																			</div>
 
-      																			<div class="col-md-4">
+      																			<div class="col-md-2">
       																					<div class="form-group">
-      																							<label for="exampleInputEmail1">Modelo</label>
-      																							<input type="text" name="apem" maxlength="15" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Apellido">
+      																							<label for="exampleInputEmail1">Fecha de entrega</label>
+      																							<input type="text" name="apem" maxlength="15"  required class="form-control border-input">
       																					</div>
       																			</div>
-      																			<div class="col-md-4">
-      																					<div class="form-group">
-      																							<label for="exampleInputEmail1">Falla</label>
 
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Comentarios</label>
+                                                    <textarea class="form-control" rows="3"></textarea>
+                                                </div>
+                                            </div>
 
-      																					</div>
-      																			</div>
 
       																		</div>
 
@@ -220,18 +246,7 @@ estado = 'Sin solucion';";
                                                       <input type="date" name="fech" class="form-control border-input" min="1985-01-01" max="2007-12-01" placeholder="Fecha">
                                                   </div>
                                               </div>
-                                              <div class="col-md-4">
-                                                  <div class="form-group">
-                                                      <label>Fecha de entrega e inicio de garantia</label>
-                                                      <input type="text" name="lug" maxlength="15" onkeypress="return validar(event)" required class="form-control border-input" placeholder="Lugar" >
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-4">
-                                                  <div class="form-group">
-                                                      <label>Nombre</label>
-                                                      <input type="number" maxlength="5" name="cp" class="form-control border-input" placeholder="ZIP Code" >
-                                                  </div>
-                                              </div>
+
                                           </div>
 
 
@@ -240,16 +255,14 @@ estado = 'Sin solucion';";
                                           <div class="text-center">
                                               <button type="submit" class="btn btn-info btn-fill btn-wd">Actualizar perfil</button>
                                           </div>
-                                          <div class="clearfix"></div>
+
                                       </form>
-                                  </div>
+                                    </div>
                               </div>
-                          </div>
 
 
-                      </div>
-                  </div>
-              </div>
+
+
 
 
 
