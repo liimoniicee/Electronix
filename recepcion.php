@@ -137,10 +137,11 @@ clientes;";
 
 
 
-<div class="content-panel">
+<div class="card text-white bg-primary mb-3">
+  <div class="card-body">
 
 
-          <div class="col-lg-7">
+          <div class="col-lg-12">
             <p class="bs-component">
               <button class="btn btn-primary" type="button" onclick="alerta();">Nuevo cliente</button>
               <button class="btn btn-success" type="button" onclick="location='e_reparados.php'">Equipos reparados</button>
@@ -150,10 +151,11 @@ clientes;";
 
             </p>
               <div class="row">
-
-
+                <div class="col-lg-3">
           <input id="search" type="text" class='form-control' placeholder="Buscar clientes dentro de la tabla">
-          <table id="a-table" class="table">
+        </div>
+</div>
+          <table id="a-table" class="table table-striped table-dark">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id</th>
@@ -188,11 +190,10 @@ clientes;";
             Resultado de clientes
       </tbody>
   </table>
-      </div>
 
 </div>
 </div>
-
+</div>
         </div>
       </div>
     </main>
@@ -281,7 +282,7 @@ clientes;";
   $("#search").keyup(function(){
       _this = this;
       // Muestra los tr que concuerdan con la busqueda, y oculta los demás.
-      $.each($("#table tbody tr"), function() {
+      $.each($("#a-table tbody tr"), function() {
           if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
              $(this).hide();
           else

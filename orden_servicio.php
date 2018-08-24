@@ -130,53 +130,55 @@ estado = 'Sin solucion';";
 
           <h3><i class="fa fa-dashboard"></i>Electronica RSH</h3>
 
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label for="exampleInputEmail1">Orden de servicio</label>
-                  <input type="text"  maxlength="20" onkeypress="return validar(event)" required  class="form-control border-input">
-              </div>
-          </div>
+
       </div>
+
+        <!-- primer panel -->
                               <div class="card text-white bg-info mb-3">
+                                <div class="card-header">Orden de servicio
+                                  <div class="col-md-1">
+                                    <input type="text"  name="ods" editable= "false" required  class="form-control border-input">
+                              </div>
+                            </div>
                                 <div class="card-body">
 
-                                      <form action="actual_perfil" method="post" name="datos">
+
 
                                           <div class="row">
       																			<div class="col-md-2">
       																					<div class="form-group">
       																							<label for="exampleInputEmail1">Equipo</label>
-      																							<input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+      																							<input type="text" name="equi" maxlength="25" required class="form-control border-input" >
       																					</div>
       																			</div>
                                             <div class="col-md-2">
       																					<div class="form-group">
       																							<label for="exampleInputEmail1">Marca</label>
-      																							<input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+      																							<input type="text" name="marc" maxlength="25" required class="form-control border-input" >
       																					</div>
       																			</div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Modelo</label>
-                                                    <input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+                                                    <input type="text" name="mode" maxlength="25" required class="form-control border-input" >
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Falla</label>
-                                                    <input type="text" name="nom" maxlength="25"  required class="form-control border-input" >
+                                                    <input type="text" name="falla" maxlength="25"  required class="form-control border-input" >
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Accesorios</label>
-                                                    <input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+                                                    <input type="text" name="acc" maxlength="25" required class="form-control border-input" >
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Locación</label>
-                                                    <input type="text" name="nom" maxlength="25" required class="form-control border-input" >
+                                                    <input type="text" name="loc" maxlength="25" required class="form-control border-input" >
                                                 </div>
                                             </div>
                                           </div>
@@ -185,83 +187,135 @@ estado = 'Sin solucion';";
       																			<div class="col-md-2">
       																					<div class="form-group">
       																							<label for="exampleInputEmail1">Fecha de solicitud de servicio</label>
-      																							<input type="text" name="apep" maxlength="15"  required class="form-control border-input">
+      																							<input type="text" name="fech_sol" maxlength="15"  required class="form-control border-input">
       																					</div>
       																			</div>
 
       																			<div class="col-md-2">
       																					<div class="form-group">
       																							<label for="exampleInputEmail1">Fecha de entrega</label>
-      																							<input type="text" name="apem" maxlength="15"  required class="form-control border-input">
+      																							<input type="text" name="fech_entr" maxlength="15"  required class="form-control border-input">
       																					</div>
       																			</div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Estado de reparación</label>
+                                                    <input type="text" name="estado" maxlength="15"  required class="form-control border-input">
+                                                </div>
+                                            </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Comentarios</label>
-                                                    <textarea class="form-control" rows="3"></textarea>
+                                                    <textarea class="form-control" name="comen"  rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                          </div>
+
+
+                                    </div>
+                              </div>
+                              <!-- fin 1er panel -->
+
+
+                              <!-- inicio 2do panel -->
+                              <div class="card text-white bg-primary mb-3">
+                                <div class="card-header">Contacto cliente</div>
+                                <div class="card-body">
+
+
+
+                                          <div class="row">
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Id cliente</label>
+                                                    <input type="text" name="id_clien"  required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Nombre(s)</label>
+                                                    <input type="text" name="nom_clie"  required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Apellidos</label>
+                                                    <input type="text" name="ape_clien" required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1"># Celular</label>
+                                                    <input type="text" name="cel_clien"  required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Correo</label>
+                                                    <input type="text" name="cor_clien" required class="form-control border-input" >
+                                                </div>
+                                            </div>
+
+                                          </div>
+
+
+                                    </div>
+                              </div>
+
+                              <!-- fin 2do panel -->
+
+                              <!-- inicio 3er panel -->
+                              <div class="card text-white bg-secondary mb-3">
+                                <div class="card-header">Presupuesto acordado</div>
+                                <div class="card-body">
+
+
+                                          <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Costo de refacción</label>
+                                                    <input type="text" name="cost_ref"  required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Mano de obra</label>
+                                                    <input type="text"  name="mano_ob"  required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Puntos</label>
+                                                    <input type="text" name="punt" required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Abono</label>
+                                                    <input type="text" name="abon"  required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Restante</label>
+                                                    <input type="text" name="rest" required class="form-control border-input" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Total</label>
+                                                    <input type="text" name="total" required class="form-control border-input" >
                                                 </div>
                                             </div>
 
 
-      																		</div>
-
-      																		<div class="row">
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label>Locacion</label>
-                                                      <input type="number" maxlength="10" required name="cel" class="form-control border-input" placeholder="Celular" >
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <div class="form-group">
-                                                      <label>Accesorios</label>
-                                                      <input type="number" name="tel" maxlength="10" required class="form-control border-input" placeholder="Telefono"  >
-                                                  </div>
-                                              </div>
                                           </div>
 
-                                          <div class="row">
-                                              <div class="col-md-12">
-                                                  <div class="form-group">
-                                                      <label>Fecha de solicitud de servicio</label>
-                                                      <input type="text" name="dire" maxlength="35" required class="form-control border-input" placeholder="Dirección">
-                                                  </div>
-                                              </div>
-                                          </div>
-
-      																		<div class="row">
-                                              <div class="col-md-12">
-                                                  <div class="form-group">
-                                                      <label>Fecha de entrega</label>
-                                                      <input type="text" name="col" maxlength="15" required class="form-control border-input" placeholder="Colonia">
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                          <div class="row">
-                                              <div class="col-md-4">
-                                                  <div class="form-group">
-                                                      <label>Estado actual</label>
-                                                      <input type="date" name="fech" class="form-control border-input" min="1985-01-01" max="2007-12-01" placeholder="Fecha">
-                                                  </div>
-                                              </div>
-
-                                          </div>
-
-
-
-
-                                          <div class="text-center">
-                                              <button type="submit" class="btn btn-info btn-fill btn-wd">Actualizar perfil</button>
-                                          </div>
-
-                                      </form>
                                     </div>
                               </div>
 
-
-
+                              <!-- fin 3er panel -->
 
 
 
