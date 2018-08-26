@@ -7,14 +7,21 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
+        if(isset($_GET['ore'])){
 
-$consulta = "SELECT
-equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
-FROM
-reparar_tv
-WHERE
-estado = 'Sin solucion';";
+            $id_clie = $_GET['ore'];
+            
+            $consulta = "SELECT * FROM calificaciones WHERE ID_CALIFICACIONES='$id_clie'";
+            $ejecutar = mysqli_query($conn, $consulta);
 
+            $fila=mysqli_fetch_array($ejecutar);
+            //$id_c          = $fila['ID_CALIFICACIONES'];
+            $nivel         = $fila['CAL_NIVEL_INGLES'];
+            $calificacion  = $fila['CAL_CALIFICACION'];
+            $unidad        = $fila['CAL_UNIDAD'];
+            $promedio      = $fila['CAL_PROMEDIO'];
+            $id            = $fila['CAL_ID_BECARIO'];
+  }
 ?>
 <html lang="es">
   <head>

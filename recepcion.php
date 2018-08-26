@@ -181,7 +181,8 @@ clientes;";
                         <td><?php echo $nom ?></td>
                         <td><?php echo $ape ?></td>
                         <td><?php echo $cel ?></td>
-                        <td><a href="#"><?php echo $cor ?></a></td>
+                        <!--<a href="editar_calificaciones.php?editar=<?php echo $id_c; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil-alt"></i></a>-->
+                        <td><a href="editar_calificaciones.php?ore=<?php echo $id; ?>"><?php echo $cor ?></a></td>
 
 
           </tr>
