@@ -7,169 +7,372 @@ verificar_sesion();
 
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
+
+
+$consulta = "SELECT
+id_folio, nombre, apellidos, celular, correo, puntos
+FROM
+clientes;";
+
 ?>
-<html lang="en">
+<html lang="es">
   <head>
+
+    <!-- Open Graph Meta-->
+    <title>Recepcion</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <!-- Font-icon css-->
 
-    <title>Electronica RSH</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/essential_icon/font/flaticon.css">
   </head>
-
-  <body>
-
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: </a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="Search">
+          <button class="app-search__button"><i class="fa fa-search"></i></button>
+        </li>
+        <!--Notification Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">You have 4 new notifications.</li>
+            <div class="app-notification__content">
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Lisa sent you a mail</p>
+                    <p class="app-notification__meta">2 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Mail server not working</p>
+                    <p class="app-notification__meta">5 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Transaction complete</p>
+                    <p class="app-notification__meta">2 days ago</p>
+                  </div></a></li>
+              <div class="app-notification__content">
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Lisa sent you a mail</p>
+                      <p class="app-notification__meta">2 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Mail server not working</p>
+                      <p class="app-notification__meta">5 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Transaction complete</p>
+                      <p class="app-notification__meta">2 days ago</p>
+                    </div></a></li>
               </div>
-            <!--logo start-->
-            <a href="index.html" class="logo"><b>Clientes</b></a>
-            <!--logo end-->
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="destroy.php">Salir</a></li>
-            	</ul>
             </div>
-        </header>
-      <!--header end-->
+            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+          </ul>
+        </li>
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
+            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
+            <li><a class="dropdown-item" href="destroy.php"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
 
-      <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
+        <div>
+          <p class="app-sidebar__user-name"><?php echo $var_name ?></p>
 
-              	  <p class="centered"><img src="assets/img/friends/fr-02.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered"><?php echo $var_name ?></h5>
+        </div>
+      </div>
+      <ul class="app-menu">
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
+      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Recepcion</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+      <ul class="treeview-menu">
+            <li><a class="treeview-item" onclick="alerta();" href="#"><i  class="icon fa fa-circle-o"></i> Nuevo cliente</a></li>
+        
+          </ul>
+      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Clientes</span></a></li>
+      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
+      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+      <ul class="treeview-menu">
+            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Nueva publicacion</a></li>
+            </ul>
+      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
+      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
+      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
 
-                  <li class="sub-menu">
-                      <a href="inicio.php">
-                          <i class="flaticon-home"></i>
-                          <span>inicio</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="recepcion.php">
-                          <i class="flaticon-user-5"></i>
-                          <span>Recepción</span>
-                      </a>
-                  </li>
-                  <li  class="sub-menu">
-                      <a class= "active" href="clientes.php">
-                          <i class="flaticon-id-card-5"></i>
-                          <span>Clientes</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a  href="taller.php">
-                          <i class="flaticon-user-7"></i>
-                          <span>Taller</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="mercado.php">
-                          <i class="flaticon-worldwide"></i>
-                          <span>Mercado</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="traslado.php">
-                          <i class="flaticon-send"></i>
-                          <span>Traslados</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="almacen.php">
-                          <i class="flaticon-home-2"></i>
-                          <span>Almacen</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a  href="administrador.php">
-                          <i class="flaticon-user-6"></i>
-                          <span>Administrador</span>
-                      </a>
-                  </li>
 
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
 
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Blank Page</h3>
-          	<div class="row mt">
-          		<div class="col-lg-12">
-          		<p>Place your content here.</p>
-          		</div>
-          	</div>
 
-		</section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
 
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2014 - Alvarez.is
-              <a href="blank.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-  </section>
+    </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i>Registro de nuevo cliente</h1>
+          <p>Dar un buen servicio es nuestra prioridad</p>
+        </div>
 
+      </div>
+
+
+
+
+
+<div class="card text-white bg-primary mb-3">
+  <div class="card-body">
+
+
+          <div class="col-lg-12">
+            <p class="bs-component">
+              <button class="btn btn-secundary" type="button" onclick="alerta();">Nuevo cliente</button>
+            
+
+            </p>
+              <div class="row">
+                <div class="col-lg-3">
+          <input id="search" type="text" class='form-control' placeholder="Buscar clientes dentro de la tabla">
+        </div>
+</div>
+          <table id="a-table" class="table table-striped table-dark">
+    <thead>
+        <!--<th data-field="state" data-checkbox="true"></th>-->
+        <th data-field="id">id</th>
+      <th data-field="fecha" data-sortable="true">Nombre</th>
+      <th data-field="estatus" data-sortable="true">Apellidos</th>
+      <th data-field="estatus" data-sortable="true">Celular</th>
+      <th data-field="estatus" data-sortable="true">Correo</th>
+      <th class="disabled-sorting">Acción</th>
+    </thead>
+    <?php
+      $ejecutar = mysqli_query($conn, $consulta);
+    while($fila=mysqli_fetch_array($ejecutar)){
+        $id          = $fila['id_folio'];
+        $nom           = $fila['nombre'];
+        $ape          = $fila['apellidos'];
+        $cel        = $fila['celular'];
+        $cor        = $fila['correo'];
+
+
+?>
+                    <tr>
+                        <td><?php echo $id ?></td>
+                        <td><?php echo $nom ?></td>
+                        <td><?php echo $ape ?></td>
+                        <td><?php echo $cel ?></td>
+                        
+
+                        <td><a href="#"><?php echo $cor ?></a></td>
+                        <td>
+                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+
+                        </td>
+
+          </tr>
+        <?php } ?>
+        <tbody></br>
+            Resultado de clientes
+      </tbody>
+  </table>
+
+</div>
+</div>
+</div>
+        </div>
+      </div>
+    </main>
+    <!-- Essential javascripts for application to work-->
+
+    <!-- Page specific javascripts-->
+    <!-- Google analytics script-->
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
+   <!-- Essential javascripts for application to work-->
+   <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="assets/js/plugins/pace.min.js"></script>
+     <!-- Page specific javascripts-->
+    <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
+    <script type="text/javascript">
 
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+    <script src="assets/js/sweetalert2.js"></script>
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
-    <!--script for this page-->
+    <div class="content-panel">
+ <div class="col-lg-7">
 
-  <script>
-      //custom select box
+ <script>
+function enviarmod(id){
+  $.ajax({
+      // la URL para la petición
+      url : 'mod.php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+        $("#swal-input0").val(data.data.id);
+        $("#swal-input1").val(data.data.nom);
+        $("#swal-input2").val(data.data.ape);
+        $("#swal-input3").val(data.data.dir);
+        $("#swal-input4").val(data.data.cel);
+        $("#swal-input5").val(data.data.cor);
 
-      $(function(){
-          $('select.styled').customSelect();
-      });
+    
+      },
 
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+
+      },
+
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+
+      }
+  });
+}
+</script>
+<script type="text/javascript">
+
+    function alerta1(){
+
+
+    swal({
+   title: 'Actualizar cliente',
+   html:
+
+   '<div class="col-lg-7"> <form action="update_cliente.php" method="post" name="data">'+
+   '<label>Nombre(s)</label>' +
+   '<input input type="text" name="swal-input1"  class="form-control border-input maxlength="25" required>' +
+   '<label>Apellidos</label>' +
+   '<input input type="text" name="swal-input2" class="form-control border-input maxlength="25" required>' +
+   '<label>Direccion</label>' +
+   '<input input type="text" name="swal-input3" class="form-control border-input maxlength="25" required>' +
+   '<label>Correo</label>' +
+   '<input input type="email" name="swal-input4" class="form-control border-input requiered">' +
+   '<label>Celular</label>' +
+   '<input input type="number" name="swal-input5" class="form-control border-input type="number" required></br>'+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> Actualizar solicitud',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  }).then(function (result) {
+
+swal(
+'Actualizado!',
+'La solicitud ha sido actualizada',
+'success'
+)
+}).catch(swal.noop);
+
+};
   </script>
 
+  <script type="text/javascript">
+
+    function alerta(){
+
+
+    swal({
+   title: 'Nuevo cliente',
+   html:
+
+   '<div class="col-lg-7"> <form action="new_cliente.php" method="post" name="data">'+
+   '<label>Nombre(s)</label>' +
+   '<input input type="text" name="swal-input1"  class="form-control border-input maxlength="25" required>' +
+   '<label>Apellidos</label>' +
+   '<input input type="text" name="swal-input2" class="form-control border-input maxlength="25" required>' +
+   '<label>Direccion</label>' +
+   '<input input type="text" name="swal-input3" class="form-control border-input maxlength="25" required>' +
+   '<label>Correo</label>' +
+   '<input input type="email" name="swal-input4" class="form-control border-input requiered">' +
+   '<label>Celular</label>' +
+   '<input input type="number" name="swal-input5" class="form-control border-input type="number" required></br>'+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> Actualizar solicitud',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+
+  };
+  </script>
+
+</div>
+</div>
+
+
+  <script>
+  //script para seleccionar fila en tabla
+
+  $(function () {
+  $('#a-table tr>*').click(function (e) {
+      var a = $(this).closest('tr').find('a')
+      e.preventDefault()
+      location.href = a.attr('href')
+  })
+})
+  </script>
+
+<!-- Script para buscar en tabla. -->
+<script>
+// captura el evento keyup cuando escribes en el input
+  $("#search").keyup(function(){
+      _this = this;
+      // Muestra los tr que concuerdan con la busqueda, y oculta los demás.
+      $.each($("#a-table tbody tr"), function() {
+          if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+             $(this).hide();
+          else
+             $(this).show();
+      });
+  });
+</script>
   </body>
 </html>
+
