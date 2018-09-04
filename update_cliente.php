@@ -1,17 +1,18 @@
 <?php
+session_start();
+include 'fuctions.php';
+include 'conexion.php';
+verificar_sesion();
 
-require 'conexion.php';
-
-$id_folio = $_POST['id'];
-
-$nom = $_POST['nom'];
-$ape = $_POST['ape'];
-$cor = $_POST['cor'];
-$cel = $_POST['cel'];
-$dire = $_POST['dire'];
+$id = $_POST['swal-input0'];
+$nom = $_POST['swal-input1'];
+$ape = $_POST['swal-input2'];
+$dir = $_POST['swal-input3'];
+$cor = $_POST['swal-input4'];
+$cel = $_POST['swal-input5'];
 
 
-$sql = "Update clientes set nombre ='$nom', apellidos ='$ape', direccion='$dire', correo= '$cor', celular='$cel' where id_folio='$id_folio' ;";
+$sql = "Update clientes set nombre ='$nom', apellidos ='$ape', direccion='$dir', correo= '$cor', celular='$cel' where id_folio='$id'";
 
 
 
@@ -24,4 +25,5 @@ else{
 
 echo "<script>alert('Usuario insertado exitosamente con el folio=')</script>";
   echo "<script>window.open('recepcion.php','_self')</script>";}
+
 ?>

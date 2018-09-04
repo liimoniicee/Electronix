@@ -10,7 +10,7 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-id_folio, nombre, apellidos, celular, correo, puntos
+id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
 clientes;";
 
@@ -109,7 +109,7 @@ clientes;";
             <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Avisos</a></li>
             <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Ventas</a></li>
           </ul>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Clientes</span></a></li>
+      <li><a class="app-menu__item" href="clientes.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Clientes</span></a></li>
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
       <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
@@ -161,9 +161,11 @@ clientes;";
         <th data-field="id">id</th>
       <th data-field="fecha" data-sortable="true">Nombre</th>
       <th data-field="estatus" data-sortable="true">Apellidos</th>
+      <th data-field="estatus" data-sortable="true">Direccion</th>
       <th data-field="estatus" data-sortable="true">Celular</th>
       <th data-field="estatus" data-sortable="true">Correo</th>
-
+      <th class="disabled-sorting">Actualizar cliente</th>
+      <th class="disabled-sorting">Nueva orden</th>
     </thead>
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
@@ -171,6 +173,7 @@ clientes;";
         $id          = $fila['id_folio'];
         $nom           = $fila['nombre'];
         $ape          = $fila['apellidos'];
+        $dir          = $fila['direccion'];
         $cel        = $fila['celular'];
         $cor        = $fila['correo'];
 
@@ -180,10 +183,19 @@ clientes;";
                         <td><?php echo $id ?></td>
                         <td><?php echo $nom ?></td>
                         <td><?php echo $ape ?></td>
+                        <td><?php echo $dir ?></td>
                         <td><?php echo $cel ?></td>
-                        <!--<a href="editar_calificaciones.php?editar=<?php echo $id_c; ?>" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil-alt"></i></a>-->
-                        <td><a href="editar_calificaciones.php?ore=<?php echo $id; ?>"><?php echo $cor ?></a></td>
+                        
 
+                        <td><a href="#"><?php echo $cor ?></a></td>
+                        <td>
+                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+
+                        </td>
+                        <td>
+                        <button onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+
+                        </td>
 
           </tr>
         <?php } ?>
@@ -224,6 +236,92 @@ clientes;";
 
     <div class="content-panel">
  <div class="col-lg-7">
+
+ <script type="text/javascript">
+function enviarmod(id){
+  $.ajax({
+      // la URL para la petición
+      url : 'mod.php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+        $("#swal-input0").val(data.data.id);
+        $("#swal-input1").val(data.data.nom);
+        $("#swal-input2").val(data.data.ape);
+        $("#swal-input3").val(data.data.dir);
+        $("#swal-input4").val(data.data.cor);
+        $("#swal-input5").val(data.data.cel);
+      
+      },
+
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+
+      },
+
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+
+      }
+  });
+}
+</script>
+
+ <script type="text/javascript">
+
+function alerta1(id){
+
+
+swal({
+title: 'Actualizar cliente',
+html:
+
+'<div class="col-lg-7"> <form action="update_cliente.php" method="post" name="data">'+
+'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
+'<label>Nombre(s)</label>' +
+'<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
+'<label>Apellidos</label>' +
+'<input input type="text" name="swal-input2" id="swal-input2" class="form-control border-input maxlength="25" required>' +
+'<label>Direccion</label>' +
+'<input input type="text" name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" required>' +
+'<label>Correo</label>' +
+'<input input type="email" name="swal-input4" id="swal-input4" class="form-control border-input requiered">' +
+'<label>Celular</label>' +
+'<input input type="number" name="swal-input5" id="swal-input5" class="form-control border-input type="number" required></br>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar cliente</Button>'+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+}).then(function (result) {
+
+swal(
+'Actualizado!',
+'La solicitud ha sido actualizada',
+'success'
+)
+}).catch(swal.noop);
+
+};
+
+</script>
 
   <script type="text/javascript">
 
