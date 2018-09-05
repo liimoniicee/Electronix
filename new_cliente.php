@@ -1,3 +1,6 @@
+<!-- Sweet Alert 2 plugin -->
+<script src= "assets/js/sweetalert2.js"></script>
+
 <?php
 
 require 'conexion.php';
@@ -17,11 +20,26 @@ VALUES (NULL, '$nom', '$ape', '$dire', '$cor', '$cel', CURRENT_TIMESTAMP, '0');"
 
 $res = $conn->query($sql);
 
+
+
 if (!$res) {
    printf("Errormessage: %s\n", $conn->error);
 }
 else{
-
-echo "<script>alert('Usuario insertado exitosamente con el folio=')</script>";
-  echo "<script>window.open('recepcion.php','_self')</script>";}
+  ?>
+   <body>
+   <script>
+   swal({
+  title: "Success",
+  text: "Usuario registrado",
+  type: "success"
+  }).then(function() {
+  // Redirect the user
+  window.location.href = "recepcion.php";
+  console.log('The Ok Button was clicked.');
+  });
+       </script>
+  </body>
+   <?php
+   }
 ?>

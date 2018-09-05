@@ -148,16 +148,15 @@ clientes;";
               <button class="btn btn-danger" type="button" onclick="location='e_sin_repar.php'">Equipos sin solución</button>
               <button class="btn btn-info" type="button" onclick="location='avisos.php'">Avisos</button>
               <button class="btn btn-warning" type="button">Ventas</button>
+  </p>
 
-            </p>
-              <div class="row">
-                <div class="col-lg-3">
-          <input id="search" type="text" class='form-control' placeholder="Buscar clientes dentro de la tabla">
-        </div>
-</div>
-          <table id="a-table" class="table table-striped table-dark">
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body">
+          <table id="a-tables" class="table table-hover table-dark">
     <thead>
-        <!--<th data-field="state" data-checkbox="true"></th>-->
+
         <th data-field="id">id</th>
       <th data-field="fecha" data-sortable="true">Nombre</th>
       <th data-field="estatus" data-sortable="true">Apellidos</th>
@@ -185,7 +184,7 @@ clientes;";
                         <td><?php echo $ape ?></td>
                         <td><?php echo $dir ?></td>
                         <td><?php echo $cel ?></td>
-                        
+
 
                         <td><a href="#"><?php echo $cor ?></a></td>
                         <td>
@@ -203,7 +202,10 @@ clientes;";
             Resultado de clientes
       </tbody>
   </table>
-
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -226,7 +228,11 @@ clientes;";
     <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
-    <script type="text/javascript">
+
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
 
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
@@ -260,7 +266,7 @@ function enviarmod(id){
         $("#swal-input3").val(data.data.dir);
         $("#swal-input4").val(data.data.cor);
         $("#swal-input5").val(data.data.cel);
-      
+
       },
 
       // código a ejecutar si la petición falla;
@@ -278,16 +284,90 @@ function enviarmod(id){
 }
 </script>
 
- <script type="text/javascript">
+<script type="text/javascript">
+//ventana orden de servición
+function orden(id){
 
+
+swal({
+title: 'Agregar orden de servicio',
+html:
+'<div class="card-body"> <form action="gen_orden.php" method="post" name="data">'+
+'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
+//'<select name="id_equipo" id="equipo"><option value="#">TV</option><option value="#">Otros</option>' +
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<select name="id_equipo" id="equipo"><option value="#">TV</option><option value="#">Otros</option></select>' +
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Accesorios</label>'+
+        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Tipo de servicio</label>'+
+        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Comentarios</label>'+
+        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte</Button>'+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
+
+
+ <script type="text/javascript">
+//ventana actualizar cliente
 function alerta1(id){
 
 
 swal({
 title: 'Actualizar cliente',
 html:
-
-'<div class="col-lg-7"> <form action="update_cliente.php" method="post" name="data">'+
+'<div class="col-lg-12"> <form action="update_cliente.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
 '<label>Nombre(s)</label>' +
 '<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
@@ -323,16 +403,16 @@ swal(
 
 </script>
 
-  <script type="text/javascript">
 
+  <script type="text/javascript">
+//ventana de nuevo cliente
     function alerta(){
 
 
     swal({
    title: 'Agregar cliente',
    html:
-
-   '<div class="col-lg-7"> <form action="new_cliente.php" method="post" name="data">'+
+   '<div class="col-lg-12"> <form action="new_cliente.php" method="post" name="data">'+
    '<label>Nombre(s)</label>' +
    '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
    '<label>Apellidos</label>' +
