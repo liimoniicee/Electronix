@@ -127,7 +127,7 @@ clientes;";
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Registro de nuevo cliente</h1>
+          <h1><i class="fa fa-dashboard"></i>Recepción</h1>
           <p>Dar un buen servicio es nuestra prioridad</p>
         </div>
 
@@ -163,8 +163,8 @@ clientes;";
       <th data-field="estatus" data-sortable="true">Direccion</th>
       <th data-field="estatus" data-sortable="true">Celular</th>
       <th data-field="estatus" data-sortable="true">Correo</th>
-      <th class="disabled-sorting">Actualizar cliente</th>
-      <th class="disabled-sorting">Nueva orden</th>
+      <th class="disabled-sorting">Acción</th>
+
     </thead>
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
@@ -186,15 +186,16 @@ clientes;";
                         <td><?php echo $cel ?></td>
 
 
-                        <td><a href="#"><?php echo $cor ?></a></td>
+                        <td><?php echo $cor ?></td>
                         <td>
-                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-
+                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                      <a href="historial_cliente.php?id=<?php echo $id; ?>" class="btn btn-simple btn-danger btn-icon edit"><i class="ti-pencil-alt"></i></a>
                         </td>
-                        <td>
-                        <button onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
 
-                        </td>
+
+
+
 
           </tr>
         <?php } ?>
@@ -268,14 +269,12 @@ function enviarmod(id){
         $("#swal-input5").val(data.data.cel);
 
       },
-
       // código a ejecutar si la petición falla;
       // son pasados como argumentos a la función
       // el objeto de la petición en crudo y código de estatus de la petición
       error : function(xhr, status) {
 
       },
-
       // código a ejecutar sin importar si la petición falló o no
       complete : function(xhr, status) {
 
@@ -294,13 +293,13 @@ title: 'Nueva orden de servicio',
 html:
 '<div class="card-body"> <form action="gen_orden.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
-//'<select name="id_equipo" id="equipo"><option value="#">TV</option><option value="#">Otros</option>' +
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Equipo  :</label>'+
-        '<select name="id_equipo" id="equipo"><option value="#">Televisión</option><option value="#">Otros</option></select>' +
+        '<select class="form-control form-control-sm" name="id_equipo" id="equipo"><option value="#">Televisión</option><option value="#">Otros</option></select>' +
     '</div>'+
+'</div>'+
 '</div>'+
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -336,13 +335,13 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Accesorios</label>'+
-        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="acce" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Comentarios</label>'+
-        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="comen" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -351,12 +350,9 @@ html:
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
-        '<select name="id_equipo" id="equipo"><option value="#">Compra</option><option value="#">Domicilio</option><option value="#">Garantía</option><option value="#">Reparación</option><option value="#">Revisión</option></select>' +
+        '<select class="form-control form-control-sm" name="t_servicio" id="t_servicio"><option value="#">Reparación</option><option value="#">Domicilio</option><option value="#">Garantía</option><option value="#">Compra</option><option value="#">Revisión</option></select>' +
     '</div>'+
 '</div>'+
-
-
-
 
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte</Button>'+
@@ -409,10 +405,7 @@ showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
-}).then(function (result) {
-
-
-}).catch(swal.noop);
+})
 
 };
 
