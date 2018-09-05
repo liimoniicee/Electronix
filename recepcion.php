@@ -146,7 +146,7 @@ clientes;";
               <button class="btn btn-primary" type="button" onclick="alerta();">Nuevo cliente</button>
               <button class="btn btn-success" type="button" onclick="location='e_reparados.php'">Equipos reparados</button>
               <button class="btn btn-danger" type="button" onclick="location='e_sin_repar.php'">Equipos sin solución</button>
-              <button class="btn btn-info" type="button" onclick="location='avisos.php'">Avisos</button>
+              <button class="btn btn-info" type="button" onclick="aviso();">Avisos</button>
               <button class="btn btn-warning" type="button">Ventas</button>
   </p>
 
@@ -154,7 +154,7 @@ clientes;";
   <div class="col-md-12">
     <div class="tile">
       <div class="tile-body">
-          <table id="a-tables" class="table table-hover table-dark">
+          <table id="a-tables" class="table table-hover table-dark table-responsive">
     <thead>
 
         <th data-field="id">id</th>
@@ -418,6 +418,34 @@ reverseButtons: true
 
 </script>
 
+ <script type="text/javascript">
+//Nuevo Aviso
+    function aviso(){
+
+
+    swal({
+   title: 'Nuevo aviso',
+   html:
+   '<div class="col-lg-12"> <form action="new_aviso.php" method="post" name="data">'+
+   '<label>Folio(s)</label>' +
+   '<input input type="number" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
+   '<label>Aviso</label>' +
+   '<input input type="text" name="ape" id="ape" style="line-height: 150px; height:150px;" class="form-control border-input maxlength="100" required>' +
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> Registrar aviso',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+
+  };
+  </script>
 
   <script type="text/javascript">
 //ventana de nuevo cliente
