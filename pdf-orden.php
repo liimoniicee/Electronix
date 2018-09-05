@@ -66,6 +66,19 @@
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,95);
     $pdf->Write(5,'MODELO');
-  
+  //falla
+  $pdf->SetFont('Arial','',12);
+  $pdf->SetXY(17,110);
+  $pdf->Write(5,'Con la falla(s) de:');
+
+  $pdf->SetFont('Arial','B',12);
+  $pdf->SetXY(53,110);
+  $pdf->Write(5,'FALLA');
+
+
+
+
+
+
     $pdf->Output();
 ?>
