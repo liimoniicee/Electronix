@@ -290,7 +290,7 @@ function orden(id){
 
 
 swal({
-title: 'Agregar orden de servicio',
+title: 'Nueva orden de servicio',
 html:
 '<div class="card-body"> <form action="gen_orden.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
@@ -298,8 +298,15 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
+        '<label>Equipo  :</label>'+
+        '<select name="id_equipo" id="equipo"><option value="#">Televisión</option><option value="#">Otros</option></select>' +
+    '</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
         '<label>Marca</label>'+
-        '<select name="id_equipo" id="equipo"><option value="#">TV</option><option value="#">Otros</option></select>' +
+        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '<div class="col-md-6">'+
@@ -309,30 +316,29 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
+
 '<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Falla</label>'+
         '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
 
+'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Accesorios</label>'+
         '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Tipo de servicio</label>'+
-        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Comentarios</label>'+
@@ -341,7 +347,20 @@ html:
 '</div>'+
 '</div>'+
 
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Tipo de servicio</label>'+
+        '<select name="id_equipo" id="equipo"><option value="#">Compra</option><option value="#">Domicilio</option><option value="#">Garantía</option><option value="#">Reparación</option><option value="#">Revisión</option></select>' +
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte</Button>'+
+
 '</form></div>',
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
@@ -392,11 +411,7 @@ buttonsStyling: false,
 reverseButtons: true
 }).then(function (result) {
 
-swal(
-'Actualizado!',
-'La solicitud ha sido actualizada',
-'success'
-)
+
 }).catch(swal.noop);
 
 };
