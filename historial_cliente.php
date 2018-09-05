@@ -8,13 +8,14 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
+$id = $_GET ['id'];
 
 $consulta = "SELECT
 equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
-estado = 'Sin solucion';";
+id_folio = '$id';";
 
 ?>
 <html lang="es">

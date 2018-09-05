@@ -142,11 +142,13 @@ estado = 'Reparada';";
 <div class="content-panel">
 
 
-              <div class="row">
+  <div class="row">
 
+      <div class="col-md-12">
+        <div class="tile">
+          <div class="tile-body">
 
-          <input id="search" type="text" class='form-control' placeholder="Buscar dentro de la tabla">
-          <table id="table" class="table">
+<table id="a-tables" class="table table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
@@ -189,7 +191,9 @@ estado = 'Reparada';";
             Resultado de clientes
       </tbody>
   </table>
-      </div>
+</div>
+</div>
+</div>
 
 </div>
 </div>
@@ -213,23 +217,18 @@ estado = 'Reparada';";
     <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
-    <script type="text/javascript">
+
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
 
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-    <script type="text/javascript">
-      if(document.location.hostname == 'pratikborsadiya.in') {
-      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      	ga('create', 'UA-72504830-1', 'auto');
-      	ga('send', 'pageview');
-      }
-    </script>
+    <
     <div class="content-panel">
  <div class="col-lg-7">
 
@@ -237,28 +236,6 @@ estado = 'Reparada';";
 </div>
 
 
-  <script>
-      //custom select box
 
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
-
-<!-- Script para buscar en tabla. -->
-<script>
-// captura el evento keyup cuando escribes en el input
-  $("#search").keyup(function(){
-      _this = this;
-      // Muestra los tr que concuerdan con la busqueda, y oculta los demás.
-      $.each($("#table tbody tr"), function() {
-          if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-             $(this).hide();
-          else
-             $(this).show();
-      });
-  });
-</script>
   </body>
 </html>
