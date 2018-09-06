@@ -153,7 +153,8 @@ estado = 'Sin solucion';";
       <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
       <th data-field="fecha_egreso" data-sortable="true">fecha_egreso</th>
       <th data-field="estado" data-sortable="true">estado</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
+      <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+      <th data-field="accion" data-sortable="true">Acción</th>
 
     </thead>
     <?php
@@ -178,7 +179,7 @@ estado = 'Sin solucion';";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $fecha_egreso ?></td>
                         <td><?php echo $estado ?></td>
-                        <td><a href="#"><?php echo $ubicacion ?></a></td>
+                        <td><?php echo $ubicacion ?></a></td>
 
           </tr>
         <?php } ?>
