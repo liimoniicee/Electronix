@@ -9,11 +9,10 @@ $response = array();
 if(isset($_POST['id'])){
   $id = $_POST['id'];
 
-
   $consulta = "SELECT
-id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado 
-FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = '$id_folio'			
-union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado 
+id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
+FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = '$id_folio'
+union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
 FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = '$id_folio';";
 
 
@@ -24,27 +23,24 @@ FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'a
 
     while($row = $resultado->fetch_assoc()) {
   $response['data'] = array (
-    "id"         =>  $id,
+    "id"            =>  $id,
     "equipo"        =>  $row["equipo"],
-    "marca"        =>  $row["marca"],
+    "marca"         =>  $row["marca"],
     "modelo"        =>  $row["modelo"],
-    "serie"        =>  $row["serie"],
-    "accesorios"        =>  $row["accesorios"],
-    "falla"        =>  $row["falla"],
-    "comentarios"        =>  $row["comentarios"],
-
-    "fecha_ingreso"        =>  $row["fecha_ingreso"],
-    "fecha_entrega"        =>  $row["fecha_entrega"],
-    "fecha_egreso"        =>  $row["fecha_egreso"],
-
-    "servicio"        =>  $row["servicio"],
-    "ubicacion"        =>  $row["ubicacion"],
-
-    "presupuesto"        =>  $row["presupuesto"],
-    "mano_obra"        =>  $row["mano_obra"],
-    "abono"        =>  $row["abono"],
-    "restante"        =>  $row["restante"],
-    "costo_total"        =>  $row["costo_total"],
+    "serie"         =>  $row["serie"],
+    "accesorios"    =>  $row["accesorios"],
+    "falla"         =>  $row["falla"],
+    "comentarios"   =>  $row["comentarios"],
+    "fecha_ingreso" =>  $row["fecha_ingreso"],
+    "fecha_entrega" =>  $row["fecha_entrega"],
+    "fecha_egreso"  =>  $row["fecha_egreso"],
+    "servicio"      =>  $row["servicio"],
+    "ubicacion"     =>  $row["ubicacion"],
+    "presupuesto"   =>  $row["presupuesto"],
+    "mano_obra"     =>  $row["mano_obra"],
+    "abono"         =>  $row["abono"],
+    "restante"      =>  $row["restante"],
+    "costo_total"   =>  $row["costo_total"],
     "estado"        =>  $row["estado"],
 
 

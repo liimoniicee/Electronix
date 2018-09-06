@@ -10,7 +10,7 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada' 			
+id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'
 union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'";
 
 
@@ -170,14 +170,12 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
         $apellidos        = $fila['apellidos'];
         $correo        = $fila['correo'];
         $celular        = $fila['celular'];
-
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
-
         $fecha_entregar        = $fila['fecha_entregar'];
         $ubicacion        = $fila['ubicacion'];
         $total        = $fila['restante'];
-        
+
 
 
 
@@ -190,13 +188,13 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
                         <td><?php echo $correo ?></td>
                         <td><?php echo $celular ?></td>
 
-                        <td><?php echo $marca ?></td>                      
+                        <td><?php echo $marca ?></td>
                         <td><?php echo $modelo ?></td>
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></td>
                         <td><?php echo $total ?></td>
                         <td>
-                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>                        
+                        <button onclick="Garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
                         </td>
 
           </tr>
@@ -267,15 +265,16 @@ function enviarorden(id){
       // la respuesta es pasada como argumento a la función
       success : function(data) {
         //Manda Llamar id,nombre y apellido
-     
+
         $("#swal-input3").val(data.data.equipo);
         $("#swal-input4").val(data.data.marca);
         $("#swal-input5").val(data.data.modelo);
-        $("#swal-input6").val(data.data.total);
+        $("#swal-input6").val(data.data.serie);
+        //$("#swal-input6").val(data.data.serie);
 
 
 
-   
+
 
       },
       // código a ejecutar si la petición falla;
@@ -304,8 +303,6 @@ html:
 '<div class="card-body"> <form action="pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
-'<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
-'<input name="swal-input2" type="hidden" id="swal-input2" class="form-control border-input" readonly >' +
 
 '<div class="row">'+
 '<div class="col-md-6">'+
