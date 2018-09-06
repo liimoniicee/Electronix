@@ -335,7 +335,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Equipo  :</label>'+
-        '<select class="form-control form-control-sm" name="equipo" id="equipo"><option value="Television">Televisión</option><option value="Otros">Otros</option></select>' +
+        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television">Televisión</option><option value="Otros">Otros</option></select>' +
     '</div>'+
 '</div>'+
 
@@ -391,7 +391,7 @@ html:
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
+        '<select class="form-control form-control-sm" text-align="center" name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
     '</div>'+
 '</div>'+
 '</div>'+

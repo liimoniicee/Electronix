@@ -10,11 +10,10 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
-FROM
-reparar_tv
-WHERE
-estado = 'Reparada';";
+id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada' 			
+union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'";
+
+
 
 ?>
 <html lang="es">
@@ -152,38 +151,59 @@ estado = 'Reparada';";
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
-      <th data-field="equipo" data-sortable="true">equipo</th>
-      <th data-field="falla" data-sortable="true">falla</th>
-      <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-      <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="fecha_egreso" data-sortable="true">fecha_egreso</th>
-      <th data-field="estado" data-sortable="true">estado</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
+      <th data-field="folio" data-sortable="true">Folio</th>
+      <th data-field="nombre" data-sortable="true">Nombre</th>
+      <th data-field="apellido" data-sortable="true">Apellidos</th>
+      <th data-field="correo" data-sortable="true">Correo</th>
+      <th data-field="celular" data-sortable="true">Celular</th>
+      <th data-field="marca" data-sortable="true">Marca</th>
+      <th data-field="modelo" data-sortable="true">Modelo</th>
+
+      <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
+      <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+      <th data-field="costo" data-sortable="true">Costo total</th>
+      <th data-field="garantia" data-sortable="true">Garantía</th>
+
+
 
     </thead>
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
         $id_equipo          = $fila['id_equipo'];
-        $equipo           = $fila['equipo'];
-        $falla          = $fila['falla'];
-        $fecha_ingreso        = $fila['fecha_ingreso'];
+        $id           = $fila['id_folio'];
+        $nombre          = $fila['nombre'];
+        $apellidos        = $fila['apellidos'];
+        $correo        = $fila['correo'];
+        $celular        = $fila['celular'];
+
+        $marca           = $fila['marca'];
+        $modelo           = $fila['modelo'];
+
         $fecha_entregar        = $fila['fecha_entregar'];
-        $fecha_egreso        = $fila['fecha_egreso'];
-        $estado        = $fila['estado'];
         $ubicacion        = $fila['ubicacion'];
+        $total        = $fila['restante'];
+        
+
 
 
 ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
-                        <td><?php echo $equipo ?></td>
-                        <td><?php echo $falla ?></td>
-                        <td><?php echo $fecha_ingreso ?></td>
+                        <td><?php echo $id ?></td>
+                        <td><?php echo $nombre ?></td>
+                        <td><?php echo $apellidos ?></td>
+                        <td><?php echo $correo ?></td>
+                        <td><?php echo $celular ?></td>
+
+                        <td><?php echo $marca ?></td>                      
+                        <td><?php echo $modelo ?></td>
                         <td><?php echo $fecha_entregar ?></td>
-                        <td><?php echo $fecha_egreso ?></td>
-                        <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></td>
+                        <td><?php echo $total ?></td>
+                        <td>
+                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>                        
+                        </td>
 
           </tr>
         <?php } ?>
@@ -234,7 +254,106 @@ estado = 'Reparada';";
 
 </div>
 </div>
+<script type="text/javascript">
+ //Script para mandar ID para generar la orden
+function enviarorden(id){
+  $.ajax({
+      // la URL para la petición
+      url : 'mod_equipos.php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+        //Manda Llamar id,nombre y apellido
+     
+        $("#swal-input3").val(data.data.equipo);
+        $("#swal-input4").val(data.data.marca);
+        $("#swal-input5").val(data.data.modelo);
+        $("#swal-input6").val(data.data.total);
 
+
+
+   
+
+      },
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+
+      },
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+
+      }
+  });
+}
+
+</script>
+
+<script type="text/javascript">
+//ventana orden de servición
+function garantia(id){
+
+
+swal({
+title: 'Garantia',
+html:
+'<div class="card-body"> <form action="pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
+'<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
+'<input name="swal-input2" type="hidden" id="swal-input2" class="form-control border-input" readonly >' +
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" maxlength="25" required readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo restante</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
 
 
   </body>

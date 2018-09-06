@@ -11,32 +11,32 @@ $id = $_POST ['swal-input0'];
 $nom = $_POST ['swal-input1'];
 $ape= $_POST ['swal-input2'];
 
+$id_folio= $_GET['id_folio']
+
+$consultaa = "SELECT
+id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado 
+FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = '$id'			
+union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado 
+FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = '$id';";
+
+$resu = $conn->query($consultaa);
 
 
-$equipo=$_POST['equipo'];
-  $marca=$_POST['marca'];
-  $modelo=$_POST['modelo'];
-  $serie=$_POST['serie'];
-  $falla=$_POST['falla'];
-  $servicio=$_POST['servicio'];
- $accesorio=$_POST['acce'];
- $comentario=$_POST['comen'];
+   if($resu->num_rows > 0){
+
+    while($row = $resu->fetch_assoc()) {
+    $equipo = $row["equipo"];
+    $serie = $row["serie"];
+    $falla = $row["falla"];
+   
+  }
+}else{}
+
+
   
 //checar la validacion(no funciona el else:v)
 
-if($equipo == 'Television'){
 
- $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
- VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
- $res = $conn->query($sql);
-}
-elseif($equipo =='Otros'){
-
-  $sql1 = "INSERT INTO reparar_otros(equipo, marca, modelo, accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
-  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
-   $res1 = $conn->query($sql1);
-
-}
 
 //Generador de PDF
 //inserccion
@@ -47,11 +47,11 @@ elseif($equipo =='Otros'){
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
     $pdf->AddPage();
-    $title = 'Generar nueva orden de servicio';
+    $title = 'Generar nueva garantia';
     $pdf->SetTitle($title);
     $pdf->SetFont('Arial','B',24);
     $pdf->SetX(68);
-    $pdf->Write(5,'Orden de Servicio');
+    $pdf->Write(5,'Garantia');
 
     $pdf->Image('assets/img/logo.jpg',17,25,66);
 //folio
@@ -75,7 +75,7 @@ elseif($equipo =='Otros'){
     //nombre y apellido
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,80);
-    $pdf->Write(5,'Agradecemos la confianza a nuestro cliente:');
+    $pdf->Write(5,'Equipo reparado con el folio:');
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(102,80);
@@ -100,7 +100,7 @@ elseif($equipo =='Otros'){
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(95,95);
-    $pdf->Write(5, $marca);
+    $pdf->Write(5,'a' );
     //modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(125,95);
@@ -108,7 +108,7 @@ elseif($equipo =='Otros'){
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,95);
-    $pdf->Write(5,$modelo);
+    $pdf->Write(5,'a');
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,110);
@@ -116,7 +116,7 @@ elseif($equipo =='Otros'){
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(53,110);
-  $pdf->Write(5,$serie);
+  $pdf->Write(5,'a');
 
 //Falla 
   $pdf->SetFont('Arial','',12);
@@ -125,7 +125,7 @@ elseif($equipo =='Otros'){
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(60,125);
-  $pdf->Write(5,$falla);
+  $pdf->Write(5,'a');
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,140);
@@ -133,7 +133,7 @@ elseif($equipo =='Otros'){
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(55,140);
-  $pdf->Write(5,$servicio);
+  $pdf->Write(5,'a');
 
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(100,140);
@@ -141,7 +141,7 @@ elseif($equipo =='Otros'){
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(145,140);
-  $pdf->Write(5,$accesorio);
+  $pdf->Write(5,'a');
 
 //politicas 
 $pdf->SetFont('Arial','',12);
