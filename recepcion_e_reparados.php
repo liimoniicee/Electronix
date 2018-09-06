@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <?php
 session_start();
 include 'fuctions.php';
@@ -10,16 +10,17 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-id_folio, nombre, apellidos, celular, correo, puntos
-FROM
-clientes;";
+id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada' 			
+union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'";
+
+
 
 ?>
 <html lang="es">
   <head>
 
     <!-- Open Graph Meta-->
-    <title>Recepcion</title>
+    <title>Equipos reparados</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -95,17 +96,14 @@ clientes;";
     <aside class="app-sidebar">
 
         <div>
-          <p class="app-sidebar__user-name"><?php echo $var_name ?></p>
+          <p class="app-sidebar__user-name"><?php $var_name ?></p>
 
         </div>
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Recepcion</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-      <ul class="treeview-menu">
-            <li><a class="treeview-item" onclick="alerta();" href="#"><i  class="icon fa fa-circle-o"></i> Nuevo cliente</a></li>
-        
-          </ul>
+      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
+
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Clientes</span></a></li>
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
       <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -124,8 +122,8 @@ clientes;";
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Registro de nuevo cliente</h1>
-          <p>Dar un buen servicio es nuestra prioridad</p>
+          <h1><i class="fa fa-dashboard"></i>Equipos reparados</h1>
+
         </div>
 
       </div>
@@ -134,53 +132,71 @@ clientes;";
 
 
 
-<div class="card text-white bg-primary mb-3">
-  <div class="card-body">
+<div class="content-panel">
 
 
-          <div class="col-lg-12">
-            <p class="bs-component">
-              <button class="btn btn-secundary" type="button" onclick="alerta();">Nuevo cliente</button>
-            
+  <div class="row">
 
-            </p>
-              <div class="row">
-                <div class="col-lg-3">
-          <input id="search" type="text" class='form-control' placeholder="Buscar clientes dentro de la tabla">
-        </div>
-</div>
-          <table id="a-table" class="table table-striped table-dark">
+      <div class="col-md-12">
+        <div class="tile">
+          <div class="tile-body">
+
+<table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
-        <th data-field="id">id</th>
-      <th data-field="fecha" data-sortable="true">Nombre</th>
-      <th data-field="estatus" data-sortable="true">Apellidos</th>
-      <th data-field="estatus" data-sortable="true">Celular</th>
-      <th data-field="estatus" data-sortable="true">Correo</th>
-      <th class="disabled-sorting">Acción</th>
+        <th data-field="id">id_equipo</th>
+      <th data-field="folio" data-sortable="true">Folio</th>
+      <th data-field="nombre" data-sortable="true">Nombre</th>
+      <th data-field="apellido" data-sortable="true">Apellidos</th>
+      <th data-field="correo" data-sortable="true">Correo</th>
+      <th data-field="celular" data-sortable="true">Celular</th>
+      <th data-field="marca" data-sortable="true">Marca</th>
+      <th data-field="modelo" data-sortable="true">Modelo</th>
+
+      <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
+      <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+      <th data-field="costo" data-sortable="true">Costo total</th>
+      <th data-field="garantia" data-sortable="true">Garantía</th>
+
+
+
     </thead>
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
-        $id          = $fila['id_folio'];
-        $nom           = $fila['nombre'];
-        $ape          = $fila['apellidos'];
-        $cel        = $fila['celular'];
-        $cor        = $fila['correo'];
+        $id_equipo          = $fila['id_equipo'];
+        $id           = $fila['id_folio'];
+        $nombre          = $fila['nombre'];
+        $apellidos        = $fila['apellidos'];
+        $correo        = $fila['correo'];
+        $celular        = $fila['celular'];
+
+        $marca           = $fila['marca'];
+        $modelo           = $fila['modelo'];
+
+        $fecha_entregar        = $fila['fecha_entregar'];
+        $ubicacion        = $fila['ubicacion'];
+        $total        = $fila['restante'];
+        
+
 
 
 ?>
                     <tr>
+                        <td><?php echo $id_equipo ?></td>
                         <td><?php echo $id ?></td>
-                        <td><?php echo $nom ?></td>
-                        <td><?php echo $ape ?></td>
-                        <td><?php echo $cel ?></td>
-                        
+                        <td><?php echo $nombre ?></td>
+                        <td><?php echo $apellidos ?></td>
+                        <td><?php echo $correo ?></td>
+                        <td><?php echo $celular ?></td>
 
-                        <td><a href="#"><?php echo $cor ?></a></td>
+                        <td><?php echo $marca ?></td>                      
+                        <td><?php echo $modelo ?></td>
+                        <td><?php echo $fecha_entregar ?></td>
+                        <td><?php echo $ubicacion ?></td>
+                        <td><?php echo $total ?></td>
                         <td>
-                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-
+                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>                        
                         </td>
 
           </tr>
@@ -189,10 +205,13 @@ clientes;";
             Resultado de clientes
       </tbody>
   </table>
+</div>
+</div>
+</div>
 
 </div>
 </div>
-</div>
+
         </div>
       </div>
     </main>
@@ -212,22 +231,29 @@ clientes;";
     <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
-    <script type="text/javascript">
+
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
 
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-
+    <
     <div class="content-panel">
  <div class="col-lg-7">
 
- <script>
-function enviarmod(id){
+</div>
+</div>
+<script type="text/javascript">
+ //Script para mandar ID para generar la orden
+function enviarorden(id){
   $.ajax({
       // la URL para la petición
-      url : 'mod.php',
+      url : 'funciones/mod_equipos.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
@@ -240,139 +266,89 @@ function enviarmod(id){
       // código a ejecutar si la petición es satisfactoria;
       // la respuesta es pasada como argumento a la función
       success : function(data) {
-        $("#swal-input0").val(data.data.id);
-        $("#swal-input1").val(data.data.nom);
-        $("#swal-input2").val(data.data.ape);
-        $("#swal-input3").val(data.data.dir);
-        $("#swal-input4").val(data.data.cel);
-        $("#swal-input5").val(data.data.cor);
+        //Manda Llamar id,nombre y apellido
+     
+        $("#swal-input3").val(data.data.equipo);
+        $("#swal-input4").val(data.data.marca);
+        $("#swal-input5").val(data.data.modelo);
+        $("#swal-input6").val(data.data.total);
 
-    
+
+
+   
+
       },
-
       // código a ejecutar si la petición falla;
       // son pasados como argumentos a la función
       // el objeto de la petición en crudo y código de estatus de la petición
       error : function(xhr, status) {
 
       },
-
       // código a ejecutar sin importar si la petición falló o no
       complete : function(xhr, status) {
 
       }
   });
 }
+
 </script>
+
 <script type="text/javascript">
+//ventana orden de servición
+function garantia(id){
 
-    function alerta1(){
 
+swal({
+title: 'Garantia',
+html:
+'<div class="card-body"> <form action="pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
+'<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
+'<input name="swal-input2" type="hidden" id="swal-input2" class="form-control border-input" readonly >' +
 
-    swal({
-   title: 'Actualizar cliente',
-   html:
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" maxlength="25" required readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
-   '<div class="col-lg-7"> <form action="update_cliente.php" method="post" name="data">'+
-   '<label>Nombre(s)</label>' +
-   '<input input type="text" name="swal-input1"  class="form-control border-input maxlength="25" required>' +
-   '<label>Apellidos</label>' +
-   '<input input type="text" name="swal-input2" class="form-control border-input maxlength="25" required>' +
-   '<label>Direccion</label>' +
-   '<input input type="text" name="swal-input3" class="form-control border-input maxlength="25" required>' +
-   '<label>Correo</label>' +
-   '<input input type="email" name="swal-input4" class="form-control border-input requiered">' +
-   '<label>Celular</label>' +
-   '<input input type="number" name="swal-input5" class="form-control border-input type="number" required></br>'+
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
-   '</form></div>',
-   showCancelButton: true,
-   confirmButtonColor: '#3085d6',
-   cancelButtonColor: '#d33',
-   confirmButtonText: '</form> Actualizar solicitud',
-   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-   showConfirmButton: false,
-   focusConfirm: false,
-   buttonsStyling: false,
-    reverseButtons: true
-  }).then(function (result) {
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo restante</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
-swal(
-'Actualizado!',
-'La solicitud ha sido actualizada',
-'success'
-)
-}).catch(swal.noop);
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
 
 };
-  </script>
 
-  <script type="text/javascript">
-
-    function alerta(){
-
-
-    swal({
-   title: 'Nuevo cliente',
-   html:
-
-   '<div class="col-lg-7"> <form action="new_cliente.php" method="post" name="data">'+
-   '<label>Nombre(s)</label>' +
-   '<input input type="text" name="swal-input1"  class="form-control border-input maxlength="25" required>' +
-   '<label>Apellidos</label>' +
-   '<input input type="text" name="swal-input2" class="form-control border-input maxlength="25" required>' +
-   '<label>Direccion</label>' +
-   '<input input type="text" name="swal-input3" class="form-control border-input maxlength="25" required>' +
-   '<label>Correo</label>' +
-   '<input input type="email" name="swal-input4" class="form-control border-input requiered">' +
-   '<label>Celular</label>' +
-   '<input input type="number" name="swal-input5" class="form-control border-input type="number" required></br>'+
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
-   '</form></div>',
-   showCancelButton: true,
-   confirmButtonColor: '#3085d6',
-   cancelButtonColor: '#d33',
-   confirmButtonText: '</form> Actualizar solicitud',
-   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-   showConfirmButton: false,
-   focusConfirm: false,
-   buttonsStyling: false,
-    reverseButtons: true
-  })
-
-  };
-  </script>
-
-</div>
-</div>
-
-
-  <script>
-  //script para seleccionar fila en tabla
-
-  $(function () {
-  $('#a-table tr>*').click(function (e) {
-      var a = $(this).closest('tr').find('a')
-      e.preventDefault()
-      location.href = a.attr('href')
-  })
-})
-  </script>
-
-<!-- Script para buscar en tabla. -->
-<script>
-// captura el evento keyup cuando escribes en el input
-  $("#search").keyup(function(){
-      _this = this;
-      // Muestra los tr que concuerdan con la busqueda, y oculta los demás.
-      $.each($("#a-table tbody tr"), function() {
-          if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-             $(this).hide();
-          else
-             $(this).show();
-      });
-  });
 </script>
+
+
   </body>
 </html>
-

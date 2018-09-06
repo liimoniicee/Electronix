@@ -137,8 +137,8 @@ clientes;";
           <div class="col-lg-12">
             <p class="bs-component">
               <button class="btn btn-primary" type="button" onclick="alerta();">Nuevo cliente</button>
-              <button class="btn btn-success" type="button" onclick="location='e_reparados.php'">Equipos reparados</button>
-              <button class="btn btn-danger" type="button" onclick="location='e_sin_repar.php'">Equipos sin solución</button>
+              <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Equipos reparados</button>
+              <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Equipos sin solución</button>
               <button class="btn btn-info" type="button" onclick="aviso();">Avisos</button>
               <button class="btn btn-warning" type="button">Ventas</button>
   </p>
@@ -183,7 +183,7 @@ clientes;";
                         <td>
                         <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
                         <button onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
-                      <a href="historial_cliente.php?id=<?php echo $id; ?>" class="btn btn-simple btn-danger btn-icon edit"><i class="ti-pencil-alt"></i></a>
+                      <a href="recepcion_historial_cliente.php?id=<?php echo $id; ?>" class="btn btn-simple btn-danger btn-icon edit"><i class="ti-pencil-alt"></i></a>
                         </td>
 
 
@@ -241,7 +241,7 @@ clientes;";
 function enviarmod(id){
   $.ajax({
       // la URL para la petición
-      url : 'mod.php',
+      url : 'funciones/mod.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
@@ -282,7 +282,7 @@ function enviarmod(id){
 function enviarorden(id){
   $.ajax({
       // la URL para la petición
-      url : 'mod.php',
+      url : 'funciones/mod.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
@@ -326,7 +326,7 @@ function orden(id){
 swal({
 title: 'Nueva orden de servicio',
 html:
-'<div class="card-body"> <form action="pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
 '<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
@@ -423,7 +423,7 @@ function alerta1(id){
 swal({
 title: 'Actualizar cliente',
 html:
-'<div class="col-lg-12"> <form action="update_cliente.php" method="post" name="data">'+
+'<div class="col-lg-12"> <form action="funciones/update_cliente.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
 '<label>Nombre(s)</label>' +
 '<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
@@ -460,7 +460,7 @@ reverseButtons: true
     swal({
    title: 'Nuevo aviso',
    html:
-   '<div class="col-lg-12"> <form action="new_aviso.php" method="post" name="data">'+
+   '<div class="col-lg-12"> <form action="funciones/new_aviso.php" method="post" name="data">'+
    '<label>Folio(s)</label>' +
    '<input input type="number" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
    '<label>Aviso</label>' +
@@ -489,7 +489,7 @@ reverseButtons: true
     swal({
    title: 'Agregar cliente',
    html:
-   '<div class="col-lg-12"> <form action="new_cliente.php" method="post" name="data">'+
+   '<div class="col-lg-12"> <form action="funciones/new_cliente.php" method="post" name="data">'+
    '<label>Nombre(s)</label>' +
    '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
    '<label>Apellidos</label>' +
