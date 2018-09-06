@@ -17,12 +17,38 @@ reparar_tv
 WHERE
 id_folio = '$id';";
 
+  $cons = "SELECT * FROM clientes WHERE id_folio = $id";
+
+
+   $resu = $conn->query($cons);
+
+
+   if($resu->num_rows > 0){
+
+    while($row = $resu->fetch_assoc()) {
+    $nom = $row["nombre"];
+    $ape = $row["apellidos"];
+   	$cor = $row["correo"];
+   	$cel = $row["celular"];
+   	$dire = $row["direccion"];
+   	$fech = $row["fecha"];
+   	$pun = $row["puntos"];
+
+
+   //aqui termina el while
+
+ }
+}else{}
+
+
+
+
 ?>
 <html lang="es">
   <head>
 
     <!-- Open Graph Meta-->
-    <title>Equipos sin reparación</title>
+    <title>Historial</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -130,13 +156,69 @@ id_folio = '$id';";
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Equipos sin solución</h1>
+          <h1><i class="fa fa-dashboard"></i>Historial</h1>
 
         </div>
 
       </div>
 <div class="content-panel">
+  <div class="card-body text-white bg-primary mb-3">
+    <div class="card-header">Cliente
+      <div class="col-md-2">
+        <input type="text" value="<?php echo $id ?>" readonly class="form-control border-input">
+  </div>
+</div>
+            <div class="row">
 
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label >Nombre</label>
+                      <input type="text" readonly value="<?php echo $nom ?>" class="form-control border-input" >
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label >Apellidos</label>
+                      <input type="text" readonly value="<?php echo $ape ?>" class="form-control border-input" >
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label >Direccion</label>
+                      <input type="text" readonly value="<?php echo $dire ?>" class="form-control border-input" >
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label >Correo</label>
+                      <input type="text" readonly value="<?php echo $cor ?>" class="form-control border-input" >
+                  </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label >Celular</label>
+                      <input type="text" readonly value="<?php echo $cel ?>" class="form-control border-input" >
+                  </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label >Fecha de inscripción</label>
+                      <input type="text" readonly value="<?php echo $fech ?>" class="form-control border-input">
+                  </div>
+              </div>
+
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label >Puntos</label>
+                      <input type="text" readonly value="<?php echo $pun ?>" class="form-control border-input">
+                  </div>
+              </div>
+            </div>
+
+      </div>
 
               <div class="row">
 
@@ -168,7 +250,6 @@ id_folio = '$id';";
         $fecha_egreso        = $fila['fecha_egreso'];
         $estado        = $fila['estado'];
         $ubicacion        = $fila['ubicacion'];
-
 
 ?>
                     <tr>
