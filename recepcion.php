@@ -23,7 +23,7 @@ clientes;";
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
@@ -102,15 +102,7 @@ clientes;";
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Recepcion</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-      <ul class="treeview-menu">
-            <li><a class="treeview-item" onclick="alerta();" href="#"><i  class="icon fa fa-circle-o"></i> Nuevo cliente</a></li>
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Equipos sin solución</a></li>
-
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Avisos</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Ventas</a></li>
-          </ul>
-      <li><a class="app-menu__item" href="clientes.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Clientes</span></a></li>
+      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
       <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
@@ -282,6 +274,48 @@ function enviarmod(id){
       }
   });
 }
+
+</script>
+
+ <script type="text/javascript">
+ //Script para mandar ID para generar la orden
+function enviarorden(id){
+  $.ajax({
+      // la URL para la petición
+      url : 'mod.php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+        //Manda Llamar id,nombre y apellido
+       $("#swal-input0").val(data.data.id);
+        $("#swal-input1").val(data.data.nom);
+        $("#swal-input2").val(data.data.ape);
+
+   
+
+      },
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+
+      },
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+
+      }
+  });
+}
+
 </script>
 
 <script type="text/javascript">
@@ -292,13 +326,16 @@ function orden(id){
 swal({
 title: 'Nueva orden de servicio',
 html:
-'<div class="card-body"> <form action="pdf-orden.php" method="post" name="data">'+
-'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
+'<div class="card-body"> <form action="pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
+'<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
+'<input name="swal-input2" type="hidden" id="swal-input2" class="form-control border-input" readonly >' +
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Equipo  :</label>'+
-        '<select class="form-control form-control-sm" name="equipo" id="equipo"><option value="1">Televisión</option><option value="2">Otros</option></select>' +
+        '<select class="form-control form-control-sm" name="equipo" id="equipo"><option value="Television">Televisión</option><option value="Otros">Otros</option></select>' +
     '</div>'+
 '</div>'+
 
@@ -313,7 +350,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -322,7 +359,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Serie</label>'+
-        '<input type="text" name="serie" id="serie" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="serie" id="serie" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -330,7 +367,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -347,7 +384,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Comentarios</label>'+
-        '<input type="text" name="comen" id="comen" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="comen" id="comen" maxlength="50"  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -359,7 +396,7 @@ html:
 '</div>'+
 '</div>'+
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
 
 '</form></div>',
 showCancelButton: true,
@@ -427,7 +464,7 @@ reverseButtons: true
    '<label>Folio(s)</label>' +
    '<input input type="number" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
    '<label>Aviso</label>' +
-   '<input input type="text" name="ape" id="ape" style="line-height: 150px; height:150px;" class="form-control border-input maxlength="100" required>' +
+   '<input input type="textarea" name="ape" id="ape" style="line-height: 150px; height:150px;" class="form-control border-input maxlength="100" required>' +
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
    '</form></div>',
    showCancelButton: true,

@@ -1,17 +1,50 @@
 <?php   
+session_start();
+include 'fuctions.php';
+include 'conexion.php';
+verificar_sesion();
 
-  //$n_nombre=$_POST['nombre'];
-  //$a_apellido=$_POST['apellido'];
-  $equipo=$_POST['equipo'];
+$var_name=$_SESSION['nombre'];
+$var_clave= $_SESSION['clave'];
+
+$id = $_POST ['swal-input0'];
+$nom = $_POST ['swal-input1'];
+$ape= $_POST ['swal-input2'];
+
+
+
+$equipo=$_POST['equipo'];
   $marca=$_POST['marca'];
   $modelo=$_POST['modelo'];
   $serie=$_POST['serie'];
   $falla=$_POST['falla'];
   $servicio=$_POST['servicio'];
  $accesorio=$_POST['acce'];
+ $comentario=$_POST['comen'];
+  
+//checar la validacion(no funciona el else:v)
+
+if($equipo == 'Television'){
+
+ $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
+ VALUES ('$equipo', '$marca', '$modelo', '$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
+ $res = $conn->query($sql);
+}
+elseif($equipo =='Otros'){
+
+  $sql1 = "INSERT INTO reparar_electrodomesticos(equipo, marca, modelo, accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
+  VALUES ('$equipo', '$marca', '$modelo', '$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
+   $res1 = $conn->query($sql1);
+
+}
+
+//Generador de PDF
+//inserccion
+  //$n_nombre=$_POST['nombre'];
+  //$a_apellido=$_POST['apellido'];
+  
 
   require 'assets/fpdf/fpdf.php';
-
     $pdf = new FPDF();
     $pdf->AddPage();
     $title = 'Generar nueva orden de servicio';
@@ -22,23 +55,22 @@
 
     $pdf->Image('assets/img/logo.jpg',17,25,66);
 //folio
-    $pdf->SetFont('Arial','B',16);
+    $pdf->SetFont('Arial','',16);
     $pdf->SetXY(150,34);
     $pdf->Write(5,'Folio:');
 
     $pdf->SetFont('Arial','B',16);
     $pdf->SetXY(166,34);
-    $pdf->Write(5,'xxxxxx');
+    $pdf->Write(5,$id);
 
 //fecha
-    $pdf->SetFont('Arial','B',16);
+    $pdf->SetFont('Arial','',16);
     $pdf->SetXY(148,48);
     $pdf->Write(5,'Fecha:');
 
     $pdf->SetFont('Arial','B',16);
     $pdf->SetXY(167,48);
-    $pdf->Write(5,'xxxxxx');
-
+    $pdf->Cell(30,5,date('d/m/Y'),0,1,'L');
 //Cuerpo de texto
     //nombre y apellido
     $pdf->SetFont('Arial','',12);
@@ -47,11 +79,11 @@
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(102,80);
-    $pdf->Write(5,'NOMBRE');
+    $pdf->Write(5,$nom);
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,80);
-    $pdf->Write(5,'APELLIDOS');
+    $pdf->Write(5,$ape);
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);
@@ -150,8 +182,6 @@ $pdf->SetXY(80,270);
 $pdf->Write(6,'Oficina: 688-28-96');
 
 
-
-
-  $pdf->Output();
+$pdf->Output();
 
 ?>
