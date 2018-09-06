@@ -9307,6 +9307,9 @@ button.bg-dark:focus {
 .text-white {
   color: #FFF !important;
 }
+.text-black {
+  color: #000 !important;
+}
 
 .text-primary {
   color: #009688 !important;
