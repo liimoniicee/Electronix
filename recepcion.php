@@ -23,6 +23,7 @@ clientes;";
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
@@ -291,69 +292,72 @@ function orden(id){
 swal({
 title: 'Nueva orden de servicio',
 html:
-'<div class="card-body"> <form action="gen_orden.php" method="post" name="data">'+
+'<div class="card-body"> <form action="pdf-orden.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Equipo  :</label>'+
-        '<select class="form-control form-control-sm" name="id_equipo" id="equipo"><option value="#">Televisión</option><option value="#">Otros</option></select>' +
+        '<select class="form-control form-control-sm" name="equipo" id="equipo"><option value="1">Televisión</option><option value="2">Otros</option></select>' +
     '</div>'+
 '</div>'+
-'</div>'+
-'<div class="row">'+
+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Marca</label>'+
-        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="marca" id="marca" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
+'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Modelo</label>'+
-        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
-'</div>'+
 
-'<div class="row">'+
+
+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Serie</label>'+
-        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="serie" id="serie" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
+'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Falla</label>'+
-        '<input type="text" name="marc" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="falla" id="falla" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
-'</div>'+
 
-'<div class="row">'+
+
+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Accesorios</label>'+
-        '<input type="text" name="acce" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="acce" id="acce" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
+'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Comentarios</label>'+
-        '<input type="text" name="comen" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="comen" id="comen" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
-'</div>'+
 
-'<div class="row">'+
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" name="t_servicio" id="t_servicio"><option value="#">Reparación</option><option value="#">Domicilio</option><option value="#">Garantía</option><option value="#">Compra</option><option value="#">Revisión</option></select>' +
+        '<select class="form-control form-control-sm" name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
     '</div>'+
 '</div>'+
-
+'</div>'+
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar reporte</Button>'+
 

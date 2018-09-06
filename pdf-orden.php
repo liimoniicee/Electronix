@@ -1,6 +1,17 @@
-<?php
-    require 'assets/fpdf/fpdf.php';
-   
+<?php   
+
+  //$n_nombre=$_POST['nombre'];
+  //$a_apellido=$_POST['apellido'];
+  $equipo=$_POST['equipo'];
+  $marca=$_POST['marca'];
+  $modelo=$_POST['modelo'];
+  $serie=$_POST['serie'];
+  $falla=$_POST['falla'];
+  $servicio=$_POST['servicio'];
+ $accesorio=$_POST['acce'];
+
+  require 'assets/fpdf/fpdf.php';
+
     $pdf = new FPDF();
     $pdf->AddPage();
     $title = 'Generar nueva orden de servicio';
@@ -49,7 +60,7 @@
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(57,95);
-    $pdf->Write(5,'EQUIPO');
+    $pdf->Write(5,$equipo);
     //marca
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(80,95);
@@ -57,7 +68,7 @@
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(95,95);
-    $pdf->Write(5,'MARCA');
+    $pdf->Write(5, $marca);
     //modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(125,95);
@@ -65,7 +76,7 @@
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,95);
-    $pdf->Write(5,'MODELO');
+    $pdf->Write(5,$modelo);
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,110);
@@ -73,7 +84,7 @@
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(53,110);
-  $pdf->Write(5,'#SERIE');
+  $pdf->Write(5,$serie);
 
 //Falla 
   $pdf->SetFont('Arial','',12);
@@ -82,7 +93,7 @@
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(60,125);
-  $pdf->Write(5,'FALLA');
+  $pdf->Write(5,$falla);
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,140);
@@ -90,7 +101,7 @@
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(55,140);
-  $pdf->Write(5,'SERVICIO');
+  $pdf->Write(5,$servicio);
 
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(100,140);
@@ -98,7 +109,7 @@
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(145,140);
-  $pdf->Write(5,'ACCESORIOS');
+  $pdf->Write(5,$accesorio);
 
 //politicas 
 $pdf->SetFont('Arial','',12);
@@ -142,4 +153,5 @@ $pdf->Write(6,'Oficina: 688-28-96');
 
 
   $pdf->Output();
+
 ?>
