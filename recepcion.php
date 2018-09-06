@@ -241,7 +241,7 @@ clientes;";
 function enviarmod(id){
   $.ajax({
       // la URL para la petición
-      url : 'funciones/mod.php',
+      url : 'recepcion_fn_actualizar_cliente.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
@@ -282,7 +282,7 @@ function enviarmod(id){
 function enviarorden(id){
   $.ajax({
       // la URL para la petición
-      url : 'funciones/mod.php',
+      url : 'recepcion_fn_actualizar_cliente.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {

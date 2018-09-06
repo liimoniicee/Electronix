@@ -143,7 +143,7 @@ estado = 'Sin solucion';";
                     <div class="tile">
                       <div class="tile-body">
 
-          <table id="a-tables" class="table table-hover table-responsive">
+          <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
@@ -180,6 +180,10 @@ estado = 'Sin solucion';";
                         <td><?php echo $fecha_egreso ?></td>
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></a></td>
+                        <td>
+                        <button  class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button  class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        </td>
 
           </tr>
         <?php } ?>
