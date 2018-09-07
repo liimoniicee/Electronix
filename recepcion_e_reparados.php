@@ -194,7 +194,7 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
                         <td><?php echo $ubicacion ?></td>
                         <td><?php echo $total ?></td>
                         <td>
-                        <button onclick="Garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
                         </td>
 
           </tr>
@@ -251,7 +251,7 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
 function enviarorden(id){
   $.ajax({
       // la URL para la petición
-      url : 'funciones/mod_equipos.php',
+      url : 'mod_equipos.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
@@ -265,16 +265,12 @@ function enviarorden(id){
       // la respuesta es pasada como argumento a la función
       success : function(data) {
         //Manda Llamar id,nombre y apellido
-
-        $("#swal-input3").val(data.data.equipo);
-        $("#swal-input4").val(data.data.marca);
-        $("#swal-input5").val(data.data.modelo);
-        $("#swal-input6").val(data.data.serie);
+        $("#swal-input0").val(data.data.id);
+        $("#swal-input1").val(data.data.equ);
+        $("#swal-input2").val(data.data.mar);
+        $("#swal-input3").val(data.data.mod);
+        $("#swal-input4").val(data.data.ser);
         //$("#swal-input6").val(data.data.serie);
-
-
-
-
 
       },
       // código a ejecutar si la petición falla;
@@ -296,7 +292,6 @@ function enviarorden(id){
 //ventana orden de servición
 function garantia(id){
 
-
 swal({
 title: 'Garantia',
 html:
@@ -304,26 +299,36 @@ html:
 //Manda Llamar id,nombre y apellido
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
 
+
+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Marca</label>'+
-        '<input type="text" name="swal-input4" id="swal-input4" maxlength="25" required readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input2" id="swal-input2" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Modelo</label>'+
-        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Costo restante</label>'+
-        '<input type="text" name="swal-input6" id="swal-input6" readonly maxlength="25" required class="form-control border-input">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 

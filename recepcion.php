@@ -300,7 +300,7 @@ function enviarorden(id){
         $("#swal-input1").val(data.data.nom);
         $("#swal-input2").val(data.data.ape);
 
-   
+
 
       },
       // código a ejecutar si la petición falla;
@@ -423,7 +423,7 @@ function alerta1(id){
 swal({
 title: 'Actualizar cliente',
 html:
-'<div class="col-lg-12"> <form action="funciones/update_cliente.php" method="post" name="data">'+
+'<div class="col-lg-12"> <form action="update_cliente.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
 '<label>Nombre(s)</label>' +
 '<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
