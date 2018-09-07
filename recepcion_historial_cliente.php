@@ -9,13 +9,22 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 $id = $_GET ['id'];
-
+//Tabla para ver todos los equipos
 $consulta = "SELECT
 equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
+
 id_folio = '$id';";
+
+$consulta1 = "SELECT
+equipo, falla, id_equipo, marca, modelo, fecha_egreso, servicio, estado, ubicacion
+FROM
+reparar_tv
+WHERE
+
+id_folio = '$id' and estado='entregado';";
 
   $cons = "SELECT * FROM clientes WHERE id_folio = $id";
 
@@ -40,10 +49,9 @@ id_folio = '$id';";
  }
 }else{}
 
-
-
-
 ?>
+
+
 <html lang="es">
   <head>
 
@@ -226,12 +234,11 @@ id_folio = '$id';";
         <th data-field="id">id_equipo</th>
       <th data-field="equipo" data-sortable="true">equipo</th>
       <th data-field="falla" data-sortable="true">falla</th>
-      <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-      <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="fecha_egreso" data-sortable="true">fecha_egreso</th>
+      <th data-field="fecha_ingreso" data-sortable="true">Ingreso</th>
+      <th data-field="fecha_entregar" data-sortable="true">Reparación</th>
+      <th data-field="fecha_egreso" data-sortable="true">Salida</th>
       <th data-field="estado" data-sortable="true">estado</th>
       <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-      <th data-field="accion" data-sortable="true">Acción</th>
 
     </thead>
     <?php
@@ -256,19 +263,71 @@ id_folio = '$id';";
                         <td><?php echo $fecha_egreso ?></td>
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></td>
-                        <td>
-                          <button onclick="alerta1(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        </td>
+                       
 
           </tr>
         <?php } ?>
         <tbody></br>
-            Resultado de clientes
+           <h2>Historial completo del cliente <?php echo $id ?></h2>
       </tbody>
   </table>
       </div>
     </div>
   </div>
+</div>
+
+           <div class="row">
+
+<div class="col-md-12">
+  <div class="tile">
+    <div class="tile-body">
+
+<table id="a-tables" class="table table-dark table-hover table-responsive">
+<thead>
+<!--<th data-field="state" data-checkbox="true"></th>-->
+<th data-field="id">id_equipo</th>
+<th data-field="marca" data-sortable="true">Marca</th>
+<th data-field="modelo" data-sortable="true">Modelo</th>
+<th data-field="falla" data-sortable="true">Falla</th>
+<th data-field="fecha_egreso" data-sortable="true">Salida</th>
+<th data-field="estado" data-sortable="true">Estado</th>
+<th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+<th data-field="accion" data-sortable="true">Acción</th>
+
+</thead>
+<?php
+$ejecutar = mysqli_query($conn, $consulta1);
+while($fila=mysqli_fetch_array($ejecutar)){
+$id_equipo          = $fila['id_equipo'];
+$marca           = $fila['marca'];
+$modelo           = $fila['modelo'];
+$falla          = $fila['falla'];
+$fecha_egreso        = $fila['fecha_egreso'];
+$estado        = $fila['estado'];
+$ubicacion        = $fila['ubicacion'];
+
+?>
+  <tr>
+      <td><?php echo $id_equipo ?></td>
+      <td><?php echo $marca ?></td>
+      <td><?php echo $modelo ?></td>
+      <td><?php echo $falla ?></td>
+      <td><?php echo $fecha_egreso ?></td>
+      <td><?php echo $estado ?></td>
+      <td><?php echo $ubicacion ?></td>
+      <td>
+        <button onclick="alerta1(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit" title="Reingreso por garantía" ><i ></i></button>
+      </td>
+
+</tr>
+<?php } ?>
+<tbody></br>
+<h2>Historial equipos entregados del cliente <?php echo $id ?></h2> 
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 
 
@@ -371,7 +430,7 @@ id_folio = '$id';";
 
 
     swal({
-    title: 'Generar garantia',
+    title: 'Reingresar equipo por garantía',
     html:
     '<div class="col-lg-12"> <form action="garantia.php" method="post" name="data">'+
     '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
@@ -419,7 +478,7 @@ id_folio = '$id';";
         '</div>'+
     '</div>'+
     '</div>'+
-    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar cliente</Button>'+
+    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Reingreso</Button>'+
     '</form></div>',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',

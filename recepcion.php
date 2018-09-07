@@ -181,9 +181,9 @@ clientes;";
 
                         <td><?php echo $cor ?></td>
                         <td>
-                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        <button onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
-                      <a href="recepcion_historial_cliente.php?id=<?php echo $id; ?>" class="btn btn-simple btn-danger btn-icon edit"><i class="ti-pencil-alt"></i></a>
+                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit" title="Actualizar cliente" ><i ></i></button>
+                        <button onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
+                      <a href="recepcion_historial_cliente.php?id=<?php echo $id; ?>" class="btn btn-simple btn-danger btn-icon edit" title="Historial"$id ><i class="ti-pencil-alt"></i></a>
                         </td>
 
 

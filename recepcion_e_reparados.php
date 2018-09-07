@@ -148,15 +148,13 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
       <th data-field="folio" data-sortable="true">Folio</th>
       <th data-field="nombre" data-sortable="true">Nombre</th>
       <th data-field="apellido" data-sortable="true">Apellidos</th>
-      <th data-field="correo" data-sortable="true">Correo</th>
-      <th data-field="celular" data-sortable="true">Celular</th>
+  
       <th data-field="marca" data-sortable="true">Marca</th>
       <th data-field="modelo" data-sortable="true">Modelo</th>
 
       <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
-      <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-      <th data-field="costo" data-sortable="true">Costo total</th>
-      <th data-field="garantia" data-sortable="true">Garantía</th>
+      <th data-field="costo" data-sortable="true">Restante</th>
+      <th data-field="garantia" data-sortable="true">Acción</th>
 
 
 
@@ -168,12 +166,10 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
         $id           = $fila['id_folio'];
         $nombre          = $fila['nombre'];
         $apellidos        = $fila['apellidos'];
-        $correo        = $fila['correo'];
-        $celular        = $fila['celular'];
+   
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
         $fecha_entregar        = $fila['fecha_entregar'];
-        $ubicacion        = $fila['ubicacion'];
         $total        = $fila['restante'];
 
 
@@ -185,16 +181,14 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
                         <td><?php echo $id ?></td>
                         <td><?php echo $nombre ?></td>
                         <td><?php echo $apellidos ?></td>
-                        <td><?php echo $correo ?></td>
-                        <td><?php echo $celular ?></td>
+                    
 
                         <td><?php echo $marca ?></td>
                         <td><?php echo $modelo ?></td>
                         <td><?php echo $fecha_entregar ?></td>
-                        <td><?php echo $ubicacion ?></td>
                         <td><?php echo $total ?></td>
                         <td>
-                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
                         </td>
 
           </tr>
@@ -330,21 +324,43 @@ html:
         '<input type="text" name="swal-input2" id="swal-input2" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
 
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" readonly required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
+
+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Serie</label>'+
-        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>xxxx</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>xxxx</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
 
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
