@@ -9,12 +9,17 @@ $response = array();
 if(isset($_POST['id'])){
   $id = $_POST['id'];
 
-  $consulta = "SELECT
+  /*$consulta = "SELECT
   id_equipo,id_personal,nombre,apellidos,celular,correo,equipo,marca,modelo,serie,accesorios,falla,comentarios,fecha_ingreso,fecha_entregar,servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
   FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = $id
   union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
-  FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = $id;";
-
+  FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = $id";*/
+$consulta = "SELECT r.id_equipo, r.id_personal, c.nombre, c.apellidos, c.celular, c.correo, r.accesorios,
+                    r.falla, r.comentarios, r.fecha_ingreso, r.fecha_entregar, r.fecha_egreso, r.servicio,
+                    r.ubicacion, r.presupuesto, r.mano_obra, r.abono, r.restante, r.costo_total, r.estado
+              FROM clientes c, reparar_tv r
+              WHERE c.id_folio = $id
+              and c.id_folio = r.id_folio";
 
    $resultado = $conn->query($consulta);
 
@@ -30,12 +35,11 @@ if(isset($_POST['id'])){
     "ape"         =>  $row["apellidos"],
     "cel"         =>  $row["celular"],
     "cor"         =>  $row["correo"],
-    "equi"        =>  $row["equipo"],
-    /*"accesorios"    =>  $row["accesorios"],
+    "accesorios"    =>  $row["accesorios"],
     "falla"         =>  $row["falla"],
     "comentarios"   =>  $row["comentarios"],
     "fecha_ingreso" =>  $row["fecha_ingreso"],
-    "fecha_entrega" =>  $row["fecha_entrega"],
+    "fecha_entrega" =>  $row["fecha_entregar"],
     "fecha_egreso"  =>  $row["fecha_egreso"],
     "servicio"      =>  $row["servicio"],
     "ubicacion"     =>  $row["ubicacion"],
@@ -44,7 +48,7 @@ if(isset($_POST['id'])){
     "abono"         =>  $row["abono"],
     "restante"      =>  $row["restante"],
     "costo_total"   =>  $row["costo_total"],
-    "estado"        =>  $row["estado"],*/
+    "estado"        =>  $row["estado"],
 
 
   );

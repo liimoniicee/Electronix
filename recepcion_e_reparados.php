@@ -246,48 +246,62 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
 
 </div>
 </div>
-<script type="text/javascript">
- //Script para mandar ID para generar la orden
+<script>
+//Script para mandar ID para generar la orden
 function enviarorden(id){
-  $.ajax({
-      // la URL para la petición
-      url : 'mod_equipos.php',
-      // la información a enviar
-      // (también es posible utilizar una cadena de datos)
-      data : {
-         id : id
-      },
-      // especifica si será una petición POST o GET
-      type : 'POST',
-      // el tipo de información que se espera de respuesta
-      dataType : 'json',
-      // código a ejecutar si la petición es satisfactoria;
-      // la respuesta es pasada como argumento a la función
-      success : function(data) {
-        //Manda Llamar id,nombre y apellido
-        $("#swal-input0").val(data.data.id);
-        $("#swal-input1").val(data.data.equ);
-        $("#swal-input2").val(data.data.mar);
-        $("#swal-input3").val(data.data.mod);
-        $("#swal-input4").val(data.data.ser);
-        //$("#swal-input6").val(data.data.serie);
+ $.ajax({
+     // la URL para la petición
+     url : 'recepcion_fn_historial_garantia.php',
+     // la información a enviar
+     // (también es posible utilizar una cadena de datos)
+     data : {
+        id : id
+     },
+     // especifica si será una petición POST o GET
+     type : 'POST',
+     // el tipo de información que se espera de respuesta
+     dataType : 'json',
+     // código a ejecutar si la petición es satisfactoria;
+     // la respuesta es pasada como argumento a la función
+     success : function(data) {
+       //Manda Llamar id,nombre y apellido
+       $("#swal-input0").val(data.data.id);
+       $("#swal-input1").val(data.data.id_e);
+       $("#swal-input2").val(data.data.id_pe);
+       $("#swal-input3").val(data.data.nom);
+       $("#swal-input4").val(data.data.ape);
+       $("#swal-input5").val(data.data.cel);
+       $("#swal-input6").val(data.data.cor);
+       $("#swal-input7").val(data.data.accesorios);
+       $("#swal-input8").val(data.data.falla);
+       $("#swal-input9").val(data.data.comentarios);
+       $("#swal-input10").val(data.data.fecha_ingreso);
+       $("#swal-input11").val(data.data.fecha_entrega);
+       $("#swal-input12").val(data.data.fecha_egreso);
+       $("#swal-input13").val(data.data.servicio);
+       $("#swal-input14").val(data.data.ubicacion);
+       $("#swal-input15").val(data.data.presupuesto);
+       $("#swal-input16").val(data.data.mano_obra);
+       $("#swal-input17").val(data.data.abono);
+       $("#swal-input18").val(data.data.restante);
+       $("#swal-input19").val(data.data.costo_total);
+       $("#swal-input20").val(data.data.estado);
 
-      },
-      // código a ejecutar si la petición falla;
-      // son pasados como argumentos a la función
-      // el objeto de la petición en crudo y código de estatus de la petición
-      error : function(xhr, status) {
+     },
+     // código a ejecutar si la petición falla;
+     // son pasados como argumentos a la función
+     // el objeto de la petición en crudo y código de estatus de la petición
+     error : function(xhr, status) {
 
-      },
-      // código a ejecutar sin importar si la petición falló o no
-      complete : function(xhr, status) {
+     },
+     // código a ejecutar sin importar si la petición falló o no
+     complete : function(xhr, status) {
 
-      }
-  });
+     }
+ });
 }
 
 </script>
-
 <script type="text/javascript">
 //ventana orden de servición
 function garantia(id){

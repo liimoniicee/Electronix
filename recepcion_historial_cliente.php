@@ -306,7 +306,7 @@ id_folio = '$id';";
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
-    <script type="text/javascript">
+    <script>
     //Script para mandar ID para generar la orden
     function enviarorden(id){
      $.ajax({
@@ -332,7 +332,20 @@ id_folio = '$id';";
            $("#swal-input4").val(data.data.ape);
            $("#swal-input5").val(data.data.cel);
            $("#swal-input6").val(data.data.cor);
-           $("#swal-input7").val(data.data.equi);
+           $("#swal-input7").val(data.data.accesorios);
+           $("#swal-input8").val(data.data.falla);
+           $("#swal-input9").val(data.data.comentarios);
+           $("#swal-input10").val(data.data.fecha_ingreso);
+           $("#swal-input11").val(data.data.fecha_entrega);
+           $("#swal-input12").val(data.data.fecha_egreso);
+           $("#swal-input13").val(data.data.servicio);
+           $("#swal-input14").val(data.data.ubicacion);
+           $("#swal-input15").val(data.data.presupuesto);
+           $("#swal-input16").val(data.data.mano_obra);
+           $("#swal-input17").val(data.data.abono);
+           $("#swal-input18").val(data.data.restante);
+           $("#swal-input19").val(data.data.costo_total);
+           $("#swal-input20").val(data.data.estado);
 
          },
          // código a ejecutar si la petición falla;
@@ -358,32 +371,28 @@ id_folio = '$id';";
 
 
     swal({
-    title: 'Actualizar cliente',
+    title: 'Generar garantia',
     html:
-    '<div class="col-lg-12"> <form action="update_cliente.php" method="post" name="data">'+
+    '<div class="col-lg-12"> <form action="garantia.php" method="post" name="data">'+
     '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
-
-
     '<div class="row">'+
     '<div class="col-md-6">'+
       '<div class="form-group">'+
-            '<label>Marca</label>'+
+            '<label>id equipo</label>'+
             '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
-    
     '<div class="col-md-6">'+
       '<div class="form-group">'+
-            '<label>Marca</label>'+
+            '<label>id personal</label>'+
             '<input type="text" name="swal-input2" id="swal-input2" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
     '</div>'+
-
     '<div class="row">'+
     '<div class="col-md-6">'+
       '<div class="form-group">'+
-            '<label>Marca</label>'+
+            '<label>nombre</label>'+
             '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
@@ -391,36 +400,25 @@ id_folio = '$id';";
     '<div class="row">'+
     '<div class="col-md-6">'+
       '<div class="form-group">'+
-            '<label>Marca</label>'+
+            '<label>apellido</label>'+
             '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
-
     '<div class="col-md-6">'+
       '<div class="form-group">'+
-            '<label>Marca</label>'+
+            '<label>celular</label>'+
             '<input type="text" name="swal-input5" id="swal-input5" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
     '</div>'+
-
     '<div class="row">'+
     '<div class="col-md-6">'+
       '<div class="form-group">'+
-            '<label>Marca</label>'+
+            '<label>correo</label>'+
             '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
-
-    '<div class="col-md-6">'+
-      '<div class="form-group">'+
-            '<label>Marca</label>'+
-            '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
-        '</div>'+
     '</div>'+
-    '</div>'+
-
-
     '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar cliente</Button>'+
     '</form></div>',
     showCancelButton: true,

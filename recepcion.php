@@ -519,32 +519,5 @@ reverseButtons: true
 </div>
 </div>
 
-
-  <script>
-  //script para seleccionar fila en tabla
-
-  $(function () {
-  $('#a-table tr>*').click(function (e) {
-      var a = $(this).closest('tr').find('a')
-      e.preventDefault()
-      location.href = a.attr('href')
-  })
-})
-  </script>
-
-<!-- Script para buscar en tabla. -->
-<script>
-// captura el evento keyup cuando escribes en el input
-  $("#search").keyup(function(){
-      _this = this;
-      // Muestra los tr que concuerdan con la busqueda, y oculta los demás.
-      $.each($("#a-table tbody tr"), function() {
-          if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-             $(this).hide();
-          else
-             $(this).show();
-      });
-  });
-</script>
   </body>
 </html>
