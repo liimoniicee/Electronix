@@ -7,13 +7,13 @@ verificar_sesion();
 
 $response = array();
 if(isset($_POST['id'])){
-  $id = $_POST['id'];
+  $id_equipo = $_POST['id'];
 
   $consulta = "SELECT
 id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
-FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = '$id_folio'
+FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = '$id_equipo'
 union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
-FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = '$id_folio';";
+FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = '$id_equipo';";
 
 
    $resultado = $conn->query($consulta);
@@ -22,8 +22,8 @@ FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'a
    if($resultado->num_rows > 0){
 
     while($row = $resultado->fetch_assoc()) {
-  $response['data'] = array (
-    "id"            =>  $id,
+  $response['data'] = array 
+    "id"            =>  $id_equipo,
     "equipo"        =>  $row["equipo"],
     "marca"         =>  $row["marca"],
     "modelo"        =>  $row["modelo"],

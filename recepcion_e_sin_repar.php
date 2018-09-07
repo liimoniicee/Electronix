@@ -103,15 +103,8 @@ estado = 'Sin solucion';";
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Recepcion</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-      <ul class="treeview-menu">
-            <li><a class="treeview-item" onclick="alerta();" href="#"><i  class="icon fa fa-circle-o"></i> Nuevo cliente</a></li>
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Equipos sin solución</a></li>
-
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Avisos</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Ventas</a></li>
-          </ul>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Clientes</span></a></li>
+ 
+      <li><a class="app-menu__item" href="recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepcion</span></a></li>
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
       <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
@@ -181,7 +174,7 @@ estado = 'Sin solucion';";
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button  class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="cambio(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
                         <button  class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
@@ -237,8 +230,105 @@ estado = 'Sin solucion';";
 </div>
 </div>
 
+<script type="text/javascript">
+ //Script para mandar ID para generar la orden
+function enviarorden(id_equipo){
+  $.ajax({
+      // la URL para la petición
+      url : 'recepcion_fn_actualizar_equipo.php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id_equipo
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+        //Manda Llamar id,nombre y apellido
 
-<!-- Script para buscar en tabla. -->
+        $("#swal-input0").val(data.data.equipo);
+        $("#swal-input1").val(data.data.marca);
+        $("#swal-input2").val(data.data.modelo);
+        $("#swal-input3").val(data.data.serie);
+        //$("#swal-input6").val(data.data.serie);
+
+
+
+
+
+      },
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+
+      },
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+
+      }
+  });
+}
+
+</script>
+
+<script type="text/javascript">
+//ventana orden de servición
+function cambio(id){
+
+
+swal({
+title: 'Cambio',
+html:
+'<div class="card-body"> <form action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input1" id="swal-input1" maxlength="25" required readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input2" id="swal-input2" readonly maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo restante</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
 
   </body>
 </html>
