@@ -15,6 +15,7 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
 
 
 
+
 ?>
 <html lang="es">
   <head>
@@ -148,7 +149,7 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
       <th data-field="folio" data-sortable="true">Folio</th>
       <th data-field="nombre" data-sortable="true">Nombre</th>
       <th data-field="apellido" data-sortable="true">Apellidos</th>
-  
+
       <th data-field="marca" data-sortable="true">Marca</th>
       <th data-field="modelo" data-sortable="true">Modelo</th>
 
@@ -166,7 +167,7 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
         $id           = $fila['id_folio'];
         $nombre          = $fila['nombre'];
         $apellidos        = $fila['apellidos'];
-   
+
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
         $fecha_entregar        = $fila['fecha_entregar'];
@@ -181,7 +182,7 @@ union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo
                         <td><?php echo $id ?></td>
                         <td><?php echo $nombre ?></td>
                         <td><?php echo $apellidos ?></td>
-                    
+
 
                         <td><?php echo $marca ?></td>
                         <td><?php echo $modelo ?></td>
