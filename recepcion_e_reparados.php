@@ -265,21 +265,25 @@ function enviarorden(id){
        $("#swal-input3").val(data.data.nom);
        $("#swal-input4").val(data.data.ape);
        $("#swal-input5").val(data.data.cel);
-       $("#swal-input6").val(data.data.cor);
-       $("#swal-input7").val(data.data.accesorios);
-       $("#swal-input8").val(data.data.falla);
-       $("#swal-input9").val(data.data.comentarios);
-       $("#swal-input10").val(data.data.fecha_ingreso);
-       $("#swal-input11").val(data.data.fecha_entrega);
-       $("#swal-input12").val(data.data.fecha_egreso);
-       $("#swal-input13").val(data.data.servicio);
-       $("#swal-input14").val(data.data.ubicacion);
-       $("#swal-input15").val(data.data.presupuesto);
-       $("#swal-input16").val(data.data.mano_obra);
-       $("#swal-input17").val(data.data.abono);
-       $("#swal-input18").val(data.data.restante);
-       $("#swal-input19").val(data.data.costo_total);
-       $("#swal-input20").val(data.data.estado);
+       $("#swal-input6").val(data.data.equi);
+       $("#swal-input7").val(data.data.mar);
+       $("#swal-input8").val(data.data.mod);
+       $("#swal-input9").val(data.data.ser);
+       $("#swal-input10").val(data.data.cor);
+       $("#swal-input11").val(data.data.accesorios);
+       $("#swal-input12").val(data.data.falla);
+       $("#swal-input13").val(data.data.comentarios);
+       $("#swal-input14").val(data.data.fecha_ingreso);
+       $("#swal-input15").val(data.data.fecha_entrega);
+       $("#swal-input16").val(data.data.fecha_egreso);
+       $("#swal-input17").val(data.data.servicio);
+       $("#swal-input18").val(data.data.ubicacion);
+       $("#swal-input19").val(data.data.presupuesto);
+       $("#swal-input20").val(data.data.mano_obra);
+       $("#swal-input21").val(data.data.abono);
+       $("#swal-input22").val(data.data.restante);
+       $("#swal-input23").val(data.data.costo_total);
+       $("#swal-input24").val(data.data.estado);
 
      },
      // código a ejecutar si la petición falla;
@@ -303,16 +307,16 @@ function garantia(id){
 swal({
 title: 'Garantia',
 html:
-'<div class="card-body"> <form action="pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form action="recepcion_pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
-'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
+//'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
 
 
 
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
+        '<label>Id equipo</label>'+
         '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
@@ -320,26 +324,8 @@ html:
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="swal-input2" id="swal-input2" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>xxxx</label>'+
-        '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+        '<label>Folio cliente</label>'+
+        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -347,19 +333,70 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" required class="form-control border-input">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
+
+
+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>xxxx</label>'+
+        '<label>Apellidos</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
         '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 '</div>'+
 
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo total</label>'+
+        '<input type="text" name="swal-input23" id="swal-input23" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
 
 
 '<div class="col-md-12">'+

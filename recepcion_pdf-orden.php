@@ -12,7 +12,6 @@ $nom = $_POST ['swal-input1'];
 $ape= $_POST ['swal-input2'];
 
 
-
 $equipo=$_POST['equipo'];
   $marca=$_POST['marca'];
   $modelo=$_POST['modelo'];
@@ -24,12 +23,12 @@ $equipo=$_POST['equipo'];
   
 //checar la validacion(no funciona el else:v)
 
-if($equipo == 'Television'){
-
  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
  $res = $conn->query($sql);
-}
+
+ 
+/*
 elseif($equipo =='Otros'){
 
   $sql1 = "INSERT INTO reparar_otros(equipo, marca, modelo, accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
@@ -37,7 +36,7 @@ elseif($equipo =='Otros'){
    $res1 = $conn->query($sql1);
 
 }
-
+*/
 //Generador de PDF
 //inserccion
   //$n_nombre=$_POST['nombre'];

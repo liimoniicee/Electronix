@@ -8,30 +8,21 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 $id = $_POST ['swal-input0'];
-$nom = $_POST ['swal-input1'];
-$ape= $_POST ['swal-input2'];
-
-$id_folio= $_GET['id_folio']
-
-$consultaa = "SELECT
-id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado 
-FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = '$id'			
-union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado 
-FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = '$id';";
-
-$resu = $conn->query($consultaa);
+$id_equipo = $_POST ['swal-input1'];
+$nom = $_POST ['swal-input3'];
+$ape= $_POST ['swal-input4'];
+$equipo = $_POST ['swal-input6'];
+$marca= $_POST ['swal-input7'];
+$modelo = $_POST ['swal-input8'];
+$serie = $_POST ['swal-input9'];
+$falla= $_POST ['swal-input12'];
+$costo_total= $_POST ['swal-input23'];
 
 
-   if($resu->num_rows > 0){
 
-    while($row = $resu->fetch_assoc()) {
-    $equipo = $row["equipo"];
-    $serie = $row["serie"];
-    $falla = $row["falla"];
-   
-  }
-}else{}
 
+$sql = "UPDATE  reparar_tv set, estado='Entregado', ubicacion='Cliente', Restante='0' where id_folio '$id' and id_equipo='$id_equipo');";
+ $res = $conn->query($sql);
 
   
 //checar la validacion(no funciona el else:v)
@@ -74,81 +65,85 @@ $resu = $conn->query($consultaa);
 //Cuerpo de texto
     //nombre y apellido
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(17,80);
+    $pdf->SetXY(17,70);
     $pdf->Write(5,'Equipo reparado con el folio:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(102,80);
+    $pdf->SetXY(80,70);
+    $pdf->Write(5,$id_equipo);
+
+    $pdf->SetFont('Arial','',12);
+    $pdf->SetXY(17,85);
+    $pdf->Write(5,'Agradecemos la confianza a nuestro cliente:');
+
+    $pdf->SetFont('Arial','B',12);
+    $pdf->SetXY(102,85);
     $pdf->Write(5,$nom);
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(145,80);
+    $pdf->SetXY(145,85);
     $pdf->Write(5,$ape);
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(17,95);
+    $pdf->SetXY(17,100);
     $pdf->Write(5,'En la reparacion de:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(57,95);
+    $pdf->SetXY(57,100);
     $pdf->Write(5,$equipo);
     //marca
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(80,95);
+    $pdf->SetXY(80,100);
     $pdf->Write(5,'marca:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(95,95);
-    $pdf->Write(5,'a' );
+    $pdf->SetXY(95,100);
+    $pdf->Write(5,$marca );
     //modelo
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(125,95);
+    $pdf->SetXY(125,100);
     $pdf->Write(5,'modelo:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(145,95);
-    $pdf->Write(5,'a');
+    $pdf->SetXY(145,100);
+    $pdf->Write(5,$modelo);
   //Número de serie
   $pdf->SetFont('Arial','',12);
-  $pdf->SetXY(17,110);
+  $pdf->SetXY(17,115);
   $pdf->Write(5,'Numero de serie:');
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(53,110);
-  $pdf->Write(5,'a');
+  $pdf->SetXY(53,115);
+  $pdf->Write(5,$serie);
 
 //Falla 
   $pdf->SetFont('Arial','',12);
-  $pdf->SetXY(17,125);
+  $pdf->SetXY(17,130);
   $pdf->Write(5,'Con la(s) falla(s) de:');
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(60,125);
-  $pdf->Write(5,'a');
+  $pdf->SetXY(60,130);
+  $pdf->Write(5,$falla);
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
-  $pdf->SetXY(17,140);
-  $pdf->Write(5,'Con el servicio de:');
+  $pdf->SetXY(17,145);
+  $pdf->Write(5,'Con un costo total de: $');
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(55,140);
-  $pdf->Write(5,'a');
+  $pdf->SetXY(62,145);
+  $pdf->Write(5,$costo_total);
 
-  $pdf->SetFont('Arial','',12);
-  $pdf->SetXY(100,140);
-  $pdf->Write(5,'accesorios que deja:');
-
-  $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(145,140);
-  $pdf->Write(5,'a');
+  
 
 //politicas 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,'No nos hacemos responsables por equipos olvidados, tanto como los que estan reparados y los
-que no, en caso de ser un servicio a domicilio, no se le cobrara por la revision solo si reparamos
-su equipo, en caso de que no desee una reparacion, se le cobrara $200.00 por el traslado');
+$pdf->Write(6,'Esta poliza de garantia solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
+falla por otra causa, la garantia comienza a partir de la fecha de emision de la presente hasta los 
+seis meses siguientes. 
+
+');
 
 //footer :v
 $pdf->SetFont('Arial','',12);
