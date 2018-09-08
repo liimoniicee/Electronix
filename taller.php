@@ -7,13 +7,36 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
+$total_equipos ="SELECT id_equipo, marca, modelo, falla, comentarios, fecha_ingreso, servicio, estado, ubicacion, id_folio, id_personal
+                from reparar_tv";
+
 $reparados = "SELECT
 id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'
 union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'";
 
+$pendientes = "SELECT
+equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+FROM
+reparar_tv
+WHERE
+estado = 'Pendiente';";
+
+$en_repar = "SELECT
+equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+FROM
+reparar_tv
+WHERE
+estado = 'En reparacion';";
+
+$revisados = "SELECT
+equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+FROM
+reparar_tv
+WHERE
+estado = 'Diagnosticada';";
 
 $sinsolucion = "SELECT
-equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
@@ -36,7 +59,15 @@ estado = 'Sin solucion';";
 
 
   </head>
+
+
+
+
+
+
   <body class="app sidebar-mini rtl">
+
+
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: </a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
@@ -130,170 +161,386 @@ estado = 'Sin solucion';";
           <p>Dar un buen servicio es nuestra prioridad</p>
         </div>
       </div>
-        <div class="card-body center" >
-          <div class="bs-component" style="margin-bottom: 15px;">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-              <label class="btn btn-primary active">
-                <input id="option1" type="radio" name="options" autocomplete="off" checked=""> Pendientes
-              </label>
-              <label class="btn btn-primary">
-                <input id="option2" type="radio" name="options" autocomplete="off"> En reparación
-              </label>
-              <label class="btn btn-primary">
-                <input id="option3" type="radio" name="options" autocomplete="off"> Revisadas
-              </label>
-              <label class="btn btn-primary">
-                <input id="option4" type="radio" name="options" value="2" autocomplete="off"> Sin solución
-              </label>
-              <label class="btn btn-primary">
-                <input id="option5" type="radio" name="options" value="1" autocomplete="off"> Reparado
-              </label>
-            </div>
-          </div>
-        </div>
+
 
         <div class="card">
 
           <div class="row">
-            <div class="col-md-12">
-              <div class="tile">
-                <div class="tile-body">
-                   <div id="Options1" class="desc" style="display: none;">
-                  <table id="a-tables" class="table table-dark table-hover table-responsive">
-                      <thead>
-                          <!--<th data-field="state" data-checkbox="true"></th>-->
-                          <th data-field="id">id_equipo</th>
-                        <th data-field="folio" data-sortable="true">Folio</th>
-                        <th data-field="nombre" data-sortable="true">Nombre</th>
-                        <th data-field="apellido" data-sortable="true">Apellidos</th>
+           <div class="col-sm-12" align="center">
+             <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <form id='form-id'>
 
-                        <th data-field="marca" data-sortable="true">Marca</th>
-                        <th data-field="modelo" data-sortable="true">Modelo</th>
+                    <label class="btn btn-primary active" id='watch-me'>
+                      <input name='test' type='radio' checked /> Equipos en taller
+                      </label>
 
-                        <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
-                        <th data-field="costo" data-sortable="true">Restante</th>
-                        <th data-field="garantia" data-sortable="true">Acción</th>
+                      <label class="btn btn-primary" id='see-me'>
+                      <input name='test' type='radio' /> Pendientes
+                    </label>
 
+                      <label class="btn btn-primary" id='look-me'>
+                      <input name='test' type='radio' /> En Reparación
+                    </label>
 
+                    <label class="btn btn-primary" id='look-me2'>
+                      <input name='test' type='radio' /> Revisadas
+                    </label>
 
-                      </thead>
-                      <?php
-                        $ejec1 = mysqli_query($conn, $reparados);
-                      while($fila=mysqli_fetch_array($ejec1)){
-                          $id_equipo          = $fila['id_equipo'];
-                          $id           = $fila['id_folio'];
-                          $nombre          = $fila['nombre'];
-                          $apellidos        = $fila['apellidos'];
+                    <label class="btn btn-primary" id='look-me3'>
+                      <input name='test' type='radio' /> Sin solución
+                    </label>
 
-                          $marca           = $fila['marca'];
-                          $modelo           = $fila['modelo'];
-                          $fecha_entregar        = $fila['fecha_entregar'];
-                          $total        = $fila['restante'];
-                  ?>
-                                      <tr>
-                                          <td><?php echo $id_equipo ?></td>
-                                          <td><?php echo $id ?></td>
-                                          <td><?php echo $nombre ?></td>
-                                          <td><?php echo $apellidos ?></td>
+                    <label class="btn btn-primary" id='look-me4'>
+                      <input name='test' type='radio' /> Reparado
+                    </label>
 
-
-                                          <td><?php echo $marca ?></td>
-                                          <td><?php echo $modelo ?></td>
-                                          <td><?php echo $fecha_entregar ?></td>
-                                          <td><?php echo $total ?></td>
-                                          <td>
-                                          <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
-                                          </td>
-                            </tr>
-                          <?php } ?>
-                          <tbody></br>
-                              Resultado de clientes
-                        </tbody>
-                    </table>
-                  </div>
-          </div>
-          </div>
-          </div>
-        </div>
-        </div>
-<!-- Aquí termina la tabla reparados  -->
-
-              <div class="row">
-
-                  <div class="col-md-12">
+                  </form>
+                </div>
+                  <br><br>
+                  <div id='show-me'>
                     <div class="tile">
                       <div class="tile-body">
- <div id="Options2" class="desc">
-          <table id="a-tables" style="display: none;" class="table table-dark table-hover table-responsive">
+
+                  <table id="a-tables" class="table table-dark table-hover table-responsive">
+                  <thead>
+                    <!--<th data-field="state" data-checkbox="true"></th>-->
+                    <th data-field="id">id_equipo</th>
+                  <th data-field="Marca" data-sortable="true">Marca</th>
+                  <th data-field="Modelo" data-sortable="true">Modelo</th>
+                  <th data-field="Falla" data-sortable="true">Falla</th>
+                  <th data-field="Comentarios" data-sortable="true">Comentarios</th>
+                  <th data-field="Fecha" data-sortable="true">Fecha de ingreso</th>
+                  <th data-field="Servicio" data-sortable="true">Servicio</th>
+                  <th data-field="Estado" data-sortable="true">Estado</th>
+                  <th data-field="Ubicacion" data-sortable="true">Ubicación</th>
+                  <th data-field="Folio" data-sortable="true">Folio</th>
+                  <th data-field="Personal" data-sortable="true">Personal</th>
+                  <th data-field="Acción" data-sortable="true">Acción</th>
+
+                  </thead>
+                  <?php
+                  $ejec1 = mysqli_query($conn, $total_equipos);
+                  while($fila=mysqli_fetch_array($ejec1)){
+                    $id_equipo      = $fila['id_equipo'];
+                    $marc           = $fila['marca'];
+                    $mod            = $fila['modelo'];
+                    $falla          = $fila['falla'];
+                    $come           = $fila['comentarios'];
+                    $fech_ing       = $fila['fecha_ingreso'];
+                    $servi          = $fila['servicio'];
+                    $est         = $fila['estado'];
+                    $ubi      = $fila['ubicacion'];
+                    $id_f           = $fila['id_folio'];
+                    $id_p           = $fila['id_personal'];
+
+
+
+                  ?>
+                                <tr>
+                                    <td><?php echo $id_equipo ?></td>
+                                    <td><?php echo $marc ?></td>
+                                    <td><?php echo $mod ?></td>
+                                    <td><?php echo $falla ?></td>
+                                    <td><?php echo $come ?></td>
+                                    <td><?php echo $fech_ing ?></td>
+                                    <td><?php echo $servi ?></td>
+                                    <td><?php echo $est ?></td>
+                                    <td><?php echo $ubi ?></td>
+                                    <td><?php echo $id_f ?></td>
+                                    <td><?php echo $id_p ?></td>
+                                    <td>
+                                    <button onclick="garantia(<?php echo $id_f?>), enviarorden(<?php echo $id_f?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
+                                    </td>
+
+                      </tr>
+                    <?php } ?>
+                    <tbody></br>
+                        Todos los equipos disponibles
+                  </tbody>
+                  </table>
+                  </div>
+                  </div>
+
+                  </div>
+
+
+<!-- comienza tabla 2 -->
+                  <div id='show-me-two' style='display:none; border:2px solid #ccc'>
+
+
+          <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
-        <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
+        <th data-field="folio" data-sortable="true">Folio</th>
       <th data-field="equipo" data-sortable="true">equipo</th>
       <th data-field="falla" data-sortable="true">falla</th>
       <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
       <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="fecha_egreso" data-sortable="true">fecha_egreso</th>
-      <th data-field="estado" data-sortable="true">estado</th>
       <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
       <th data-field="accion" data-sortable="true">Acción</th>
-
     </thead>
     <?php
-      $ejec2 = mysqli_query($conn, $sinsolucion);
+      $ejec2 = mysqli_query($conn, $pendientes);
     while($fila=mysqli_fetch_array($ejec2)){
         $id_equipo          = $fila['id_equipo'];
+        $id           = $fila['id_folio'];
+
         $equipo           = $fila['equipo'];
         $falla          = $fila['falla'];
         $fecha_ingreso        = $fila['fecha_ingreso'];
         $fecha_entregar        = $fila['fecha_entregar'];
-        $fecha_egreso        = $fila['fecha_egreso'];
-        $estado        = $fila['estado'];
         $ubicacion        = $fila['ubicacion'];
 
 
 ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
+                        <td><?php echo $id ?></td>
+
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
                         <td><?php echo $fecha_entregar ?></td>
-                        <td><?php echo $fecha_egreso ?></td>
-                        <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="cambio(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        <button  class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
           </tr>
         <?php } ?>
         <tbody></br>
-            Resultado de clientes
+            Equipos pendientes
       </tbody>
   </table>
-</div>
       </div>
+
+                    <!--Termina tabla 2-->
+
+                    <!--Comienza tabla 3-->
+                  <div id='show-me-three' style='display:none; border:2px solid #ccc'>
+
+
+                  <table id="a-tables" class="table table-dark table-hover table-responsive">
+                  <thead>
+                  <!--<th data-field="state" data-checkbox="true"></th>-->
+                  <th data-field="id">id_equipo</th>
+                  <th data-field="folio" data-sortable="true">Folio</th>
+
+                  <th data-field="equipo" data-sortable="true">equipo</th>
+                  <th data-field="falla" data-sortable="true">falla</th>
+                  <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
+                  <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
+                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                  <th data-field="accion" data-sortable="true">Acción</th>
+
+                  </thead>
+                  <?php
+                  $ejec3 = mysqli_query($conn, $en_repar);
+                  while($fila=mysqli_fetch_array($ejec3)){
+                  $id_equipo          = $fila['id_equipo'];
+                  $id           = $fila['id_folio'];
+                  $equipo           = $fila['equipo'];
+                  $falla          = $fila['falla'];
+                  $fecha_ingreso        = $fila['fecha_ingreso'];
+                  $fecha_entregar        = $fila['fecha_entregar'];
+                  $ubicacion        = $fila['ubicacion'];
+
+
+                  ?>
+                    <tr>
+                        <td><?php echo $id_equipo ?></td>
+                        <td><?php echo $id ?></td>
+
+                        <td><?php echo $equipo ?></td>
+                        <td><?php echo $falla ?></td>
+                        <td><?php echo $fecha_ingreso ?></td>
+                        <td><?php echo $fecha_entregar ?></td>
+                        <td><?php echo $ubicacion ?></a></td>
+                        <td>
+                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        </td>
+
+                  </tr>
+                  <?php } ?>
+                  <tbody></br>
+                  Equipos en reparación
+                  </tbody>
+                  </table>
+
+
+                    </div>
+
+                <div id='show-me-three2' style='display:none; border:2px solid #ccc'>
+
+
+
+                                    <table id="a-tables" class="table table-dark table-hover table-responsive">
+                                    <thead>
+                                    <!--<th data-field="state" data-checkbox="true"></th>-->
+                                    <th data-field="id">id_equipo</th>
+                                    <th data-field="folio" data-sortable="true">Folio</th>
+
+                                    <th data-field="equipo" data-sortable="true">equipo</th>
+                                    <th data-field="falla" data-sortable="true">falla</th>
+                                    <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
+                                    <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
+                                    <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                                    <th data-field="accion" data-sortable="true">Acción</th>
+
+                                    </thead>
+                                    <?php
+                                    $ejec4 = mysqli_query($conn, $revisados);
+                                    while($fila=mysqli_fetch_array($ejec4)){
+                                    $id_equipo          = $fila['id_equipo'];
+                                    $id           = $fila['id_folio'];
+                                    $equipo           = $fila['equipo'];
+                                    $falla          = $fila['falla'];
+                                    $fecha_ingreso        = $fila['fecha_ingreso'];
+                                    $fecha_entregar        = $fila['fecha_entregar'];
+                                    $ubicacion        = $fila['ubicacion'];
+
+
+                                    ?>
+                                      <tr>
+                                          <td><?php echo $id_equipo ?></td>
+                                          <td><?php echo $id ?></td>
+
+                                          <td><?php echo $equipo ?></td>
+                                          <td><?php echo $falla ?></td>
+                                          <td><?php echo $fecha_ingreso ?></td>
+                                          <td><?php echo $fecha_entregar ?></td>
+                                          <td><?php echo $ubicacion ?></a></td>
+                                          <td>
+                                          <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                                          <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                                          </td>
+
+                                    </tr>
+                                    <?php } ?>
+                                    <tbody></br>
+                                    Equipos revisados
+                                    </tbody>
+                                    </table>
+
+
+                  </div>
+                    <!-- Termina tabla 4 -->
+                    <!-- Comienza tabla 5 -->
+
+              <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
+
+
+              <table id="a-tables" class="table table-dark table-hover table-responsive">
+              <thead>
+              <!--<th data-field="state" data-checkbox="true"></th>-->
+              <th data-field="id">id_equipo</th>
+              <th data-field="folio" data-sortable="true">Folio</th>
+
+              <th data-field="equipo" data-sortable="true">equipo</th>
+              <th data-field="falla" data-sortable="true">falla</th>
+              <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
+              <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
+              <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+              <th data-field="accion" data-sortable="true">Acción</th>
+
+              </thead>
+              <?php
+              $ejec5 = mysqli_query($conn, $sinsolucion);
+              while($fila=mysqli_fetch_array($ejec5)){
+              $id_equipo          = $fila['id_equipo'];
+              $id           = $fila['id_folio'];
+              $equipo           = $fila['equipo'];
+              $falla          = $fila['falla'];
+              $fecha_ingreso        = $fila['fecha_ingreso'];
+              $fecha_entregar        = $fila['fecha_entregar'];
+              $ubicacion        = $fila['ubicacion'];
+              ?>
+                <tr>
+                    <td><?php echo $id_equipo ?></td>
+                    <td><?php echo $id ?></td>
+                    <td><?php echo $equipo ?></td>
+                    <td><?php echo $falla ?></td>
+                    <td><?php echo $fecha_ingreso ?></td>
+                    <td><?php echo $fecha_entregar ?></td>
+                    <td><?php echo $ubicacion ?></a></td>
+                    <td>
+                    <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                    <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                    </td>
+
+              </tr>
+              <?php } ?>
+              <tbody></br>
+              Equipos Sin solución
+              </tbody>
+              </table>
+
+                </div>
+                <!-- Termina tabla 5 -->
+                <!-- Comienza tabla 6 -->
+
+                <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
+
+
+                <table id="a-tables" class="table table-dark table-hover table-responsive">
+                <thead>
+                <!--<th data-field="state" data-checkbox="true"></th>-->
+                <th data-field="id">id_equipo</th>
+                <th data-field="folio" data-sortable="true">Folio</th>
+
+                <th data-field="equipo" data-sortable="true">equipo</th>
+                <th data-field="falla" data-sortable="true">falla</th>
+                <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
+                <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
+                <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                <th data-field="accion" data-sortable="true">Acción</th>
+
+                </thead>
+                <?php
+                $ejec6 = mysqli_query($conn, $reparados);
+                while($fila=mysqli_fetch_array($ejec6)){
+                $id_equipo          = $fila['id_equipo'];
+                $id           = $fila['id_folio'];
+                $equipo           = $fila['equipo'];
+                $falla          = $fila['falla'];
+                $fecha_ingreso        = $fila['fecha_ingreso'];
+                $fecha_entregar        = $fila['fecha_entregar'];
+                $ubicacion        = $fila['ubicacion'];
+                ?>
+                  <tr>
+                      <td><?php echo $id_equipo ?></td>
+                      <td><?php echo $id ?></td>
+                      <td><?php echo $equipo ?></td>
+                      <td><?php echo $falla ?></td>
+                      <td><?php echo $fecha_ingreso ?></td>
+                      <td><?php echo $fecha_entregar ?></td>
+                      <td><?php echo $ubicacion ?></a></td>
+                      <td>
+                      <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                      <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                      </td>
+
+                </tr>
+                <?php } ?>
+                <tbody></br>
+                Equipos Sin solución
+                </tbody>
+                </table>
+
+
+
+                  </div>
+                  <!-- Termina tabla 6-->
     </div>
-  </div>
-</div>
-<!-- aquí termina la tabla equipos sin solución-->
+           </div>
+          </div>
+
+
+
 
   </main>
-
-<script>
-
-$(document).ready(function() {
-    $("input[name$='options']").click(function() {
-        var test = $(this).val();
-
-        $("div.desc").hide();
-        $("#Cars" + test).show();
-    });
-});
-</script>
-
-
 
   <!-- Essential javascripts for application to work-->
 
@@ -322,6 +569,122 @@ $(document).ready(function() {
 
   <!--common script for all pages-->
   <script src="assets/js/common-scripts.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function ()
+   {
+     //primero
+    $("#watch-me").click(function()
+    {
+      $("#show-me:hidden").show('slow');
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#watch-me").click(function()
+    {
+      if($('watch-me').prop('checked')===false)
+     {
+      $('#show-me').hide();
+     }
+    });
+
+    //segundo
+    $("#see-me").click(function()
+    {
+      $("#show-me-two:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#see-me").click(function()
+    {
+      if($('see-me-two').prop('checked')===false)
+     {
+      $('#show-me-two').hide();
+     }
+    });
+
+    //tercero
+    $("#look-me").click(function()
+    {
+      $("#show-me-three:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me").click(function()
+    {
+      if($('see-me-three').prop('checked')===false)
+     {
+      $('#show-me-three').hide();
+     }
+    });
+
+    //cuarto
+    $("#look-me2").click(function()
+    {
+      $("#show-me-three2:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me2").click(function()
+    {
+      if($('see-me-three2').prop('checked')===false)
+     {
+      $('#show-me-three2').hide();
+     }
+    });
+
+      //quinto
+    $("#look-me3").click(function()
+    {
+      $("#show-me-three3:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me3").click(function()
+    {
+      if($('see-me-three3').prop('checked')===false)
+     {
+      $('#show-me-three3').hide();
+     }
+    });
+
+    //sexto
+    $("#look-me4").click(function()
+    {
+      $("#show-me-three4:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three4').prop('checked')===false)
+     {
+      $('#show-me-three4').hide();
+     }
+    });
+
+   });
+
+
+  </script>
 
   <div class="content-panel">
 <div class="col-lg-7">
