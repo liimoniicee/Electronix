@@ -179,11 +179,11 @@ estado = 'Sin solucion';";
                     </label>
 
                       <label class="btn btn-primary" id='look-me'>
-                      <input name='test' type='radio' /> En Reparación
+                      <input name='test' type='radio' /> Revisadas
                     </label>
 
                     <label class="btn btn-primary" id='look-me2'>
-                      <input name='test' type='radio' /> Revisadas
+                      <input name='test' type='radio' /> En reparación
                     </label>
 
                     <label class="btn btn-primary" id='look-me3'>
@@ -232,8 +232,6 @@ estado = 'Sin solucion';";
                     $ubi      = $fila['ubicacion'];
                     $id_f           = $fila['id_folio'];
                     $id_p           = $fila['id_personal'];
-
-
 
                   ?>
                                 <tr>
@@ -284,7 +282,6 @@ estado = 'Sin solucion';";
     while($fila=mysqli_fetch_array($ejec2)){
         $id_equipo          = $fila['id_equipo'];
         $id           = $fila['id_folio'];
-
         $equipo           = $fila['equipo'];
         $falla          = $fila['falla'];
         $fecha_ingreso        = $fila['fecha_ingreso'];
@@ -296,7 +293,6 @@ estado = 'Sin solucion';";
                     <tr>
                         <td><?php echo $id_equipo ?></td>
                         <td><?php echo $id ?></td>
-
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
@@ -336,7 +332,7 @@ estado = 'Sin solucion';";
 
                   </thead>
                   <?php
-                  $ejec3 = mysqli_query($conn, $en_repar);
+                  $ejec3 = mysqli_query($conn, $revisados);
                   while($fila=mysqli_fetch_array($ejec3)){
                   $id_equipo          = $fila['id_equipo'];
                   $id           = $fila['id_folio'];
@@ -365,7 +361,7 @@ estado = 'Sin solucion';";
                   </tr>
                   <?php } ?>
                   <tbody></br>
-                  Equipos en reparación
+                  Equipos revisados
                   </tbody>
                   </table>
 
@@ -391,7 +387,7 @@ estado = 'Sin solucion';";
 
                                     </thead>
                                     <?php
-                                    $ejec4 = mysqli_query($conn, $revisados);
+                                    $ejec4 = mysqli_query($conn, $en_repar);
                                     while($fila=mysqli_fetch_array($ejec4)){
                                     $id_equipo          = $fila['id_equipo'];
                                     $id           = $fila['id_folio'];
@@ -420,7 +416,7 @@ estado = 'Sin solucion';";
                                     </tr>
                                     <?php } ?>
                                     <tbody></br>
-                                    Equipos revisados
+                                    Equipos en Reparación
                                     </tbody>
                                     </table>
 
