@@ -10,11 +10,9 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
-FROM
-reparar_tv
-WHERE
-estado = 'Sin solucion';";
+id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Sin solucion'
+union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Sin solucion'";
+
 
 ?>
 <html lang="es">
@@ -140,12 +138,12 @@ estado = 'Sin solucion';";
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
+        <th data-field="folio" data-sortable="true">Folio</th>
+
       <th data-field="equipo" data-sortable="true">equipo</th>
       <th data-field="falla" data-sortable="true">falla</th>
       <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
       <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="fecha_egreso" data-sortable="true">fecha_egreso</th>
-      <th data-field="estado" data-sortable="true">estado</th>
       <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
       <th data-field="accion" data-sortable="true">Acción</th>
 
@@ -154,28 +152,28 @@ estado = 'Sin solucion';";
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
         $id_equipo          = $fila['id_equipo'];
+        $id           = $fila['id_folio'];
+
         $equipo           = $fila['equipo'];
         $falla          = $fila['falla'];
         $fecha_ingreso        = $fila['fecha_ingreso'];
         $fecha_entregar        = $fila['fecha_entregar'];
-        $fecha_egreso        = $fila['fecha_egreso'];
-        $estado        = $fila['estado'];
         $ubicacion        = $fila['ubicacion'];
 
 
 ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
+                        <td><?php echo $id ?></td>
+
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
                         <td><?php echo $fecha_entregar ?></td>
-                        <td><?php echo $fecha_egreso ?></td>
-                        <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="cambio(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        <button  class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
           </tr>
@@ -232,14 +230,14 @@ estado = 'Sin solucion';";
 
 <script type="text/javascript">
  //Script para mandar ID para generar la orden
-function enviarorden(id_equipo){
+function enviarorden(id){
   $.ajax({
       // la URL para la petición
-      url : 'recepcion_fn_actualizar_equipo.php',
+      url : 'recepcion_fn_historial_garantia.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
-         id : id_equipo
+         id : id
       },
       // especifica si será una petición POST o GET
       type : 'POST',
@@ -250,11 +248,31 @@ function enviarorden(id_equipo){
       success : function(data) {
         //Manda Llamar id,nombre y apellido
 
-        $("#swal-input0").val(data.data.equipo);
-        $("#swal-input1").val(data.data.marca);
-        $("#swal-input2").val(data.data.modelo);
-        $("#swal-input3").val(data.data.serie);
-        //$("#swal-input6").val(data.data.serie);
+         $("#swal-input0").val(data.data.id);
+       $("#swal-input1").val(data.data.id_e);
+       $("#swal-input2").val(data.data.id_pe);
+       $("#swal-input3").val(data.data.nom);
+       $("#swal-input4").val(data.data.ape);
+       $("#swal-input5").val(data.data.cel);
+       $("#swal-input6").val(data.data.equi);
+       $("#swal-input7").val(data.data.mar);
+       $("#swal-input8").val(data.data.mod);
+       $("#swal-input9").val(data.data.ser);
+       $("#swal-input10").val(data.data.cor);
+       $("#swal-input11").val(data.data.accesorios);
+       $("#swal-input12").val(data.data.falla);
+       $("#swal-input13").val(data.data.comentarios);
+       $("#swal-input14").val(data.data.fecha_ingreso);
+       $("#swal-input15").val(data.data.fecha_entrega);
+       $("#swal-input16").val(data.data.fecha_egreso);
+       $("#swal-input17").val(data.data.servicio);
+       $("#swal-input18").val(data.data.ubicacion);
+       $("#swal-input19").val(data.data.presupuesto);
+       $("#swal-input20").val(data.data.mano_obra);
+       $("#swal-input21").val(data.data.abono);
+       $("#swal-input22").val(data.data.restante);
+       $("#swal-input23").val(data.data.costo_total);
+       $("#swal-input24").val(data.data.estado);
 
 
 
@@ -277,6 +295,130 @@ function enviarorden(id_equipo){
 </script>
 
 <script type="text/javascript">
+//devolucion
+function devolucion(id){
+
+
+swal({
+title: 'Devolución de equipo',
+html:
+'<div class="card-body"> <form action="recepcion_pdf-devolucion.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+'<label>Al devolver el equipo se cobrará $200.00</label>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Id equipo</label>'+
+        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio cliente</label>'+
+        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Celular</label>'+
+        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ingreso</label>'+
+        '<input type="text" name="swal-input14" id="swal-input14" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ubicación</label>'+
+        '<input type="text" name="swal-input18" id="swal-input18" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Servicio</label>'+
+        '<input type="text" name="swal-input17" id="swal-input17" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Devolver equipo</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Devolver equipo',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
+
+<script type="text/javascript">
 //ventana orden de servición
 function cambio(id){
 
@@ -286,33 +428,94 @@ title: 'Cambio',
 html:
 '<div class="card-body"> <form action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
-'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
 
 '<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Id equipo</label>'+
+        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio cliente</label>'+
+        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Apellidos</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Marca</label>'+
-        '<input type="text" name="swal-input1" id="swal-input1" maxlength="25" required readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
     '</div>'+
+'</div>'+
 '</div>'+
 
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="swal-input2" id="swal-input2" readonly maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Costo restante</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" readonly maxlength="25" required class="form-control border-input">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo total</label>'+
+        '<input type="text" name="swal-input23" id="swal-input23" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Cambiar equipo</Button>'+
 
 '</form></div>',
 showCancelButton: true,
@@ -329,6 +532,5 @@ reverseButtons: true
 };
 
 </script>
-
   </body>
 </html>

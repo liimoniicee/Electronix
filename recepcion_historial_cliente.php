@@ -18,13 +18,7 @@ WHERE
 
 id_folio = '$id';";
 
-$consulta1 = "SELECT
-equipo, falla, id_equipo, marca, modelo, fecha_egreso, servicio, estado, ubicacion
-FROM
-reparar_tv
-WHERE
 
-id_folio = '$id' and estado='entregado';";
 
   $cons = "SELECT * FROM clientes WHERE id_folio = $id";
 

@@ -9,20 +9,27 @@ $var_clave= $_SESSION['clave'];
 
 $id = $_POST ['swal-input0'];
 $id_equipo = $_POST ['swal-input1'];
+
 $nom = $_POST ['swal-input3'];
-$ape= $_POST ['swal-input4'];
 $equipo = $_POST ['swal-input6'];
 $marca= $_POST ['swal-input7'];
 $modelo = $_POST ['swal-input8'];
-$serie = $_POST ['swal-input9'];
+$serie = $_POST ['swal-input10'];
+
+//$ape= $_POST ['swal-input4'];
+
+
+
+
+/*
+$equipo = $_POST ['swal-input6'];
 $falla= $_POST ['swal-input12'];
 $costo_total= $_POST ['swal-input23'];
 
+*/
 
 
 
-$sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante='0' ,fecha_egreso=CURRENT_TIMESTAMP where id_folio='$id' and id_equipo='$id_equipo';";
- $res = $conn->query($sql);
 
   
 //checar la validacion(no funciona el else:v)
@@ -38,11 +45,11 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
     $pdf->AddPage();
-    $title = 'Generar nueva garantia';
+    $title = 'Devolución de equipo';
     $pdf->SetTitle($title);
     $pdf->SetFont('Arial','B',24);
-    $pdf->SetX(80);
-    $pdf->Write(5,'Garantia');
+    $pdf->SetX(60);
+    $pdf->Write(5,'Orden de devolucion');
 
     $pdf->Image('assets/img/logo.jpg',17,25,66);
 //folio
@@ -66,7 +73,7 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
     //nombre y apellido
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,70);
-    $pdf->Write(5,'Equipo reparado con el folio:');
+    $pdf->Write(5,'Equipo devuelto con el folio:');
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(80,70);
@@ -82,31 +89,31 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,85);
-    $pdf->Write(5,$ape);
+   // $pdf->Write(5,$ape);
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,100);
-    $pdf->Write(5,'En la reparacion de:');
+    $pdf->Write(5,'Procediendo la devolucion de:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(57,100);
+    $pdf->SetXY(74,100);
     $pdf->Write(5,$equipo);
     //marca
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(80,100);
+    $pdf->SetXY(100,100);
     $pdf->Write(5,'marca:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(95,100);
+    $pdf->SetXY(115,100);
     $pdf->Write(5,$marca );
     //modelo
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(125,100);
+    $pdf->SetXY(130,100);
     $pdf->Write(5,'modelo:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(145,100);
+    $pdf->SetXY(146,100);
     $pdf->Write(5,$modelo);
   //Número de serie
   $pdf->SetFont('Arial','',12);
@@ -124,24 +131,23 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(60,130);
-  $pdf->Write(5,$falla);
+ // $pdf->Write(5,$falla);
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,145);
-  $pdf->Write(5,'Con un costo total de: $');
+  $pdf->Write(5,'Con un costo total de revision: $');
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(62,145);
-  $pdf->Write(5,$costo_total);
+  $pdf->Write(5,'$200.00');
 
   
 
 //politicas 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,'Esta poliza de garantia solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
-falla por otra causa, la garantia comienza a partir de la fecha de emision de la presente hasta los 
-seis meses siguientes. 
+$pdf->Write(6,'Regresamos el equipo en las mismas condiciones que nos llegó, este documento declara que el cliente esta
+conciente que su equipo esta siendo devuelto con todas sus partes con las que llegó. 
 
 ');
 
