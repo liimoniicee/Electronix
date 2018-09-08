@@ -224,7 +224,7 @@ estado = 'Sin solucion';";
                     <div class="tile">
                       <div class="tile-body">
  <div id="Options2" class="desc">
-          <table id="a-tables" class="table table-dark table-hover table-responsive">
+          <table id="a-tables" style="display: none;" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
