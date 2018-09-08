@@ -81,13 +81,6 @@ if($tipo == 'Traslado'){
           	}
 
 
-
-  /*else {
-		//echo "<script>alert('Usuario o contraseña invalidos!')</script>";
-    //echo "<script>window.open('index.html','_self')</script>";
-	}*///primer roll
-
-
     	 }//aqui termina el while
 
 	}else{

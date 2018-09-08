@@ -238,7 +238,8 @@ id_folio = '$id' and estado='entregado';";
       <th data-field="fecha_entregar" data-sortable="true">Reparación</th>
       <th data-field="fecha_egreso" data-sortable="true">Salida</th>
       <th data-field="estado" data-sortable="true">estado</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
+      <th data-field="ubicacion" data-sortable="true">ubicación</th>
+      <th data-field="accion" data-sortable="true">Acción</th>
 
     </thead>
     <?php
@@ -263,7 +264,14 @@ id_folio = '$id' and estado='entregado';";
                         <td><?php echo $fecha_egreso ?></td>
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></td>
-                       
+                        <?php
+                        if($estado == "Entregado"){
+                          echo "
+                        <td>
+                          <button onclick='alerta1($id), enviarorden(echo $id);' class='btn btn-simple btn-warning btn-icon edit' title='Reingreso por garantía' ><i ></i></button>
+                        </td>";
+                      };
+                      ?>
 
           </tr>
         <?php } ?>
@@ -274,60 +282,6 @@ id_folio = '$id' and estado='entregado';";
       </div>
     </div>
   </div>
-</div>
-
-           <div class="row">
-
-<div class="col-md-12">
-  <div class="tile">
-    <div class="tile-body">
-
-<table id="a-tables" class="table table-dark table-hover table-responsive">
-<thead>
-<!--<th data-field="state" data-checkbox="true"></th>-->
-<th data-field="id">id_equipo</th>
-<th data-field="marca" data-sortable="true">Marca</th>
-<th data-field="modelo" data-sortable="true">Modelo</th>
-<th data-field="falla" data-sortable="true">Falla</th>
-<th data-field="fecha_egreso" data-sortable="true">Salida</th>
-<th data-field="estado" data-sortable="true">Estado</th>
-<th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-<th data-field="accion" data-sortable="true">Acción</th>
-
-</thead>
-<?php
-$ejecutar = mysqli_query($conn, $consulta1);
-while($fila=mysqli_fetch_array($ejecutar)){
-$id_equipo          = $fila['id_equipo'];
-$marca           = $fila['marca'];
-$modelo           = $fila['modelo'];
-$falla          = $fila['falla'];
-$fecha_egreso        = $fila['fecha_egreso'];
-$estado        = $fila['estado'];
-$ubicacion        = $fila['ubicacion'];
-
-?>
-  <tr>
-      <td><?php echo $id_equipo ?></td>
-      <td><?php echo $marca ?></td>
-      <td><?php echo $modelo ?></td>
-      <td><?php echo $falla ?></td>
-      <td><?php echo $fecha_egreso ?></td>
-      <td><?php echo $estado ?></td>
-      <td><?php echo $ubicacion ?></td>
-      <td>
-        <button onclick="alerta1(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit" title="Reingreso por garantía" ><i ></i></button>
-      </td>
-
-</tr>
-<?php } ?>
-<tbody></br>
-<h2>Historial equipos entregados del cliente <?php echo $id ?></h2> 
-</tbody>
-</table>
-</div>
-</div>
-</div>
 </div>
 
 
