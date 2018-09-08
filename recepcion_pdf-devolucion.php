@@ -11,19 +11,19 @@ $id = $_POST ['swal-input0'];
 $id_equipo = $_POST ['swal-input1'];
 
 $nom = $_POST ['swal-input3'];
+//$ape= $_POST ['swal-input4'];
 $equipo = $_POST ['swal-input6'];
 $marca= $_POST ['swal-input7'];
 $modelo = $_POST ['swal-input8'];
-$serie = $_POST ['swal-input10'];
+$serie = $_POST ['swal-input9'];
+$falla= $_POST ['swal-input12'];
 
-//$ape= $_POST ['swal-input4'];
 
 
 
 
 /*
 $equipo = $_POST ['swal-input6'];
-$falla= $_POST ['swal-input12'];
 $costo_total= $_POST ['swal-input23'];
 
 */
@@ -45,11 +45,11 @@ $costo_total= $_POST ['swal-input23'];
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
     $pdf->AddPage();
-    $title = 'Devolución de equipo';
+    $title = utf8_decode("Devolución de equipo");
     $pdf->SetTitle($title);
     $pdf->SetFont('Arial','B',24);
     $pdf->SetX(60);
-    $pdf->Write(5,'Orden de devolucion');
+    $pdf->Write(5,utf8_decode("Orden de devolución"));
 
     $pdf->Image('assets/img/logo.jpg',17,25,66);
 //folio
@@ -76,7 +76,7 @@ $costo_total= $_POST ['swal-input23'];
     $pdf->Write(5,'Equipo devuelto con el folio:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(80,70);
+    $pdf->SetXY(70,70);
     $pdf->Write(5,$id_equipo);
 
     $pdf->SetFont('Arial','',12);
@@ -94,7 +94,7 @@ $costo_total= $_POST ['swal-input23'];
     //marca y modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,100);
-    $pdf->Write(5,'Procediendo la devolucion de:');
+    $pdf->Write(5,utf8_decode("Procediendo la devolución de:"));
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(74,100);
@@ -118,7 +118,7 @@ $costo_total= $_POST ['swal-input23'];
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,115);
-  $pdf->Write(5,'Numero de serie:');
+  $pdf->Write(5,utf8_decode("Número de serie:"));
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(53,115);
@@ -130,15 +130,15 @@ $costo_total= $_POST ['swal-input23'];
   $pdf->Write(5,'Con la(s) falla(s) de:');
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(60,130);
- // $pdf->Write(5,$falla);
+  $pdf->SetXY(57,130);
+  $pdf->Write(5,$falla);
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,145);
-  $pdf->Write(5,'Con un costo total de revision: $');
+  $pdf->Write(5,utf8_decode("Con un costo total de revisión: $"));
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(62,145);
+  $pdf->SetXY(75,145);
   $pdf->Write(5,'$200.00');
 
   
@@ -146,8 +146,7 @@ $costo_total= $_POST ['swal-input23'];
 //politicas 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,'Regresamos el equipo en las mismas condiciones que nos llegó, este documento declara que el cliente esta
-conciente que su equipo esta siendo devuelto con todas sus partes con las que llegó. 
+$pdf->Write(6,'Este documento declara que el cliente esta conciente que el equipo que esta siendo regresado contiene todas sus partes. 
 
 ');
 
@@ -159,11 +158,11 @@ $pdf->Write(6,'Sin mas por el momento queda de ustedes su seguro servidor Juan J
 //direccion
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(90,225);
-$pdf->Write(6,'Direccion');
+$pdf->Write(6,utf8_decode("Dirección"));
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(45,235);
-$pdf->Write(6,'Prolongacion Leona Vicario esquina con Lagunas de Montebello.');
+$pdf->Write(6,utf8_decode("Prolongación Leona Vicario esquina con Lagunas de Montebello."));
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(55,245);

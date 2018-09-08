@@ -38,11 +38,11 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
     $pdf->AddPage();
-    $title = 'Generar nueva garantia';
+    $title = utf8_decode('Generar nueva garantía');
     $pdf->SetTitle($title);
     $pdf->SetFont('Arial','B',24);
     $pdf->SetX(80);
-    $pdf->Write(5,'Garantia');
+    $pdf->Write(5,utf8_decode("Garantia"));
 
     $pdf->Image('assets/img/logo.jpg',17,25,66);
 //folio
@@ -87,7 +87,7 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
     //marca y modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,100);
-    $pdf->Write(5,'En la reparacion de:');
+    $pdf->Write(5,utf8_decode("En la reparación de:"));
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(57,100);
@@ -111,7 +111,7 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,115);
-  $pdf->Write(5,'Numero de serie:');
+  $pdf->Write(5,utf8_decode("Número de serie:"));
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(53,115);
@@ -139,25 +139,24 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 //politicas 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,'Esta poliza de garantia solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
-falla por otra causa, la garantia comienza a partir de la fecha de emision de la presente hasta los 
+$pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
+falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de la presente hasta los 
 seis meses siguientes. 
 
-');
+"));
 
-//footer :v
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(20,210);
-$pdf->Write(6,'Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Diaz Ochoa.');
+$pdf->Write(6,utf8_decode("Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Díaz Ochoa."));
 
 //direccion
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(90,225);
-$pdf->Write(6,'Direccion');
+$pdf->Write(6,utf8_decode("Dirección"));
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(45,235);
-$pdf->Write(6,'Prolongacion Leona Vicario esquina con Lagunas de Montebello.');
+$pdf->Write(6,utf8_decode("Prolongación Leona Vicario esquina con Lagunas de Montebello."));
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(55,245);
@@ -178,5 +177,4 @@ $pdf->Write(6,'Oficina: 688-28-96');
 
 
 $pdf->Output();
-
 ?>
