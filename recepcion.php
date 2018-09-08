@@ -327,25 +327,22 @@ swal({
 title: 'Nueva orden de servicio',
 html:
 '<div class="card-body"> <form action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
-//Manda Llamar id,nombre y apellido
-'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
-'<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
-'<input name="swal-input2" type="hidden" id="swal-input2" class="form-control border-input" readonly >' +
+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Equipo  :</label>'+
-        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television">Televisión</option><option value="Otros">Otros</option></select>' +
+        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option><option value="Otros">Otros</option></select>' +
     '</div>'+
 '</div>'+
-
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="marca" id="marca" maxlength="25" required class="form-control border-input">'+
+        '<label>Especifique</label>'+
+        '<input type="text" maxlength="25" placeholder="Sí no es tv" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -353,8 +350,21 @@ html:
         '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
 
-
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -366,25 +376,8 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
         '<label>Accesorios</label>'+
         '<input type="text" name="acce" id="acce" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Comentarios</label>'+
-        '<input type="text" name="comen" id="comen" maxlength="50"  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -395,6 +388,16 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Comentarios</label>'+
+        '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
 
