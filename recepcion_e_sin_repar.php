@@ -440,40 +440,22 @@ swal({
 title: 'Cambio',
 html:
 '<div class="card-body"> <form action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
-//Manda Llamar id,nombre y apellido
-
+//Manda Llamar id,nombre y apellido    
+'<input type="hidden" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+'<input type="hidden" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Id equipo</label>'+
-        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
-
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Nombre(s)</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Apellidos</label>'+
-        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -489,8 +471,8 @@ html:
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+        '<label>xx</label>'+
+        '<input type="text" name="swal-" id="swal-" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -498,8 +480,8 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+        '<label>xxx</label>'+
+        '<input type="text" name="swal-ñlk" id="swal-ñkl" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
