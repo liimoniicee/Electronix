@@ -14,6 +14,10 @@ id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
 clientes;";
 
+
+
+
+
 ?>
 <html lang="es">
   <head>

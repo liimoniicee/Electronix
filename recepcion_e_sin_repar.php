@@ -10,7 +10,11 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Sin solucion'";
+id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Sin solucion'
+union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Sin solucion'";
+
+
+$venta="SELECT * from ventas_tv ";
 
 
 
@@ -180,6 +184,7 @@ id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, 
         <?php } ?>
         <tbody></br>
             Resultado de clientes
+     
       </tbody>
   </table>
       </div>
@@ -303,6 +308,11 @@ swal({
 title: 'Devolución de equipo',
 html:
 '<div class="card-body"> <form action="recepcion_pdf-devolucion.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+'<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+
+
 //Manda Llamar id,nombre y apellido
 '<label>Al devolver el equipo se cobrará $200.00</label>'+
 
@@ -369,32 +379,19 @@ html:
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+        '<label>Ingreso</label>'+
+        '<input type="text" name="swal-input14" id="swal-input14" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
 
 '<div class="row">'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Ingreso</label>'+
-        '<input type="text" name="swal-input14" id="swal-input14" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Falla</label>'+
         '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
-'</div>'+
-
-'<div class="row">'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -402,14 +399,14 @@ html:
         '<input type="text" name="swal-input18" id="swal-input18" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
 
-
+'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Servicio</label>'+
         '<input type="text" name="swal-input17" id="swal-input17" readonly class="form-control border-input">'+
     '</div>'+
-'</div>'+
 '</div>'+
 
 '<div class="col-md-12">'+
@@ -440,55 +437,63 @@ swal({
 title: 'Cambio',
 html:
 '<div class="card-body"> <form action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
-//Manda Llamar id,nombre y apellido    
-'<input type="hidden" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
-'<input type="hidden" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
-    
+//Manda Llamar id,nombre y apellido
+'<label>Equipo que deja a cambio</label>'+
+
+        '<input type="hidden" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+   
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
+  '<label>Marca</label>'+
         '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Modelo</label>'+
+  '<label>Modelo</label>'+
         '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
 
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Equipo</label>'+
-        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>xx</label>'+
-        '<input type="text" name="swal-" id="swal-" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
+'<label>Equipo que compra</label>'+
 
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>xxx</label>'+
-        '<input type="text" name="swal-ñlk" id="swal-ñkl" readonly maxlength="25" required class="form-control border-input">'+
+  '<label>Marca</label>'+
+        '<input type="text" name="swal-input" id="swal-input" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Modelo</label>'+
+        '<input type="text" name="swal-input" id="swal-input" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<label>Costos</label>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Abono del cliente</label>'+
+        '<input type="text" name="swal-input21" id="swal-input21" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+        '<label>Valor de su televisión</label>'+
+        '<input type="number" name="swal-input50" id="swal-input50"  placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -496,15 +501,15 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+        '<label>Costo de venta</label>'+
+        '<input type="text" name="swal-input51" id="swal-input51" value="3000" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Costo total</label>'+
-        '<input type="text" name="swal-input23" id="swal-input23" readonly class="form-control border-input">'+
+        '<label>Total a pagar</label>'+
+        '<input type="text" name="swal-input53" id="swal-input53" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -525,6 +530,22 @@ reverseButtons: true
 })
 
 };
+
+</script>
+<script type="text/javascript">
+
+function operaciones()
+{
+  var abono =document.getElementById('swal-input21').value;
+  var valor =document.getElementById('swal-input50').value;
+  var costo =document.getElementById('swal-input51').value;
+
+  var suma =parseInt(abono)+parseInt(valor);
+
+  var total =parseInt(document.getElementById('swal-input53').value= suma);
+
+}
+
 
 </script>
   </body>

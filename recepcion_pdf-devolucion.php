@@ -11,7 +11,7 @@ $id = $_POST ['swal-input0'];
 $id_equipo = $_POST ['swal-input1'];
 
 $nom = $_POST ['swal-input3'];
-//$ape= $_POST ['swal-input4'];
+$ape= $_POST ['swal-input4'];
 $equipo = $_POST ['swal-input6'];
 $marca= $_POST ['swal-input7'];
 $modelo = $_POST ['swal-input8'];
@@ -23,23 +23,10 @@ $falla= $_POST ['swal-input12'];
 
 
 /*
-$equipo = $_POST ['swal-input6'];
-$costo_total= $_POST ['swal-input23'];
-
+$sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_total='200' ,fecha_egreso=CURRENT_TIMESTAMP where id_folio='$id' and id_equipo='$id_equipo';";
+ $res = $conn->query($sql);
 */
 
-
-
-
-  
-//checar la validacion(no funciona el else:v)
-
-
-
-//Generador de PDF
-//inserccion
-  //$n_nombre=$_POST['nombre'];
-  //$a_apellido=$_POST['apellido'];
   
 
   require 'assets/fpdf/fpdf.php';
@@ -89,7 +76,7 @@ $costo_total= $_POST ['swal-input23'];
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,85);
-   // $pdf->Write(5,$ape);
+    $pdf->Write(5,$ape);
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);
