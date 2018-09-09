@@ -314,7 +314,7 @@ html:
 
 
 //Manda Llamar id,nombre y apellido
-'<label>Al devolver el equipo se cobrará $200.00</label>'+
+'<h5>Al devolver el equipo se cobrará $200.00</h5>'+
 
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -438,12 +438,16 @@ title: 'Cambio',
 html:
 '<div class="card-body"> <form action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
-'<label>Equipo que deja a cambio</label>'+
+'<h5>Equipo que deja a cambio</h5>'+
 
         '<input type="hidden" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+
    
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -462,7 +466,7 @@ html:
 '</div>'+
 '</div>'+
 
-'<label>Equipo que compra</label>'+
+'<h5>Equipo que compra</h5>'+
 
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -480,7 +484,7 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-'<label>Costos</label>'+
+'<h5>Costos</h5>'+
 
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -493,7 +497,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Valor de su televisión</label>'+
-        '<input type="number" name="swal-input50" id="swal-input50"  placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+        '<input type="number" name="swal-input50" id="swal-input50"  required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -509,13 +513,13 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Total a pagar</label>'+
-        '<input type="text" name="swal-input53" id="swal-input53" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input52" id="swal-input52" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Cambiar equipo</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Cambiar equipo y generar garantía</Button>'+
 
 '</form></div>',
 showCancelButton: true,
@@ -542,7 +546,9 @@ function operaciones()
 
   var suma =parseInt(abono)+parseInt(valor);
 
-  var total =parseInt(document.getElementById('swal-input53').value= suma);
+  var sub =parseInt(costo)-parseInt(suma);
+
+  var total =parseInt(document.getElementById('swal-input52').value= sub);
 
 }
 
