@@ -6,15 +6,15 @@ verificar_sesion();
 
 
 $response = array();
-if(isset($_POST['id'])){
-  $id = $_POST['id'];
+if(isset($_POST['id_equipo'])){
+  $id_equipo = $_POST['id_equipo'];
 
   /*$consulta = "SELECT
   id_equipo,id_personal,nombre,apellidos,celular,correo,equipo,marca,modelo,serie,accesorios,falla,comentarios,fecha_ingreso,fecha_entregar,servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
   FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = $id
   union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
   FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = $id";*/
-$consulta = "SELECT * from reportes_tecnicos where id_equipo = $id";
+$consulta = "SELECT * from reportes_tecnicos where id_equipo = $id_equipo";
               
 
    $resultado = $conn->query($consulta);
@@ -24,7 +24,7 @@ $consulta = "SELECT * from reportes_tecnicos where id_equipo = $id";
 
     while($row = $resultado->fetch_assoc()) {
   $response['data'] = array (
-    "id"          =>  $id,
+    "id_equipo"          =>  $id_equipo,
     "falla"        =>  $row["falla_especifica"],
     "solu"       =>  $row["solucion_especifica"],
     "conc"         =>  $row["conclusion"],
@@ -32,7 +32,6 @@ $consulta = "SELECT * from reportes_tecnicos where id_equipo = $id";
     "soli"         =>  $row["solicitud"],
     "part"         =>  $row["parte"],
     "pers"         =>  $row["id_personal"],
-    "equi"         =>  $row["id_equipo"],
 
 
   );
@@ -40,7 +39,7 @@ $consulta = "SELECT * from reportes_tecnicos where id_equipo = $id";
    }
 
   $response['codigo'] = 1;
-  $response['msj'] = "El id se recibio ".$id;
+  $response['msj'] = "El id se recibio ".$id_equipo;
 }
 else{
   $response['codigo'] = 0;

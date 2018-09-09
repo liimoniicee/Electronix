@@ -44,6 +44,13 @@ reparar_tv
 WHERE
 estado = 'Sin solucion';";
 
+$refaccion = "SELECT
+equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+FROM
+reparar_tv
+WHERE
+estado = 'Necesita refaccion';";
+
 
 ?>
 
@@ -189,6 +196,10 @@ estado = 'Sin solucion';";
 
                     <label class="btn btn-primary" id='look-me2'>
                       <input name='test' type='radio' /> Revisados
+                    </label>
+
+                    <label class="btn btn-primary" id='look-me5'>
+                      <input name='test' type='radio' /> Necesita refacción 
                     </label>
 
                     <label class="btn btn-primary" id='look-me3'>
@@ -363,7 +374,6 @@ estado = 'Sin solucion';";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="reporte(<?php echo $id?>), mod_reporte(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
                         </td>
 
                   </tr>
@@ -376,6 +386,7 @@ estado = 'Sin solucion';";
 
 
                     </div>
+                    <!-- Termina tabla 4 -->
 
                 <div id='show-me-three2' style='display:none; border:2px solid #ccc'>
 
@@ -416,7 +427,7 @@ estado = 'Sin solucion';";
                                           <td><?php echo $fecha_entregar ?></td>
                                           <td><?php echo $ubicacion ?></a></td>
                                           <td>
-                                          <button onclick="reporte(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
+                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
 
                                           <button onclick="costos(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                                           </td>
@@ -431,6 +442,59 @@ estado = 'Sin solucion';";
 
                   </div>
                     <!-- Termina tabla 4 -->
+                    <div id='show-me-three' style='display:none; border:2px solid #ccc'>
+
+
+                  <table id="a-tables" class="table table-dark table-hover table-responsive">
+                  <thead>
+                  <!--<th data-field="state" data-checkbox="true"></th>-->
+                  <th data-field="id">id_equipo</th>
+                  <th data-field="folio" data-sortable="true">Folio</th>
+
+                  <th data-field="equipo" data-sortable="true">equipo</th>
+                  <th data-field="falla" data-sortable="true">falla</th>
+                  <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
+                  <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
+                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                  <th data-field="accion" data-sortable="true">Acción</th>
+
+                  </thead>
+                  <?php
+                  $ejec7 = mysqli_query($conn, $refaccion);
+                  while($fila=mysqli_fetch_array($ejec7)){
+                  $id_equipo          = $fila['id_equipo'];
+                  $id           = $fila['id_folio'];
+                  $equipo           = $fila['equipo'];
+                  $falla          = $fila['falla'];
+                  $fecha_ingreso        = $fila['fecha_ingreso'];
+                  $fecha_entregar        = $fila['fecha_entregar'];
+                  $ubicacion        = $fila['ubicacion'];
+
+
+                  ?>
+                    <tr>
+                        <td><?php echo $id_equipo ?></td>
+                        <td><?php echo $id ?></td>
+
+                        <td><?php echo $equipo ?></td>
+                        <td><?php echo $falla ?></td>
+                        <td><?php echo $fecha_ingreso ?></td>
+                        <td><?php echo $fecha_entregar ?></td>
+                        <td><?php echo $ubicacion ?></a></td>
+                        <td>
+                        </td>
+
+                  </tr>
+                  <?php } ?>
+                  
+                  <tbody></br>
+                  Equipos que necesitan refaccion
+                  </tbody>
+                  </table>
+
+
+                    </div>
+
                     <!-- Comienza tabla 5 -->
 
               <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
@@ -481,58 +545,7 @@ estado = 'Sin solucion';";
 
 
                     </div>
-
-                <div id='show-me-three2' style='display:none; border:2px solid #ccc'>
-
-
-
-                                    <table id="a-tables" class="table table-dark table-hover table-responsive">
-                                    <thead>
-                                    <!--<th data-field="state" data-checkbox="true"></th>-->
-                                    <th data-field="id">id_equipo</th>
-                                    <th data-field="folio" data-sortable="true">Folio</th>
-
-                                    <th data-field="equipo" data-sortable="true">equipo</th>
-                                    <th data-field="falla" data-sortable="true">falla</th>
-                                    <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                                    <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                                    <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
-                                    <th data-field="accion" data-sortable="true">Acción</th>
-
-                                    </thead>
-                                    <?php
-                                    $ejec4 = mysqli_query($conn, $en_repar);
-                                    while($fila=mysqli_fetch_array($ejec4)){
-                                    $id_equipo          = $fila['id_equipo'];
-                                    $id           = $fila['id_folio'];
-                                    $equipo           = $fila['equipo'];
-                                    $falla          = $fila['falla'];
-                                    $fecha_ingreso        = $fila['fecha_ingreso'];
-                                    $fecha_entregar        = $fila['fecha_entregar'];
-                                    $ubicacion        = $fila['ubicacion'];
-                                    ?>
-                                      <tr>
-                                          <td><?php echo $id_equipo ?></td>
-                                          <td><?php echo $id ?></td>
-
-                                          <td><?php echo $equipo ?></td>
-                                          <td><?php echo $falla ?></td>
-                                          <td><?php echo $fecha_ingreso ?></td>
-                                          <td><?php echo $fecha_entregar ?></td>
-                                          <td><?php echo $ubicacion ?></a></td>
-                                          <td>
-                                          <button onclick="costos(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
-                                          </td>
-
-                                    </tr>
-                                    <?php } ?>
-              <tbody></br>
-              Equipos Sin solución
-              </tbody>
-              </table>
-
-                </div>
-                <!-- Termina tabla 5 -->
+            
                 <!-- Comienza tabla 6 -->
 
                 <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
@@ -632,6 +645,7 @@ estado = 'Sin solucion';";
      $("#show-me-two").hide();
      $("#show-me-three").hide();
      $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
      $("#show-me-three3").hide();
      $("#show-me-three4").hide();
      });
@@ -650,6 +664,7 @@ estado = 'Sin solucion';";
      $("#show-me").hide();
      $("#show-me-three").hide();
      $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
      $("#show-me-three3").hide();
      $("#show-me-three4").hide();
      });
@@ -668,6 +683,7 @@ estado = 'Sin solucion';";
      $("#show-me").hide();
      $("#show-me-two").hide();
      $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
      $("#show-me-three3").hide();
      $("#show-me-three4").hide();
      });
@@ -686,6 +702,7 @@ estado = 'Sin solucion';";
      $("#show-me").hide();
      $("#show-me-two").hide();
      $("#show-me-three").hide();
+     $("#show-me-three5").hide();
      $("#show-me-three3").hide();
      $("#show-me-three4").hide();
      });
@@ -704,6 +721,7 @@ estado = 'Sin solucion';";
      $("#show-me").hide();
      $("#show-me-two").hide();
      $("#show-me-three2").hide();
+     
      $("#show-me-three").hide();
      $("#show-me-three4").hide();
      });
@@ -714,7 +732,8 @@ estado = 'Sin solucion';";
       $('#show-me-three3').hide();
      }
     });
-
+    
+   
     //sexto
     $("#look-me4").click(function()
     {
@@ -722,6 +741,8 @@ estado = 'Sin solucion';";
      $("#show-me").hide();
      $("#show-me-two").hide();
      $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+
      $("#show-me-three3").hide();
      $("#show-me-three").hide();
      });
@@ -841,14 +862,14 @@ function enviarorden(id){
 
 <script>
 //Script para mandar ID para generar la orden
-function reporte(id){
+function enviarreporte(id_equipo){
  $.ajax({
      // la URL para la petición
      url : 'recepcion_fn_reporte.php',
      // la información a enviar
      // (también es posible utilizar una cadena de datos)
      data : {
-        id : id
+      id_equipo : id_equipo
      },
      // especifica si será una petición POST o GET
      type : 'POST',
@@ -858,31 +879,16 @@ function reporte(id){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id);
-       $("#swal-input1").val(data.data.id_e);
-       $("#swal-input2").val(data.data.id_pe);
-       $("#swal-input3").val(data.data.nom);
-       $("#swal-input4").val(data.data.ape);
-       $("#swal-input5").val(data.data.cel);
-       $("#swal-input6").val(data.data.equi);
-       $("#swal-input7").val(data.data.mar);
-       $("#swal-input8").val(data.data.mod);
-       $("#swal-input9").val(data.data.ser);
-       $("#swal-input10").val(data.data.cor);
-       $("#swal-input11").val(data.data.accesorios);
-       $("#swal-input12").val(data.data.falla);
-       $("#swal-input13").val(data.data.comentarios);
-       $("#swal-input14").val(data.data.fecha_ingreso);
-       $("#swal-input15").val(data.data.fecha_entrega);
-       $("#swal-input16").val(data.data.fecha_egreso);
-       $("#swal-input17").val(data.data.servicio);
-       $("#swal-input18").val(data.data.ubicacion);
-       $("#swal-input19").val(data.data.presupuesto);
-       $("#swal-input20").val(data.data.mano_obra);
-       $("#swal-input21").val(data.data.abono);
-       $("#swal-input22").val(data.data.restante);
-       $("#swal-input23").val(data.data.costo_total);
-       $("#swal-input24").val(data.data.estado);
+       $("#swal-input0").val(data.data.id_equipo);
+       $("#swal-input1").val(data.data.falla);
+       $("#swal-input2").val(data.data.solu);
+       $("#swal-input3").val(data.data.conc);
+       $("#swal-input4").val(data.data.part);
+       $("#swal-input5").val(data.data.pers);
+
+
+
+
 
      },
      // código a ejecutar si la petición falla;
@@ -1016,7 +1022,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Estado del equipo</label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solución</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solución</option></option><option value="Necesita refaccion">Necesita refacción</option></select>' +
     '</div>'+
 '</div>'+
 '</div>'+
@@ -1043,38 +1049,51 @@ reverseButtons: true
 
 <script type="text/javascript">
 //ventana actualizar cliente
-function reporte(id){
+function reporte(id_equipo){
 
 
 swal({
 title: 'Reporte de tecnico',
 html:
-'<div class="card-body"> <form action="taller_fn_reporte.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form action="#" method="post" name="data" content="text/html; charset=utf-8" >'+
 
-'<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
+'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
 
 '<div class="row">'+
 '<div class="col-md-12">'+
   '<div class="form-group">'+
         '<label>Falla revisada</label>'+
-        '<textarea type="text" name="comen" id="comen"  readonly class="form-control border-input"></textarea>'+
+        '<textarea type="text" name="swal-input1" id="swal-input1"  readonly class="form-control border-input"></textarea>'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-12">'+
   '<div class="form-group">'+
         '<label>Procedimiento que se realizó</label>'+
-        '<textarea type="text" readonly name="comen" id="comen"  class="form-control border-input"></textarea>'+
-    
+        '<textarea type="text" readonly name="swal-input2" id="swal-input2"  class="form-control border-input"></textarea>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
         '<label>Estado de reparación</label>'+
-        '<input type="number" name="swal-input21" id="swal-input21"  required readonly  class="form-control border-input">'+
+        '<input type="text" name="swal-input3" id="swal-input3"  required readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Parte que necesita</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4"  required readonly  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
 
+
 '<div class="col-md-12">'+
 
-  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Ver reporte</Button></br>'+
 
 
 '</form></div>',
