@@ -122,18 +122,19 @@ $sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_tota
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,145);
-  $pdf->Write(5,utf8_decode("Con un costo total de revisión: $"));
+  $pdf->Write(5,utf8_decode("Con un costo total de devolución: $"));
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(75,145);
-  $pdf->Write(5,'$200.00');
+  $pdf->SetXY(84,145);
+  $pdf->Write(5,'200.00');
 
   
 
 //politicas 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,'Este documento declara que el cliente esta conciente que el equipo que esta siendo regresado contiene todas sus partes. 
+$pdf->Write(6,'Este documento declara que el cliente esta conciente que el equipo que esta siendo regresado 
+  contiene todas sus partes. 
 
 ');
 
