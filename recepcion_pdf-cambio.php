@@ -108,7 +108,7 @@ $restante= $_POST ['swal-input52'];
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,110);
-  $pdf->Write(5,'Numero de serie:');
+  $pdf->Write(5,utf8_decode('Número de serie:'));
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(53,110);
@@ -150,7 +150,7 @@ $pdf->Write(6,$abono);
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(78,140);
-$pdf->Write(6,'más el valor de su televisión: $');
+$pdf->Write(6,utf8_decode('más el valor de su televisión: $'));
 
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(140,140);
@@ -158,10 +158,10 @@ $pdf->Write(6,$valor);
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,155);
-$pdf->Write(6,'que se resta al precio de la television en venta de: $');
+$pdf->Write(6,utf8_decode('que se resta al precio de la televisión en venta de: $'));
 
 $pdf->SetFont('Arial','B',12);
-$pdf->SetXY(80,55);
+$pdf->SetXY(115,155);
 $pdf->Write(6,$costo);
 
 $pdf->SetFont('Arial','',12);
@@ -190,16 +190,16 @@ $pdf->Write(6,$restante);
 //footer :v
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(20,210);
-$pdf->Write(6,'Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Diaz Ochoa.');
+$pdf->Write(6,utf8_decode("Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Díaz Ochoa."));
 
 //direccion
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(90,225);
-$pdf->Write(6,'Direccion');
+$pdf->Write(6,utf8_decode("Dirección"));
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(45,235);
-$pdf->Write(6,'Prolongacion Leona Vicario esquina con Lagunas de Montebello.');
+$pdf->Write(6,utf8_decode("Prolongación Leona Vicario esquina con Lagunas de Montebello."));
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(55,245);
