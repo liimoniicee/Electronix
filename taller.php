@@ -7,6 +7,8 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
+$tecnico = "SELECT * from personal where tipo = 'Tecnico';";
+
 $total_equipos ="SELECT id_equipo, marca, modelo, falla, comentarios, fecha_ingreso, servicio, estado, ubicacion, id_folio, id_personal
                 from reparar_tv";
 
@@ -201,7 +203,7 @@ estado = 'Sin solucion';";
                     <div class="tile">
                       <div class="tile-body">
 
-                  <table id="a-tables" class="table table-dark table-hover table-responsive">
+                  <table id="a-tables" style="font-size:13px" class="table table-dark table-hover table-responsive">
                   <thead>
                     <!--<th data-field="state" data-checkbox="true"></th>-->
                     <th data-field="id">id_equipo</th>
@@ -299,8 +301,8 @@ estado = 'Sin solucion';";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="asignar(<?php echo $id?>), mod_asignar(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+
                         </td>
 
           </tr>
@@ -354,8 +356,8 @@ estado = 'Sin solucion';";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="reporte(<?php echo $id?>), mod_reporte(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="costos(<?php echo $id?>), mod_costo(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
                   </tr>
@@ -396,8 +398,6 @@ estado = 'Sin solucion';";
                                     $fecha_ingreso        = $fila['fecha_ingreso'];
                                     $fecha_entregar        = $fila['fecha_entregar'];
                                     $ubicacion        = $fila['ubicacion'];
-
-
                                     ?>
                                       <tr>
                                           <td><?php echo $id_equipo ?></td>
@@ -572,7 +572,7 @@ estado = 'Sin solucion';";
      //primero
     $("#watch-me").click(function()
     {
-      $("#show-me:hidden").show('slow');
+     $("#show-me:hidden").show('slow');
      $("#show-me-two").hide();
      $("#show-me-three").hide();
      $("#show-me-three2").hide();
@@ -681,6 +681,109 @@ estado = 'Sin solucion';";
 
 
   </script>
+
+  <script type="text/javascript">
+  //Script para mandar ID para generar la orden
+ function mod_asignar(id){
+   $.ajax({
+       // la URL para la petición
+       url : 'taller_fn_asignar.php',
+       // la información a enviar
+       // (también es posible utilizar una cadena de datos)
+       data : {
+          id : id
+       },
+       // especifica si será una petición POST o GET
+       type : 'POST',
+       // el tipo de información que se espera de respuesta
+       dataType : 'json',
+       // código a ejecutar si la petición es satisfactoria;
+       // la respuesta es pasada como argumento a la función
+       success : function(data) {
+         //Manda Llamar id,nombre y apellido
+         $("#swal-input0").val(data.data.id);
+         $("#swal-input1").val(data.data.nom);
+         $("#swal-input2").val(data.data.cel);
+
+       },
+       // código a ejecutar si la petición falla;
+       // son pasados como argumentos a la función
+       // el objeto de la petición en crudo y código de estatus de la petición
+       error : function(xhr, status) {
+
+       },
+       // código a ejecutar sin importar si la petición falló o no
+       complete : function(xhr, status) {
+
+       }
+   });
+ }
+
+ </script>
+
+  <script type="text/javascript">
+  //ventana actualizar cliente
+  function asignar(id){
+
+  swal({
+  title: 'Asignar tecnico',
+  html:
+  '<div class="col-lg-12"> <form action="taller_asignar_tec.php" method="post" name="data">'+
+
+  '<div class="row">'+
+  '<div class="col-md-6">'+
+    '<div class="form-group">'+
+          '<label>Folio</label>'+
+          '<input type="text" name="swal-input0" id="swal-input0" readonly required class="form-control border-input">'+
+      '</div>'+
+  '</div>'+
+
+  '<div class="col-md-6">'+
+    '<div class="form-group">'+
+          '<label>Nombre cliente</label>'+
+          '<input type="text" readonly name="swal-input1" id="swal-input1" required class="form-control border-input">'+
+      '</div>'+
+  '</div>'+
+  '</div>'+
+  '<div class="row">'+
+  '<div class="col-md-6">'+
+    '<div class="form-group">'+
+          '<label>Celular</label>'+
+          '<input type="text" readonly name="swal-input2" id="swal-input1" required class="form-control border-input">'+
+      '</div>'+
+  '</div>'+
+
+  '<div class="col-md-6">'+
+    '<div class="form-group">'+
+          '<label>Tecnico: </label>'+
+          '<select class="form-control form-control-sm" textalign="center" name="tecnico" id="tecnico">'+
+          <?php
+          $ejec6 = mysqli_query($conn, $tecnico);
+          while($fila=mysqli_fetch_array($ejec6)){?>
+          '<?php echo '<option value="'.$fila["id_personal"].'">'.$fila["nombre"].'</option>'; ?>'+
+          <?php } ?>
+          '</select>' +
+      '</div>'+
+  '</div>'+
+  '</div>'+
+
+  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar</Button>'+
+  '</form></div>',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: '</form>',
+  cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+  showConfirmButton: false,
+  focusConfirm: false,
+  buttonsStyling: false,
+  reverseButtons: true
+  })
+
+  };
+
+  </script>
+
 
   <div class="content-panel">
 <div class="col-lg-7">
