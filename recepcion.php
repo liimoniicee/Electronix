@@ -144,7 +144,7 @@ clientes;";
               <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Equipos reparados</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Equipos sin solución</button>
               <button class="btn btn-info" type="button" onclick="aviso();">Avisos</button>
-              <button class="btn btn-warning" type="button">Ventas</button>
+              <button class="btn btn-warning" type="button"onclick="location='recepcion_ventas.php'">Ventas</button>
   </p>
 
 <div class="row">
