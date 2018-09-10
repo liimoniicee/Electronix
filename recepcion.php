@@ -350,8 +350,8 @@ html:
 '</div>'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -359,8 +359,8 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="marca" id="marca" maxlength="25" required class="form-control border-input">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -392,19 +392,16 @@ html:
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
         '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-12">'+
-  '<div class="form-group">'+
+       
         '<label>Comentarios</label>'+
         '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
     '</div>'+
 '</div>'+
-'</div>'+
+
 
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+
 
 '</form></div>',
 showCancelButton: true,

@@ -157,7 +157,6 @@ $venta="SELECT * from ventas_tv ";
     while($fila=mysqli_fetch_array($ejecutar)){
         $id_equipo          = $fila['id_equipo'];
         $id           = $fila['id_folio'];
-
         $equipo           = $fila['equipo'];
         $falla          = $fila['falla'];
         $fecha_ingreso        = $fila['fecha_ingreso'];
@@ -169,7 +168,6 @@ $venta="SELECT * from ventas_tv ";
                     <tr>
                         <td><?php echo $id_equipo ?></td>
                         <td><?php echo $id ?></td>
-
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>

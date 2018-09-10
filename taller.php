@@ -13,8 +13,12 @@ $total_equipos ="SELECT id_equipo, marca, modelo, falla, comentarios, fecha_ingr
                 from reparar_tv";
 
 $reparados = "SELECT
-id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'
-union all SELECT id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'";
+equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+FROM
+reparar_tv
+WHERE
+estado = 'Reparada';";
+
 
 $pendientes = "SELECT
 equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
@@ -152,7 +156,7 @@ estado = 'Necesita refaccion';";
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
       <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
+      <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
       <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
             <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Nueva publicacion</a></li>
@@ -317,7 +321,7 @@ estado = 'Necesita refaccion';";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="asignar(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="asignar(<?php echo $id?>), mod_asignar(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
 
                         </td>
 
@@ -759,7 +763,44 @@ estado = 'Necesita refaccion';";
 
   </script>
 
+  <script type="text/javascript">
+  //Script para mandar ID para generar la orden
+ function mod_asignar(id){
+   $.ajax({
+       // la URL para la petición
+       url : 'taller_fn_asignar.php',
+       // la información a enviar
+       // (también es posible utilizar una cadena de datos)
+       data : {
+          id : id
+       },
+       // especifica si será una petición POST o GET
+       type : 'POST',
+       // el tipo de información que se espera de respuesta
+       dataType : 'json',
+       // código a ejecutar si la petición es satisfactoria;
+       // la respuesta es pasada como argumento a la función
+       success : function(data) {
+         //Manda Llamar id,nombre y apellido
+         $("#swal-input0").val(data.data.id);
+         $("#swal-input1").val(data.data.nom);
+         $("#swal-input2").val(data.data.cel);
 
+       },
+       // código a ejecutar si la petición falla;
+       // son pasados como argumentos a la función
+       // el objeto de la petición en crudo y código de estatus de la petición
+       error : function(xhr, status) {
+
+       },
+       // código a ejecutar sin importar si la petición falló o no
+       complete : function(xhr, status) {
+
+       }
+   });
+ }
+
+ </script>
 
 
 <script>
@@ -877,21 +918,44 @@ function enviarreporte(id_equipo){
   swal({
   title: 'Asignar tecnico',
   html:
-  '<div class="col-lg-12"> <form action="taller_fn_asignar_tecnico.php" method="post" name="data">'+
+  '<div class="col-lg-12"> <form action="taller_asignar_tec.php" method="post" name="data">'+
 
-  '<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
- '<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
+  '<div class="row">'+
+  '<div class="col-md-6">'+
+    '<div class="form-group">'+
+          '<label>Folio equipo</label>'+
+          '<input type="text" name="swal-input0" id="swal-input0" readonly required class="form-control border-input">'+
+      '</div>'+
+  '</div>'+
 
+  '<div class="col-md-6">'+
+    '<div class="form-group">'+
+          '<label>Falla</label>'+
+          '<input type="text" readonly name="swal-input1" id="swal-input1" required class="form-control border-input">'+
+      '</div>'+
+  '</div>'+
+  '</div>'+
+  '<div class="row">'+
+  '<div class="col-md-6">'+
+    '<div class="form-group">'+
+          '<label>Celular</label>'+
+          '<input type="text" readonly name="swal-input2" id="swal-input1" required class="form-control border-input">'+
+      '</div>'+
+  '</div>'+
+
+  '<div class="col-md-6">'+
     '<div class="form-group">'+
           '<label>Tecnico: </label>'+
-          '<select id="swal-input2" name="swal-input2" class="form-control form-control-sm" text-align="center" name="tecnico" id="tecnico">'+
+          '<select class="form-control form-control-sm" textalign="center" name="tecnico" id="tecnico">'+
           <?php
-          $ejec6 = mysqli_query($conn, $tecnico);
-          while($fila=mysqli_fetch_array($ejec6)){?>
-          '<?php echo '<option  value="'.$fila["id_personal"].'">'.$fila["id_personal"].'</option>'; ?>'+
+          $ejec7 = mysqli_query($conn, $tecnico);
+          while($fila=mysqli_fetch_array($ejec7)){?>
+          '<?php echo '<option value="'.$fila["id_personal"].'">'.$fila["nombre"].'</option>'; ?>'+
           <?php } ?>
           '</select>' +
-   
+      '</div>'+
+  '</div>'+
+  '</div>'+
 
   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar</Button>'+
   '</form></div>',
