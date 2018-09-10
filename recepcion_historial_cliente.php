@@ -262,7 +262,15 @@ id_folio = '$id';";
                         if($estado == "Entregado"){
                           echo "
                         <td>
-                          <button onclick='garantia($id), enviarorden($id);' class='btn btn-simple btn-warning btn-icon edit' title='Reingreso por garantía' ><i ></i></button>
+                          <button onclick='garantia($id), enviarorden($id);' class='btn btn-simple btn-success btn-icon edit' title='Reingreso por garantía' ><i ></i></button>
+                        </td>";
+                      };
+                      ?>
+                       <?php
+                        if($estado == "En reparacion"){
+                          echo "
+                        <td>
+                          <button onclick='abono($id), enviarorden($id);' class='btn btn-simple btn-primary btn-icon edit' title='Ingresar abono' ><i ></i></button>
                         </td>";
                       };
                       ?>
@@ -381,7 +389,7 @@ id_folio = '$id';";
     function garantia(id){
 
     swal({
-    title: 'Garantia',
+    title: 'Reingreso por garantía',
     html:
     '<div class="card-body"> <form action="recepcion_pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
@@ -476,7 +484,7 @@ id_folio = '$id';";
 
 
     '<div class="col-md-12">'+
-    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Reingresar por garantía</Button>'+
 
     '</form></div>',
     showCancelButton: true,
@@ -493,5 +501,47 @@ id_folio = '$id';";
     };
 
     </script>
+
+    <script type="text/javascript">
+    //ventana actualizar cliente
+    function abono(id){
+
+    swal({
+    title: 'Abonos',
+    html:
+    '<div class="card-body"> <form action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    //Manda Llamar id,nombre y apellido
+    '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
+    '<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
+    '<input name="swal-input3" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
+    '<input name="swal-input4" type="hidden" id="swal-input4" class="form-control border-input" readonly >' +
+   
+    '<div class="col-md-12">'+
+      '<div class="form-group">'+
+            '<label>Cantidad que abona</label>'+
+            '<input type="number" name="swal-input21" id="swal-input21"  class="form-control border-input">'+
+        '</div>'+
+    '</div>'+
+
+
+    '<div class="col-md-12">'+
+    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</Button>'+
+
+    '</form></div>',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '</form> Actualizar solicitud',
+    cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+    showConfirmButton: false,
+    focusConfirm: false,
+    buttonsStyling: false,
+    reverseButtons: true
+    })
+
+    };
+
+    </script>
+
   </body>
 </html>

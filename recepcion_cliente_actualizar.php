@@ -23,7 +23,7 @@ if (!$res) {
 }
 else{
 
-echo "<script>alert('Usuario insertado exitosamente con el folio=')</script>";
+//echo "<script>alert('Usuario actualizado exitosamente con el folio=')</script>";
   echo "<script>window.open('recepcion.php','_self')</script>";}
 
 ?>
