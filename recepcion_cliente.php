@@ -5,7 +5,6 @@
 
 require 'conexion.php';
 
-
 $nom = $_POST['nom'];
 $ape = $_POST['ape'];
 $cor = $_POST['cor'];
@@ -26,20 +25,7 @@ if (!$res) {
    printf("Errormessage: %s\n", $conn->error);
 }
 else{
-  ?>
-   <body>
-   <script>
-   swal({
-  title: "Success",
-  text: "Usuario registrado",
-  type: "success"
-  }).then(function() {
-  // Redirect the user
-  window.location.href = "recepcion.php";
-  console.log('The Ok Button was clicked.');
-  });
-       </script>
-  </body>
-   <?php
-   }
+  //echo "<script>alert('Usuario agregado exitosamente con el folio=$')</script>";
+  echo "<script>window.open('recepcion.php','_self')</script>";}
+   
 ?>

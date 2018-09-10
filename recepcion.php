@@ -339,65 +339,62 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Equipo  :</label>'+
-        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option><option value="Otros">Otros</option></select>' +
+        '<label>Equipo</label>'+
+        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
+        '<option value="Ventiladores">Ventiladores</option>'+
+        '<option value="Tarjetas madre">Tarjetas madre</option>'+
+        '<option value="Audio">Audio</option>'+
+        '<option value="Fuentes de poder">Fuentes de poder</option>'+       
+        '</select>' +
     '</div>'+
 '</div>'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Especifique</label>'+
-        '<input type="text" maxlength="25" placeholder="Sí no es tv" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Modelo</label>'+
         '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
+
+'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Marca</label>'+
         '<input type="text" name="marca" id="marca" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
-'</div>'+
 
-'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Falla</label>'+
         '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
 
+'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Serie</label>'+
         '<input type="text" name="serie" id="serie" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
-'</div>'+
-'<div class="row">'+
+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Accesorios</label>'+
-        '<input type="text" name="acce" id="acce" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="acce" id="acce" maxlength="25"  class="form-control border-input">'+
     '</div>'+
 '</div>'+
+'</div>'+
 
-'<div class="col-md-6">'+
+'<div class="col-md-12">'+
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" text-align="center" name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
+        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
     '</div>'+
 '</div>'+
-'</div>'+
 
-'<div class="row">'+
 '<div class="col-md-12">'+
   '<div class="form-group">'+
         '<label>Comentarios</label>'+
@@ -434,7 +431,7 @@ function alerta1(id){
 swal({
 title: 'Actualizar cliente',
 html:
-'<div class="col-lg-12"> <form action="update_cliente.php" method="post" name="data">'+
+'<div class="col-lg-12"> <form action="recepcion_cliente_actualizar.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
 '<label>Nombre(s)</label>' +
 '<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
@@ -500,7 +497,7 @@ reverseButtons: true
     swal({
    title: 'Agregar cliente',
    html:
-   '<div class="col-lg-12"> <form action="funciones/new_cliente.php" method="post" name="data">'+
+   '<div class="col-lg-12"> <form action="recepcion_cliente.php" method="post" name="data">'+
    '<label>Nombre(s)</label>' +
    '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
    '<label>Apellidos</label>' +
@@ -508,7 +505,7 @@ reverseButtons: true
    '<label>Direccion</label>' +
    '<input input type="text" name="dire" id="dire" class="form-control border-input maxlength="25" required>' +
    '<label>Correo</label>' +
-   '<input input type="email" name="cor" id="cor" class="form-control border-input requiered">' +
+   '<input input type="email" name="cor" id="cor" class="form-control border-input ">' +
    '<label>Celular</label>' +
    '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
