@@ -8,7 +8,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-$venta="SELECT * from ventas_tv ";
+$venta="SELECT marca, modelo, costo, imagen1, fecha_alta from ventas_tv where estado = 'En venta';";
 
 
 
@@ -121,22 +121,37 @@ $venta="SELECT * from ventas_tv ";
       </div>
 <div class="content-panel">
 
+  <div class="col-lg-2"
+    <div class="bs-component">
+      <div class="card">
+        <div class="row">
+        <button class="btn btn-primary" type="button" onclick="nuevo();">Nuevo equipo a la venta</button>
+
+      </div>
+      </div>
+    </div>
+  </div><br></br>
+
 
               <div class="row">
+                <?php
+                $ejec1 = mysqli_query($conn, $venta);
+                while($fila=mysqli_fetch_array($ejec1)){ ?>
+                <div class="col-lg-4">
+                  <div class="bs-component">
+                    <div class="card">
+                      <h4 class="card-header"><?php echo $fila['marca']; ?></h4>
+                      <div class="card-body">
+                        <h5 class="card-title"><?php echo $fila['modelo']; ?></h5>
+                        <h6 class="card-subtitle text-muted">$<?php echo $fila['costo']; ?></h6>
+                      </div><img style="height: 200px; width: 100%; display: block;" src="<?php echo $fila['imagen1']; ?>" alt="Card image">
 
-                  <div class="col-md-3">
-                    <div card-body>
-                      <img src="assets/galeria/1.jpg" class="img-thumbnail">
-                      <div class="col-sm-12" align="center">
-                        <label>imagen 1 </label>
-                      </div>
-
+                      <div class="card-footer text-muted"><?php echo  $fila['fecha_alta']; ?></div>
                     </div>
+                  </div><br></br>
+                </div>
 
-  </div>
-</div>
-
-
+              <?php } ?>
 </div>
 
     </main>
@@ -195,35 +210,6 @@ function enviarorden(id){
         //Manda Llamar id,nombre y apellido
 
          $("#swal-input0").val(data.data.id);
-       $("#swal-input1").val(data.data.id_e);
-       $("#swal-input2").val(data.data.id_pe);
-       $("#swal-input3").val(data.data.nom);
-       $("#swal-input4").val(data.data.ape);
-       $("#swal-input5").val(data.data.cel);
-       $("#swal-input6").val(data.data.equi);
-       $("#swal-input7").val(data.data.mar);
-       $("#swal-input8").val(data.data.mod);
-       $("#swal-input9").val(data.data.ser);
-       $("#swal-input10").val(data.data.cor);
-       $("#swal-input11").val(data.data.accesorios);
-       $("#swal-input12").val(data.data.falla);
-       $("#swal-input13").val(data.data.comentarios);
-       $("#swal-input14").val(data.data.fecha_ingreso);
-       $("#swal-input15").val(data.data.fecha_entrega);
-       $("#swal-input16").val(data.data.fecha_egreso);
-       $("#swal-input17").val(data.data.servicio);
-       $("#swal-input18").val(data.data.ubicacion);
-       $("#swal-input19").val(data.data.presupuesto);
-       $("#swal-input20").val(data.data.mano_obra);
-       $("#swal-input21").val(data.data.abono);
-       $("#swal-input22").val(data.data.restante);
-       $("#swal-input23").val(data.data.costo_total);
-       $("#swal-input24").val(data.data.estado);
-
-
-
-
-
       },
       // código a ejecutar si la petición falla;
       // son pasados como argumentos a la función
@@ -241,257 +227,39 @@ function enviarorden(id){
 </script>
 
 <script type="text/javascript">
-//devolucion
-function devolucion(id){
+
+  function nuevo(){
 
 
-swal({
-title: 'Devolución de equipo',
-html:
-'<div class="card-body"> <form action="recepcion_pdf-devolucion.php" method="post" name="data" content="text/html; charset=utf-8" >'+
-
-'<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
-'<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
-
-
-//Manda Llamar id,nombre y apellido
-'<h5>Al devolver el equipo se cobrará $200.00</h5>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Id equipo</label>'+
-        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Nombre(s)</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Celular</label>'+
-        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Equipo</label>'+
-        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Ingreso</label>'+
-        '<input type="text" name="swal-input14" id="swal-input14" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Ubicación</label>'+
-        '<input type="text" name="swal-input18" id="swal-input18" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Servicio</label>'+
-        '<input type="text" name="swal-input17" id="swal-input17" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Devolver equipo</Button>'+
-
-'</form></div>',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: '</form> Devolver equipo',
-cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: false,
-focusConfirm: false,
-buttonsStyling: false,
-reverseButtons: true
+  swal({
+ title: 'Agregar producto',
+ html:
+ '<div class="col-lg-12"> <form action="recepcion_ventas_nuevo.php" method="post" name="data" enctype="multipart/form-data">'+
+ '<label>Marca</label>' +
+ '<input input type="text" name="marc" id="marc" class="form-control border-input" maxlength="20" required>' +
+ '<label>Modelo</label>' +
+ '<input input type="text" name="mod" id="mod" class="form-control border-input maxlength="20" required>' +
+ '<label>Serie</label>' +
+ '<input input type="text" name="ser" id="ser" class="form-control border-input maxlength="20" required>' +
+ '<label>Costo</label>' +
+ '<input input type="number" name="costo" id="costo" class="form-control border-input" maxlength="20" required>' +
+ '<label>imagen</label>' +
+ '<input input type="file" name="img" id="img"  required accept="image/png/jpg" class="form-control border-input" required></br>'+
+ '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar producto</Button>'+
+ '</form></div>',
+ showCancelButton: true,
+ confirmButtonColor: '#3085d6',
+ cancelButtonColor: '#d33',
+ confirmButtonText: '</form> Actualizar solicitud',
+ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+ showConfirmButton: false,
+ focusConfirm: false,
+ buttonsStyling: false,
+  reverseButtons: true
 })
 
 };
-
 </script>
-
-<script type="text/javascript">
-//ventana orden de servición
-function cambio(id){
-
-
-swal({
-title: 'Cambio',
-html:
-'<div class="card-body"> <form action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
-//Manda Llamar id,nombre y apellido
-'<h5>Equipo que deja a cambio</h5>'+
-
-        '<input type="hidden" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
-        '<input type="hidden" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
-        '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
-        '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
-        '<input type="hidden" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
-        '<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
-        '<input type="hidden" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
-
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-  '<label>Marca</label>'+
-        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-  '<label>Modelo</label>'+
-        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<h5>Equipo que compra</h5>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-  '<label>Marca</label>'+
-        '<input type="text" name="swal-input" id="swal-input" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-  '<label>Modelo</label>'+
-        '<input type="text" name="swal-input" id="swal-input" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-'<h5>Costos</h5>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Abono del cliente</label>'+
-        '<input type="text" name="swal-input21" id="swal-input21" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Valor de su televisión</label>'+
-        '<input type="number" name="swal-input50" id="swal-input50"  required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Costo de venta</label>'+
-        '<input type="text" name="swal-input51" id="swal-input51" value="3000" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Total a pagar</label>'+
-        '<input type="text" name="swal-input52" id="swal-input52" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Cambiar equipo y generar garantía</Button>'+
-
-'</form></div>',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: '</form> Actualizar solicitud',
-cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: false,
-focusConfirm: false,
-buttonsStyling: false,
-reverseButtons: true
-})
-
-};
-
-</script>
-<script type="text/javascript">
-
-function operaciones()
-{
-  var abono =document.getElementById('swal-input21').value;
-  var valor =document.getElementById('swal-input50').value;
-  var costo =document.getElementById('swal-input51').value;
-
-  var suma =parseInt(abono)+parseInt(valor);
-
-  var sub =parseInt(costo)-parseInt(suma);
-
-  var total =parseInt(document.getElementById('swal-input52').value= sub);
-
-}
 
 
 </script>
