@@ -146,7 +146,9 @@ $venta="SELECT marca, modelo, costo, imagen1, fecha_alta from ventas_tv where es
                         <h6 class="card-subtitle text-muted">$<?php echo $fila['costo']; ?></h6>
                       </div><img style="height: 200px; width: 100%; display: block;" src="<?php echo $fila['imagen1']; ?>" alt="Card image">
 
-                      <div class="card-footer text-muted"><?php echo  $fila['fecha_alta']; ?></div>
+                      <div class="card-footer text-muted"><?php echo  $fila['fecha_alta']; ?>
+                        <button class="btn btn-primary" type="button" onclick="nuevo();">vender</button>
+                      </div>
                     </div>
                   </div><br></br>
                 </div>
