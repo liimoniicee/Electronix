@@ -105,7 +105,7 @@ $venta="SELECT * from ventas_tv ";
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
- 
+
       <li><a class="app-menu__item" href="recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepcion</span></a></li>
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
       <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -116,25 +116,14 @@ $venta="SELECT * from ventas_tv ";
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
       <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
 
-
-
-
-
     </aside>
     <main class="app-content">
       <div class="app-title">
-        <div>
           <h1><i class="fa fa-dashboard"></i>Equipos sin solución</h1>
+            </div>
 
-        </div>
-
-      </div>
 <div class="content-panel">
-
-
-              <div class="row">
-
-                  <div class="col-md-12">
+                <div class="col-md-12">
                     <div class="tile">
                       <div class="tile-body">
 
@@ -162,8 +151,6 @@ $venta="SELECT * from ventas_tv ";
         $fecha_ingreso        = $fila['fecha_ingreso'];
         $fecha_entregar        = $fila['fecha_entregar'];
         $ubicacion        = $fila['ubicacion'];
-
-
 ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
@@ -177,21 +164,16 @@ $venta="SELECT * from ventas_tv ";
                         <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
                         <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
-
           </tr>
         <?php } ?>
         <tbody></br>
             Resultado de clientes
-     
+
       </tbody>
   </table>
       </div>
     </div>
   </div>
-</div>
-
-
-</div>
 </div>
 
         </div>
@@ -276,11 +258,6 @@ function enviarorden(id){
        $("#swal-input22").val(data.data.restante);
        $("#swal-input23").val(data.data.costo_total);
        $("#swal-input24").val(data.data.estado);
-
-
-
-
-
       },
       // código a ejecutar si la petición falla;
       // son pasados como argumentos a la función
@@ -446,7 +423,6 @@ html:
         '<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
 
-   
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -470,20 +446,24 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
   '<label>Marca</label>'+
-        '<input type="text" name="swal-input" id="swal-input" readonly class="form-control border-input">'+
+  '<select class="form-control form-control-sm" textalign="center" name="tv_venta" id="tv_venta">'+
+  <?php
+  $ejec7 = mysqli_query($conn, $venta);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["idventa_tv"].'">'.$fila["marca"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
     '</div>'+
 '</div>'+
-
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
   '<label>Modelo</label>'+
-        '<input type="text" name="swal-input" id="swal-input" readonly maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="modelo" id="modelo" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
 '<h5>Costos</h5>'+
-
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -503,8 +483,8 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Costo de venta</label>'+
-        '<input type="text" name="swal-input51" id="swal-input51" value="3000" readonly class="form-control border-input">'+
+        '<label>Costo de tv</label>'+
+        '<input type="text" name="costo" id="costo" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -523,16 +503,64 @@ html:
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
-confirmButtonText: '</form> Actualizar solicitud',
+confirmButtonText: '</form> ',
 cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
 })
+$('#tv_venta').on('change', function(){
+var id = $(this).val();
+
+
+$.ajax({
+  type: 'POST',
+  url: 'obtener_tv_ventas.php',
+  data: {id: id},
+  dataType : 'json',
+})
+.done(function(data){
+
+  $("#modelo").val(data.data.mod);
+  $("#serie").val(data.data.ser);
+  $("#costo").val(data.data.cost);
+
+})
+.fail(function(){
+alert('hubo un error')
+})
+
+})
 
 };
 
+</script>
+
+
+<script type="text/javascript">
+$('#tv_venta').on('change', function(){
+var id = $(this).val();
+
+
+$.ajax({
+  type: 'POST',
+  url: 'obtener_tv_ventas.php',
+  data: {id: id},
+  dataType : 'json',
+})
+.done(function(data){
+
+  $("#modelo").val(data.data.mod);
+  $("#serie").val(data.data.ser);
+  $("#costo").val(data.data.cost);
+
+})
+.fail(function(){
+alert('hubo un error')
+})
+
+});
 </script>
 <script type="text/javascript">
 
@@ -552,5 +580,6 @@ function operaciones()
 
 
 </script>
+
   </body>
 </html>

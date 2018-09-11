@@ -10,9 +10,9 @@ $man = $_POST['swal-input20'];
 $abo = $_POST['swal-input21'];
 $res = $_POST['swal-input22'];
 $tot = $_POST['swal-input23'];
+$est = $_POST['swal-input24'];
 
-
-$sql = "Update reparar_tv set presupuesto ='$pre', mano_obra ='$man', abono='$abo', restante= '$res', costo_total='$tot' where id_equipo='$id'";
+$sql = "Update reparar_tv set presupuesto ='$pre', mano_obra ='$man', abono='$abo', restante= '$res', costo_total='$tot', estado='$est' where id_equipo='$id'";
 
 
 

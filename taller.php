@@ -202,15 +202,15 @@ estado = 'Necesita refaccion';";
                       <input name='test' type='radio' /> Revisados
                     </label>
 
-                    <label class="btn btn-primary" id='look-me5'>
-                      <input name='test' type='radio' /> Necesita refacción 
-                    </label>
-
                     <label class="btn btn-primary" id='look-me3'>
-                      <input name='test' type='radio' /> Sin solución
+                      <input name='test' type='radio' /> Necesita refacción
                     </label>
 
                     <label class="btn btn-primary" id='look-me4'>
+                      <input name='test' type='radio' /> Sin solución
+                    </label>
+
+                    <label class="btn btn-primary" id='look-me5'>
                       <input name='test' type='radio' /> Reparado
                     </label>
 
@@ -325,8 +325,8 @@ estado = 'Necesita refaccion';";
 
                         </td>
 
-                        
-                                       
+
+
           </tr>
         <?php } ?>
         <tbody></br>
@@ -382,7 +382,7 @@ estado = 'Necesita refaccion';";
 
                   </tr>
                   <?php } ?>
-                  
+
                   <tbody></br>
                   Equipos en reparación
                   </tbody>
@@ -446,7 +446,7 @@ estado = 'Necesita refaccion';";
 
                   </div>
                     <!-- Termina tabla 4 -->
-                    <div id='show-me-three' style='display:none; border:2px solid #ccc'>
+                    <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
 
 
                   <table id="a-tables" class="table table-dark table-hover table-responsive">
@@ -490,7 +490,7 @@ estado = 'Necesita refaccion';";
 
                   </tr>
                   <?php } ?>
-                  
+
                   <tbody></br>
                   Equipos que necesitan refaccion
                   </tbody>
@@ -501,7 +501,7 @@ estado = 'Necesita refaccion';";
 
                     <!-- Comienza tabla 5 -->
 
-              <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
+              <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
 
 
               <table id="a-tables" class="table table-dark table-hover table-responsive">
@@ -549,58 +549,58 @@ estado = 'Necesita refaccion';";
 
 
                     </div>
-            
+
                 <!-- Comienza tabla 6 -->
 
-                <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
+
+                              <div id='show-me-three5' style='display:none; border:2px solid #ccc'>
 
 
-                <table id="a-tables" class="table table-dark table-hover table-responsive">
-                <thead>
-                <!--<th data-field="state" data-checkbox="true"></th>-->
-                <th data-field="id">id_equipo</th>
-                <th data-field="folio" data-sortable="true">Folio</th>
+                              <table id="a-tables" class="table table-dark table-hover table-responsive">
+                              <thead>
+                              <!--<th data-field="state" data-checkbox="true"></th>-->
+                              <th data-field="id">id_equipo</th>
+                              <th data-field="folio" data-sortable="true">Folio</th>
 
-                <th data-field="equipo" data-sortable="true">equipo</th>
-                <th data-field="falla" data-sortable="true">falla</th>
-                <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
-                <th data-field="accion" data-sortable="true">Acción</th>
+                              <th data-field="equipo" data-sortable="true">equipo</th>
+                              <th data-field="falla" data-sortable="true">falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
+                              <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
-                </thead>
-                <?php
-                $ejec6 = mysqli_query($conn, $reparados);
-                while($fila=mysqli_fetch_array($ejec6)){
-                $id_equipo          = $fila['id_equipo'];
-                $id           = $fila['id_folio'];
-                $equipo           = $fila['equipo'];
-                $falla          = $fila['falla'];
-                $fecha_ingreso        = $fila['fecha_ingreso'];
-                $fecha_entregar        = $fila['fecha_entregar'];
-                $ubicacion        = $fila['ubicacion'];
-                ?>
-                  <tr>
-                      <td><?php echo $id_equipo ?></td>
-                      <td><?php echo $id ?></td>
-                      <td><?php echo $equipo ?></td>
-                      <td><?php echo $falla ?></td>
-                      <td><?php echo $fecha_ingreso ?></td>
-                      <td><?php echo $fecha_entregar ?></td>
-                      <td><?php echo $ubicacion ?></a></td>
-                      <td>
-                      <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                      <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
-                      </td>
+                              </thead>
+                              <?php
+                              $ejec6 = mysqli_query($conn, $reparados);
+                              while($fila=mysqli_fetch_array($ejec6)){
+                              $id_equipo          = $fila['id_equipo'];
+                              $id           = $fila['id_folio'];
+                              $equipo           = $fila['equipo'];
+                              $falla          = $fila['falla'];
+                              $fecha_ingreso        = $fila['fecha_ingreso'];
+                              $fecha_entregar        = $fila['fecha_entregar'];
+                              $ubicacion        = $fila['ubicacion'];
+                              ?>
+                                <tr>
+                                    <td><?php echo $id_equipo ?></td>
+                                    <td><?php echo $id ?></td>
+                                    <td><?php echo $equipo ?></td>
+                                    <td><?php echo $falla ?></td>
+                                    <td><?php echo $fecha_ingreso ?></td>
+                                    <td><?php echo $fecha_entregar ?></td>
+                                    <td><?php echo $ubicacion ?></a></td>
+                                    <td>
+                                    </td>
 
-                </tr>
-                <?php } ?>
-             
-                </table>
+                              </tr>
+                              <?php } ?>
+                              <tbody></br>
+                                  Equipos reparados
+                                  </tbody>
+                                  </table>
 
 
-
-                  </div>
+                                    </div>
                   <!-- Termina tabla 6-->
     </div>
            </div>
@@ -725,7 +725,7 @@ estado = 'Necesita refaccion';";
      $("#show-me").hide();
      $("#show-me-two").hide();
      $("#show-me-three2").hide();
-     
+     $("#show-me-three5").hide();
      $("#show-me-three").hide();
      $("#show-me-three4").hide();
      });
@@ -736,8 +736,8 @@ estado = 'Necesita refaccion';";
       $('#show-me-three3').hide();
      }
     });
-    
-   
+
+
     //sexto
     $("#look-me4").click(function()
     {
@@ -746,7 +746,6 @@ estado = 'Necesita refaccion';";
      $("#show-me-two").hide();
      $("#show-me-three2").hide();
      $("#show-me-three5").hide();
-
      $("#show-me-three3").hide();
      $("#show-me-three").hide();
      });
@@ -757,6 +756,26 @@ estado = 'Necesita refaccion';";
       $('#show-me-three4').hide();
      }
     });
+
+    //septimo
+    $("#look-me5").click(function()
+    {
+      $("#show-me-three5:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three4").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three5').prop('checked')===false)
+     {
+      $('#show-me-three5').hide();
+     }
+    });
+
 
    });
 
@@ -1026,7 +1045,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Estado del equipo</label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="Diagnosticada" >Diagnosticada</option><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solución</option></option><option value="Necesita refaccion">Necesita refacción</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solucion</option></option><option value="Necesita refaccion">Necesita refaccion</option></select>' +
     '</div>'+
 '</div>'+
 '</div>'+
@@ -1057,7 +1076,7 @@ function reporte(id_equipo){
 
 
 swal({
-title: 'Reporte de técnico',
+title: 'Reporte de tecnico',
 html:
 '<div class="card-body"> <form action="#" method="post" name="data" content="text/html; charset=utf-8" >'+
 
