@@ -60,9 +60,9 @@ if($tipo == 'Traslado'){
     	}
       if($tipo == 'Tecnico'){
       		$_SESSION['clave'] = $row["id_personal"];
-      		//$id = $row["ID_USUARIO"];//
+      		//$id = $row["id_personal"];
       	    $_SESSION['nombre']=$var_nombre;
-
+			 // $id = $_POST ['id_personal'];	
       		header("location:tecnico.php");
       	}
         if($tipo == 'Recepcion'){
