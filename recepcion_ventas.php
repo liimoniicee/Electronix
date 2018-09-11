@@ -263,6 +263,44 @@ function enviarorden(id){
 };
 </script>
 
+</script>
+
+<script type="text/javascript">
+
+  function vender(){
+
+
+  swal({
+ title: 'Vender producto',
+ html:
+ '<div class="col-lg-12"> <form action="recepcion_ventas_nuevo.php" method="post" name="data" enctype="multipart/form-data">'+
+ '<label>Marca</label>' +
+ '<input input type="text" name="marc" id="marc" class="form-control border-input" maxlength="20" required>' +
+ '<label>Modelo</label>' +
+ '<input input type="text" name="mod" id="mod" class="form-control border-input maxlength="20" required>' +
+ '<label>Serie</label>' +
+ '<input input type="text" name="ser" id="ser" class="form-control border-input maxlength="20" required>' +
+ '<label>Costo</label>' +
+ '<input input type="number" name="costo" id="costo" class="form-control border-input" maxlength="20" required>' +
+ '<label>imagen</label>' +
+ '<input input type="file" name="img" id="img"  required accept="image/png/jpg" class="form-control border-input" required></br>'+
+ '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar producto</Button>'+
+ '</form></div>',
+ showCancelButton: true,
+ confirmButtonColor: '#3085d6',
+ cancelButtonColor: '#d33',
+ confirmButtonText: '</form> Actualizar solicitud',
+ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+ showConfirmButton: false,
+ focusConfirm: false,
+ buttonsStyling: false,
+  reverseButtons: true
+})
+
+};
+</script>
+
+
 
 </script>
   </body>
