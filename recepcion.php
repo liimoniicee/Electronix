@@ -437,7 +437,7 @@ html:
 '<label>Direccion</label>' +
 '<input input type="text" name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" required>' +
 '<label>Correo</label>' +
-'<input input type="email" name="swal-input4" id="swal-input4" class="form-control border-input requiered">' +
+'<input input type="email" name="swal-input4" id="swal-input4" class="form-control border-input ">' +
 '<label>Celular</label>' +
 '<input input type="number" name="swal-input5" id="swal-input5" class="form-control border-input type="number" required></br>'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar cliente</Button>'+
