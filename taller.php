@@ -1026,7 +1026,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Estado del equipo</label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solución</option></option><option value="Necesita refaccion">Necesita refacción</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="Diagnosticada" >Diagnosticada</option><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solución</option></option><option value="Necesita refaccion">Necesita refacción</option></select>' +
     '</div>'+
 '</div>'+
 '</div>'+
@@ -1057,7 +1057,7 @@ function reporte(id_equipo){
 
 
 swal({
-title: 'Reporte de tecnico',
+title: 'Reporte de técnico',
 html:
 '<div class="card-body"> <form action="#" method="post" name="data" content="text/html; charset=utf-8" >'+
 

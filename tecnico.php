@@ -10,12 +10,13 @@ $var_clave= $_SESSION['clave'];
 
 
 
-$consulta = "SELECT
-equipo, falla, id_equipo, marca,modelo, estado, ubicacion,id_personal
-FROM
-reparar_tv
+$consulta = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
+FROM reparar_tv
 WHERE estado='En reparacion' and id_personal='$var_clave';";
 
+$consulta1 = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
+FROM reparar_tv
+WHERE estado='En reparacion' ";
 
 ?>
 <html lang="es">
@@ -146,31 +147,37 @@ WHERE estado='En reparacion' and id_personal='$var_clave';";
     <thead>
 
         <th data-field="id">ID Equipo</th>
-      <th data-field="id_equipo" data-sortable="true">Marca</th>
-      <th data-field="marca" data-sortable="true">Modelo</th>
-      <th data-field="modelo" data-sortable="true">Falla</th>
+      <th data-field="id_equipo" data-sortable="true">equipo</th>
+      <th data-field="marca" data-sortable="true">marca</th>
+      <th data-field="modelo" data-sortable="true">modelo</th>
+      <th data-field="modelo" data-sortable="true">falla</th>
+      <th class="disabled-sorting">Comentarios extras</th>
       <th class="disabled-sorting">Acción</th>
 
     </thead>
     <?php
-      $ejecutar1 = mysqli_query($conn, $consulta);
-    while($fila=mysqli_fetch_array($ejecutar1)){
-        $id_equipo          = $fila['id_equipo'];
-        $nom           = $fila['marca'];
-        $ape          = $fila['modelo'];
-        $dir          = $fila['falla'];
+      $ejecutar2 = mysqli_query($conn, $consulta1);
+    while($fila=mysqli_fetch_array($ejecutar2)){
+      $id_equipo          = $fila['id_equipo'];
+      $equipo           = $fila['equipo'];
+      $marca           = $fila['marca'];
+      $modelo          = $fila['modelo'];
+      $falla          = $fila['falla'];
+      $comentarios          = $fila['comentarios'];
 
 
 ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
-                        <td><?php echo $nom ?></td>
-                        <td><?php echo $ape ?></td>
-                        <td><?php echo $dir ?></td>
+                        <td><?php echo $equipo ?></td>
+                        <td><?php echo $marca ?></td>
+                        <td><?php echo $modelo ?></td>
+                        <td><?php echo $falla ?></td>
+                        <td><?php echo $comentarios ?></td>
 
 
                         <td>
-                        <button  class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
+                        <button onclick="reporte(<?php echo $id_equipo ?>), enviarorden(<?php echo $id_equipo ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
 
                      
                         </td>
@@ -226,270 +233,81 @@ WHERE estado='En reparacion' and id_personal='$var_clave';";
     <div class="content-panel">
  <div class="col-lg-7">
 
- <script type="text/javascript">
-function enviarmod(id){
-  $.ajax({
-      // la URL para la petición
-      url : 'recepcion_fn_actualizar_cliente.php',
-      // la información a enviar
-      // (también es posible utilizar una cadena de datos)
-      data : {
-         id : id
-      },
-      // especifica si será una petición POST o GET
-      type : 'POST',
-      // el tipo de información que se espera de respuesta
-      dataType : 'json',
-      // código a ejecutar si la petición es satisfactoria;
-      // la respuesta es pasada como argumento a la función
-      success : function(data) {
-        $("#swal-input0").val(data.data.id);
-        $("#swal-input1").val(data.data.nom);
-        $("#swal-input2").val(data.data.ape);
-        $("#swal-input3").val(data.data.dir);
-        $("#swal-input4").val(data.data.cor);
-        $("#swal-input5").val(data.data.cel);
+ <script>
+//Script para mandar ID para generar la orden
+function enviarorden(id_equipo){
+ $.ajax({
+     // la URL para la petición
+     url : 'recepcion_fn_reporte.php',
+     // la información a enviar
+     // (también es posible utilizar una cadena de datos)
+     data : {
+      id_equipo : id_equipo
+     },
+     // especifica si será una petición POST o GET
+     type : 'POST',
+     // el tipo de información que se espera de respuesta
+     dataType : 'json',
+     // código a ejecutar si la petición es satisfactoria;
+     // la respuesta es pasada como argumento a la función
+     success : function(data) {
+       //Manda Llamar id,nombre y apellido
+       $("#swal-input0").val(data.data.id_equipo);
 
-      },
-      // código a ejecutar si la petición falla;
-      // son pasados como argumentos a la función
-      // el objeto de la petición en crudo y código de estatus de la petición
-      error : function(xhr, status) {
 
-      },
-      // código a ejecutar sin importar si la petición falló o no
-      complete : function(xhr, status) {
 
-      }
-  });
+     },
+     // código a ejecutar si la petición falla;
+     // son pasados como argumentos a la función
+     // el objeto de la petición en crudo y código de estatus de la petición
+     error : function(xhr, status) {
+
+     },
+     // código a ejecutar sin importar si la petición falló o no
+     complete : function(xhr, status) {
+
+     }
+ });
 }
 
 </script>
 
- <script type="text/javascript">
- //Script para mandar ID para generar la orden
-function enviarorden(id){
-  $.ajax({
-      // la URL para la petición
-      url : 'recepcion_fn_actualizar_cliente.php',
-      // la información a enviar
-      // (también es posible utilizar una cadena de datos)
-      data : {
-         id : id
-      },
-      // especifica si será una petición POST o GET
-      type : 'POST',
-      // el tipo de información que se espera de respuesta
-      dataType : 'json',
-      // código a ejecutar si la petición es satisfactoria;
-      // la respuesta es pasada como argumento a la función
-      success : function(data) {
-        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id);
-        $("#swal-input1").val(data.data.nom);
-        $("#swal-input2").val(data.data.ape);
 
-
-
-      },
-      // código a ejecutar si la petición falla;
-      // son pasados como argumentos a la función
-      // el objeto de la petición en crudo y código de estatus de la petición
-      error : function(xhr, status) {
-
-      },
-      // código a ejecutar sin importar si la petición falló o no
-      complete : function(xhr, status) {
-
-      }
-  });
-}
-
-</script>
-
-<script type="text/javascript">
-//ventana orden de servición
-function orden(id){
-
-
-swal({
-title: 'Nueva orden de servicio',
-html:
-'<div class="card-body"> <form action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
-
-'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +
-'<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" readonly >' +
-'<input type="hidden" name="swal-input2"  id="swal-input2" class="form-control border-input" readonly >' +
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Equipo</label>'+
-        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
-        '<option value="Ventiladores">Ventiladores</option>'+
-        '<option value="Tarjetas madre">Tarjetas madre</option>'+
-        '<option value="Audio">Audio</option>'+
-        '<option value="Fuentes de poder">Fuentes de poder</option>'+       
-        '</select>' +
-    '</div>'+
-'</div>'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="marca" id="marca" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="serie" id="serie" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Accesorios</label>'+
-        '<input type="text" name="acce" id="acce" maxlength="25"  class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="col-md-12">'+
-'<div class="form-group">'+
-        '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
-       
-        '<label>Comentarios</label>'+
-        '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
-    '</div>'+
-'</div>'+
-
-
-'<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
-
-
-'</form></div>',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: '</form> Actualizar solicitud',
-cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: false,
-focusConfirm: false,
-buttonsStyling: false,
-reverseButtons: true
-})
-
-};
-
-</script>
-
-
- <script type="text/javascript">
-//ventana actualizar cliente
-function alerta1(id){
-
-
-swal({
-title: 'Actualizar cliente',
-html:
-'<div class="col-lg-12"> <form action="recepcion_cliente_actualizar.php" method="post" name="data">'+
-'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
-'<label>Nombre(s)</label>' +
-'<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
-'<label>Apellidos</label>' +
-'<input input type="text" name="swal-input2" id="swal-input2" class="form-control border-input maxlength="25" required>' +
-'<label>Direccion</label>' +
-'<input input type="text" name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" required>' +
-'<label>Correo</label>' +
-'<input input type="email" name="swal-input4" id="swal-input4" class="form-control border-input requiered">' +
-'<label>Celular</label>' +
-'<input input type="number" name="swal-input5" id="swal-input5" class="form-control border-input type="number" required></br>'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar cliente</Button>'+
-'</form></div>',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: '</form> Actualizar solicitud',
-cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: false,
-focusConfirm: false,
-buttonsStyling: false,
-reverseButtons: true
-})
-
-};
-
-</script>
-
- <script type="text/javascript">
-//Nuevo Aviso
-    function aviso(){
-
-
-    swal({
-   title: 'Nuevo aviso',
-   html:
-   '<div class="col-lg-12"> <form action="funciones/new_aviso.php" method="post" name="data">'+
-   '<label>Folio(s)</label>' +
-   '<input input type="number" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
-   '<label>Aviso</label>' +
-   '<input input type="textarea" name="ape" id="ape" style="line-height: 150px; height:150px;" class="form-control border-input maxlength="100" required>' +
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
-   '</form></div>',
-   showCancelButton: true,
-   confirmButtonColor: '#3085d6',
-   cancelButtonColor: '#d33',
-   confirmButtonText: '</form> Registrar aviso',
-   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-   showConfirmButton: false,
-   focusConfirm: false,
-   buttonsStyling: false,
-    reverseButtons: true
-  })
-
-  };
-  </script>
 
   <script type="text/javascript">
 //ventana de nuevo cliente
-    function alerta(){
+    function reporte(id_equipo){
 
 
     swal({
-   title: 'Agregar cliente',
+   title: 'Enviar reporte',
    html:
-   '<div class="col-lg-12"> <form action="recepcion_cliente.php" method="post" name="data">'+
-   '<label>Nombre(s)</label>' +
-   '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
-   '<label>Apellidos</label>' +
-   '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
-   '<label>Direccion</label>' +
-   '<input input type="text" name="dire" id="dire" class="form-control border-input maxlength="25" required>' +
-   '<label>Correo</label>' +
-   '<input input type="email" name="cor" id="cor" class="form-control border-input ">' +
-   '<label>Celular</label>' +
-   '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+'<div class="card-body"> <form action="tecnico_fn_reporte.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<div class="col-md-12">'+
+'<div class="form-group">'+
+'<input type="text" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
+
+        '<label>Falla encontrada</label>'+
+        '<textarea type="text" name="swal-input1" id="swal-input1" required class="form-control border-input"></textarea>'+
+
+        '<label>Procedimiento realizado</label>'+
+        '<textarea type="text" name="swal-input2" id="swal-input2" required class="form-control border-input"></textarea>'+
+
+        '<label>Estado de la reparación</label>'+
+
+        '<select class="form-control form-control-sm" text-align="center" required name="swal-input3" id="swal-input3">'+
+        '<option value="Reparado">Reparado</option>'+
+        '<option value="Sin solucion">Sin solución</option>'+
+        '<option value="Necesita refaccion">Necesita refacción</option>'+
+        '</select>' +
+
+
+'</div>'+
+'<input type="text" name="swal-input4"  id="swal-input4" placeholder="# parte que necesita" class="form-control border-input"  >' +//Id Equipo
+
+'<div class="col-md-12">'+
+
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
    '</form></div>',
    showCancelButton: true,

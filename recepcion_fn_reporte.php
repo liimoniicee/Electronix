@@ -8,6 +8,7 @@ verificar_sesion();
 $response = array();
 if(isset($_POST['id_equipo'])){
   $id_equipo = $_POST['id_equipo'];
+ // $id_personal = $_POST['id_personal'];
 
   /*$consulta = "SELECT
   id_equipo,id_personal,nombre,apellidos,celular,correo,equipo,marca,modelo,serie,accesorios,falla,comentarios,fecha_ingreso,fecha_entregar,servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado

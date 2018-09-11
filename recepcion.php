@@ -342,9 +342,9 @@ html:
         '<label>Equipo</label>'+
         '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
         '<option value="Ventiladores">Ventiladores</option>'+
-        '<option value="Tarjetas madre">Tarjetas madre</option>'+
+        '<option value="Tarjeta madre">Tarjetas madre</option>'+
         '<option value="Audio">Audio</option>'+
-        '<option value="Fuentes de poder">Fuentes de poder</option>'+       
+        '<option value="Fuente de poder">Fuentes de poder</option>'+       
         '</select>' +
     '</div>'+
 '</div>'+

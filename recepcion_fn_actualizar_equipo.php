@@ -42,6 +42,8 @@ FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'a
     "restante"      =>  $row["restante"],
     "costo_total"   =>  $row["costo_total"],
     "estado"        =>  $row["estado"],
+    "id_personal"   =>  $row["id_personal"],
+
 
 
   );
