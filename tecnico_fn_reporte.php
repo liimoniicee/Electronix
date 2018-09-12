@@ -26,15 +26,15 @@ if (!file_exists($micarpeta)) {
 
 $imagen1 = $_FILES['swal-input6']['tmp_name'];
 $destino = "assets/galeria/reporte/$var_clave/$id_equipo/". $_FILES['swal-input6']['name'];
+move_uploaded_file($imagen1, $destino);
 
 $imagen2 = $_FILES['swal-input7']['tmp_name'];
 $destino2 = "assets/galeria/reporte/$var_clave/$id_equipo/". $_FILES['swal-input7']['name'];
+move_uploaded_file($imagen2, $destino2);
 
 $imagen3 = $_FILES['swal-input8']['tmp_name'];
 $destino3 = "assets/galeria/reporte/$var_clave/$id_equipo/". $_FILES['swal-input8']['name'];
 
-move_uploaded_file($imagen1, $destino);
-move_uploaded_file($imagen2, $destino2);
 move_uploaded_file($imagen3, $destino3);
 
 
