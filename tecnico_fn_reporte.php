@@ -39,6 +39,7 @@ move_uploaded_file($imagen3, $destino3);
 
 
 
+
 $sql = "Update reparar_tv set estado='Diagnosticada' where id_equipo='$id_equipo'";
 $res = $conn->query($sql);
 
