@@ -278,7 +278,7 @@ var id = id_equipo;
     swal({
    title: 'Enviar reporte',
    html:
-'<div class="card-body"> <form action="tecnico_fn_reporte.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form action="tecnico_fn_reporte.php" method="post" name="data" enctype="multipart/form-data">'+
 
 '<div class="col-md-12">'+
 '<div class="form-group">'+
@@ -297,6 +297,19 @@ var id = id_equipo;
         '<option value="Sin solucion">Sin solución</option>'+
         '<option value="Necesita refaccion">Necesita refacción</option>'+
         '</select>' +
+
+        '<label>Estado en que llega</label>' +
+ '<input input type="text" name="swal-input5" id="swal-input5" placeholder="Eje. Humedad, suciedad, tierra, etc" class="form-control border-input" maxlength="80" required>' +
+
+ '<label>Imagen 1</label>' +
+ '<input input type="file" name="swal-input6" id="swal-input6"  required accept="image/png/jpg" class="form-control border-input" required></br>'+
+
+ '<label>Imagen 2</label>' +
+ '<input input type="file" name="swal-input7" id="swal-input7"   accept="image/png/jpg" class="form-control border-input" ></br>'+
+
+ '<label>Imagen 3</label>' +
+ '<input input type="file" name="swal-input8" id="swal-input8"   accept="image/png/jpg" class="form-control border-input" ></br>'+
+
 
 '<div class="col-md-12 entradas" style="display:none;">'+
 '<label># de pieza que necesita</label>'+
