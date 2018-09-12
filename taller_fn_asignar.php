@@ -9,7 +9,7 @@ $response = array();
 if(isset($_POST['id'])){
   $id = $_POST['id'];
 
-  $consulta = "SELECT nombre, celular from clientes where id_folio = $id;";
+  $consulta = "SELECT nombre from clientes where id_folio = $id;";
 
 
    $resultado = $conn->query($consulta);
@@ -21,7 +21,7 @@ if(isset($_POST['id'])){
   $response['data'] = array
     "id"            =>  $id,
     "nom"        =>  $row["nombre"],
-    "cel"         =>  $row["celular"],
+
   );
    }
    }

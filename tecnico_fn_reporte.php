@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include 'fuctions.php';
@@ -15,24 +16,41 @@ $parte = $_POST['swal-input4'];
 
 
 $sql = "Update reparar_tv set estado='Diagnosticada' where id_equipo='$id_equipo'";
-
 $res = $conn->query($sql);
 
 
-$sql1 = "INSERT INTO reportes_tecnicos (falla_especifica, solucion_especifica, conclusion, parte, id_personal, id_equipo)
-VALUES ('$falla', '$proc', '$estado','$parte','$var_clave','$id_equipo');";
+if($estado == 'Necesita refaccion'){
+  $sql1 = "INSERT INTO reportes_tecnicos (falla_especifica, solucion_especifica, conclusion,solicitud, parte, id_personal, id_equipo)
+  VALUES ('$falla', '$proc', '$estado','pendiente','$parte','$var_clave','$id_equipo');";
+
+  $res1 = $conn->query($sql1);
+
+  if (!$res) {
+    printf("Errormessage: %s\n", $conn->error);
+  }
+
+  if (!$res1) {
+    printf("Errormessage: %s\n", $conn->error);
+  }
+  else{
+   //echo "<script>alert('Usuario agregado exitosamente con el folio=$')</script>";
+   echo "<script>window.open('tecnico.php','_self')</script>";}
+}else{
+  $sql1 = "INSERT INTO reportes_tecnicos (falla_especifica, solucion_especifica, conclusion, solicitud, parte, id_personal, id_equipo)
+  VALUES ('$falla', '$proc', '$estado','NA','$parte','$var_clave','$id_equipo');";
 
 
+  $res1 = $conn->query($sql1);
 
-$res1 = $conn->query($sql1);
+  if (!$res) {
+    printf("Errormessage: %s\n", $conn->error);
+  }
 
-if (!$res) {
-  printf("Errormessage: %s\n", $conn->error);
+  if (!$res1) {
+    printf("Errormessage: %s\n", $conn->error);
+  }
+  else{
+   //echo "<script>alert('Usuario agregado exitosamente con el folio=$')</script>";
+   echo "<script>window.open('tecnico.php','_self')</script>";}
+
 }
-
-if (!$res1) {
-  printf("Errormessage: %s\n", $conn->error);
-}
-else{
- //echo "<script>alert('Usuario agregado exitosamente con el folio=$')</script>";
- echo "<script>window.open('tecnico.php','_self')</script>";}

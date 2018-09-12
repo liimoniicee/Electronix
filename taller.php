@@ -321,8 +321,7 @@ estado = 'Necesita refaccion';";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="asignar(<?php echo $id?>), mod_asignar(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
-
+                        <button onclick="asignar(<?php echo $id_equipo?>), mod_asignar(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
 
@@ -801,9 +800,9 @@ estado = 'Necesita refaccion';";
        // la respuesta es pasada como argumento a la función
        success : function(data) {
          //Manda Llamar id,nombre y apellido
-         $("#swal-input0").val(data.data.id);
-         $("#swal-input1").val(data.data.nom);
-         $("#swal-input2").val(data.data.cel);
+         $("#id_folio_asignar").val(data.data.id);
+         $("#nombre_cliente").val(data.data.nom);
+
 
        },
        // código a ejecutar si la petición falla;
@@ -933,32 +932,32 @@ function enviarreporte(id_equipo){
   <script type="text/javascript">
   //ventana actualizar cliente
   function asignar(id){
-
+var ide = id;
   swal({
   title: 'Asignar tecnico',
   html:
-  '<div class="col-lg-12"> <form action="taller_asignar_tec.php" method="post" name="data">'+
+  '<div class="col-lg-12"> <form action="taller_fn_asignar_tecnico.php" method="post" name="data">'+
 
   '<div class="row">'+
   '<div class="col-md-6">'+
     '<div class="form-group">'+
           '<label>Folio equipo</label>'+
-          '<input type="text" name="swal-input0" id="swal-input0" readonly required class="form-control border-input">'+
+          '<input type="text" name="id_folio_asignar" id="id_folio_asignar" readonly required class="form-control border-input">'+
       '</div>'+
   '</div>'+
 
   '<div class="col-md-6">'+
     '<div class="form-group">'+
-          '<label>Falla</label>'+
-          '<input type="text" readonly name="swal-input1" id="swal-input1" required class="form-control border-input">'+
+          '<label>id_equipo</label>'+
+          '<input type="text" readonly name="id_equipo_asignar" id="id_equipo_asignar" value"'+ide+'" required class="form-control border-input">'+
       '</div>'+
   '</div>'+
   '</div>'+
   '<div class="row">'+
   '<div class="col-md-6">'+
     '<div class="form-group">'+
-          '<label>Celular</label>'+
-          '<input type="text" readonly name="swal-input2" id="swal-input1" required class="form-control border-input">'+
+          '<label>Nombre</label>'+
+          '<input type="text" readonly name="nombre_cliente" id="nombre_cliente" required class="form-control border-input">'+
       '</div>'+
   '</div>'+
 

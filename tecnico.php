@@ -106,8 +106,8 @@ WHERE estado='En reparacion' ";
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="tecnico.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Tareas</span></a></li>
-      
-     
+
+
 
 
 
@@ -136,7 +136,7 @@ WHERE estado='En reparacion' ";
               <button class="btn btn-info" type="button" onclick="alerta();">Tareas asignadas</button>
               <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Tareas concretadas</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Tareas necesita pieza</button>
-            
+
   </p>
 
 <div class="row">
@@ -177,15 +177,10 @@ WHERE estado='En reparacion' ";
 
 
                         <td>
-                        <button onclick="reporte(<?php echo $id_equipo ?>), enviarorden(<?php echo $id_equipo ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
+                        <button onclick="reporte(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
 
-                     
+
                         </td>
-
-
-
-
-
           </tr>
         <?php } ?>
         <tbody></br>
@@ -234,6 +229,7 @@ WHERE estado='En reparacion' ";
  <div class="col-lg-7">
 
  <script>
+ /*
 //Script para mandar ID para generar la orden
 function enviarorden(id_equipo){
  $.ajax({
@@ -269,7 +265,7 @@ function enviarorden(id_equipo){
      }
  });
 }
-
+*/
 </script>
 
 
@@ -278,7 +274,7 @@ function enviarorden(id_equipo){
 //ventana de nuevo cliente
     function reporte(id_equipo){
 
-
+var id = id_equipo;
     swal({
    title: 'Enviar reporte',
    html:
@@ -286,7 +282,7 @@ function enviarorden(id_equipo){
 
 '<div class="col-md-12">'+
 '<div class="form-group">'+
-'<input type="text" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
+'<input type="text" name="swal-input0"  id="swal-input0" value="'+id+'"  class="form-control border-input" readonly >' +//Id Equipo
 
         '<label>Falla encontrada</label>'+
         '<textarea type="text" name="swal-input1" id="swal-input1" required class="form-control border-input"></textarea>'+
@@ -302,23 +298,32 @@ function enviarorden(id_equipo){
         '<option value="Necesita refaccion">Necesita refacción</option>'+
         '</select>' +
 
-
+'<div class="col-md-12 entradas" style="display:none;">'+
+'<label># de pieza que necesita</label>'+
+'<input type="text" name="swal-input4" value="NA" id="swal-input4" class="form-control border-input"  ><br></br>'+
 '</div>'+
-'<input type="text" name="swal-input4"  id="swal-input4" placeholder="# parte que necesita" class="form-control border-input"  >' +//Id Equipo
+'</div>'+
+'</div>'+
 
-'<div class="col-md-12">'+
 
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
    '</form></div>',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
    cancelButtonColor: '#d33',
-   confirmButtonText: '</form> Actualizar solicitud',
+   confirmButtonText: '</form> ',
    cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
     reverseButtons: true
+  })
+  $("#swal-input3").change(function(){
+    if(this.value == 'Necesita refaccion'){
+      $(".entradas").show();
+    }else{
+      $(".entradas").hide();
+    }
   })
 
   };
