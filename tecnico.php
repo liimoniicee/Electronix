@@ -306,7 +306,7 @@ var id = id_equipo;
 '</div>'+
 
 
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
    '</form></div>',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',

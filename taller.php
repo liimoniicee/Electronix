@@ -321,7 +321,7 @@ estado = 'Necesita refaccion';";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="asignar(<?php echo $id_equipo?>), mod_asignar(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="asignar_tec(<?php echo $id_equipo?>), mod_asignar_tec(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
 
@@ -463,8 +463,8 @@ estado = 'Necesita refaccion';";
 
                   </thead>
                   <?php
-                  $ejec7 = mysqli_query($conn, $refaccion);
-                  while($fila=mysqli_fetch_array($ejec7)){
+                  $ejec8 = mysqli_query($conn, $refaccion);
+                  while($fila=mysqli_fetch_array($ejec8)){
                   $id_equipo          = $fila['id_equipo'];
                   $id           = $fila['id_folio'];
                   $equipo           = $fila['equipo'];
@@ -780,13 +780,11 @@ estado = 'Necesita refaccion';";
 
 
   </script>
-
-  <script type="text/javascript">
-  //Script para mandar ID para generar la orden
- function mod_asignar(id){
+<script>
+  function mod_asignar_tec(id){
    $.ajax({
        // la URL para la petición
-       url : 'taller_fn_asignar.php',
+       url : 'recepcion_fn_historial_garantia.php',
        // la información a enviar
        // (también es posible utilizar una cadena de datos)
        data : {
@@ -800,9 +798,31 @@ estado = 'Necesita refaccion';";
        // la respuesta es pasada como argumento a la función
        success : function(data) {
          //Manda Llamar id,nombre y apellido
-         $("#id_folio_asignar").val(data.data.id);
-         $("#nombre_cliente").val(data.data.nom);
-
+         $("#swal-input0").val(data.data.id);
+         $("#swal-input1").val(data.data.id_e);
+         $("#swal-input2").val(data.data.id_pe);
+         $("#swal-input3").val(data.data.nom);
+         $("#swal-input4").val(data.data.ape);
+         $("#swal-input5").val(data.data.cel);
+         $("#swal-input6").val(data.data.equi);
+         $("#swal-input7").val(data.data.mar);
+         $("#swal-input8").val(data.data.mod);
+         $("#swal-input9").val(data.data.ser);
+         $("#swal-input10").val(data.data.cor);
+         $("#swal-input11").val(data.data.accesorios);
+         $("#swal-input12").val(data.data.falla);
+         $("#swal-input13").val(data.data.comentarios);
+         $("#swal-input14").val(data.data.fecha_ingreso);
+         $("#swal-input15").val(data.data.fecha_entrega);
+         $("#swal-input16").val(data.data.fecha_egreso);
+         $("#swal-input17").val(data.data.servicio);
+         $("#swal-input18").val(data.data.ubicacion);
+         $("#swal-input19").val(data.data.presupuesto);
+         $("#swal-input20").val(data.data.mano_obra);
+         $("#swal-input21").val(data.data.abono);
+         $("#swal-input22").val(data.data.restante);
+         $("#swal-input23").val(data.data.costo_total);
+         $("#swal-input24").val(data.data.estado);
 
        },
        // código a ejecutar si la petición falla;
@@ -816,9 +836,9 @@ estado = 'Necesita refaccion';";
 
        }
    });
- }
+  }
 
- </script>
+  </script>
 
 
 <script>
@@ -845,26 +865,6 @@ function enviarorden(id){
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
        $("#swal-input4").val(data.data.ape);
-       $("#swal-input5").val(data.data.cel);
-       $("#swal-input6").val(data.data.equi);
-       $("#swal-input7").val(data.data.mar);
-       $("#swal-input8").val(data.data.mod);
-       $("#swal-input9").val(data.data.ser);
-       $("#swal-input10").val(data.data.cor);
-       $("#swal-input11").val(data.data.accesorios);
-       $("#swal-input12").val(data.data.falla);
-       $("#swal-input13").val(data.data.comentarios);
-       $("#swal-input14").val(data.data.fecha_ingreso);
-       $("#swal-input15").val(data.data.fecha_entrega);
-       $("#swal-input16").val(data.data.fecha_egreso);
-       $("#swal-input17").val(data.data.servicio);
-       $("#swal-input18").val(data.data.ubicacion);
-       $("#swal-input19").val(data.data.presupuesto);
-       $("#swal-input20").val(data.data.mano_obra);
-       $("#swal-input21").val(data.data.abono);
-       $("#swal-input22").val(data.data.restante);
-       $("#swal-input23").val(data.data.costo_total);
-       $("#swal-input24").val(data.data.estado);
 
      },
      // código a ejecutar si la petición falla;
@@ -907,11 +907,6 @@ function enviarreporte(id_equipo){
        $("#swal-input3").val(data.data.conc);
        $("#swal-input4").val(data.data.part);
        $("#swal-input5").val(data.data.pers);
-
-
-
-
-
      },
      // código a ejecutar si la petición falla;
      // son pasados como argumentos a la función
@@ -929,68 +924,82 @@ function enviarreporte(id_equipo){
 </script>
 
 
-  <script type="text/javascript">
-  //ventana actualizar cliente
-  function asignar(id){
-var ide = id;
-  swal({
-  title: 'Asignar tecnico',
-  html:
-  '<div class="col-lg-12"> <form action="taller_fn_asignar_tecnico.php" method="post" name="data">'+
+<script type="text/javascript">
+//ventana orden de servición
+function asignar_tec(id){
 
-  '<div class="row">'+
-  '<div class="col-md-6">'+
-    '<div class="form-group">'+
-          '<label>Folio equipo</label>'+
-          '<input type="text" name="id_folio_asignar" id="id_folio_asignar" readonly required class="form-control border-input">'+
-      '</div>'+
-  '</div>'+
+swal({
+title: 'Garantia',
+html:
+'<div class="card-body"> <form action="taller_fn_asignar_tecnico.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Id equipo</label>'+
+        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
-  '<div class="col-md-6">'+
-    '<div class="form-group">'+
-          '<label>id_equipo</label>'+
-          '<input type="text" readonly name="id_equipo_asignar" id="id_equipo_asignar" value"'+ide+'" required class="form-control border-input">'+
-      '</div>'+
-  '</div>'+
-  '</div>'+
-  '<div class="row">'+
-  '<div class="col-md-6">'+
-    '<div class="form-group">'+
-          '<label>Nombre</label>'+
-          '<input type="text" readonly name="nombre_cliente" id="nombre_cliente" required class="form-control border-input">'+
-      '</div>'+
-  '</div>'+
 
-  '<div class="col-md-6">'+
-    '<div class="form-group">'+
-          '<label>Tecnico: </label>'+
-          '<select class="form-control form-control-sm" textalign="center" name="tecnico" id="tecnico">'+
-          <?php
-          $ejec7 = mysqli_query($conn, $tecnico);
-          while($fila=mysqli_fetch_array($ejec7)){?>
-          '<?php echo '<option value="'.$fila["id_personal"].'">'.$fila["nombre"].'</option>'; ?>'+
-          <?php } ?>
-          '</select>' +
-      '</div>'+
-  '</div>'+
-  '</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio cliente</label>'+
+        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
 
-  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar</Button>'+
-  '</form></div>',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: '</form>',
-  cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-  showConfirmButton: false,
-  focusConfirm: false,
-  buttonsStyling: false,
-  reverseButtons: true
-  })
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
-  };
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Apellidos</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
 
-  </script>
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Tecnico</label>'+
+  '<select class="form-control form-control-sm" textalign="center" name="tecnico" id="tecnico">'+
+  <?php
+  $ejec7 = mysqli_query($conn, $tecnico);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["id_personal"].'">'.$fila["nombre"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form>',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
+
  <script type="text/javascript">
 //ventana actualizar cliente
 function costos(id){
