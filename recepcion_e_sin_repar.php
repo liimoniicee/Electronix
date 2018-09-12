@@ -445,14 +445,21 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-  '<label>Marca</label>'+
+  '<label>ID Venta</label>'+
   '<select class="form-control form-control-sm" textalign="center" name="tv_venta" id="tv_venta">'+
   <?php
   $ejec7 = mysqli_query($conn, $venta);
   while($fila=mysqli_fetch_array($ejec7)){?>
-  '<?php echo '<option value="'.$fila["idventa_tv"].'">'.$fila["marca"].'</option>'; ?>'+
+  '<?php echo '<option value="'.$fila["idventa_tv"].'">'.$fila["idventa_tv"].'</option>'; ?>'+
   <?php } ?>
   '</select>' +
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -463,6 +470,11 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
+
+
+
+
+
 '<h5>Costos</h5>'+
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -523,7 +535,7 @@ $.ajax({
 .done(function(data){
 
   $("#modelo").val(data.data.mod);
-  $("#serie").val(data.data.ser);
+  $("#marca").val(data.data.mar);
   $("#costo").val(data.data.cost);
 
 })
@@ -562,13 +574,16 @@ alert('hubo un error')
 
 });
 </script>
+
+
+
 <script type="text/javascript">
 
 function operaciones()
 {
   var abono =document.getElementById('swal-input21').value;
   var valor =document.getElementById('swal-input50').value;
-  var costo =document.getElementById('swal-input51').value;
+  var costo =document.getElementById('costo').value;
 
   var suma =parseInt(abono)+parseInt(valor);
 

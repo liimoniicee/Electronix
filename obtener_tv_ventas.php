@@ -20,6 +20,8 @@ if(isset($_POST['id'])){
 
     while($row = $resultado->fetch_assoc()) {
   $response['data'] = array (
+    "id"        =>  $row["idventa_tv"],
+    "mar"        =>  $row["marca"],
     "mod"        =>  $row["modelo"],
     "ser"        =>  $row["serie"],
     "cost"        =>  $row["costo"],

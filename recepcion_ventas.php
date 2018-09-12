@@ -212,6 +212,7 @@ function enviarorden(id){
         //Manda Llamar id,nombre y apellido
 
          $("#swal-input0").val(data.data.id);
+
       },
       // código a ejecutar si la petición falla;
       // son pasados como argumentos a la función
@@ -263,6 +264,42 @@ function enviarorden(id){
 };
 </script>
 
+<script type="text/javascript">
+ //Script para mandar ID para generar la orden
+function enviarventa(id){
+  $.ajax({
+      // la URL para la petición
+      url : 'recepcion_fn_venta_php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+        //Manda Llamar id,nombre y apellido
+
+         $("#swal-input0").val(data.data.id);
+
+      },
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+
+      },
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+
+      }
+  });
+}
+
 </script>
 
 <script type="text/javascript">
@@ -274,6 +311,9 @@ function enviarorden(id){
  title: 'Vender producto',
  html:
  '<div class="col-lg-12"> <form action="recepcion_ventas_nuevo.php" method="post" name="data" enctype="multipart/form-data">'+
+
+ '<input input type="text" name="swal-input0" id="swal-input0" class="form-control border-input" maxlength="20" required>' +
+
  '<label>Marca</label>' +
  '<input input type="text" name="marc" id="marc" class="form-control border-input" maxlength="20" required>' +
  '<label>Modelo</label>' +
@@ -282,9 +322,8 @@ function enviarorden(id){
  '<input input type="text" name="ser" id="ser" class="form-control border-input maxlength="20" required>' +
  '<label>Costo</label>' +
  '<input input type="number" name="costo" id="costo" class="form-control border-input" maxlength="20" required>' +
- '<label>imagen</label>' +
- '<input input type="file" name="img" id="img"  required accept="image/png/jpg" class="form-control border-input" required></br>'+
- '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar producto</Button>'+
+
+ '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
  '</form></div>',
  showCancelButton: true,
  confirmButtonColor: '#3085d6',

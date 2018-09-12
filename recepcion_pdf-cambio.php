@@ -18,7 +18,7 @@ $falla= $_POST ['swal-input12'];
 
 $abono= $_POST ['swal-input21'];
 $valor= $_POST ['swal-input50'];
-$costo= $_POST ['swal-input51'];
+$costo= $_POST ['costo'];
 $restante= $_POST ['swal-input52'];
 
 
@@ -182,7 +182,14 @@ $pdf->Write(6,$restante);
 
 
 
+//politicas 
+$pdf->SetFont('Arial','',10);
+$pdf->SetXY(17,182);
+$pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
+falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de 
+la presente hasta los seis meses siguientes. 
 
+"));
 
 
 
