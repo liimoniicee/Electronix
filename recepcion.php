@@ -108,10 +108,8 @@ clientes;";
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
       <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
       <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-      <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Nueva publicacion</a></li>
-            </ul>
+      <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
@@ -344,7 +342,7 @@ html:
         '<option value="Ventiladores">Ventiladores</option>'+
         '<option value="Tarjeta madre">Tarjetas madre</option>'+
         '<option value="Audio">Audio</option>'+
-        '<option value="Fuente de poder">Fuentes de poder</option>'+       
+        '<option value="Fuente de poder">Fuentes de poder</option>'+
         '</select>' +
     '</div>'+
 '</div>'+
@@ -392,7 +390,7 @@ html:
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
         '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
-       
+
         '<label>Comentarios</label>'+
         '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
     '</div>'+

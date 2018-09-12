@@ -135,7 +135,7 @@ id_folio = '$id';";
       <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
 
       <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+      <li class="treeview"><a class="app-menu__item" href="ml.php" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
       <ul class="treeview-menu">
             <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Nueva publicacion</a></li>
             </ul>
@@ -514,7 +514,7 @@ id_folio = '$id';";
     '<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
     '<input name="swal-input3" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
     '<input name="swal-input4" type="hidden" id="swal-input4" class="form-control border-input" readonly >' +
-   
+
     '<div class="col-md-12">'+
       '<div class="form-group">'+
             '<label>Cantidad que abona</label>'+

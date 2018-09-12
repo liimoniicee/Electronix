@@ -149,7 +149,7 @@ $venta="SELECT marca, modelo, costo, imagen1, fecha_alta from ventas_tv where es
                       <div class="card-footer text-muted"><?php echo  $fila['fecha_alta']; ?> </div>
                         <button class="btn btn-primary" type="button" onclick="vender();">Vender</button>
                       </div>
-                     
+
                   </div><br></br>
                 </div>
 
