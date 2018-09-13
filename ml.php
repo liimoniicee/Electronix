@@ -288,6 +288,7 @@ $.ajax({
       //Manda Llamar id,nombre y apellido
       $("#swal-input1").val(data.data.marc);
       $("#swal-input2").val(data.data.mod);
+      $("#swal-input3").val(data.data.par);
 
 
     },
@@ -315,7 +316,7 @@ var id = id_equipo;
     swal({
    title: 'Solicitud pieza',
    html:
-'<div class="card-body"> <form action="tecnico_fn_reporte.php" method="post" name="data" enctype="multipart/form-data">'+
+'<div class="card-body"> <form action="ml_solicitud_pieza.php" method="post" name="data" enctype="multipart/form-data">'+
 
 '<div class="col-md-12">'+
 '<div class="form-group">'+
@@ -323,21 +324,23 @@ var id = id_equipo;
 '<input type="text" name="swal-input0"  id="swal-input0" value="'+id+'"  class="form-control border-input" readonly >' +//Id Equipo
 
         '<label>Marca</label>'+
-        '<input type="text" name="swal-input1" id="swal-input1" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input1" readonly id="swal-input1" required class="form-control border-input"></input>'+
 
         '<label>Modelo</label>'+
-        '<input type="text" name="swal-input2" id="swal-input2" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input2" readonly id="swal-input2" required class="form-control border-input"></input>'+
+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input3" readonly id="swal-input3" required class="form-control border-input"></input>'+
 
         '<label>Ubicación</label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="swal-input3" id="swal-input3"><option value="inventario" >inventario</option><option value="mercado">Mercado Libre</option><option value="no encontrada">No encontrada</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="swal-input4" id="swal-input4"><option value="" ></option><option value="inventario" >inventario</option><option value="mercado">Mercado Libre</option><option value="no encontrada">No encontrada</option></select>' +
 
 '<div class="col-md-12 entradas" style="display:none;">'+
 '<label>Costo de refacción</label>'+
-'<input type="number" name="swal-input4" value="NA" id="swal-input4" class="form-control border-input"  ><br></br>'+
+'<input type="number" name="swal-input5" value="NA" id="swal-input5" class="form-control border-input"  ><br></br>'+
 '</div>'+
 '</div>'+
 '</div>'+
-
 
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
    '</form></div>',
@@ -351,8 +354,8 @@ var id = id_equipo;
    buttonsStyling: false,
     reverseButtons: true
   })
-  $("#swal-input3").change(function(){
-    if(this.value == 'mercado'){
+  $("#swal-input4").change(function(){
+    if(this.value != 'no encontrada'){
       $(".entradas").show();
     }else{
       $(".entradas").hide();
