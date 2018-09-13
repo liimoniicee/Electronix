@@ -14,7 +14,7 @@ $var_clave= $_SESSION['clave'];
 $consulta = "SELECT
 id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
-clientes;";
+clientes ORDER BY fecha desc";
 
 ?>
 <html lang="es">
