@@ -10,13 +10,10 @@ $var_clave= $_SESSION['clave'];
 
 
 
-$consulta = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
+$solicitud_taller = "SELECT *
 FROM reparar_tv
-WHERE estado='En reparacion' and id_personal='$var_clave';";
+WHERE estado='Necesita refaccion'";
 
-$consulta1 = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
-FROM reparar_tv
-WHERE estado='En reparacion' ";
 
 ?>
 <html lang="es">
@@ -108,11 +105,6 @@ WHERE estado='En reparacion' ";
       <li><a class="app-menu__item" href="tecnico.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Tareas</span></a></li>
 
 
-
-
-
-
-
     </aside>
     <main class="app-content">
       <div class="app-title">
@@ -129,17 +121,78 @@ WHERE estado='En reparacion' ";
 
           <div class="col-lg-12">
             <p class="bs-component">
-              <button class="btn btn-info" type="button" onclick="alerta();">Nuevas</button>
+              <button class="btn btn-info" type="button" id='watch-me'>Nuevas</button>
               <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Pendientes</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Publicadas</button>
               <button class="btn btn-info" type="button" onclick="alerta();">Vendidas</button>
               <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Ver todas</button>
-              <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Solicitudes de taller</button>
+              <button class="btn btn-danger" type="button" id='see-me'>Solicitudes de taller</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Ventas</button>
   </p>
 </div>
 </div>
         </div>
+
+        <div id='show-me'>
+
+        </div>
+
+        </div>
+
+
+      <!-- comienza tabla 2 -->
+        <div id='show-me-two' style='display:none; border:2px solid #ccc'>
+
+
+      <table id="a-tables" class="table table-dark table-hover table-responsive">
+      <thead>
+      <th data-field="id">id_equipo</th>
+      <th data-field="folio" data-sortable="true">Folio</th>
+      <th data-field="equipo" data-sortable="true">equipo</th>
+      <th data-field="falla" data-sortable="true">falla</th>
+      <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
+      <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
+      <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+      <th data-field="accion" data-sortable="true">Acción</th>
+      </thead>
+      <?php
+      $ejec2 = mysqli_query($conn, $solicitud_taller);
+      while($fila=mysqli_fetch_array($ejec2)){
+      $id_equipo          = $fila['id_equipo'];
+      $id           = $fila['id_folio'];
+      $equipo           = $fila['equipo'];
+      $falla          = $fila['falla'];
+      $fecha_ingreso        = $fila['fecha_ingreso'];
+      $fecha_entregar        = $fila['fecha_entregar'];
+      $ubicacion        = $fila['ubicacion'];
+
+
+      ?>
+          <tr>
+              <td><?php echo $id_equipo ?></td>
+              <td><?php echo $id ?></td>
+              <td><?php echo $equipo ?></td>
+              <td><?php echo $falla ?></td>
+              <td><?php echo $fecha_ingreso ?></td>
+              <td><?php echo $fecha_entregar ?></td>
+              <td><?php echo $ubicacion ?></a></td>
+              <td>
+              <button onclick="solicitud_pieza(<?php echo $id_equipo?>), mod_solicitud_pieza(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+              </td>
+
+
+
+      </tr>
+      <?php } ?>
+      <tbody></br>
+      Equipos pendientes
+      </tbody>
+      </table>
+      </div>
+
+
+
+
     </main>
     <!-- Essential javascripts for application to work-->
 
@@ -169,53 +222,118 @@ WHERE estado='En reparacion' ";
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
-    <div class="content-panel">
- <div class="col-lg-7">
+    <script type="text/javascript">
+    $(document).ready(function ()
+     {
+       //primero
+      $("#watch-me").click(function()
+      {
+       $("#show-me:hidden").show('slow');
+       $("#show-me-two").hide();
+       $("#show-me-three").hide();
+       $("#show-me-three2").hide();
+       $("#show-me-three5").hide();
+       $("#show-me-three3").hide();
+       $("#show-me-three4").hide();
+       });
+       $("#watch-me").click(function()
+      {
+        if($('watch-me').prop('checked')===false)
+       {
+        $('#show-me').hide();
+       }
+      });
+
+      //segundo
+      $("#see-me").click(function()
+      {
+        $("#show-me-two:hidden").show('slow');
+       $("#show-me").hide();
+       $("#show-me-three").hide();
+       $("#show-me-three2").hide();
+       $("#show-me-three5").hide();
+       $("#show-me-three3").hide();
+       $("#show-me-three4").hide();
+       });
+       $("#see-me").click(function()
+      {
+        if($('see-me-two').prop('checked')===false)
+       {
+        $('#show-me-two').hide();
+       }
+      });
+    });
+</script>
+
+<script>
+
+//Script para mandar ID para generar la orden
+function mod_solicitud_pieza(id_equipo){
+$.ajax({
+
+    // la URL para la petición
+    url : 'ml_fn_solicitud_pieza.php',
+    // la información a enviar
+    // (también es posible utilizar una cadena de datos)
+    data : {
+     id_equipo : id_equipo
+    },
+    // especifica si será una petición POST o GET
+    type : 'POST',
+    // el tipo de información que se espera de respuesta
+    dataType : 'json',
+    // código a ejecutar si la petición es satisfactoria;
+    // la respuesta es pasada como argumento a la función
+    success : function(data) {
+      //Manda Llamar id,nombre y apellido
+      $("#swal-input1").val(data.data.marc);
+      $("#swal-input2").val(data.data.mod);
+
+
+    },
+    // código a ejecutar si la petición falla;
+    // son pasados como argumentos a la función
+    // el objeto de la petición en crudo y código de estatus de la petición
+    error : function(xhr, status) {
+
+    },
+    // código a ejecutar sin importar si la petición falló o no
+    complete : function(xhr, status) {
+
+    }
+});
+}
+
+</script>
+
 
   <script type="text/javascript">
 //ventana de nuevo cliente
-    function reporte(id_equipo){
+    function solicitud_pieza(id_equipo){
 
 var id = id_equipo;
     swal({
-   title: 'Enviar reporte',
+   title: 'Solicitud pieza',
    html:
 '<div class="card-body"> <form action="tecnico_fn_reporte.php" method="post" name="data" enctype="multipart/form-data">'+
 
 '<div class="col-md-12">'+
 '<div class="form-group">'+
+  '<label># equipo</label>'+
 '<input type="text" name="swal-input0"  id="swal-input0" value="'+id+'"  class="form-control border-input" readonly >' +//Id Equipo
 
-        '<label>Falla encontrada</label>'+
-        '<textarea type="text" name="swal-input1" id="swal-input1" required class="form-control border-input"></textarea>'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input1" id="swal-input1" required class="form-control border-input"></input>'+
 
-        '<label>Procedimiento realizado</label>'+
-        '<textarea type="text" name="swal-input2" id="swal-input2" required class="form-control border-input"></textarea>'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input2" id="swal-input2" required class="form-control border-input"></input>'+
 
-        '<label>Estado de la reparación</label>'+
-
-        '<select class="form-control form-control-sm" text-align="center" required name="swal-input3" id="swal-input3">'+
-        '<option value="Reparado">Reparado</option>'+
-        '<option value="Sin solucion">Sin solución</option>'+
-        '<option value="Necesita refaccion">Necesita refacción</option>'+
-        '</select>' +
-
-        '<label>Estado en que llega</label>' +
- '<input input type="text" name="swal-input5" id="swal-input5" placeholder="Eje. Humedad, suciedad, tierra, etc" class="form-control border-input" maxlength="80" required>' +
-
- '<label>Imagen 1</label>' +
- '<input input type="file" name="swal-input6" id="swal-input6"  required accept="image/png/jpg" class="form-control border-input" required></br>'+
-
- '<label>Imagen 2</label>' +
- '<input input type="file" name="swal-input7" id="swal-input7"   accept="image/png/jpg" class="form-control border-input" ></br>'+
-
- '<label>Imagen 3</label>' +
- '<input input type="file" name="swal-input8" id="swal-input8"   accept="image/png/jpg" class="form-control border-input" ></br>'+
-
+        '<label>Ubicación</label>'+
+        '<select class="form-control form-control-sm" required textalign="center" name="swal-input3" id="swal-input3"><option value="inventario" >inventario</option><option value="mercado">Mercado Libre</option><option value="no encontrada">No encontrada</option></select>' +
 
 '<div class="col-md-12 entradas" style="display:none;">'+
-'<label># de pieza que necesita</label>'+
-'<input type="text" name="swal-input4" value="NA" id="swal-input4" class="form-control border-input"  ><br></br>'+
+'<label>Costo de refacción</label>'+
+'<input type="number" name="swal-input4" value="NA" id="swal-input4" class="form-control border-input"  ><br></br>'+
 '</div>'+
 '</div>'+
 '</div>'+
@@ -234,7 +352,7 @@ var id = id_equipo;
     reverseButtons: true
   })
   $("#swal-input3").change(function(){
-    if(this.value == 'Necesita refaccion'){
+    if(this.value == 'mercado'){
       $(".entradas").show();
     }else{
       $(".entradas").hide();
@@ -243,9 +361,6 @@ var id = id_equipo;
 
   };
   </script>
-
-</div>
-</div>
 
   </body>
 </html>
