@@ -8,6 +8,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 $id = $_POST ['swal-input0'];
+$id_equipo = $_POST ['swal-input1'];
 $nom = $_POST ['swal-input3'];
 $ape= $_POST ['swal-input4'];
 $equipo = $_POST ['swal-input6'];
@@ -15,6 +16,8 @@ $marca= $_POST ['swal-input7'];
 $modelo = $_POST ['swal-input8'];
 $serie = $_POST ['swal-input9'];
 $falla= $_POST ['swal-input12'];
+
+$idventa= $_POST ['tv_venta'];
 
 $abono= $_POST ['swal-input21'];
 $valor= $_POST ['swal-input50'];
@@ -25,15 +28,13 @@ $restante= $_POST ['swal-input52'];
 
 
   
-//checar la validacion(no funciona el else:v)
-/*
 
 
- $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
- VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
+$sql = "UPDATE reparar_tv set estado='a cambio', ubicacion='recepcion', costo_total='$costo' ,fecha_egreso=CURRENT_TIMESTAMP where id_folio='$id' and id_equipo='$id_equipo';";
  $res = $conn->query($sql);
-*/
 
+ $sql = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' where idventa_tv='$idventa';";
+ $res = $conn->query($sql);
 //Generador de PDF
 //inserccion
   //$n_nombre=$_POST['nombre'];
