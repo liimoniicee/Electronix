@@ -8,7 +8,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-$venta="SELECT marca, modelo, costo, imagen1, fecha_alta from ventas_tv where estado = 'En venta';";
+$venta="SELECT * from ventas_tv where estado = 'En venta';";
 
 
 
@@ -147,7 +147,7 @@ $venta="SELECT marca, modelo, costo, imagen1, fecha_alta from ventas_tv where es
                       </div><img style="height: 350px; width: 100%; display: block;" src="<?php echo $fila['imagen1']; ?>" alt="Card image">
 
                       <div class="card-footer text-muted"><?php echo  $fila['fecha_alta']; ?> </div>
-                        <button class="btn btn-primary" type="button" onclick="vender();">Vender</button>
+                        <button class="btn btn-primary" type="button" onclick="vender(<?php echo $fila['idventa_tv']; ?>), mod_vender(<?php echo $fila['idventa_tv']; ?>);">Vender</button>
                       </div>
 
                   </div><br></br>
@@ -193,10 +193,10 @@ $venta="SELECT marca, modelo, costo, imagen1, fecha_alta from ventas_tv where es
 
 <script type="text/javascript">
  //Script para mandar ID para generar la orden
-function enviarorden(id){
+function mod_vender(id){
   $.ajax({
       // la URL para la petición
-      url : 'recepcion_fn_historial_garantia.php',
+      url : 'recepcion_fn_ventas.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
@@ -211,8 +211,11 @@ function enviarorden(id){
       success : function(data) {
         //Manda Llamar id,nombre y apellido
 
-         $("#swal-input0").val(data.data.id);
 
+         $("#marc").val(data.data.marc);
+         $("#mod").val(data.data.mod);
+         $("#ser").val(data.data.ser);
+         $("#costo").val(data.data.cost);
       },
       // código a ejecutar si la petición falla;
       // son pasados como argumentos a la función
@@ -265,70 +268,33 @@ function enviarorden(id){
 </script>
 
 <script type="text/javascript">
- //Script para mandar ID para generar la orden
-function enviarventa(id){
-  $.ajax({
-      // la URL para la petición
-      url : 'recepcion_fn_venta_php',
-      // la información a enviar
-      // (también es posible utilizar una cadena de datos)
-      data : {
-         id : id
-      },
-      // especifica si será una petición POST o GET
-      type : 'POST',
-      // el tipo de información que se espera de respuesta
-      dataType : 'json',
-      // código a ejecutar si la petición es satisfactoria;
-      // la respuesta es pasada como argumento a la función
-      success : function(data) {
-        //Manda Llamar id,nombre y apellido
 
-         $("#swal-input0").val(data.data.id);
-
-      },
-      // código a ejecutar si la petición falla;
-      // son pasados como argumentos a la función
-      // el objeto de la petición en crudo y código de estatus de la petición
-      error : function(xhr, status) {
-
-      },
-      // código a ejecutar sin importar si la petición falló o no
-      complete : function(xhr, status) {
-
-      }
-  });
-}
-
-</script>
-
-<script type="text/javascript">
-
-  function vender(){
+  function vender(id){
 
 
   swal({
  title: 'Vender producto',
  html:
- '<div class="col-lg-12"> <form action="recepcion_ventas_nuevo.php" method="post" name="data" enctype="multipart/form-data">'+
+ '<div class="col-lg-12"> <form action="recepcion_venta_realizada.php" method="post" name="data">'+
 
- '<input input type="text" name="swal-input0" id="swal-input0" class="form-control border-input" maxlength="20" required>' +
+ '<label>Equipo n°</label>' +
+ '<input input type="text" value="'+id+'" readonly name="swal-input0" id="swal-input0" class="form-control border-input">' +
 
  '<label>Marca</label>' +
- '<input input type="text" name="marc" id="marc" class="form-control border-input" maxlength="20" required>' +
+ '<input input type="text" name="marc" id="marc" readonly class="form-control border-input">' +
  '<label>Modelo</label>' +
- '<input input type="text" name="mod" id="mod" class="form-control border-input maxlength="20" required>' +
+ '<input input type="text" name="mod" id="mod" readonly class="form-control border-input">' +
  '<label>Serie</label>' +
- '<input input type="text" name="ser" id="ser" class="form-control border-input maxlength="20" required>' +
+ '<input input type="text" name="ser" id="ser" readonly class="form-control border-input">' +
  '<label>Costo</label>' +
- '<input input type="number" name="costo" id="costo" class="form-control border-input" maxlength="20" required>' +
+ '<input input type="number" name="costo" id="costo" readonly class="form-control border-input">' +
 
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
  '</form></div>',
  showCancelButton: true,
  confirmButtonColor: '#3085d6',
  cancelButtonColor: '#d33',
- confirmButtonText: '</form> Actualizar solicitud',
+ confirmButtonText: '</form>',
  cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
  showConfirmButton: false,
  focusConfirm: false,
