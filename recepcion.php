@@ -9,14 +9,12 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
+
+
 $consulta = "SELECT
 id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
 clientes;";
-
-
-
-
 
 ?>
 <html lang="es">
@@ -500,7 +498,7 @@ reverseButtons: true
    '<label>Direccion</label>' +
    '<input input type="text" name="dire" id="dire" class="form-control border-input maxlength="25" required>' +
    '<label>Correo</label>' +
-   '<input input type="email" name="cor" id="cor" class="form-control border-input ">' +
+   '<input input type="text" name="cor" id="cor" class="form-control border-input">' +
    '<label>Celular</label>' +
    '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
