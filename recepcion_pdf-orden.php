@@ -1,4 +1,4 @@
-<?php   
+<?php
 session_start();
 include 'fuctions.php';
 include 'conexion.php';
@@ -20,28 +20,18 @@ $equipo=$_POST['equipo'];
   $servicio=$_POST['servicio'];
  $accesorio=$_POST['acce'];
  $comentario=$_POST['comen'];
-  
+
 //checar la validacion(no funciona el else:v)
 
  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
  $res = $conn->query($sql);
 
- 
-/*
-elseif($equipo =='Otros'){
+$sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, id_folio)
+VALUES ('Pendiente', '$comentario', 'recepcion', 'Taller', '$equipo', '$id');";
+$res2 = $conn->query($sql2);
 
-  $sql1 = "INSERT INTO reparar_otros(equipo, marca, modelo, accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
-  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
-   $res1 = $conn->query($sql1);
 
-}
-*/
-//Generador de PDF
-//inserccion
-  //$n_nombre=$_POST['nombre'];
-  //$a_apellido=$_POST['apellido'];
-  
 
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
@@ -117,7 +107,7 @@ elseif($equipo =='Otros'){
   $pdf->SetXY(53,110);
   $pdf->Write(5,$serie);
 
-//Falla 
+//Falla
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,125);
   $pdf->Write(5,'Con la(s) falla(s) de:');
@@ -142,7 +132,7 @@ elseif($equipo =='Otros'){
   $pdf->SetXY(145,140);
   $pdf->Write(5,$accesorio);
 
-//politicas 
+//politicas
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
 $pdf->Write(6,'No nos hacemos responsables por equipos olvidados, tanto como los que estan reparados y los

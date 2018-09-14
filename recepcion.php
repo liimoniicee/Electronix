@@ -326,7 +326,7 @@ function orden(id){
 swal({
 title: 'Nueva orden de servicio',
 html:
-'<div class="card-body"> <form action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
 '<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +
 '<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" readonly >' +

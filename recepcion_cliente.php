@@ -35,7 +35,9 @@ if($resu->num_rows > 0){
   });
 </script>
 </body>
+
 <?php
+header('recepcion.php');
 }else{
 
   $sql = "INSERT INTO clientes (id_folio, nombre, apellidos, direccion, correo, celular, fecha, puntos)
@@ -82,7 +84,7 @@ if($resu->num_rows > 0){
     swal({
     title: 'Nueva orden de servicio',
     html:
-    '<div class="card-body"> <form action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    '<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
     '<input type="hidden" name="swal-input0" value="<?php echo $id ?>" id="swal-input0" class="form-control border-input" readonly >' +
     '<input type="hidden" name="swal-input1" value="<?php echo $nom ?>"  id="swal-input1" class="form-control border-input" readonly >' +
@@ -171,7 +173,13 @@ if($resu->num_rows > 0){
 
 
     </script>
-  </body>
-  <?php }
 
-}?>
+  </body>
+  <?php
+ }
+
+
+}
+
+
+?>
