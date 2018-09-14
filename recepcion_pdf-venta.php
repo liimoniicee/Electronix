@@ -20,16 +20,16 @@ $serie = $_POST ['ser'];
 $costo_total= $_POST ['costo'];
 
 
-/*
 
-$consulta = "update ventas_tv set estado ='Vendida' WHERE idventa_tv = $id_equipo";
+
+$consulta = "UPDATE ventas_tv set estado ='Vendida' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' WHERE idventa_tv = '$idventa';";
 
 
 $resultado = $conn->query($consulta);
 
   
 //checar la validacion(no funciona el else:v)
-*/
+
 
 
 //Generador de PDF
