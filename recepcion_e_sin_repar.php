@@ -281,7 +281,7 @@ function devolucion(id){
 swal({
 title: 'Devolución de equipo',
 html:
-'<div class="card-body"> <form action="recepcion_pdf-devolucion.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-devolucion.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
 '<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
 '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
@@ -410,7 +410,7 @@ function cambio(id){
 swal({
 title: 'Cambio',
 html:
-'<div class="card-body"> <form action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
 '<h5>Equipo que deja a cambio</h5>'+
 
