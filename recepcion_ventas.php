@@ -346,7 +346,7 @@ function mod_vender(id){
 
 '<div class="col-md-12>'+
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
- 
+
  '</form></div>',
  showCancelButton: true,
  confirmButtonColor: '#3085d6',
@@ -356,7 +356,9 @@ function mod_vender(id){
  showConfirmButton: false,
  focusConfirm: false,
  buttonsStyling: false,
-  reverseButtons: true
+  reverseButtons: true,
+
+
 })
 $('#tv_venta').on('change', function(){
 var id = $(this).val();

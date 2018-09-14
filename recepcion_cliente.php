@@ -26,7 +26,7 @@ if($resu->num_rows > 0){
   swal({
     type: 'error',
     title: 'Oops...',
-    text: 'Ese celular pertenece a otro usuario Carnal!',
+    text: 'Este celular pertenece a otro cliente ya registrado',
 
   }).then(function() {
   // Redirect the user
@@ -95,7 +95,7 @@ header('recepcion.php');
     '<div class="col-md-6">'+
       '<div class="form-group">'+
             '<label>Equipo</label>'+
-            '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
+            '<select class="form-control form-control-sm" charset=utf-8" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
             '<option value="Ventiladores">Ventiladores</option>'+
             '<option value="Tarjeta madre">Tarjetas madre</option>'+
             '<option value="Audio">Audio</option>'+
@@ -146,7 +146,7 @@ header('recepcion.php');
     '<div class="col-md-12">'+
     '<div class="form-group">'+
             '<label>Tipo de servicio</label>'+
-            '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
+            '<select class="form-control form-control-sm" charset=utf-8" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
 
             '<label>Comentarios</label>'+
             '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
