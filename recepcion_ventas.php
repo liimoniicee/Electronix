@@ -276,7 +276,7 @@ function mod_vender(id){
   swal({
  title: 'Vender producto',
  html:
- '<div class="card-body"> <form action="recepcion_pdf-venta.php" method="post" name="data">'+
+ '<div class="card-body"> <form target="_blank" action="recepcion_pdf-venta.php" method="post" name="data">'+
  '<input input type="hidden" value="'+id+'" readonly name="swal-input0" id="swal-input0" class="form-control border-input">' +
 
 '<div class="row">'+
@@ -343,7 +343,8 @@ function mod_vender(id){
  '<input input type="text" name="apellidos" id="apellidos" readonly class="form-control border-input">' +
  '</div>'+
 '</div>'+
-'<div class="col-md-12">'+
+
+'<div class="col-md-12>'+
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
  
  '</form></div>',
