@@ -343,8 +343,8 @@ function mod_vender(id){
  '<input input type="text" name="apellidos" id="apellidos" readonly class="form-control border-input">' +
  '</div>'+
 '</div>'+
+'</div>'+
 
-'<div class="col-md-12>'+
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
 
  '</form></div>',
