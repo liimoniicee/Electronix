@@ -11,7 +11,7 @@ $var_clave= $_SESSION['clave'];
 $id = $_GET ['id'];
 //Tabla para ver todos los equipos
 $consulta = "SELECT
-equipo, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+equipo, marca,modelo,falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
@@ -224,14 +224,16 @@ id_folio = '$id';";
           <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
-        <th data-field="id">id_equipo</th>
-      <th data-field="equipo" data-sortable="true">equipo</th>
+        <th data-field="id">ID</th>
+      <th data-field="equipo" data-sortable="true">Equipo</th>
+      <th data-field="marca" data-sortable="true">Marca</th>
+      <th data-field="modelo" data-sortable="true">Modelo</th>
       <th data-field="falla" data-sortable="true">falla</th>
       <th data-field="fecha_ingreso" data-sortable="true">Ingreso</th>
       <th data-field="fecha_entregar" data-sortable="true">Reparación</th>
       <th data-field="fecha_egreso" data-sortable="true">Salida</th>
-      <th data-field="estado" data-sortable="true">estado</th>
-      <th data-field="ubicacion" data-sortable="true">ubicación</th>
+      <th data-field="estado" data-sortable="true">Estado</th>
+      <th data-field="ubicacion" data-sortable="true">Ubicación</th>
       <th data-field="accion" data-sortable="true">Acción</th>
 
     </thead>
@@ -240,6 +242,8 @@ id_folio = '$id';";
     while($fila=mysqli_fetch_array($ejecutar)){
         $id_equipo          = $fila['id_equipo'];
         $equipo           = $fila['equipo'];
+        $marca           = $fila['marca'];
+        $modelo           = $fila['modelo'];
         $falla          = $fila['falla'];
         $fecha_ingreso        = $fila['fecha_ingreso'];
         $fecha_entregar        = $fila['fecha_entregar'];
@@ -251,6 +255,8 @@ id_folio = '$id';";
                     <tr>
                         <td><?php echo $id_equipo ?></td>
                         <td><?php echo $equipo ?></td>
+                        <td><?php echo $marca ?></td>
+                        <td><?php echo $modelo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
                         <td><?php echo $fecha_entregar ?></td>

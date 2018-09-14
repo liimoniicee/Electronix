@@ -550,6 +550,7 @@ alert('hubo un error')
 
 
 <script type="text/javascript">
+/*
 $('#tv_venta').on('change', function(){
 var id = $(this).val();
 
@@ -570,11 +571,11 @@ $.ajax({
 .fail(function(){
 alert('hubo un error')
 })
-
 });
+*/
+
+
 </script>
-
-
 
 <script type="text/javascript">
 

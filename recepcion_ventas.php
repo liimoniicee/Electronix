@@ -10,6 +10,7 @@ $var_clave= $_SESSION['clave'];
 
 $venta="SELECT * from ventas_tv where estado = 'En venta';";
 
+$clientes="SELECT * from clientes order by id_folio desc ";
 
 
 ?>
@@ -275,21 +276,76 @@ function mod_vender(id){
   swal({
  title: 'Vender producto',
  html:
- '<div class="col-lg-12"> <form action="recepcion_venta_realizada.php" method="post" name="data">'+
+ '<div class="card-body"> <form action="recepcion_pdf-venta.php" method="post" name="data">'+
+ '<input input type="hidden" value="'+id+'" readonly name="swal-input0" id="swal-input0" class="form-control border-input">' +
 
- '<label>Equipo n°</label>' +
- '<input input type="text" value="'+id+'" readonly name="swal-input0" id="swal-input0" class="form-control border-input">' +
-
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
  '<label>Marca</label>' +
  '<input input type="text" name="marc" id="marc" readonly class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
  '<label>Modelo</label>' +
  '<input input type="text" name="mod" id="mod" readonly class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
  '<label>Serie</label>' +
  '<input input type="text" name="ser" id="ser" readonly class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
  '<label>Costo</label>' +
  '<input input type="number" name="costo" id="costo" readonly class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+'</div>'+
 
+'<h3>Datos de cliente</h3>'+//datos de cliente
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+ '<label>Id cliente</label>' +
+ '<select class="form-control form-control-sm" textalign="center" name="tv_venta" id="tv_venta">'+
+  <?php
+  $ejec7 = mysqli_query($conn, $clientes);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["id_folio"].'">'.$fila["id_folio"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
+ '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+ '<label>Nombre(s)</label>' +
+ '<input input type="text" name="nombre" id="nombre" readonly class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+ '<label>Apellidos</label>' +
+ '<input input type="text" name="apellidos" id="apellidos" readonly class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+'<div class="col-md-12">'+
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
+ 
  '</form></div>',
  showCancelButton: true,
  confirmButtonColor: '#3085d6',
@@ -301,12 +357,32 @@ function mod_vender(id){
  buttonsStyling: false,
   reverseButtons: true
 })
+$('#tv_venta').on('change', function(){
+var id = $(this).val();
+
+
+$.ajax({
+  type: 'POST',
+  url: 'recepcion_fn_actualizar_cliente.php',
+  data: {id: id},
+  dataType : 'json',
+})
+.done(function(data){
+
+  $("#nombre").val(data.data.nom);
+  $("#apellidos").val(data.data.ape);
+
+})
+.fail(function(){
+alert('hubo un error')
+})
+
+})
 
 };
-</script>
-
-
 
 </script>
+
+
   </body>
 </html>

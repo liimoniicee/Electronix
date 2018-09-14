@@ -7,36 +7,45 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
-$id = $_POST ['swal-input0'];
-$id_equipo = $_POST ['swal-input1'];
-
-$nom = $_POST ['swal-input3'];
-$ape= $_POST ['swal-input4'];
-$equipo = $_POST ['swal-input6'];
-$marca= $_POST ['swal-input7'];
-$modelo = $_POST ['swal-input8'];
-$serie = $_POST ['swal-input9'];
-$falla= $_POST ['swal-input12'];
 
 
+$id = $_POST ['tv_venta'];
+
+$nom = $_POST ['nombre'];
+$ape= $_POST ['apellidos'];
+$idventa = $_POST ['swal-input0'];
+$marca= $_POST ['marc'];
+$modelo = $_POST ['mod'];
+$serie = $_POST ['ser'];
+$costo_total= $_POST ['costo'];
 
 
+/*
+
+$consulta = "update ventas_tv set estado ='Vendida' WHERE idventa_tv = $id_equipo";
 
 
-$sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_total='200' ,fecha_egreso=CURRENT_TIMESTAMP where id_folio='$id' and id_equipo='$id_equipo';";
- $res = $conn->query($sql);
+$resultado = $conn->query($consulta);
+
+  
+//checar la validacion(no funciona el else:v)
+*/
 
 
+//Generador de PDF
+//inserccion
+  //$n_nombre=$_POST['nombre'];
+  //$a_apellido=$_POST['apellido'];
   
 
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
     $pdf->AddPage();
-    $title = utf8_decode("Devolución de equipo");
+    $title = utf8_decode('Generar nueva garantía');
     $pdf->SetTitle($title);
     $pdf->SetFont('Arial','B',24);
-    $pdf->SetX(60);
-    $pdf->Write(5,utf8_decode("Orden de devolución"));
+    $pdf->SetX(80);
+    $pdf->Write(5,utf8_decode("Garantía"));
 
     $pdf->Image('assets/img/logo.jpg',17,25,66);
 //folio
@@ -60,11 +69,11 @@ $sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_tota
     //nombre y apellido
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,70);
-    $pdf->Write(5,'Equipo devuelto con el folio:');
+    $pdf->Write(5,'Equipo vendido con el folio:');
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(70,70);
-    $pdf->Write(5,$id_equipo);
+    $pdf->Write(5,$idventa);
 
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,85);
@@ -81,26 +90,26 @@ $sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_tota
     //marca y modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,100);
-    $pdf->Write(5,utf8_decode("Procediendo la devolución de:"));
+    $pdf->Write(5,utf8_decode("En la venta televisión"));
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(74,100);
-    $pdf->Write(5,$equipo);
+    $pdf->SetXY(57,100);
+    $pdf->Write(5,'');
     //marca
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(100,100);
+    $pdf->SetXY(60,100);
     $pdf->Write(5,'marca:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(115,100);
+    $pdf->SetXY(75,100);
     $pdf->Write(5,$marca );
     //modelo
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(130,100);
+    $pdf->SetXY(125,100);
     $pdf->Write(5,'modelo:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(146,100);
+    $pdf->SetXY(145,100);
     $pdf->Write(5,$modelo);
   //Número de serie
   $pdf->SetFont('Arial','',12);
@@ -112,36 +121,30 @@ $sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_tota
   $pdf->Write(5,$serie);
 
 //Falla 
-  $pdf->SetFont('Arial','',12);
-  $pdf->SetXY(17,130);
-  $pdf->Write(5,'Con la(s) falla(s) de:');
 
-  $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(57,130);
-  $pdf->Write(5,$falla);
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
-  $pdf->SetXY(17,145);
-  $pdf->Write(5,utf8_decode("Con un costo total de devolución: $"));
+  $pdf->SetXY(17,130);
+  $pdf->Write(5,'Con un costo total de: $');
 
   $pdf->SetFont('Arial','B',12);
-  $pdf->SetXY(84,145);
-  $pdf->Write(5,'200.00');
+  $pdf->SetXY(62,130);
+  $pdf->Write(5,$costo_total);
 
   
 
 //politicas 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,'Este documento declara que el cliente esta conciente que el equipo que esta siendo regresado 
-  contiene todas sus partes. 
+$pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
+falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de la presente hasta los 
+seis meses siguientes. 
 
-');
+"));
 
-//footer :v
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(20,210);
-$pdf->Write(6,'Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Diaz Ochoa.');
+$pdf->Write(6,utf8_decode("Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Díaz Ochoa."));
 
 //direccion
 $pdf->SetFont('Arial','B',12);
@@ -171,5 +174,4 @@ $pdf->Write(6,'Oficina: 688-28-96');
 
 
 $pdf->Output();
-
 ?>
