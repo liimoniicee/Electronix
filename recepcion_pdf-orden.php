@@ -22,6 +22,30 @@ $equipo=$_POST['equipo'];
  $comentario=$_POST['comen'];
 
 //checar la validacion(no funciona el else:v)
+$consu = "SELECT * FROM reparar_tv WHERE id_equipo = '$equipo'";
+
+$resu = $conn->query($consu);
+
+if($resu->num_rows > 0){
+?>
+<body>
+<script>
+  swal({
+    type: 'error',
+    title: 'Oops...',
+    text: 'Ese celular pertenece a otro usuario Carnal!',
+
+  }).then(function() {
+  // Redirect the user
+  window.location.href = "recepcion.php";
+  console.log('The Ok Button was clicked.');
+  });
+</script>
+</body>
+
+<?php
+header('recepcion.php');
+}else{
 
  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
@@ -31,8 +55,7 @@ $sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo
 VALUES ('Pendiente', '$comentario', 'recepcion', 'Taller', '$equipo', '$id');";
 $res2 = $conn->query($sql2);
 
-
-
+}
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
     $pdf->AddPage();
