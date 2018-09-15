@@ -101,22 +101,12 @@ id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, 
         </div>
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
-      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
-
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Clientes</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="ml.php" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-      <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Nueva publicacion</a></li>
-            </ul>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
-
-
-
-
+        <li><a class="app-menu__item" href="recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepcion</span></a></li>
+        <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
+        <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+        <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
+        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
+        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
 
     </aside>
     <main class="app-content">
@@ -134,8 +124,9 @@ id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, 
 
 <div class="content-panel">
 
+  <div class="card text-black bg-primary mb-3">
+          <div class="card-body">
 
-  <div class="row">
 
       <div class="col-md-12">
         <div class="tile">
@@ -200,6 +191,7 @@ id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, 
 </div>
 </div>
 </div>
+
 
 </div>
 </div>

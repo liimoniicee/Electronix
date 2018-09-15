@@ -174,10 +174,11 @@ $en_ruta = "SELECT
                 </div>
                   <br><br>
                   <div id='show-me'>
+
                     <div class="tile">
                       <div class="tile-body">
 <!-- pendientes -->
-                  <table id="a-tables" class="table table-dark table-hover table-responsive">
+                  <table id="a-tables" class="table table-dark table-responsive">
     																	<thead>
                                     <th data-field="id">id</th>
                                     <th data-field="estado" data-sortable="true">Estado</th>
@@ -210,8 +211,9 @@ $en_ruta = "SELECT
                   <?php } ?>
     							</tbody>
                   </table>
-                  </table>
+
                   </div>
+      
                   </div>
                   </div>
 
@@ -681,9 +683,8 @@ swal(
 
 
   swal({
- title: 'Editar solicitud',
+ title: 'En ruta',
  html:
-
  '<form action="actual_entrega" method="post" name="data">'+
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
  '<label for="exampleInputEmail1">Estado</label>' +
@@ -706,8 +707,6 @@ swal(
  '<input name="swal-input9" id="swal-input9" class="form-control border-input maxlength="25" readonly>' +
  '<label for="exampleInputEmail1">Id folio</label>' +
  '<input name="swal-input10" id="swal-input10" class="form-control border-input maxlength="25" readonly>' +
-
-
   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Entregado</Button><br></br>'+
 
   '</form>',

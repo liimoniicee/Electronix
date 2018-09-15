@@ -37,19 +37,13 @@ if($resultado->num_rows > 0){
 	$tipo = $row["tipo"];
 	//Aspirantes
 
-if($tipo == 'Traslado'){
-		$_SESSION['clave'] = $row["id_personal"];
-		//$id = $row["ID_USUARIO"];//
-	    $_SESSION['nombre']=$var_nombre;
 
-		header("location:plantilla.php");
-	}
   if($tipo == 'Traslado'){
   		$_SESSION['clave'] = $row["id_personal"];
   		//$id = $row["ID_USUARIO"];//
   	    $_SESSION['nombre']=$var_nombre;
 
-  		header("location:inicio.php");
+  		header("location:traslado.php");
   	}
     if($tipo == 'Administrador'){
     		$_SESSION['clave'] = $row["id_personal"];
@@ -62,7 +56,7 @@ if($tipo == 'Traslado'){
       		$_SESSION['clave'] = $row["id_personal"];
       		//$id = $row["id_personal"];
       	    $_SESSION['nombre']=$var_nombre;
-			 // $id = $_POST ['id_personal'];	
+			 // $id = $_POST ['id_personal'];
       		header("location:tecnico.php");
       	}
         if($tipo == 'Recepcion'){

@@ -102,7 +102,13 @@ WHERE estado='Necesita refaccion'";
         </div>
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item" href="tecnico.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Tareas</span></a></li>
+        <li><a class="app-menu__item" href="recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepcion</span></a></li>
+        <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
+        <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+        <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
+        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
+        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
+  </ul>
 
 
     </aside>

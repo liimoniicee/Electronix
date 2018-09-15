@@ -37,13 +37,6 @@ if($resultado->num_rows > 0){
 	$tipo = $row["tipo"];
 	//Aspirantes
 
-if($tipo == 'Traslado'){
-		$_SESSION['clave'] = $row["id_personal"];
-		//$id = $row["ID_USUARIO"];//
-	    $_SESSION['nombre']=$var_nombre;
-
-		header("location:plantilla.php");
-	}
   if($tipo == 'Traslado'){
   		$_SESSION['clave'] = $row["id_personal"];
   		//$id = $row["ID_USUARIO"];//
@@ -56,28 +49,28 @@ if($tipo == 'Traslado'){
     		//$id = $row["ID_USUARIO"];//
     	    $_SESSION['nombre']=$var_nombre;
 
-    		header("location:recepcion.php");
+    		header("location:../recepcion.php");
     	}
       if($tipo == 'Tecnico'){
       		$_SESSION['clave'] = $row["id_personal"];
       		//$id = $row["id_personal"];
       	    $_SESSION['nombre']=$var_nombre;
 			 // $id = $_POST ['id_personal'];
-      		header("location:tecnico.php");
+      		header("location:../tecnico.php");
       	}
         if($tipo == 'Recepcion'){
         		$_SESSION['clave'] = $row["id_personal"];
         		//$id = $row["ID_USUARIO"];//
         	    $_SESSION['nombre']=$var_nombre;
 
-        		header("location:recepcion.php");
+        		header("location:../recepcion.php");
         	}
           if($tipo == 'Jefe de taller'){
           		$_SESSION['clave'] = $row["id_personal"];
           		//$id = $row["ID_USUARIO"];//
           	    $_SESSION['nombre']=$var_nombre;
 
-          		header("location:j_taller.php");
+          		header("location:../j_taller.php");
           	}
 
 

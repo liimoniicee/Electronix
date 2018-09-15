@@ -157,13 +157,11 @@ estado = 'Necesita refaccion';";
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
       <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
       <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="ml.php" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-      <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Nueva publicacion</a></li>
-            </ul>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
+    <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+
+      <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
 
 
 
@@ -178,39 +176,39 @@ estado = 'Necesita refaccion';";
         </div>
       </div>
 
-
-        <div class="card">
+      <div class="card text-black bg-primary mb-3">
+              <div class="card-body">
 
           <div class="row">
            <div class="col-sm-12" align="center">
              <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <form id='form-id'>
 
-                    <label class="btn btn-primary active" id='watch-me'>
+                    <label class="btn btn-success active" id='watch-me'>
                       <input name='test' type='radio' checked /> Equipos en taller
                       </label>
 
-                      <label class="btn btn-primary" id='see-me'>
+                      <label class="btn btn-warning" id='see-me'>
                       <input name='test' type='radio' /> Pendientes
                     </label>
 
-                      <label class="btn btn-primary" id='look-me'>
+                      <label class="btn btn-danger" id='look-me'>
                       <input name='test' type='radio' /> En reparacion
                     </label>
 
-                    <label class="btn btn-primary" id='look-me2'>
+                    <label class="btn btn-success" id='look-me2'>
                       <input name='test' type='radio' /> Revisados
                     </label>
 
-                    <label class="btn btn-primary" id='look-me3'>
+                    <label class="btn btn-warning" id='look-me3'>
                       <input name='test' type='radio' /> Necesita refacción
                     </label>
 
-                    <label class="btn btn-primary" id='look-me4'>
+                    <label class="btn btn-danger" id='look-me4'>
                       <input name='test' type='radio' /> Sin solución
                     </label>
 
-                    <label class="btn btn-primary" id='look-me5'>
+                    <label class="btn btn-success" id='look-me5'>
                       <input name='test' type='radio' /> Reparado
                     </label>
 
@@ -604,6 +602,7 @@ estado = 'Necesita refaccion';";
     </div>
            </div>
           </div>
+        </div>
 
 
 
