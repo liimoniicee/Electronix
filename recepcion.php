@@ -16,6 +16,7 @@ id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
 clientes ORDER BY fecha desc";
 
+
 ?>
 <html lang="es">
   <head>
@@ -328,9 +329,9 @@ title: 'Nueva orden de servicio',
 html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
-'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +
-'<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" readonly >' +
-'<input type="hidden" name="swal-input2"  id="swal-input2" class="form-control border-input" readonly >' +
+'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" >' +
+'<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" >' +
+'<input type="hidden" name="swal-input2"  id="swal-input2" class="form-control border-input" >' +
 
 '<div class="row">'+
 '<div class="col-md-6">'+
