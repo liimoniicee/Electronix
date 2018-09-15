@@ -183,9 +183,8 @@ $en_ruta = "SELECT
                                     <th data-field="estado" data-sortable="true">Estado</th>
                                     <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
                                     <th data-field="destino" data-sortable="true">Destino</th>
-
-                                        <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                                        <th class="disabled-sorting">Acción</th>
+                                    <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
+                                    <th class="disabled-sorting">Acción</th>
 
     																	</thead>
                                       <?php
@@ -197,156 +196,152 @@ $en_ruta = "SELECT
                                           $dest      = $fila['destino'];
                                           $fech   = $fila['fecha_solicitud'];
                                   ?>
-                                                        <tbody>
-                                                      <tr>
-                                                            <td><?php echo $id ?></td>
-                                                            <td><?php echo $sta ?></td>
-                                                            <td><?php echo $ubi ?></td>
-                                                            <td><?php echo $dest ?></td>
-
-                                                          <td><?php echo $fech ?></td>
-                                                          <td>
-                                                      <button onclick="swal_traslados(<?php echo $id ?>), enviarmod_traslados(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-                                                    </td>
-
-                                            </tr>
-                                          <?php } ?>
-
-    																	</tbody>
-                                    </table>
+                            <tbody>
+                            <tr>
+                            <td><?php echo $id ?></td>
+                            <td><?php echo $sta ?></td>
+                            <td><?php echo $ubi ?></td>
+                            <td><?php echo $dest ?></td>
+                            <td><?php echo $fech ?></td>
+                            <td>
+                            <button onclick="swal_traslados(<?php echo $id ?>), enviarmod_traslados(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+                            </td>
+                          </tr>
+                  <?php } ?>
+    							</tbody>
+                  </table>
                   </table>
                   </div>
                   </div>
-
                   </div>
 
-
 <!-- comienza tabla 2 -->
-                  <div id='show-me-two'>
-
-
+          <div id='show-me-two'style='display:none; border:2px solid #ccc'>
           <table id="a-tables" class="table table-dark table-hover table-responsive">
-            <thead>
 
-          <th data-field="id">id</th>
-          <th data-field="estado" data-sortable="true">Estado</th>
-          <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-         <th data-field="destino" data-sortable="true">Destino</th>
-        <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-        <th class="disabled-sorting">Acción</th>
-        																	</thead>
-                                          <?php
-                                            $ejecutar4 = mysqli_query($conn, $en_ruta);
-                                          while($fila=mysqli_fetch_array($ejecutar4)){
-                                              $id     = $fila['id_traslado'];
-                                              $sta     = $fila['estado'];
-                                              $ubi      = $fila['ubicacion'];
-         $dest      = $fila['destino'];
-          $fech   = $fila['fecha_solicitud'];
-          ?>
-          <tbody>
-          <tr>
-          <td><?php echo $id ?></td>
-          <td><?php echo $sta ?></td>
-          <td><?php echo $ubi ?></td>
-          <td><?php echo $dest ?></td>
-          <td><?php echo $fech ?></td>
-          <td>
-          <button onclick="swal_enruta(<?php echo $id ?>), enviarmod_enruta(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
-          <button onclick="borrar_enruta(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
-          </td>
-          </tr>
-          <?php } ?>
-        	</tbody>
+
+
+                                              <thead>
+        <th data-field="id">id</th>
+        <th data-field="estado" data-sortable="true">Estado</th>
+       <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+      <th data-field="destino" data-sortable="true">Destino</th>
+
+                                                <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
+                                                <th class="disabled-sorting">Acción</th>
+
+                                              </thead>
+                                              <?php
+                                                $ejecutar3 = mysqli_query($conn, $concretar);
+                                              while($fila=mysqli_fetch_array($ejecutar3)){
+                                                  $id     = $fila['id_traslado'];
+                                                  $sta     = $fila['estado'];
+                                                  $ubi      = $fila['ubicacion'];
+                                                  $dest      = $fila['destino'];
+                                                  $fech   = $fila['fecha_solicitud'];
+                                          ?>
+                                                                <tbody>
+                                                              <tr>
+                                                                    <td><?php echo $id ?></td>
+                                                                    <td><?php echo $sta ?></td>
+                                                                    <td><?php echo $ubi ?></td>
+                                                                    <td><?php echo $dest ?></td>
+
+      <td><?php echo $fech ?></td>
+      <td>
+      <button onclick="swal_por_concretar(<?php echo $id ?>), enviarmod_por_concretar(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+            </td>
+        </tr>
+        <?php } ?>
+        </tbody>
   </table>
       </div>
 
                     <!--Termina tabla 2-->
 
                     <!--Comienza tabla 3-->
-                  <div id='show-me-three'>
+                  <div id='show-me-three' style='display:none; border:2px solid #ccc'>
 
 
                     <table id="a-tables" class="table table-dark table-hover table-responsive">
 
-  												<thead>
-
-                          <th data-field="id">id</th>
-                          <th data-field="estado" data-sortable="true">Estado</th>
-                          <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-                          <th data-field="destino" data-sortable="true">Destino</th>
-
-                          <th data-field="fecha" data-sortable="true">Fecha finalizado</th>
-                          <th class="disabled-sorting">Acción</th>
-
-  												</thead>
-                          <?php
-                          $ejecutar2 = mysqli_query($conn, $entregado);
-                          while($fila=mysqli_fetch_array($ejecutar2)){
-                          $id     = $fila['id_traslado'];
-                          $sta     = $fila['estado'];
-                          $ubi      = $fila['ubicacion'];
-                          $dest      = $fila['destino'];
-                          $fech   = $fila['fecha_finalizado'];
-                          ?>
-                            <tbody>
-                              <tr>
-                              <td><?php echo $id ?></td>
-                              <td><?php echo $sta ?></td>
-                              <td><?php echo $ubi ?></td>
-                              <td><?php echo $dest ?></td>
-                              <td><?php echo $fech ?></td>
-                              <td>
-                              <button onclick="swal_entregados(<?php echo $id ?>), enviarmod_entregados(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-                               <button onclick="borrar_entregados(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
-                                </td>
-                </tr>
-                <?php } ?>
-      							</tbody>
+                      <thead>
+                    <th data-field="id">id</th>
+                    <th data-field="estado" data-sortable="true">Estado</th>
+                    <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                    <th data-field="destino" data-sortable="true">Destino</th>
+                    <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
+                    <th class="disabled-sorting">Acción</th>
+                                                    </thead>
+                                                    <?php
+                                                      $ejecutar4 = mysqli_query($conn, $en_ruta);
+                                                    while($fila=mysqli_fetch_array($ejecutar4)){
+                                                        $id     = $fila['id_traslado'];
+                                                        $sta     = $fila['estado'];
+                                                        $ubi      = $fila['ubicacion'];
+                    $dest      = $fila['destino'];
+                    $fech   = $fila['fecha_solicitud'];
+                    ?>
+                    <tbody>
+                    <tr>
+                    <td><?php echo $id ?></td>
+                    <td><?php echo $sta ?></td>
+                    <td><?php echo $ubi ?></td>
+                    <td><?php echo $dest ?></td>
+                    <td><?php echo $fech ?></td>
+                    <td>
+                    <button onclick="swal_enruta(<?php echo $id ?>), enviarmod_enruta(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
+                    <button onclick="borrar_enruta(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
+                    </td>
+                    </tr>
+                    <?php } ?>
+                    </tbody>
                     </table>
 
 
                     </div>
                     <!-- Termina tabla 4 -->
 
-                <div id='show-me-three2'>
+                <div id='show-me-three2'style='display:none; border:2px solid #ccc'>
+    <table id="a-tables" class="table table-dark table-hover table-responsive">
+                <thead>
 
+                <th data-field="id">id</th>
+                <th data-field="estado" data-sortable="true">Estado</th>
+                <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                <th data-field="destino" data-sortable="true">Destino</th>
 
-                  																	<thead>
-              <th data-field="id">id</th>
-              <th data-field="estado" data-sortable="true">Estado</th>
-             <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-            <th data-field="destino" data-sortable="true">Destino</th>
+                <th data-field="fecha" data-sortable="true">Fecha finalizado</th>
+                <th class="disabled-sorting">Acción</th>
 
-                                                      <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                                                      <th class="disabled-sorting">Acción</th>
+                </thead>
+                <?php
+                $ejecutar2 = mysqli_query($conn, $entregado);
+                while($fila=mysqli_fetch_array($ejecutar2)){
+                $id     = $fila['id_traslado'];
+                $sta     = $fila['estado'];
+                $ubi      = $fila['ubicacion'];
+                $dest      = $fila['destino'];
+                $fech   = $fila['fecha_finalizado'];
+                ?>
+                  <tbody>
+                    <tr>
+                    <td><?php echo $id ?></td>
+                    <td><?php echo $sta ?></td>
+                    <td><?php echo $ubi ?></td>
+                    <td><?php echo $dest ?></td>
+                    <td><?php echo $fech ?></td>
+                    <td>
+                    <button onclick="swal_entregados(<?php echo $id ?>), enviarmod_entregados(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+                     <button onclick="borrar_entregados(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
+                      </td>
+      </tr>
+      <?php } ?>
+          </tbody>
 
-                  																	</thead>
-                                                    <?php
-                                                      $ejecutar3 = mysqli_query($conn, $concretar);
-                                                    while($fila=mysqli_fetch_array($ejecutar3)){
-                                                        $id     = $fila['id_traslado'];
-                                                        $sta     = $fila['estado'];
-                                                        $ubi      = $fila['ubicacion'];
-                                                        $dest      = $fila['destino'];
-                                                        $fech   = $fila['fecha_solicitud'];
-                                                ?>
-                                                                      <tbody>
-                                                                    <tr>
-                                                                          <td><?php echo $id ?></td>
-                                                                          <td><?php echo $sta ?></td>
-                                                                          <td><?php echo $ubi ?></td>
-                                                                          <td><?php echo $dest ?></td>
-
-            <td><?php echo $fech ?></td>
-            <td>
-            <button onclick="swal_por_concretar(<?php echo $id ?>), enviarmod_por_concretar(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-                  </td>
-              </tr>
-              <?php } ?>
-  						</tbody>
               </table>
                   </div>
+                  <!-- termina tabla 4 entregados -->
 
     </div>
            </div>

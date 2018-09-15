@@ -24,5 +24,5 @@ $res = $conn->query($query);
 if (!$res) {
    printf("Errormessage: %s\n", $conn->error);
 }
-else{header("Location: traslados_enruta.php");}
+else{header("Location: traslados.php");}
 ?>
