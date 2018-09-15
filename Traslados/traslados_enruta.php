@@ -1,5 +1,4 @@
 
- <!doctype html>
  <?php
  session_start();
  include 'fuctions.php';
@@ -17,7 +16,7 @@
  $consulta = "SELECT
  *
  FROM
- traslado where estado='Pendiente';";
+ traslado where id_personal='$var_clave' and estado='En ruta';";
 
 
 ?>
@@ -30,7 +29,7 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Traslados</title>
+	<title>En ruta</title>
 
 	<!-- Canonical SEO -->
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -92,7 +91,7 @@
                         <p>Perfil de usuario</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="traslados.php">
                         <i class="ti-package"></i>
                         <p>Traslados</p>
@@ -104,7 +103,7 @@
                         <p>Por concretar</p>
                     </a>
                 </li>
-                <li>
+                <li class = 'active'>
                     <a href="traslados_enruta.php">
                         <i class="ti-truck"></i>
                         <p>En ruta</p>
@@ -137,7 +136,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand">Traslados</a>
+                    <a class="navbar-brand">En ruta</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -150,7 +149,6 @@
                                      ?> </p>
                                 </a>
                             </li>
-
                             <li>
                                 <a href="destroy.php" class="btn-rotate">
                                     <i class="ti-shift-left"></i>
@@ -176,8 +174,8 @@
 
                             <div class="card-content table-full-width">
                             <div class="header">
-                                <h4 class="title">Traslados</h4>
-                                <p class="category">La siguiente tabla muestra los envios pendientes, escoge un vehiculo y selecciona los traslados.</p></br>
+                                <h4 class="title">En ruta</h4>
+                                <p class="category">La siguiente tabla muestra los envios que tienes en camino a su destino.</p></br>
                             </div>
                                   <table class="table table-striped">
 
@@ -207,10 +205,10 @@
                                                         <td><?php echo $sta ?></td>
                                                         <td><?php echo $ubi ?></td>
                                                         <td><?php echo $dest ?></td>
-
                                                       <td><?php echo $fech ?></td>
                                                       <td>
-                                                  <button onclick="alerta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+                                                  <button onclick="alerta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
+                                                  <button onclick="borrar(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
                                                 </td>
                                                       <!--<td>
 
@@ -383,7 +381,7 @@ function enviarmod(id){
  title: 'Editar solicitud',
  html:
 
- '<form action="actual_status" method="post" name="data">'+
+ '<form action="actual_entrega" method="post" name="data">'+
  //'<label for="exampleInputEmail1">id</label>' +
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
  '<label for="exampleInputEmail1">Estado</label>' +
@@ -401,66 +399,101 @@ function enviarmod(id){
  '<label for="exampleInputEmail1">Id equipo</label>' +
  '<input name="swal-input7" id="swal-input7" class="form-control border-input maxlength="25" readonly>' +
  '<label for="exampleInputEmail1">Id carro</label>' +
- '<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" pattern = "1|2|3|4|5|6" require>' +
+ '<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" readonly>' +
  '<label for="exampleInputEmail1">Id personal</label>' +
  '<input name="swal-input9" id="swal-input9" class="form-control border-input maxlength="25" readonly>' +
  '<label for="exampleInputEmail1">Id folio</label>' +
  '<input name="swal-input10" id="swal-input10" class="form-control border-input maxlength="25" readonly>' +
 
 
- '<Button type="submit" class= "btn btn-info btn-fill btn-wd">A por él!</Button>'+
- '</form>',
- showCancelButton: true,
- confirmButtonColor: '#3085d6',
- cancelButtonColor: '#d33',
- confirmButtonText: '</form> A por él',
- cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
- showConfirmButton: false,
- focusConfirm: false,
- buttonsStyling: false,
-  reverseButtons: true
-}).then(function (result) {
+  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Entregado</Button><br></br>'+
 
- swal(
- 'Actualizado!',
- 'La solicitud ha sido actualizada',
- 'success'
- )
- }).catch(swal.noop);
+  '</form>',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: '</form>',
+  cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+  showConfirmButton: false,
+  focusConfirm: false,
+  buttonsStyling: false,
+   reverseButtons: true
+ }).then(function (result) {
 
-};
-</script>
+  swal(
+  'Actualizado!',
+  'La solicitud ha sido actualizada',
+  'success'
+  )
+  }).catch(swal.noop);
+
+ };
+ </script>
+
+ <script>
+ function borrar(id){
+ swal({
+    title: 'Cliente no encontrado?',
+    text: "Al confirmar se enviará a almacen",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, de regreso a almacen',
+    showLoaderOnConfirm: true,
+    preConfirm: function() {
+      return new Promise(function(resolve) {
+
+        $.ajax({
+         url: 'actual_noencontro.php',
+         type: 'POST',
+         data: 'delete='+id,
+         dataType: 'json'
+      })
+      .done(function(response){
+         swal('Echo', response.message, response.status);
+       location.reload();
+      })
+      .fail(function(){
+         swal('Oops...', 'Algo paso, contacta al admin!', 'error');
+      });
+      });
+    },
+    allowOutsideClick: false
+ });
+ }
+ </script>
 
 
-          <script>
-          function validar(e) {
-          tecla = (document.all) ? e.keyCode : e.which;
-          if (tecla==8) return true; //Tecla de retroceso (para poder borrar)
-          // dejar la línea de patron que se necesite y borrar el resto
-          patron =/[A-Za-z\s]/; // Solo acepta letras  \s = es para el espacio
-          //patron = /\d/; // Solo acepta números
-          //patron = /[\w\s]/; // Acepta números y letras
-          //patron = /\D/; // No acepta números
-          //
+           <script>
+           function validar(e) {
+           tecla = (document.all) ? e.keyCode : e.which;
+           if (tecla==8) return true; //Tecla de retroceso (para poder borrar)
+           // dejar la línea de patron que se necesite y borrar el resto
+           patron =/[A-Za-z\s]/; // Solo acepta letras  \s = es para el espacio
+           //patron = /\d/; // Solo acepta números
+           //patron = /[\w\s]/; // Acepta números y letras
+           //patron = /\D/; // No acepta números
+           //
 
-          te = String.fromCharCode(tecla);
-          return patron.test(te);
-          }
-          </script>
-          <!-- onkeypress="return validar(event)"-->
-          <script>
-          function validar2(e) {
-          tecla = (document.all) ? e.keyCode : e.which;
-          if (tecla==8) return true; //Tecla de retroceso (para poder borrar)
-          // dejar la línea de patron que se necesite y borrar el resto
-          //patron =/[A-Za-z\s]/; // Solo acepta letras  \s = es para el espacio
-          //patron = /\d/; // Solo acepta números
-          //patron = /\w/; // Acepta números y letras
-          patron = /[\w\s]/;// Acepta números y letras y espacio
-          //patron = /\D/; // No acepta números
-          //
+           te = String.fromCharCode(tecla);
+           return patron.test(te);
+           }
+           </script>
+           <!-- onkeypress="return validar(event)"-->
+           <script>
+           function validar2(e) {
+           tecla = (document.all) ? e.keyCode : e.which;
+           if (tecla==8) return true; //Tecla de retroceso (para poder borrar)
+           // dejar la línea de patron que se necesite y borrar el resto
+           //patron =/[A-Za-z\s]/; // Solo acepta letras  \s = es para el espacio
+           //patron = /\d/; // Solo acepta números
+           //patron = /\w/; // Acepta números y letras
+           patron = /[\w\s]/;// Acepta números y letras y espacio
+           //patron = /\D/; // No acepta números
+           //
 
-          te = String.fromCharCode(tecla);
-          return patron.test(te);
-          }
-          </script>
+           te = String.fromCharCode(tecla);
+           return patron.test(te);
+           }
+           </script>

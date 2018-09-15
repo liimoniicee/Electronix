@@ -10,7 +10,6 @@ $formateado= date('Y-m-d h:i:s', $ahora) ; // obtenemos la cadena en el formato 
 
 
 $id        = $_POST ['swal-input0'];
-$equi = $_POST ['swal-input7'];
 $var_clave = $_SESSION['clave'];
 $des       = $_POST ['swal-input5'];
 
@@ -26,22 +25,9 @@ id_traslado='$id'";
 
 $res = $conn->query($query);
 
-//consulta para obtener el id del becario
-$query1 = "UPDATE
-reparar_tv
-SET
-ubicacion = '$des'
-WHERE
-id_equipo='$equi'";
-
-$res1 = $conn->query($query1);
-
 
 
 if (!$res) {
-   printf("Errormessage: %s\n", $conn->error);
-}
-if (!$res1) {
    printf("Errormessage: %s\n", $conn->error);
 }
 else{header("Location: traslados_entregados.php");}

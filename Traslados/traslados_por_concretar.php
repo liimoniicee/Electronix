@@ -383,7 +383,7 @@ function enviarmod(id){
  title: 'Editar solicitud',
  html:
 
- '<form action="actual_concre.php" method="post" name="data">'+
+ '<form action="actual_concre" method="post" name="data">'+
  //'<label for="exampleInputEmail1">id</label>' +
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
  '<label for="exampleInputEmail1">Estado</label>' +
