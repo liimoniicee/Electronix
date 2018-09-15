@@ -1,19 +1,19 @@
 <?php
 
+
 session_start();
+include 'conexion.php';
+//if(isset($_POST['submit']))
+//{
+
+if ( (isset($_POST['user'])) || (isset($_POST['pass'])) ){
 
 
-if(isset($_POST['submit']))
-{
-
-if ( (isset($_POST['usuario'])) || (isset($_POST['contraseña'])) ){
+    $var_user = $_POST['user'];
+	$var_contra = md5($_POST['pass']);
 
 
-    $var_user = $_POST['usuario'];
-	$var_contra = $_POST['contrasena'];
 
-
-    include'conexion.php';
 
 
 
@@ -30,17 +30,48 @@ if($resultado->num_rows > 0){
 	$tipo = $row["tipo"];
 	//Aspirantes
 
-if($tipo == 1){
+if($tipo == 'Traslado'){
 		$_SESSION['clave'] = $row["id_personal"];
 		//$id = $row["ID_USUARIO"];//
 	    $_SESSION['nombre']=$var_nombre;
-        //echo "<script>alert('Ingresado correctamente!')</script>";
-        //echo "<script>window.open('aspirante.php','_self')</script>";
-		header("location:inicio.php");
-	}else {
-		//echo "<script>alert('Usuario o contraseña invalidos!')</script>";
-        //echo "<script>window.open('index.html','_self')</script>";
-	}//primer roll
+
+		header("location:plantilla.php");
+	}
+  if($tipo == 'Traslado'){
+  		$_SESSION['clave'] = $row["id_personal"];
+  		//$id = $row["ID_USUARIO"];//
+  	    $_SESSION['nombre']=$var_nombre;
+
+  		header("location:inicio.php");
+  	}
+    if($tipo == 'Administrador'){
+    		$_SESSION['clave'] = $row["id_personal"];
+    		//$id = $row["ID_USUARIO"];//
+    	    $_SESSION['nombre']=$var_nombre;
+
+    		header("location:recepcion.php");
+    	}
+      if($tipo == 'Tecnico'){
+      		$_SESSION['clave'] = $row["id_personal"];
+      		//$id = $row["id_personal"];
+      	    $_SESSION['nombre']=$var_nombre;
+			 // $id = $_POST ['id_personal'];
+      		header("location:tecnico.php");
+      	}
+        if($tipo == 'Recepcion'){
+        		$_SESSION['clave'] = $row["id_personal"];
+        		//$id = $row["ID_USUARIO"];//
+        	    $_SESSION['nombre']=$var_nombre;
+
+        		header("location:recepcion.php");
+        	}
+          if($tipo == 'Jefe de taller'){
+          		$_SESSION['clave'] = $row["id_personal"];
+          		//$id = $row["ID_USUARIO"];//
+          	    $_SESSION['nombre']=$var_nombre;
+
+          		header("location:j_taller.php");
+          	}
 
 
     	 }//aqui termina el while
@@ -54,11 +85,6 @@ if($tipo == 1){
 	}else{
 	header("location:index.html");
 	}
-
-
-} else{
-	header("location:index.html");
-}
 
 
 ?>
