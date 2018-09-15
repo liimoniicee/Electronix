@@ -4,30 +4,33 @@ include 'fuctions.php';
 include 'conexion.php';
 verificar_sesion();
 
-$id = $_POST ['swal-input0'];
-$ubi = $_POST ['swal-input4'];
+
+$ahora =  time(); //obtenemos la fecha actual a partir de la función time().
+$formateado= date('Y-m-d h:i:s', $ahora) ; // obtenemos la cadena en el formato YYYY-MM-DD
+
+
+$id        = $_POST ['swal-input0'];
 $equi = $_POST ['swal-input7'];
-$car = $_POST['swal-input8'];
-$var_clave= $_SESSION['clave'];
+$var_clave = $_SESSION['clave'];
+$des       = $_POST ['swal-input5'];
 
 //consulta para obtener el id del becario
 $query = "UPDATE
 traslado
 SET
-estado = 'Recoleccion',
-id_personal = '$var_clave',
-id_carro = '$car'
+estado = 'Entregado',
+ubicacion = '$des',
+fecha_finalizado = '$formateado'
 WHERE
 id_traslado='$id'";
 
 $res = $conn->query($query);
 
-
 //consulta para obtener el id del becario
 $query1 = "UPDATE
 reparar_tv
 SET
-ubicacion = 'En recoleccion a $ubi'
+ubicacion = '$des'
 WHERE
 id_equipo='$equi'";
 
@@ -41,5 +44,5 @@ if (!$res) {
 if (!$res1) {
    printf("Errormessage: %s\n", $conn->error);
 }
-else{header("Location: traslados.php");}
+else{header("Location: traslados_entregados.php");}
 ?>

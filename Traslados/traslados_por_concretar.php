@@ -17,7 +17,7 @@
  $consulta = "SELECT
  *
  FROM
- traslado where estado='Pendiente';";
+ traslado where id_personal='$var_clave' and estado='Recoleccion';";
 
 
 ?>
@@ -30,7 +30,7 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Traslados</title>
+	<title>Por concretar</title>
 
 	<!-- Canonical SEO -->
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -92,13 +92,13 @@
                         <p>Perfil de usuario</p>
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="traslados.php">
                         <i class="ti-package"></i>
                         <p>Traslados</p>
                     </a>
                 </li>
-                <li>
+                <li class = 'active'>
                     <a href="traslados_por_concretar.php">
                         <i class="ti-truck"></i>
                         <p>Por concretar</p>
@@ -137,7 +137,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand">Traslados</a>
+                    <a class="navbar-brand">Por concretar</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -176,8 +176,8 @@
 
                             <div class="card-content table-full-width">
                             <div class="header">
-                                <h4 class="title">Traslados</h4>
-                                <p class="category">La siguiente tabla muestra los envios pendientes, escoge un vehiculo y selecciona los traslados.</p></br>
+                                <h4 class="title">En camino a la ubicación del paquete</h4>
+                                <p class="category">La siguiente tabla muestra los paquetes que tienes pendientes por recoger.</p></br>
                             </div>
                                   <table class="table table-striped">
 
@@ -383,7 +383,7 @@ function enviarmod(id){
  title: 'Editar solicitud',
  html:
 
- '<form action="actual_status.php" method="post" name="data">'+
+ '<form action="actual_concre.php" method="post" name="data">'+
  //'<label for="exampleInputEmail1">id</label>' +
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
  '<label for="exampleInputEmail1">Estado</label>' +
@@ -401,19 +401,19 @@ function enviarmod(id){
  '<label for="exampleInputEmail1">Id equipo</label>' +
  '<input name="swal-input7" id="swal-input7" class="form-control border-input maxlength="25" readonly>' +
  '<label for="exampleInputEmail1">Id carro</label>' +
- '<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" pattern = "1|2|3|4|5|6" require>' +
+ '<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" readonly>' +
  '<label for="exampleInputEmail1">Id personal</label>' +
  '<input name="swal-input9" id="swal-input9" class="form-control border-input maxlength="25" readonly>' +
  '<label for="exampleInputEmail1">Id folio</label>' +
  '<input name="swal-input10" id="swal-input10" class="form-control border-input maxlength="25" readonly>' +
 
 
- '<Button type="submit" class= "btn btn-info btn-fill btn-wd">A por él!</Button>'+
+ '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar en ruta</Button>'+
  '</form>',
  showCancelButton: true,
  confirmButtonColor: '#3085d6',
  cancelButtonColor: '#d33',
- confirmButtonText: '</form> A por él',
+ confirmButtonText: '</form> Confirmar en ruta',
  cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
  showConfirmButton: false,
  focusConfirm: false,
@@ -464,3 +464,7 @@ function enviarmod(id){
           return patron.test(te);
           }
           </script>
+
+
+
+</html>

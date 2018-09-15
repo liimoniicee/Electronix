@@ -95,16 +95,34 @@ if($resultado->num_rows > 0){
             </div>
 						<ul class="nav">
 
-                <li class="active">
-                    <a href="user.php">
+              <li>
+                    <a href="inicio.php">
                         <i class="ti-user"></i>
                         <p>Perfil de usuario</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="traslados.php">
-                        <i class="ti-star"></i>
+                        <i class="ti-package"></i>
                         <p>Traslados</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="traslados_por_concretar.php">
+                        <i class="ti-truck"></i>
+                        <p>Por concretar</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="traslados_enruta.php">
+                        <i class="ti-truck"></i>
+                        <p>En ruta</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="traslados_entregados.php">
+                        <i class="ti-home"></i>
+                        <p>Entregados</p>
                     </a>
                 </li>
             </ul>
@@ -138,19 +156,7 @@ if($resultado->num_rows > 0){
                                      ?> </p>
                                 </a>
                             </li>
-                            <li class="dropdown">
-                                <a href="#notifications" class="dropdown-toggle btn-rotate" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <span class="notification">5</span>
-                                    <p class="hidden-md hidden-lg">
-                                        Notifications
-                                        <b class="caret"></b>
-                                    </p>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#another">Another notification</a></li>
-                                </ul>
-                            </li>
+
                             <li>
                                 <a href="destroy.php" class="btn-rotate">
                                     <i class="ti-shift-left"></i>

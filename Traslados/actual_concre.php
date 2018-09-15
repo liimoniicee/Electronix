@@ -14,20 +14,18 @@ $var_clave= $_SESSION['clave'];
 $query = "UPDATE
 traslado
 SET
-estado = 'Recoleccion',
-id_personal = '$var_clave',
-id_carro = '$car'
+estado = 'En ruta',
+ubicacion = 'Carro #$car'
 WHERE
 id_traslado='$id'";
 
 $res = $conn->query($query);
 
-
 //consulta para obtener el id del becario
 $query1 = "UPDATE
 reparar_tv
 SET
-ubicacion = 'En recoleccion a $ubi'
+ubicacion = 'En ruta a $ubi'
 WHERE
 id_equipo='$equi'";
 
@@ -41,5 +39,5 @@ if (!$res) {
 if (!$res1) {
    printf("Errormessage: %s\n", $conn->error);
 }
-else{header("Location: traslados.php");}
+else{header("Location: traslados_enruta.php");}
 ?>

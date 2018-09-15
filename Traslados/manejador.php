@@ -10,8 +10,9 @@ if ( (isset($_POST['usuario'])) || (isset($_POST['contraseña'])) ){
 
 
     $var_user = $_POST['usuario'];
-	$var_contra = $_POST['contrasena'];
+	$var_contra = md5($_POST['contrasena']);
 
+	
 
     include'conexion.php';
 
@@ -30,13 +31,13 @@ if($resultado->num_rows > 0){
 	$tipo = $row["tipo"];
 	//Aspirantes
 
-if($tipo == 1){
+if($tipo == 'Traslado'){
 		$_SESSION['clave'] = $row["id_personal"];
 		//$id = $row["ID_USUARIO"];//
 	    $_SESSION['nombre']=$var_nombre;
         //echo "<script>alert('Ingresado correctamente!')</script>";
         //echo "<script>window.open('aspirante.php','_self')</script>";
-		header("location:inicio.php");
+		header("location:traslados.php");
 	}else {
 		//echo "<script>alert('Usuario o contraseña invalidos!')</script>";
         //echo "<script>window.open('index.html','_self')</script>";
