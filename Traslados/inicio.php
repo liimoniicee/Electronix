@@ -9,8 +9,6 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-//consulta para obtener el nombre del equipo por id
-
 
 //Consulta para rellenar los campos del usuario
 $query = "SELECT id_personal, usuario, nombre, apellidos, correo, celular
@@ -36,29 +34,19 @@ if($resultado->num_rows > 0){
 
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href= "assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href= "assets/img/favicon.png">
-
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>Usuario de traslados</title>
-
+	<title>Recepcion</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <!-- Main CSS-->
+  <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+  <!-- Font-icon css-->
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
 
     <!-- Bootstrap core CSS     -->
     <link href= "assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!--  Paper Dashboard core CSS    -->
-    <link href= "assets/css/paper-dashboard.css?v=1.2.1" rel="stylesheet"/>
-
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href= "assets/css/demo.css" rel="stylesheet" />
-
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
