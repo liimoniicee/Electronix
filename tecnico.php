@@ -105,7 +105,7 @@ WHERE estado='En reparacion' ";
         </div>
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item" href="tecnico.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Tareas</span></a></li>
+      <li><a class="app-menu__item active" href="tecnico.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Tareas</span></a></li>
 
 
 
