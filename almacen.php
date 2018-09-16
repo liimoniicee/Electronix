@@ -144,14 +144,12 @@ $consulta = "SELECT * from reparar_tv r, clientes c where r.estado = 'Almacen' a
     while($fila=mysqli_fetch_array($ejecutar)){
         $id_equipo          = $fila['id_equipo'];
         $id           = $fila['id_folio'];
-
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
+        $sub_estado           = $fila['sub-estado'];
+        $sub_ubicacion           = $fila['sub-ubicacion'];
         $fecha_entregar        = $fila['fecha_entrada'];
         $total        = $fila['fecha_salida'];
-
-
-
 
 ?>
                     <tr>

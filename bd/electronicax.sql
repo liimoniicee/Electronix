@@ -1,32 +1,59 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 12-09-2018 a las 18:16:08
--- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Host: 127.0.0.1:3306
+-- Generation Time: Sep 16, 2018 at 12:42 AM
+-- Server version: 5.7.19-log
+-- PHP Version: 5.6.31
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `electronicax`
+-- Database: `electronicax`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `avisos`
+-- Table structure for table `almacen`
 --
-create database electronicax;
-use electronicax;
+
+DROP TABLE IF EXISTS `almacen`;
+CREATE TABLE IF NOT EXISTS `almacen` (
+  `id_equipo` int(11) NOT NULL,
+  `sub-ubicacion` varchar(50) DEFAULT NULL,
+  `sub-estado` varchar(50) DEFAULT NULL,
+  `fecha_entrada` date NOT NULL,
+  `fecha_salida` date DEFAULT NULL,
+  `personal_id_personal` int(11) NOT NULL,
+  `reparar_tv_id_equipo` int(11) NOT NULL,
+  `refacciones_tv_Id_refacciones` int(11) NOT NULL,
+  `ventas_tv_idventa_tv` int(11) NOT NULL,
+  `clientes_id_folio` int(10) NOT NULL,
+  KEY `fk_almacen_personal1_idx` (`personal_id_personal`),
+  KEY `fk_almacen_reparar_tv1_idx` (`reparar_tv_id_equipo`),
+  KEY `fk_almacen_refacciones_tv1_idx` (`refacciones_tv_Id_refacciones`),
+  KEY `fk_almacen_ventas_tv1_idx` (`ventas_tv_idventa_tv`),
+  KEY `fk_almacen_clientes1_idx` (`clientes_id_folio`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `avisos`
+--
+
+DROP TABLE IF EXISTS `avisos`;
 CREATE TABLE IF NOT EXISTS `avisos` (
   `id_aviso` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -34,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `avisos` (
   `aviso` varchar(500) NOT NULL,
   `estado` varchar(25) NOT NULL,
   PRIMARY KEY (`id_aviso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `avisos`
+-- Dumping data for table `avisos`
 --
 
 INSERT INTO `avisos` (`id_aviso`, `fecha`, `folio`, `aviso`, `estado`) VALUES
@@ -75,9 +102,10 @@ INSERT INTO `avisos` (`id_aviso`, `fecha`, `folio`, `aviso`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `clientes`
+-- Table structure for table `clientes`
 --
 
+DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE IF NOT EXISTS `clientes` (
   `id_folio` int(10) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
@@ -88,10 +116,10 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `puntos` int(15) DEFAULT '0',
   PRIMARY KEY (`id_folio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4544 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4564 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `clientes`
+-- Dumping data for table `clientes`
 --
 
 INSERT INTO `clientes` (`id_folio`, `nombre`, `apellidos`, `direccion`, `correo`, `celular`, `fecha`, `puntos`) VALUES
@@ -224,14 +252,35 @@ INSERT INTO `clientes` (`id_folio`, `nombre`, `apellidos`, `direccion`, `correo`
 (4540, 'Cabo ', 'Fitness', 'NA', 'nohemi_rosa@hotmail.com', '6241579716', '2018-09-11 14:37:08', 0),
 (4541, 'Joel', 'Villegas', 'Na', 'Na@na.com', '6241298555', '2018-09-11 19:25:47', 0),
 (4542, 'Carlos ', 'Hernandez', 'na', 'na@na.com', '6311883092', '2018-09-11 20:39:56', 0),
-(4543, 'Estefani', 'Lopez Rivas', 'Na', 'fanny_lopezrivas@yahoo.com', '6241924845', '2018-09-11 22:00:46', 0);
+(4543, 'Estefani', 'Lopez Rivas', 'Na', 'fanny_lopezrivas@yahoo.com', '6241924845', '2018-09-11 22:00:46', 0),
+(4544, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:15:23', 0),
+(4545, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:17:01', 0),
+(4546, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:17:09', 0),
+(4547, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:17:48', 0),
+(4548, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:17:51', 0),
+(4549, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:18:23', 0),
+(4550, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:19:34', 0),
+(4551, 'prueba', 'probado', 'colonia pff', 'e@e.com', '12123', '2018-09-13 23:20:39', 0),
+(4552, 'asd', 'asd', 'asd', 'cercano', '12124', '2018-09-14 00:03:09', 0),
+(4553, 'prueba', 'asd', 'asd', 'cercano', '121233', '2018-09-14 00:03:59', 0),
+(4554, 'Jonathan', 'asd', 'colonia pff', 'cercano', '121238', '2018-09-14 00:08:41', 0),
+(4555, 'evento2', 'probado', 'colonia pff', 'cercano', '1212333', '2018-09-14 00:09:35', 0),
+(4556, 'evento2', 'probado', 'asd', 'asd@e.com', '121233333333', '2018-09-14 00:11:49', 0),
+(4557, 'prueba', 'probado', 'colonia pff', 'asd@e.com', '1212343', '2018-09-14 00:13:36', 0),
+(4558, 'prueba', 'probado', 'colonia pff', 'cercano', '121233423', '2018-09-14 00:14:31', 0),
+(4559, 'prueba', 'asd', 'colonia pff', 'cercano', '231312312', '2018-09-14 00:16:16', 0),
+(4560, 'evento2', 'probado', 'colonia pff', 'cercano', '12123342', '2018-09-14 00:20:17', 0),
+(4561, 'asdasd', 'asdasdasdasd', 'asdasda', 'sdasdasdasd', '31232312', '2018-09-14 00:20:34', 0),
+(4562, 'asdasdasd', 'sdasdasd', 'asdasdasda', 'sdasdasd', '12312312312', '2018-09-14 00:21:34', 0),
+(4563, 'evento2', 'asd', 'colonia pff', 'cercano', '12123555', '2018-09-14 01:03:41', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cobranza`
+-- Table structure for table `cobranza`
 --
 
+DROP TABLE IF EXISTS `cobranza`;
 CREATE TABLE IF NOT EXISTS `cobranza` (
   `id_cobranza` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(30) NOT NULL,
@@ -241,10 +290,10 @@ CREATE TABLE IF NOT EXISTS `cobranza` (
   `id_equipo` int(11) NOT NULL,
   `id_folio` int(11) NOT NULL,
   PRIMARY KEY (`id_cobranza`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `cobranza`
+-- Dumping data for table `cobranza`
 --
 
 INSERT INTO `cobranza` (`id_cobranza`, `tipo`, `estado`, `fecha`, `cantidad`, `id_equipo`, `id_folio`) VALUES
@@ -289,9 +338,10 @@ INSERT INTO `cobranza` (`id_cobranza`, `tipo`, `estado`, `fecha`, `cantidad`, `i
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `depositos`
+-- Table structure for table `depositos`
 --
 
+DROP TABLE IF EXISTS `depositos`;
 CREATE TABLE IF NOT EXISTS `depositos` (
   `id_deposito` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -306,10 +356,10 @@ CREATE TABLE IF NOT EXISTS `depositos` (
   PRIMARY KEY (`id_deposito`),
   KEY `id_personal` (`id_personal`),
   KEY `id_equipo` (`id_equipo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `depositos`
+-- Dumping data for table `depositos`
 --
 
 INSERT INTO `depositos` (`id_deposito`, `fecha`, `autorizacion`, `cuenta`, `cantidad`, `imagen`, `serie`, `id_personal`, `id_equipo`, `id_folio`) VALUES
@@ -320,9 +370,10 @@ INSERT INTO `depositos` (`id_deposito`, `fecha`, `autorizacion`, `cuenta`, `cant
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `personal`
+-- Table structure for table `personal`
 --
 
+DROP TABLE IF EXISTS `personal`;
 CREATE TABLE IF NOT EXISTS `personal` (
   `id_personal` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
@@ -333,10 +384,10 @@ CREATE TABLE IF NOT EXISTS `personal` (
   `correo` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `celular` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_personal`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Volcado de datos para la tabla `personal`
+-- Dumping data for table `personal`
 --
 
 INSERT INTO `personal` (`id_personal`, `tipo`, `usuario`, `contrasena`, `nombre`, `apellidos`, `correo`, `celular`) VALUES
@@ -350,9 +401,10 @@ INSERT INTO `personal` (`id_personal`, `tipo`, `usuario`, `contrasena`, `nombre`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `refacciones_tv`
+-- Table structure for table `refacciones_tv`
 --
 
+DROP TABLE IF EXISTS `refacciones_tv`;
 CREATE TABLE IF NOT EXISTS `refacciones_tv` (
   `Id_refacciones` int(11) NOT NULL AUTO_INCREMENT,
   `pieza` varchar(45) DEFAULT NULL,
@@ -374,14 +426,15 @@ CREATE TABLE IF NOT EXISTS `refacciones_tv` (
   `id_personal` int(10) DEFAULT '0',
   PRIMARY KEY (`Id_refacciones`),
   KEY `id_personal` (`id_personal`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reparar_electrodomesticos`
+-- Table structure for table `reparar_electrodomesticos`
 --
 
+DROP TABLE IF EXISTS `reparar_electrodomesticos`;
 CREATE TABLE IF NOT EXISTS `reparar_electrodomesticos` (
   `id_equipo` int(11) NOT NULL AUTO_INCREMENT,
   `equipo` varchar(50) NOT NULL,
@@ -407,10 +460,10 @@ CREATE TABLE IF NOT EXISTS `reparar_electrodomesticos` (
   PRIMARY KEY (`id_equipo`),
   KEY `Id_folio` (`id_folio`),
   KEY `id_personal` (`id_personal`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `reparar_electrodomesticos`
+-- Dumping data for table `reparar_electrodomesticos`
 --
 
 INSERT INTO `reparar_electrodomesticos` (`id_equipo`, `equipo`, `marca`, `modelo`, `accesorios`, `falla`, `comentarios`, `fecha_ingreso`, `fecha_entregar`, `fecha_egreso`, `servicio`, `presupuesto`, `mano_obra`, `abono`, `restante`, `costo_total`, `estado`, `ubicacion`, `puntos`, `id_folio`, `id_personal`) VALUES
@@ -423,9 +476,10 @@ INSERT INTO `reparar_electrodomesticos` (`id_equipo`, `equipo`, `marca`, `modelo
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reparar_tv`
+-- Table structure for table `reparar_tv`
 --
 
+DROP TABLE IF EXISTS `reparar_tv`;
 CREATE TABLE IF NOT EXISTS `reparar_tv` (
   `id_equipo` int(11) NOT NULL AUTO_INCREMENT,
   `equipo` varchar(50) NOT NULL,
@@ -453,10 +507,10 @@ CREATE TABLE IF NOT EXISTS `reparar_tv` (
   KEY `Id_folio` (`id_folio`),
   KEY `id_personal` (`id_personal`),
   KEY `id_personal_2` (`id_personal`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5000113 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5000150 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `reparar_tv`
+-- Dumping data for table `reparar_tv`
 --
 
 INSERT INTO `reparar_tv` (`id_equipo`, `equipo`, `marca`, `modelo`, `serie`, `accesorios`, `falla`, `comentarios`, `fecha_ingreso`, `fecha_entregar`, `fecha_egreso`, `servicio`, `presupuesto`, `mano_obra`, `abono`, `restante`, `costo_total`, `estado`, `ubicacion`, `puntos`, `id_folio`, `id_personal`) VALUES
@@ -465,20 +519,20 @@ INSERT INTO `reparar_tv` (`id_equipo`, `equipo`, `marca`, `modelo`, `serie`, `ac
 (5000002, 'Television', 'samsung', 'ln32c350d1d', '', 'Ninguno', 'No enciende', '', '2018-06-07 17:53:03', '2018-07-20 17:35:08', '2018-06-08 06:00:00', 'Taller', 0, 1800, 0, 0, 1800, 'Entregado', 'Cliente', 0, 4417, 2),
 (5000003, 'Television', 'AOC', 'L32W961', '', 'Ninguno', 'No enciende', 'Se guardó un tiempo y cuando la quisieron volver a usar, ya no encendio', '2018-06-11 15:20:40', '2018-07-20 17:32:08', '2018-07-07 20:47:33', 'Taller', 0, 1000, 0, 0, 1000, 'Entregado', 'Cliente', 0, 4420, 2),
 (5000004, 'Television', 'Otros', 'HKP32F16', '', 'Ninguno', 'Tiene codigo', 'Marca HKPro', '2018-06-11 17:50:36', '2018-07-18 20:41:05', '2018-06-19 01:32:29', 'Taller', 0, 500, 0, 0, 500, 'Entregado', 'Cliente', 0, 4422, 2),
-(5000005, 'Television', 'LG', '49LF5900', '', 'Ninguno', 'Pantalla rota', 'Se le prestó una tele con valor de $5500.00 dejó 3000 ya depositados 29/08/18', '2018-06-11 20:40:50', '2018-06-11 06:00:00', '2018-06-11 06:00:00', 'Taller', 4500, 1000, 2500, 3000, 5500, 'Necesita pieza', 'Taller', 0, 4423, 2),
+(5000005, 'Television', 'LG', '49LF5900', '', 'Ninguno', 'Pantalla rota', 'Se le prestó una tele con valor de $5500.00 dejó 3000 ya depositados 29/08/18', '2018-06-11 20:40:50', '2018-06-11 06:00:00', '2018-06-11 06:00:00', 'Taller', 1312, 1000, 2500, 3000, 5500, 'autorizacion taller', 'Taller', 0, 4423, 2),
 (5000006, 'Television', 'LG', '47LN5700', '', 'Ninguno', 'No enciende la pantalla y no funciona el internet', 'No agarra wifi ni el cable, probable falla de leds', '2018-06-12 15:19:37', '2018-07-18 20:41:48', '2018-06-19 01:32:47', 'Taller', 0, 3200, 3200, 0, 3200, 'Entregado', 'Cliente', 0, 4424, 2),
 (5000007, 'Television', 'LG', '50LN5710', '', 'Ninguno', 'Falla de los leds', '', '2018-06-12 15:25:18', '2018-07-19 15:59:30', '2018-06-12 21:22:13', 'Taller', 0, 1500, 1500, 0, 1500, 'Entregado', 'Cliente', 0, 4425, 2),
-(5000008, 'Television', 'AOC', 'L32W961', '', 'Ninguno', 'Pantalla estrellada', '', '2018-06-12 15:44:31', '2018-06-12 06:00:00', '2018-06-12 06:00:00', 'Taller', 1500, 450, 0, 0, 1950, 'Necesita pieza', 'Taller', 0, 4418, 2),
-(5000009, 'Television', 'Samsung', 'HG32NA478', '', 'Ninguno', 'No enciende', '', '2018-06-12 18:13:22', '2018-06-12 06:00:00', '2018-06-12 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Pendiente', 'Taller', 0, 4426, 2),
+(5000008, 'Television', 'AOC', 'L32W961', '', 'Ninguno', 'Pantalla estrellada', '', '2018-06-12 15:44:31', '2018-06-12 06:00:00', '2018-06-12 06:00:00', 'Taller', 123123, 450, 0, 0, 1950, 'autorizacion taller', 'Taller', 0, 4418, 2),
+(5000009, 'Television', 'Samsung', 'HG32NA478', '', 'Ninguno', 'No enciende', '', '2018-06-12 18:13:22', '2018-09-12 22:38:56', '2018-06-12 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Diagnosticada', 'Taller', 0, 4426, 2),
 (5000010, 'Television', 'Otros', 'aiwa 19', '', 'Ninguno', 'no prende', 'al principio no se veia bien despues ya no prendio.\r\nLa señora estuvo de acuerdo en desechar la television.', '2018-06-12 21:29:08', '2018-06-12 06:00:00', '2018-07-11 14:44:58', 'Taller', 0, 0, 0, 0, 0, 'Devuelto', 'Cliente', 0, 4427, 2),
-(5000011, 'Television', 'Samsung', '', '', 'Otros (Especificar en comentarios)', 'pantalla rota', 'deja fuente de poder ', '2018-06-13 01:28:13', '2018-06-12 06:00:00', '2018-06-12 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Necesita pieza', 'Taller', 0, 4428, 2),
+(5000011, 'Television', 'Samsung', '', '', 'Otros (Especificar en comentarios)', 'pantalla rota', 'deja fuente de poder ', '2018-06-13 01:28:13', '2018-06-12 06:00:00', '2018-06-12 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Necesita refaccion', 'Taller', 0, 4428, 2),
 (5000012, 'Television', 'LG', '47LN5310', '', 'Ninguno', 'LEDS', '', '2018-06-16 20:21:04', '2018-07-19 16:11:34', '2018-06-16 20:22:42', 'Domicilio', 0, 1800, 1800, 0, 1800, 'Entregado', 'Cliente', 0, 4430, 2),
-(5000013, 'Television', 'LG', 'RM-20LZ50', '', 'Cable de corriente', 'No enciende', '', '2018-06-16 21:13:35', '2018-06-16 06:00:00', '2018-06-16 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Pendiente', 'Taller', 0, 4431, 2),
+(5000013, 'Television', 'LG', 'RM-20LZ50', '', 'Cable de corriente', 'No enciende', '', '2018-06-16 21:13:35', '2018-09-12 23:01:09', '2018-06-16 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Diagnosticada', 'Taller', 0, 4431, 2),
 (5000014, 'Television', 'Samsung', 'UN50FH5303F', '', 'Base', 'Esta oscuro', '', '2018-06-19 15:59:25', '2018-06-19 06:00:00', '2018-06-19 06:00:00', 'Taller', 0, 2800, 0, 2800, 2800, 'Reparada', 'Taller', 0, 4433, 2),
-(5000015, 'Television', 'Philips', '32pfl4909', '', 'Ninguno', 'sin falla', 'se le vendio por aprox 1900', '2018-06-20 00:47:04', '2018-06-19 06:00:00', '2018-06-19 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Pendiente', 'Taller', 0, 4434, 2),
+(5000015, 'Television', 'Philips', '32pfl4909', '', 'Ninguno', 'sin falla', 'se le vendio por aprox 1900', '2018-06-20 00:47:04', '2018-09-12 23:03:04', '2018-06-19 06:00:00', 'Taller', 0, 0, 0, 0, 0, 'Diagnosticada', 'Taller', 0, 4434, 2),
 (5000016, 'Television', 'LG', '32LD350', '', 'Ninguno', 'Se apaga rapidamente', '', '2018-06-20 16:53:33', '2018-06-20 06:00:00', '2018-07-20 18:37:07', 'Taller', 0, 0, 0, 0, 0, 'Devuelto', 'Cliente', 0, 4435, 2),
 (5000017, 'Television', 'Vizio', '42hdtv10a', '', 'Ninguno', 'no prende', 'se le dio precio de 2500 solicitandole 1800 para refaccion quedaq de resolver.', '2018-06-21 00:56:42', '2018-09-05 16:38:10', '2018-09-05 23:57:42', 'Taller', 1800, 850, 1800, 0, 2650, 'Entregado', 'Cliente', 0, 4436, 2),
-(5000018, 'Television', 'LG', '32lc5dcs', '', 'Ninguno', 'tarda para encender', 'comenta que cuando se enciende se pone azul la pantalla', '2018-06-21 01:18:06', '2018-06-20 06:00:00', '2018-06-20 06:00:00', 'Taller', 0, 1000, 0, 0, 1000, 'Pendiente', 'Taller', 0, 4437, 2),
+(5000018, 'Television', 'LG', '32lc5dcs', '', 'Ninguno', 'tarda para encender', 'comenta que cuando se enciende se pone azul la pantalla', '2018-06-21 01:18:06', '2018-09-12 23:06:53', '2018-06-20 06:00:00', 'Taller', 0, 1000, 0, 0, 1000, 'Diagnosticada', 'Taller', 0, 4437, 2),
 (5000019, 'Television', 'LG', '42LC4D', '', 'Base', 'Tarjeta bloqueada', 'Se cambian solo los canales', '2018-06-21 14:57:53', '2018-08-06 17:51:28', '2018-06-21 06:00:00', 'Garantia', 0, 0, 0, 0, 2000, 'Entregado', 'Cliente', 0, 4438, 2),
 (5000020, 'Television', 'Hisense', '40H5B2', '', 'Cable de corriente', 'Revision', '', '2018-06-21 18:24:37', '2018-06-21 06:00:00', '2018-06-21 06:00:00', 'Taller', 1800, 0, 0, 0, 1800, 'Pendiente', 'Taller', 0, 4440, 2),
 (5000021, 'Television', 'LG', '42LS5650', '', 'Cable de corriente', 'No da imagen', 'Antigo folio del señor 4402', '2018-06-22 15:47:16', '2018-06-22 06:00:00', '2018-06-22 06:00:00', 'Taller', 2500, 1000, 2500, 1000, 3500, 'Reparada', 'Taller', 0, 4441, 2),
@@ -519,9 +573,9 @@ INSERT INTO `reparar_tv` (`id_equipo`, `equipo`, `marca`, `modelo`, `serie`, `ac
 (5000056, 'Television', 'Samsung', 'UN40FH5303F', '', 'Ninguno', 'Se escucha pero no se ve', '', '2018-07-12 18:55:49', '2018-07-20 16:29:05', '2018-07-13 23:44:49', 'Taller', 0, 2800, 0, 0, 2800, 'Entregado', 'Cliente', 0, 4475, 2),
 (5000057, 'Television', 'LG', '43LH5700', '', 'Cable de corriente', 'Pantalla estrellada', '', '2018-07-12 20:20:32', '2018-07-12 06:00:00', '2018-07-12 06:00:00', 'Taller', 3500, 1000, 3500, 1000, 4500, 'Pendiente', 'Recepcion', 0, 4476, 0),
 (5000058, 'Television', 'LG', '50LN5710', '', 'Base', 'Se escucha pero no se ve', '', '2018-07-13 20:49:36', '2018-07-23 23:30:11', '2018-07-13 06:00:00', 'Taller', 0, 3000, 0, 0, 0, 'Entregado', 'Cliente', 0, 4478, 2),
-(5000059, 'Television', 'Samsung', 'UN60FH6003', '', 'Base', 'Golpe', 'Cable de corriente y base(la dejaron en una caja grande)', '2018-07-14 18:45:04', '2018-07-14 06:00:00', '2018-07-14 06:00:00', 'Taller', 5000, 2000, 3000, 4000, 7000, 'Diagnosticada', 'Recepcion', 0, 4479, 0),
+(5000059, 'Television', 'Samsung', 'UN60FH6003', '', 'Base', 'Golpe', 'Cable de corriente y base(la dejaron en una caja grande)', '2018-07-14 18:45:04', '2018-07-14 06:00:00', '2018-07-14 06:00:00', 'Taller', 5000, 2000, 3000, 4000, 7000, 'Almacen', 'Recepcion', 0, 4479, 0),
 (5000060, 'Television', 'LG', '42PJ550', '', 'Ninguno', 'Le salió una raya', '', '2018-07-14 18:46:00', '2018-07-19 20:08:03', '2018-07-14 06:00:00', 'Taller', 0, 1800, 1800, 0, 1800, 'Entregado', 'Cliente', 0, 4479, 2),
-(5000061, 'Television', 'LG', '42LC7D', '', 'Base', 'Batalla para encender ', 'base y control remoto', '2018-07-16 15:16:11', '2018-07-19 21:31:45', '2018-07-17 18:23:05', 'Taller', 0, 800, 0, 0, 800, 'Depositado', 'Cliente', 0, 4458, 2),
+(5000061, 'Television', 'LG', '42LC7D', '', 'Base', 'Batalla para encender ', 'base y control remoto', '2018-07-16 15:16:11', '2018-07-19 21:31:45', '2018-07-17 18:23:05', 'Taller', 0, 800, 0, 0, 800, 'Almacen', 'Cliente', 0, 4458, 2),
 (5000062, 'Television', 'LG', '32LN530B', '', 'Base', 'Se apaga', '', '2018-07-17 18:57:57', '2018-07-17 06:00:00', '2018-07-17 06:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4482, 0),
 (5000063, 'Television', 'Philips', '32PFL4909', '', 'Ninguno', 'No enciende', 'REPARACION FUENTE', '2018-07-17 19:01:52', '2018-07-17 06:00:00', '2018-08-13 19:04:09', 'Taller', 950, 0, 950, 0, 950, 'Entregado', 'Cliente', 0, 4481, 0),
 (5000064, 'Television', 'Panasonic', 'TC-L32C5X', '', 'Base', 'Pantalla rota', 'Dueño de la Birrieria los compadres, que estan buenas dijo :v', '2018-07-18 18:14:07', '2018-07-23 23:11:53', '2018-07-18 06:00:00', 'Taller', 1400, 400, 0, 1800, 1800, 'Necesita pieza', 'Taller', 0, 4483, 2),
@@ -561,25 +615,63 @@ INSERT INTO `reparar_tv` (`id_equipo`, `equipo`, `marca`, `modelo`, `serie`, `ac
 (5000098, 'Television', 'Philips', '39PFL4208/F8', '', 'Ninguno', 'FALLA EN LA PANTALLA', '', '2018-08-29 16:47:12', '2018-09-12 16:27:57', '0000-00-00 00:00:00', 'Taller', 2600, 750, 0, 3350, 3350, 'Reparada', 'Recepcion', 0, 4525, 2),
 (5000099, 'Television', 'Vios', 'TV3914SM', '', 'Patas', 'NO ENCIENDE', '', '2018-08-31 22:40:32', '2018-08-31 06:00:00', '2018-09-01 20:28:08', 'Domicilio', 0, 1300, 0, 0, 1300, 'Entregado', 'Cliente', 0, 4529, 0),
 (5000100, 'Television', 'LG', '42LB5550', '', 'Patas', 'NO  DA IMAGEN', 'solo da audio pero imagen no.', '2018-09-01 20:55:13', '2018-09-02 00:52:30', '2018-09-02 00:54:29', 'Taller', 0, 0, 0, 0, 0, 'Entregado', 'Cliente', 0, 4530, 0),
-(5000101, 'Television', 'LG', '55LW5700', '', 'Ninguno', 'NO ENCIENDE', 'viene de otro taller', '2018-09-04 22:43:04', '2018-09-04 22:47:13', '0000-00-00 00:00:00', 'Taller', 0, 0, 0, 0, 0, 'En Reparación', 'Taller', 0, 4531, 2),
+(5000101, 'Television', 'LG', '55LW5700', '', 'Ninguno', 'NO ENCIENDE', 'viene de otro taller', '2018-09-04 22:43:04', '2018-09-04 22:47:13', '0000-00-00 00:00:00', 'Taller', 0, 0, 0, 0, 0, 'Diagnosticada', 'Taller', 0, 4531, 2),
 (5000102, '', 'Samsung', 'UN32F5500', '', 'Ninguno', 'no enciende', '', '2018-09-05 00:27:48', '2018-09-06 01:02:54', '0000-00-00 00:00:00', 'Domicilio', 0, 900, 900, 0, 900, 'Reparada', 'Taller', 0, 4532, 2),
 (5000103, 'Television', 'LG', '42LU25', '', 'Ninguno', 'PANTALLA ROTA', '', '2018-09-05 15:32:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Taller', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4528, 0),
 (5000104, 'Television', 'Samsung', 'UN55K6500', '', 'Base', 'PANTALLA ROTA', '', '2018-09-05 15:35:56', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Taller', 6000, 1500, 6000, 1500, 7500, 'Pendiente', 'Recepcion', 0, 4512, 0),
 (5000105, 'Television', 'LG', '42PG1HD', '', 'Ninguno', 'NO ENCIENDE', '', '2018-09-05 16:22:24', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Taller', 1600, 750, 1600, 750, 2350, 'Pendiente', 'Recepcion', 0, 4533, 0),
 (5000106, 'Television', 'Hisense', '40H5D', '', 'Ninguno', 'PANTALLA ROTA', '', '2018-09-05 17:48:37', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Taller', 0, 0, 1400, -1400, 0, 'Pendiente', 'Recepcion', 0, 4534, 0),
 (5000107, 'Television', 'LG', '43LF5900', '', 'Ninguno', 'PANTALLA ROTA', '', '2018-09-06 01:44:03', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Taller', 0, 0, 2800, -2800, 0, 'Pendiente', 'Recepcion', 0, 4535, 0),
-(5000108, 'TELEVISION', 'LG', '50LN5710', '', 'Base de pared', 'PANTALLA CON RAYAS', 'TIENE HUMEDAD, SE REALIZARÁ MANTINIMIENTO A PANTALLA', '2018-09-06 22:04:07', '2018-09-06 22:07:33', '0000-00-00 00:00:00', 'Taller', 0, 0, 0, 0, 0, 'En Reparación', 'Taller', 0, 4536, 2),
+(5000108, 'TELEVISION', 'LG', '50LN5710', '', 'Base de pared', 'PANTALLA CON RAYAS', 'TIENE HUMEDAD, SE REALIZARÁ MANTINIMIENTO A PANTALLA', '2018-09-06 22:04:07', '2018-09-06 22:07:33', '0000-00-00 00:00:00', 'Taller', 0, 0, 0, 0, 0, 'Diagnosticada', 'Taller', 0, 4536, 2),
 (5000109, 'Television', 'SAMSUNG', 'UN24H4000', '030R3CHH902461L', 'Base', 'PANTALLA ROTA', 'Se daÃ±o en paqueteria DHL', '2018-09-10 20:04:15', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4538, 0),
 (5000110, 'Television', 'Philips', '', '', 'Base', 'PANTALLA ESTRELLADA', '', '2018-09-10 22:23:15', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Taller', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4539, 0),
 (5000111, 'Fuente de poder', 'LIFE FITNESS', 'VARIOS', 'AK58001530001', 'NINGUNO', 'NO FUNCIONA', '', '2018-09-11 16:34:27', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4540, 0),
-(5000112, 'Television', 'SAMSUNG', 'UN46D6000', 'Z3FE3CAB300083L', 'Ninguno', 'PARPADEA LA PANTALLA', '', '2018-09-11 22:05:41', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4543, 0);
+(5000112, 'Television', 'SAMSUNG', 'UN46D6000', 'Z3FE3CAB300083L', 'Ninguno', 'PARPADEA LA PANTALLA', '', '2018-09-11 22:05:41', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4543, 0),
+(5000113, 'Ventiladores', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-13 23:21:02', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4551, 0),
+(5000114, 'Tarjeta madre', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:05:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4423, 0),
+(5000115, 'Tarjeta madre', 'ASDS', 'SIDFJSIODFJQ', 'ASDA', 'asda', 'ASDA', 'fsdfsfsdf', '2018-09-14 00:22:06', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4562, 0),
+(5000116, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:27:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000117, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:36:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000118, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:36:49', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000119, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:36:51', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000120, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:36:54', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000121, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:37:10', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Compra', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000122, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:37:43', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000123, 'Television', 'ASDS', 'SIDFJSIODFJQ', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:44:46', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000124, 'Television', 'ASDS', 'SIDFJSIODFJQ', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:45:37', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000125, 'Television', 'ASDS', 'SIDFJSIODFJQ', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:48:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000126, 'Television', 'ASDS', 'SIDFJSIODFJQ', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:49:17', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000127, 'Television', 'ASDS', 'SIDFJSIODFJQ', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:57:59', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000128, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 00:58:26', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000129, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:00:38', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000130, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:03:50', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4563, 0),
+(5000131, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:05:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4563, 0),
+(5000132, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:05:18', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4563, 0),
+(5000133, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:05:45', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4563, 0),
+(5000134, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:06:16', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4563, 0),
+(5000135, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:06:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4563, 0),
+(5000136, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:06:41', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4563, 0),
+(5000137, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:07:11', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000138, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:11:59', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000139, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:16:13', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Garantia', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000140, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:16:29', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000141, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:16:44', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000142, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:17:03', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000143, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:17:08', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000144, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:36:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000145, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-14 01:37:06', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000146, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-15 00:17:57', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000147, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-15 00:19:02', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Domicilio', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000148, 'Television', 'ASDS', '42ln5700', 'ASDA', 'asda', 'ASDA', '', '2018-09-15 00:19:37', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Compra', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0),
+(5000149, 'Television', 'ASDS', 'SIDFJSIODFJQ', 'ASDA', 'asda', 'ASDA', '', '2018-09-15 00:29:31', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Reparacion', 0, 0, 0, 0, 0, 'Pendiente', 'Recepcion', 0, 4414, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reportes_tecnicos`
+-- Table structure for table `reportes_tecnicos`
 --
 
+DROP TABLE IF EXISTS `reportes_tecnicos`;
 CREATE TABLE IF NOT EXISTS `reportes_tecnicos` (
   `id_reporte` int(11) NOT NULL AUTO_INCREMENT,
   `falla_especifica` varchar(1000) NOT NULL,
@@ -597,10 +689,10 @@ CREATE TABLE IF NOT EXISTS `reportes_tecnicos` (
   PRIMARY KEY (`id_reporte`),
   KEY `id_equipo` (`id_equipo`),
   KEY `id_personal` (`id_personal`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `reportes_tecnicos`
+-- Dumping data for table `reportes_tecnicos`
 --
 
 INSERT INTO `reportes_tecnicos` (`id_reporte`, `falla_especifica`, `solucion_especifica`, `conclusion`, `fecha`, `solicitud`, `parte`, `estado`, `imagen1`, `imagen2`, `imagen3`, `id_personal`, `id_equipo`) VALUES
@@ -636,54 +728,70 @@ INSERT INTO `reportes_tecnicos` (`id_reporte`, `falla_especifica`, `solucion_esp
 (30, 'Pantalla rota', 'Se necesita cambiar la pantalla shavo', 'Pendiente de presupuesto', '2018-07-28 17:48:01', '', '', '', '', '', '', 2, 5000074),
 (31, 'Mala imagen, no funcuiona una bocina', 'Se sustituyo la tarjeta tcon por otra, y se cambio el set de bocinas', 'equipo reparado', '2018-08-01 16:56:34', '', '', '', '', '', '', 2, 5000078),
 (32, 'Falla en la tarjeta main', 'Se sustituyo la tarjeta', 'Re`parado', '2018-08-01 19:38:46', '', '', '', '', '', '', 2, 5000070),
-(33, 'pantalla daÃ±ada por humedad', 'reemplazo pantalla', 'Reparado', '2018-09-12 16:29:01', 'NA', 'NA', '', '', '', '', 1, 5000098);
+(33, 'pantalla daÃ±ada por humedad', 'reemplazo pantalla', 'Reparado', '2018-09-12 16:29:01', 'NA', 'NA', '', '', '', '', 1, 5000098),
+(34, 'asda', 'asdasd', 'Reparado', '2018-09-12 22:40:05', 'NA', 'NA', 'asdasd', 'assets/galeria/reporte/7/5000009/28_24MT49S_Product image_09_Desk.jpg', 'assets/galeria/reporte/7/5000009/0003395_tv-tokyo-49-full-hd-smart.jpeg', 'assets/galeria/reporte/7/5000009/smart-tv-RCA1.png', 7, 5000009),
+(35, 'asdsasd', 'asdasdasdasdasd', 'Reparado', '2018-09-12 22:43:43', 'NA', 'NA', 'asdasd', 'assets/galeria/reporte/7/5000101/28_24MT49S_Product image_09_Desk.jpg', 'assets/galeria/reporte/7/5000101/0003395_tv-tokyo-49-full-hd-smart.jpeg', 'assets/galeria/reporte/7/5000101/smart-tv-RCA1.png', 7, 5000101),
+(36, 'qweqw', 'qweqwe', 'Reparado', '2018-09-12 22:53:05', 'NA', 'NA', 'qweqwe', 'assets/galeria/reporte/7/5000108/28_24MT49S_Product image_09_Desk.jpg', 'assets/galeria/reporte/7/5000108/0003395_tv-tokyo-49-full-hd-smart.jpeg', 'assets/galeria/reporte/7/5000108/smart-tv-RCA1.png', 7, 5000108),
+(37, 'ssda', 'dasdasdasd', 'Reparado', '2018-09-12 23:01:30', 'NA', 'NA', 'asda', 'assets/galeria/reporte/7/5000013/28_24MT49S_Product image_09_Desk.jpg', 'assets/galeria/reporte/7/5000013/0003395_tv-tokyo-49-full-hd-smart.jpeg', 'assets/galeria/reporte/7/5000013/smart-tv-RCA1.png', 7, 5000013),
+(38, 'Ueuwusu', 'Jsusus', 'Reparado', '2018-09-12 23:06:16', 'NA', 'NA', 'Jzususu', 'assets/galeria/reporte/2/5000015/1536793542146-954574774.jpg', 'assets/galeria/reporte/2/5000015/1536793554308740450864.jpg', 'assets/galeria/reporte/2/5000015/1536793563214-709024918.jpg', 2, 5000015),
+(39, 'Usiussis', 'Jsjsusus', 'Reparado', '2018-09-12 23:07:47', 'NA', 'NA', 'Jzjdjdjs', 'assets/galeria/reporte/2/5000018/IMG-20180912-WA0011.jpg', 'assets/galeria/reporte/2/5000018/IMG-20180912-WA0010.jpg', 'assets/galeria/reporte/2/5000018/IMG-20180912-WA0009.jpg', 2, 5000018);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `traslado`
+-- Table structure for table `traslado`
 --
 
+DROP TABLE IF EXISTS `traslado`;
 CREATE TABLE IF NOT EXISTS `traslado` (
   `id_traslado` int(11) NOT NULL AUTO_INCREMENT,
   `estado` varchar(50) NOT NULL,
-  `direccion` varchar(300) NOT NULL,
-  `comentarios` varchar(300) NOT NULL,
+  `direccion` varchar(300) DEFAULT NULL,
+  `comentarios` varchar(300) DEFAULT NULL,
   `ubicacion` varchar(50) NOT NULL,
   `destino` varchar(50) NOT NULL,
   `fecha_solicitud` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fecha_finalizado` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `fecha_finalizado` timestamp NULL DEFAULT NULL,
   `id_equipo` int(11) NOT NULL DEFAULT '0',
   `id_carro` int(11) NOT NULL DEFAULT '0',
   `id_personal` int(11) NOT NULL DEFAULT '0',
   `id_folio` int(11) NOT NULL,
+  `personal_id_personal` int(11) NOT NULL,
   PRIMARY KEY (`id_traslado`),
-  KEY `id_personal` (`id_personal`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+  KEY `id_personal` (`id_personal`),
+  KEY `fk_traslado_personal1_idx` (`personal_id_personal`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `traslado`
+-- Dumping data for table `traslado`
 --
 
-INSERT INTO `traslado` (`id_traslado`, `estado`, `direccion`, `comentarios`, `ubicacion`, `destino`, `fecha_solicitud`, `fecha_finalizado`, `id_equipo`, `id_carro`, `id_personal`, `id_folio`) VALUES
-(1, 'Pendiente', 'Taller lagunitas', '', 'Recepcion', 'Taller', '2018-07-12 16:19:24', '0000-00-00 00:00:00', 5000055, 0, 0, 4474),
-(2, 'Pendiente', 'lagunitas', '', 'Recepcion', 'Taller', '2018-07-12 16:27:15', '0000-00-00 00:00:00', 5000054, 0, 0, 4473),
-(3, 'Pendiente', 'lagunitas', '', 'Recepcion', 'Taller', '2018-07-12 16:29:27', '0000-00-00 00:00:00', 5000053, 0, 0, 4472),
-(4, 'Pendiente', 'lagunitas', 'pvto', 'Recepcion', 'Taller', '2018-07-12 17:13:08', '0000-00-00 00:00:00', 5000052, 0, 0, 4471),
-(5, 'Pendiente', '', '', 'Recepcion', 'Taller', '2018-07-19 17:36:19', '0000-00-00 00:00:00', 5000064, 0, 0, 4483),
-(6, 'Pendiente', 'lagunitas', 'esta rota la pantalla', 'Recepcion', 'Taller', '2018-07-19 17:36:44', '0000-00-00 00:00:00', 5000064, 0, 0, 4483),
-(7, 'Pendiente', '', '', 'Taller', 'Bodega', '2018-07-23 23:15:21', '0000-00-00 00:00:00', 5000064, 0, 0, 4483),
-(8, 'Pendiente', '', '', 'Recepcion', 'Taller', '2018-07-27 14:53:12', '0000-00-00 00:00:00', 5000073, 0, 0, 4495),
-(9, 'Pendiente', '', '', 'Recepcion', 'Taller', '2018-07-27 15:00:06', '0000-00-00 00:00:00', 5000074, 0, 0, 4496),
-(10, 'Entregado', 'Lomas del sol', 'es joto', 'Cliente', 'Cliente', '2018-07-30 15:14:14', '2018-07-30 12:19:51', 5000075, 1, 6, 4498),
-(11, 'Pendiente', 'taller1', '', 'Recepcion', 'Taller', '2018-07-31 00:16:50', '0000-00-00 00:00:00', 5000076, 0, 0, 4499);
+INSERT INTO `traslado` (`id_traslado`, `estado`, `direccion`, `comentarios`, `ubicacion`, `destino`, `fecha_solicitud`, `fecha_finalizado`, `id_equipo`, `id_carro`, `id_personal`, `id_folio`, `personal_id_personal`) VALUES
+(1, 'Coleccion', 'Taller lagunitas', '', 'Recepcion', 'Taller', '2018-07-12 16:19:24', '0000-00-00 00:00:00', 5000055, 0, 1, 4474, 0),
+(2, 'En ruta', 'lagunitas', '', 'Carro #1', 'Taller', '2018-07-12 16:27:15', '0000-00-00 00:00:00', 5000054, 1, 6, 4473, 0),
+(3, 'En ruta', 'lagunitas', '', 'Carro #1', 'Taller', '2018-07-12 16:29:27', '0000-00-00 00:00:00', 5000053, 1, 6, 4472, 0),
+(4, 'Pendiente', 'lagunitas', 'pvto', 'Recepcion', 'Taller', '2018-07-12 17:13:08', '0000-00-00 00:00:00', 5000052, 0, 0, 4471, 0),
+(5, 'Pendiente', '', '', 'Recepcion', 'Taller', '2018-07-19 17:36:19', '0000-00-00 00:00:00', 5000064, 0, 0, 4483, 0),
+(6, 'Pendiente', 'lagunitas', 'esta rota la pantalla', 'Recepcion', 'Taller', '2018-07-19 17:36:44', '0000-00-00 00:00:00', 5000064, 0, 0, 4483, 0),
+(7, 'Pendiente', '', '', 'Taller', 'Bodega', '2018-07-23 23:15:21', '0000-00-00 00:00:00', 5000064, 0, 0, 4483, 0),
+(8, 'Pendiente', '', '', 'Recepcion', 'Taller', '2018-07-27 14:53:12', '0000-00-00 00:00:00', 5000073, 0, 0, 4495, 0),
+(9, 'Pendiente', '', '', 'Recepcion', 'Taller', '2018-07-27 15:00:06', '0000-00-00 00:00:00', 5000074, 0, 0, 4496, 0),
+(10, 'Recoleccion', 'Lomas del sol', 'es joto', 'Cliente', 'Cliente', '2018-07-30 15:14:14', '2018-07-30 12:19:51', 5000075, 1, 6, 4498, 0),
+(11, 'Pendiente', 'taller1', '', 'Recepcion', 'Taller', '2018-07-31 00:16:50', '0000-00-00 00:00:00', 5000076, 0, 0, 4499, 0),
+(12, 'Pendiente', NULL, 'omentario', 'recepcion', 'Taller', '2018-09-14 00:27:23', NULL, 5000115, 0, 0, 4562, 0),
+(13, 'Pendiente', NULL, 'ementario', 'recepcion', 'Taller', '2018-09-14 00:43:45', NULL, 5000120, 0, 0, 4414, 0),
+(14, 'Pendiente', NULL, '', 'recepcion', 'Taller', '2018-09-15 00:17:58', NULL, 5000145, 0, 0, 4414, 0),
+(15, 'Pendiente', NULL, '', 'recepcion', 'Taller', '2018-09-15 00:19:02', NULL, 5000145, 0, 0, 4414, 0),
+(16, 'Pendiente', NULL, '', 'recepcion', 'Taller', '2018-09-15 00:19:37', NULL, 5000147, 0, 0, 4414, 0),
+(17, 'Pendiente', NULL, '', 'recepcion', 'Taller', '2018-09-15 00:29:31', NULL, 5000149, 0, 0, 4414, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ventas_tv`
+-- Table structure for table `ventas_tv`
 --
 
+DROP TABLE IF EXISTS `ventas_tv`;
 CREATE TABLE IF NOT EXISTS `ventas_tv` (
   `idventa_tv` int(11) NOT NULL AUTO_INCREMENT,
   `marca` varchar(50) NOT NULL,
@@ -691,46 +799,66 @@ CREATE TABLE IF NOT EXISTS `ventas_tv` (
   `serie` varchar(50) NOT NULL,
   `costo` int(11) NOT NULL,
   `imagen1` varchar(300) NOT NULL,
-  `imagen2` varchar(300) NOT NULL,
-  `imagen3` varchar(300) NOT NULL,
+  `imagen2` varchar(300) DEFAULT NULL,
+  `imagen3` varchar(300) DEFAULT NULL,
   `fecha_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fecha_egreso` text NOT NULL,
+  `fecha_egreso` text,
   `estado` varchar(30) NOT NULL,
   `id_personal` int(11) NOT NULL DEFAULT '0',
   `idvendedor` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idventa_tv`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `ubicacion` varchar(50) NOT NULL,
+  `id_equipo` int(11) NOT NULL,
+  `id_folio` int(11) NOT NULL,
+  `reparar_tv_id_equipo` int(11) NOT NULL,
+  PRIMARY KEY (`idventa_tv`),
+  KEY `fk_ventas_tv_reparar_tv1_idx` (`reparar_tv_id_equipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `ventas_tv`
+-- Dumping data for table `ventas_tv`
 --
 
-INSERT INTO `ventas_tv` (`idventa_tv`, `marca`, `modelo`, `serie`, `costo`, `imagen1`, `imagen2`, `imagen3`, `fecha_alta`, `fecha_egreso`, `estado`, `id_personal`, `idvendedor`) VALUES
-(1, 'Samsung', 'un55mu6100fxzx', 'asdasd12345', 7500, '\\Base de datos\\Ventas de televisiones\\Recepcion\\Samsung\\un55mu6100fxzx\\asdasd12345\\mx-uhdtv-mu6100-un55.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\Samsung\\un55mu6100fxzx\\asdasd12345\\mx-uhdtv-mu6100.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\Samsung\\un55mu6100fxzx\\asdasd12345\\jklhjlblkg.jpg', '2018-07-13 16:19:25', '', 'Vendida', 3, 3),
-(2, 'LG', '42ln5700', 'xasdas3623', 4300, 'assets\\galeria\\1.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\LG\\42ln5700\\xasdas3623\\lg2.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\LG\\42ln5700\\xasdas3623\\lg3.png', '2018-07-13 16:30:14', '', 'En venta', 3, 0);
+INSERT INTO `ventas_tv` (`idventa_tv`, `marca`, `modelo`, `serie`, `costo`, `imagen1`, `imagen2`, `imagen3`, `fecha_alta`, `fecha_egreso`, `estado`, `id_personal`, `idvendedor`, `ubicacion`, `id_equipo`, `id_folio`, `reparar_tv_id_equipo`) VALUES
+(1, 'Samsung', 'un55mu6100fxzx', 'asdasd12345', 7500, '\\Base de datos\\Ventas de televisiones\\Recepcion\\Samsung\\un55mu6100fxzx\\asdasd12345\\mx-uhdtv-mu6100-un55.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\Samsung\\un55mu6100fxzx\\asdasd12345\\mx-uhdtv-mu6100.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\Samsung\\un55mu6100fxzx\\asdasd12345\\jklhjlblkg.jpg', '2018-07-13 16:19:25', '', 'Vendida', 3, 3, '', 0, 0, 0),
+(2, 'LG', '42ln5700', 'xasdas3623', 4300, 'assets\\galeria\\1.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\LG\\42ln5700\\xasdas3623\\lg2.jpg', '\\Base de datos\\Ventas de televisiones\\Recepcion\\LG\\42ln5700\\xasdas3623\\lg3.png', '2018-07-13 16:30:14', '', 'Vendida', 3, 0, '', 0, 0, 0),
+(3, 'qlon', 'asde', '1wewqw', 4300, 'assets/galeria/28_24MT49S_Product image_09_Desk.jpg', NULL, NULL, '2018-09-12 22:38:07', NULL, 'Vendida', 0, 0, '', 0, 0, 0),
+(4, 'qlon', 'asde', '1wewqw', 4300, 'assets/galeria/smart-tv-RCA1.png', NULL, NULL, '2018-09-12 22:38:21', NULL, 'En venta', 0, 0, '', 0, 0, 0);
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `depositos`
+-- Constraints for table `depositos`
 --
 ALTER TABLE `depositos`
   ADD CONSTRAINT `depositos_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal` (`id_personal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `reparar_electrodomesticos`
+-- Constraints for table `reparar_electrodomesticos`
 --
 ALTER TABLE `reparar_electrodomesticos`
   ADD CONSTRAINT `reparar_electrodomesticos_ibfk_1` FOREIGN KEY (`id_folio`) REFERENCES `clientes` (`id_folio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `reparar_tv`
+-- Constraints for table `reparar_tv`
 --
 ALTER TABLE `reparar_tv`
   ADD CONSTRAINT `reparar_tv_ibfk_1` FOREIGN KEY (`id_folio`) REFERENCES `clientes` (`id_folio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `reparar_tv_ibfk_2` FOREIGN KEY (`id_folio`) REFERENCES `clientes` (`id_folio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `traslado`
+--
+ALTER TABLE `traslado`
+  ADD CONSTRAINT `fk_traslado_personal1` FOREIGN KEY (`personal_id_personal`) REFERENCES `personal` (`id_personal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `ventas_tv`
+--
+ALTER TABLE `ventas_tv`
+  ADD CONSTRAINT `fk_ventas_tv_reparar_tv1` FOREIGN KEY (`reparar_tv_id_equipo`) REFERENCES `reparar_tv` (`id_equipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
