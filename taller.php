@@ -140,9 +140,6 @@ estado = 'Necesita refaccion';";
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
-
-
-
     </aside>
     <main class="app-content">
       <div class="app-title">
