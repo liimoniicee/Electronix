@@ -449,7 +449,7 @@ $en_ruta = "SELECT
   function enviarmod_por_concretar(id){
     $.ajax({
         // la URL para la petición
-        url : 'mod.php',
+        url : 'Traslados/mod.php',
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
         data : {
@@ -500,29 +500,87 @@ swal({
 title: 'Editar solicitud',
 html:
 
-'<form action="actual_concre" method="post" name="data">'+
+'<form action="Traslados/actual_concre" method="post" name="data">'+
 //'<label for="exampleInputEmail1">id</label>' +
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
-'<label for="exampleInputEmail1">Estado</label>' +
-'<input name="swal-input1" id="swal-input1" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Direccion</label>' +
-'<input name="swal-input2" id="swal-input2" class="form-control border-input type="number" readonly>' +
-'<label for="exampleInputEmail1">Comentarios</label>' +
-'<input name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Ubicacion</label>' +
-'<input name="swal-input4" id="swal-input4" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Destino</label>' +
-'<input name="swal-input5" id="swal-input5" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Fecha solicitud</label>' +
-'<input name="swal-input6" id="swal-input6" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Id equipo</label>' +
-'<input name="swal-input7" id="swal-input7" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Id carro</label>' +
-'<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Id personal</label>' +
-'<input name="swal-input9" id="swal-input9" class="form-control border-input maxlength="25" readonly>' +
-'<label for="exampleInputEmail1">Id folio</label>' +
-'<input name="swal-input10" id="swal-input10" class="form-control border-input maxlength="25" readonly>' +
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Estado</label>'+
+        '<input type="text" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Direccion</label>'+
+        '<input type="text" id="swal-input2" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Comentarios</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ubicación</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Destino</label>'+
+        '<input type="text" name="swal-input5" id="swal-input5" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Fecha de solicitud</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>equipo</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label># carro</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Personal</label>'+
+        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio</label>'+
+        '<input type="text" name="swal-input10" id="swal-input10" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
 
 
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar en ruta</Button>'+
@@ -556,7 +614,7 @@ swal(
   function enviarmod_traslados(id){
     $.ajax({
         // la URL para la petición
-        url : 'mod.php',
+        url : 'Traslados/mod.php',
         // la información a enviar
         // (también es posible utilizar una cadena de datos)
         data : {
@@ -608,30 +666,87 @@ swal(
    title: 'Editar solicitud',
    html:
 
-   '<form action="actual_status" method="post" name="data">'+
+   '<form action="Traslados/actual_status" method="post" name="data">'+
    //'<label for="exampleInputEmail1">id</label>' +
    '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
-   '<label for="exampleInputEmail1">Estado</label>' +
-   '<input name="swal-input1" id="swal-input1" class="form-control border-input maxlength="25" readonly>' +
-   '<label for="exampleInputEmail1">Direccion</label>' +
-   '<input name="swal-input2" id="swal-input2" class="form-control border-input type="number" readonly>' +
-   '<label for="exampleInputEmail1">Comentarios</label>' +
-   '<input name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" readonly>' +
-   '<label for="exampleInputEmail1">Ubicacion</label>' +
-   '<input name="swal-input4" id="swal-input4" class="form-control border-input maxlength="25" readonly>' +
-   '<label for="exampleInputEmail1">Destino</label>' +
-   '<input name="swal-input5" id="swal-input5" class="form-control border-input maxlength="25" readonly>' +
-   '<label for="exampleInputEmail1">Fecha solicitud</label>' +
-   '<input name="swal-input6" id="swal-input6" class="form-control border-input maxlength="25" readonly>' +
-   '<label for="exampleInputEmail1">Id equipo</label>' +
-   '<input name="swal-input7" id="swal-input7" class="form-control border-input maxlength="25" readonly>' +
-   '<label for="exampleInputEmail1">Id carro</label>' +
-   '<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" pattern = "1|2|3|4|5|6" require>' +
-   '<label for="exampleInputEmail1">Id personal</label>' +
-   '<input name="swal-input9" id="swal-input9" class="form-control border-input maxlength="25" readonly>' +
-   '<label for="exampleInputEmail1">Id folio</label>' +
-   '<input name="swal-input10" id="swal-input10" class="form-control border-input maxlength="25" readonly>' +
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Estado</label>'+
+           '<input type="text" id="swal-input1" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
 
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Direccion</label>'+
+           '<input type="text" id="swal-input2" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '</div>'+
+
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Comentarios</label>'+
+           '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Ubicación</label>'+
+           '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '</div>'+
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Destino</label>'+
+           '<input type="text" name="swal-input5" id="swal-input5" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Fecha de solicitud</label>'+
+           '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '</div>'+
+
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>equipo</label>'+
+           '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label># carro</label>'+
+           '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '</div>'+
+
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Personal</label>'+
+           '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Folio</label>'+
+           '<input type="text" name="swal-input10" id="swal-input10" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '</div>'+
 
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">A por él!</Button>'+
    '</form>',
@@ -668,28 +783,86 @@ swal(
   swal({
  title: 'En ruta',
  html:
- '<form action="actual_entrega" method="post" name="data">'+
+ '<form action="Traslados/actual_entrega" method="post" name="data">'+
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
- '<label for="exampleInputEmail1">Estado</label>' +
- '<input name="swal-input1" id="swal-input1" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Direccion</label>' +
- '<input name="swal-input2" id="swal-input2" class="form-control border-input type="number" readonly>' +
- '<label for="exampleInputEmail1">Comentarios</label>' +
- '<input name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Ubicacion</label>' +
- '<input name="swal-input4" id="swal-input4" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Destino</label>' +
- '<input name="swal-input5" id="swal-input5" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Fecha solicitud</label>' +
- '<input name="swal-input6" id="swal-input6" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Id equipo</label>' +
- '<input name="swal-input7" id="swal-input7" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Id carro</label>' +
- '<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Id personal</label>' +
- '<input name="swal-input9" id="swal-input9" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Id folio</label>' +
- '<input name="swal-input10" id="swal-input10" class="form-control border-input maxlength="25" readonly>' +
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Estado</label>'+
+         '<input type="text" id="swal-input1" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Direccion</label>'+
+         '<input type="text" id="swal-input2" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Comentarios</label>'+
+         '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Ubicación</label>'+
+         '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Destino</label>'+
+         '<input type="text" name="swal-input5" id="swal-input5" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Fecha de solicitud</label>'+
+         '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>equipo</label>'+
+         '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label># carro</label>'+
+         '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Personal</label>'+
+         '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Folio</label>'+
+         '<input type="text" name="swal-input10" id="swal-input10" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Entregado</Button><br></br>'+
 
   '</form>',
@@ -729,7 +902,7 @@ swal(
       return new Promise(function(resolve) {
 
         $.ajax({
-         url: 'actual_noencontro.php',
+         url: 'Traslados/actual_noencontro.php',
          type: 'POST',
          data: 'delete='+id,
          dataType: 'json'
@@ -754,7 +927,7 @@ swal(
 function enviarmod_entregados(id){
   $.ajax({
       // la URL para la petición
-      url : 'mod.php',
+      url : 'Traslados/mod.php',
       // la información a enviar
       // (también es posible utilizar una cadena de datos)
       data : {
@@ -806,30 +979,87 @@ function enviarmod_entregados(id){
  title: 'Editar solicitud',
  html:
 
- '<form action="actual_status" method="post" name="data">'+
+ '<form action="Traslados/actual_status" method="post" name="data">'+
  //'<label for="exampleInputEmail1">id</label>' +
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
- '<label for="exampleInputEmail1">Estado</label>' +
- '<input name="swal-input1" id="swal-input1" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Direccion</label>' +
- '<input name="swal-input2" id="swal-input2" class="form-control border-input type="number" readonly>' +
- '<label for="exampleInputEmail1">Comentarios</label>' +
- '<input name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Ubicacion</label>' +
- '<input name="swal-input4" id="swal-input4" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Destino</label>' +
- '<input name="swal-input5" id="swal-input5" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Fecha solicitud</label>' +
- '<input name="swal-input6" id="swal-input6" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Id equipo</label>' +
- '<input name="swal-input7" id="swal-input7" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Id carro</label>' +
- '<input name="swal-input8" id="swal-input8" class="form-control border-input maxlength="25" require>' +
- '<label for="exampleInputEmail1">Id personal</label>' +
- '<input name="swal-input9" id="swal-input9" class="form-control border-input maxlength="25" readonly>' +
- '<label for="exampleInputEmail1">Id folio</label>' +
- '<input name="swal-input10" id="swal-input10" class="form-control border-input maxlength="25" readonly>'+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Estado</label>'+
+         '<input type="text" id="swal-input1" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
 
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Direccion</label>'+
+         '<input type="text" id="swal-input2" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Comentarios</label>'+
+         '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Ubicación</label>'+
+         '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Destino</label>'+
+         '<input type="text" name="swal-input5" id="swal-input5" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Fecha de solicitud</label>'+
+         '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>equipo</label>'+
+         '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label># carro</label>'+
+         '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
+
+ '<div class="row">'+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Personal</label>'+
+         '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+
+ '<div class="col-md-6">'+
+   '<div class="form-group">'+
+         '<label>Folio</label>'+
+         '<input type="text" name="swal-input10" id="swal-input10" readonly class="form-control border-input">'+
+     '</div>'+
+ '</div>'+
+ '</div>'+
 
   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar</Button>'+
   '</form>',
@@ -869,7 +1099,7 @@ function enviarmod_entregados(id){
       return new Promise(function(resolve) {
 
         $.ajax({
-         url: 'borrar_traslado.php',
+         url: 'Traslados/borrar_traslado.php',
          type: 'POST',
          data: 'delete='+id,
          dataType: 'json'
