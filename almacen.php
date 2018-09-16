@@ -9,7 +9,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-$consulta = "SELECT * from reparar_tv r, clientes c where r.estado = 'Almacen' and c.id_folio = r.id_folio;";
+$consulta = "SELECT * from reparar_tv r, clientes c, almacen a where r.estado = 'Almacen' and c.id_folio = r.id_folio;";
 
 
 

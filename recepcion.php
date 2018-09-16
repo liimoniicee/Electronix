@@ -151,16 +151,16 @@ clientes ORDER BY fecha desc";
 
 ?>
                     <tr>
-                        <td><?php echo $id ?></td>
-                        <td><?php echo $nom ?></td>
-                        <td><?php echo $ape ?></td>
-                        <td><?php echo $dir ?></td>
-                        <td><?php echo $cel ?></td>
-                        <td><?php echo $cor ?></td>
-                        <td>
-                        <button onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit" title="Actualizar cliente" ><i class="ti-pencil-alt"></i></button>
-                        <button onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i class="ti-plus"></i></button>
-                      <a href="recepcion_historial_cliente.php?id=<?php echo $id; ?>" class="btn btn-simple btn-danger btn-icon edit" title="Historial"$id ><i class="ti-agenda"></i></a>
+                        <td width="8%"><?php echo $id ?></td>
+                        <td width="14%"><?php echo $nom ?></td>
+                        <td width="14%"><?php echo $ape ?></td>
+                        <td width="14%"><?php echo $dir ?></td>
+                        <td width="14%"><?php echo $cel ?></td>
+                        <td width="14%"><?php echo $cor ?></td>
+                        <td width="14%">
+                        <a href="#" onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Actualizar cliente" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                        <a href="#" onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Nueva orden"><i class="btn-sm btn-success ti-plus"></i></a>
+                        <a href="recepcion_historial_cliente.php?id=<?php echo $id; ?>"  title="Historial"><i class="btn-sm btn-secondary ti-agenda"></i></a>
                         </td>
 
 
