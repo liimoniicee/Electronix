@@ -10,7 +10,10 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'";
+id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
+FROM clientes
+LEFT JOIN reparar_Tv
+USING(id_folio) where estado = 'Reparada'";
 
 
 
@@ -167,7 +170,7 @@ id_equipo,id_folio, id_personal,nombre,apellidos,celular,correo, equipo, marca, 
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $total ?></td>
                         <td>
-                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
+                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
                         </td>
 
           </tr>
@@ -305,7 +308,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+        '<input type="text" value="'+id+'" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+

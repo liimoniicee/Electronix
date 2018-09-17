@@ -18,7 +18,7 @@ $consulta = "SELECT r.id_equipo, r.id_personal, c.nombre, c.apellidos, c.celular
                     r.falla, r.comentarios, r.fecha_ingreso, r.fecha_entregar, r.fecha_egreso, r.servicio,
                     r.ubicacion, r.presupuesto, r.mano_obra, r.abono, r.restante, r.costo_total, r.estado
               FROM clientes c, reparar_tv r
-              WHERE c.id_folio = $id
+              WHERE r.id_equipo = $id
               and c.id_folio = r.id_folio";
 
    $resultado = $conn->query($consulta);

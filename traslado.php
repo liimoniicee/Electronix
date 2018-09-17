@@ -187,7 +187,7 @@ $en_ruta = "SELECT
                             <td><?php echo $dest ?></td>
                             <td><?php echo $fech ?></td>
                             <td>
-                            <button onclick="swal_traslados(<?php echo $id ?>), enviarmod_traslados(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+                            <button onclick="swal_traslados(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
                             </td>
                           </tr>
                   <?php } ?>
@@ -233,7 +233,7 @@ $en_ruta = "SELECT
 
       <td><?php echo $fech ?></td>
       <td>
-      <button onclick="swal_por_concretar(<?php echo $id ?>), enviarmod_por_concretar(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+      <button onclick="swal_por_concretar(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
             </td>
         </tr>
         <?php } ?>
@@ -274,7 +274,7 @@ $en_ruta = "SELECT
                     <td><?php echo $dest ?></td>
                     <td><?php echo $fech ?></td>
                     <td>
-                    <button onclick="swal_enruta(<?php echo $id ?>), enviarmod_enruta(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
+                    <button onclick="swal_enruta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
                     <button onclick="borrar_enruta(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
                     </td>
                     </tr>
@@ -316,7 +316,7 @@ $en_ruta = "SELECT
                     <td><?php echo $dest ?></td>
                     <td><?php echo $fech ?></td>
                     <td>
-                    <button onclick="swal_entregados(<?php echo $id ?>), enviarmod_entregados(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+                    <button onclick="swal_entregados(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
                      <button onclick="borrar_entregados(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
                       </td>
       </tr>
@@ -446,7 +446,7 @@ $en_ruta = "SELECT
 
   <!-- por concretar-->
   <script>
-  function enviarmod_por_concretar(id){
+  function enviarmod(id){
     $.ajax({
         // la URL para la petición
         url : 'Traslados/mod.php',
@@ -605,55 +605,6 @@ swal(
 
 };
 </script>
-<!-- por concretar -->
-
-
-
-<!-- traslados -->
-  <script>
-  function enviarmod_traslados(id){
-    $.ajax({
-        // la URL para la petición
-        url : 'Traslados/mod.php',
-        // la información a enviar
-        // (también es posible utilizar una cadena de datos)
-        data : {
-           id : id
-        },
-        // especifica si será una petición POST o GET
-        type : 'POST',
-        // el tipo de información que se espera de respuesta
-        dataType : 'json',
-        // código a ejecutar si la petición es satisfactoria;
-        // la respuesta es pasada como argumento a la función
-        success : function(data) {
-          $("#swal-input0").val(data.data.id);
-          $("#swal-input1").val(data.data.sta);
-          $("#swal-input2").val(data.data.dir);
-          $("#swal-input3").val(data.data.com);
-          $("#swal-input4").val(data.data.ubi);
-          $("#swal-input5").val(data.data.des);
-          $("#swal-input6").val(data.data.fech);
-          $("#swal-input7").val(data.data.equ);
-          $("#swal-input8").val(data.data.car);
-          $("#swal-input9").val(data.data.per);
-          $("#swal-input10").val(data.data.fol);
-        },
-
-        // código a ejecutar si la petición falla;
-        // son pasados como argumentos a la función
-        // el objeto de la petición en crudo y código de estatus de la petición
-        error : function(xhr, status) {
-
-        },
-
-        // código a ejecutar sin importar si la petición falló o no
-        complete : function(xhr, status) {
-
-        }
-    });
-  }
-  </script>
 
   <!-- traslados-->
 
@@ -923,51 +874,7 @@ swal(
  <!-- swal en ruta -->
 
 <!-- entregados -->
- <script>
-function enviarmod_entregados(id){
-  $.ajax({
-      // la URL para la petición
-      url : 'Traslados/mod.php',
-      // la información a enviar
-      // (también es posible utilizar una cadena de datos)
-      data : {
-         id : id
-      },
-      // especifica si será una petición POST o GET
-      type : 'POST',
-      // el tipo de información que se espera de respuesta
-      dataType : 'json',
-      // código a ejecutar si la petición es satisfactoria;
-      // la respuesta es pasada como argumento a la función
-      success : function(data) {
-        $("#swal-input0").val(data.data.id);
-        $("#swal-input1").val(data.data.sta);
-        $("#swal-input2").val(data.data.dir);
-        $("#swal-input3").val(data.data.com);
-        $("#swal-input4").val(data.data.ubi);
-        $("#swal-input5").val(data.data.des);
-        $("#swal-input6").val(data.data.fech);
-        $("#swal-input7").val(data.data.equ);
-        $("#swal-input8").val(data.data.car);
-        $("#swal-input9").val(data.data.per);
-        $("#swal-input10").val(data.data.fol);
-      },
 
-      // código a ejecutar si la petición falla;
-      // son pasados como argumentos a la función
-      // el objeto de la petición en crudo y código de estatus de la petición
-      error : function(xhr, status) {
-
-      },
-
-      // código a ejecutar sin importar si la petición falló o no
-      complete : function(xhr, status) {
-
-      }
-  });
-}
-</script>
-<!-- entregados -->
 
 <!-- entregados -->
 <script type="text/javascript">

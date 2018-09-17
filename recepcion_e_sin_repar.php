@@ -122,7 +122,7 @@ $venta="SELECT * from ventas_tv ";
       <th data-field="falla" data-sortable="true">falla</th>
       <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
       <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
       <th data-field="accion" data-sortable="true">Acción</th>
 
     </thead>
@@ -146,8 +146,8 @@ $venta="SELECT * from ventas_tv ";
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
+                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
           </tr>
         <?php } ?>
