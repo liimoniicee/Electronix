@@ -11,7 +11,11 @@ $var_clave= $_SESSION['clave'];
 $venta="SELECT * from ventas_tv where estado = 'En venta';";
 
 $clientes="SELECT * from clientes order by id_folio desc ";
+$avisos = "SELECT
+*
+FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
 ?>
 <html lang="es">
@@ -27,7 +31,7 @@ $clientes="SELECT * from clientes order by id_folio desc ";
     <!-- Font-icon css-->
     <!-- Font-icon css-->
 <link href= "assets/css/themify-icons.css" rel="stylesheet">
-
+<link rel="shortcut icon" href="assets/img/favicon.ico">
   </head>
 
 
@@ -47,34 +51,38 @@ $clientes="SELECT * from clientes order by id_folio desc ";
           <button class="app-search__button"><i class="ti-search"></i></button>
         </li>
         <!--Notification Menu-->
+        <?php
+          $ejec0 = mysqli_query($conn, $num_avisos);
+        while($fila=mysqli_fetch_array($ejec0)){
+            $num_avi     = $fila['COUNT(*)'];
+
+}
+      ?>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have 4 new notifications.</li>
+            <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
+
+            <?php
+              $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+                $avi     = $fila['aviso'];
+                $fech_avi     = $fila['fecha'];
+
+          ?>
             <div class="app-notification__content">
               <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
                   <div>
-                    <p class="app-notification__message">Lisa sent you a mail</p>
-                    <p class="app-notification__meta">2 min ago</p>
+                    <p class="app-notification__message"><?php echo $avi; ?></p>
+                    <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
                   </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                  <div>
-                    <p class="app-notification__message">Mail server not working</p>
-                    <p class="app-notification__meta">5 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                  <div>
-                    <p class="app-notification__message">Transaction complete</p>
-                    <p class="app-notification__meta">2 days ago</p>
-                  </div></a></li>
+                <?php } ?>
 
             </div>
             <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
           </ul>
         </li>
         <!-- User Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="destroy.php" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="ti-shift-left"></i></a>
-
-        </li>
+        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
       </ul>
     </header>
     <!-- Sidebar menu-->

@@ -33,7 +33,11 @@ $en_ruta = "SELECT
  FROM
  traslado where id_personal='$var_clave' and estado='En ruta';";
 
+$avisos = "SELECT
+*
+FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 ?>
 
 
@@ -50,8 +54,8 @@ $en_ruta = "SELECT
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <!-- Font-icon css-->
-
-
+<link href= "../assets/css/themify-icons.css" rel="stylesheet">
+<link rel="shortcut icon" href="../assets/img/favicon.ico">
   </head>
 
 
@@ -62,64 +66,47 @@ $en_ruta = "SELECT
   <body class="app sidebar-mini rtl">
 
 
-    <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: </a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: <?php echo $var_clave ?></a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
         <li class="app-search">
           <input class="app-search__input" type="search" placeholder="Search">
-          <button class="app-search__button"><i class="fa fa-search"></i></button>
+          <button class="app-search__button"><i class="ti-search"></i></button>
         </li>
         <!--Notification Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+        <?php
+          $ejec0 = mysqli_query($conn, $num_avisos);
+        while($fila=mysqli_fetch_array($ejec0)){
+            $num_avi     = $fila['COUNT(*)'];
+
+}
+      ?>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have 4 new notifications.</li>
+            <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
+
+            <?php
+              $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+                $avi     = $fila['aviso'];
+                $fech_avi     = $fila['fecha'];
+
+          ?>
             <div class="app-notification__content">
               <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
                   <div>
-                    <p class="app-notification__message">Lisa sent you a mail</p>
-                    <p class="app-notification__meta">2 min ago</p>
+                    <p class="app-notification__message"><?php echo $avi; ?></p>
+                    <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
                   </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                  <div>
-                    <p class="app-notification__message">Mail server not working</p>
-                    <p class="app-notification__meta">5 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                  <div>
-                    <p class="app-notification__message">Transaction complete</p>
-                    <p class="app-notification__meta">2 days ago</p>
-                  </div></a></li>
-              <div class="app-notification__content">
-                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-                    <div>
-                      <p class="app-notification__message">Lisa sent you a mail</p>
-                      <p class="app-notification__meta">2 min ago</p>
-                    </div></a></li>
-                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                    <div>
-                      <p class="app-notification__message">Mail server not working</p>
-                      <p class="app-notification__meta">5 min ago</p>
-                    </div></a></li>
-                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                    <div>
-                      <p class="app-notification__message">Transaction complete</p>
-                      <p class="app-notification__meta">2 days ago</p>
-                    </div></a></li>
-              </div>
+                <?php } ?>
+
             </div>
             <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
           </ul>
         </li>
         <!-- User Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-          <ul class="dropdown-menu settings-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
-            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-            <li><a class="dropdown-item" href="destroy.php"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
-          </ul>
-        </li>
+        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
       </ul>
     </header>
     <!-- Sidebar menu-->
@@ -132,7 +119,7 @@ $en_ruta = "SELECT
         </div>
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item" href="traslados.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
+      <li><a class="app-menu__item" href="traslados.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
 
 
 
@@ -213,7 +200,7 @@ $en_ruta = "SELECT
                   </table>
 
                   </div>
-      
+
                   </div>
                   </div>
 

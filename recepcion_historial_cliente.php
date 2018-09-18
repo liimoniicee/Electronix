@@ -42,7 +42,11 @@ id_folio = '$id';";
 
  }
 }else{}
+  $avisos = "SELECT
+  *
+  FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
+  $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 ?>
 
 
@@ -57,95 +61,74 @@ id_folio = '$id';";
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
-
+<link href= "assets/css/themify-icons.css" rel="stylesheet">
 
   </head>
-  <body class="app sidebar-mini rtl">
-    <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: </a>
-      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-      <!-- Navbar Right Menu-->
-      <ul class="app-nav">
-        <li class="app-search">
-          <input class="app-search__input" type="search" placeholder="Search">
-          <button class="app-search__button"><i class="fa fa-search"></i></button>
-        </li>
-        <!--Notification Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
-          <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have 4 new notifications.</li>
-            <div class="app-notification__content">
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-                  <div>
-                    <p class="app-notification__message">Lisa sent you a mail</p>
-                    <p class="app-notification__meta">2 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                  <div>
-                    <p class="app-notification__message">Mail server not working</p>
-                    <p class="app-notification__meta">5 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                  <div>
-                    <p class="app-notification__message">Transaction complete</p>
-                    <p class="app-notification__meta">2 days ago</p>
-                  </div></a></li>
+
+    <body class="app sidebar-mini rtl">
+
+
+      <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: <?php echo $var_clave ?></a>
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+        <!-- Navbar Right Menu-->
+        <ul class="app-nav">
+          <li class="app-search">
+            <input class="app-search__input" type="search" placeholder="Search">
+            <button class="app-search__button"><i class="ti-search"></i></button>
+          </li>
+          <!--Notification Menu-->
+          <?php
+            $ejec0 = mysqli_query($conn, $num_avisos);
+          while($fila=mysqli_fetch_array($ejec0)){
+              $num_avi     = $fila['COUNT(*)'];
+
+  }
+        ?>
+          <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+            <ul class="app-notification dropdown-menu dropdown-menu-right">
+              <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
+
+              <?php
+                $ejec = mysqli_query($conn, $avisos);
+              while($fila=mysqli_fetch_array($ejec)){
+                  $avi     = $fila['aviso'];
+                  $fech_avi     = $fila['fecha'];
+
+            ?>
               <div class="app-notification__content">
                 <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
                     <div>
-                      <p class="app-notification__message">Lisa sent you a mail</p>
-                      <p class="app-notification__meta">2 min ago</p>
+                      <p class="app-notification__message"><?php echo $avi; ?></p>
+                      <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
                     </div></a></li>
-                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                    <div>
-                      <p class="app-notification__message">Mail server not working</p>
-                      <p class="app-notification__meta">5 min ago</p>
-                    </div></a></li>
-                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                    <div>
-                      <p class="app-notification__message">Transaction complete</p>
-                      <p class="app-notification__meta">2 days ago</p>
-                    </div></a></li>
+                  <?php } ?>
+
               </div>
-            </div>
-            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
-          </ul>
-        </li>
-        <!-- User Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
-          <ul class="dropdown-menu settings-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
-            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-            <li><a class="dropdown-item" href="destroy.php"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-    </header>
+              <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+            </ul>
+          </li>
+          <!-- User Menu-->
+          <li class="dropdown"><a class="app-nav__item" href="destroy.php" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="ti-shift-left"></i></a>
+
+          </li>
+        </ul>
+      </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
 
-        <div>
-          <p class="app-sidebar__user-name"><?php $var_name ?></p>
 
-        </div>
+
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
-      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Recepción</span></a></li>
-
-      <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Taller</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="ml.php" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">MercadoLibre</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-      <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Nueva publicacion</a></li>
-            </ul>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Traslados</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Almacén</span></a></li>
-      <li><a class="app-menu__item" href="index.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Administración</span></a></li>
-
-
-
-
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
+      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
+      <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon ti-settings"></i><span class="app-menu__label">Taller</span></a></li>
+      <li><a class="app-menu__item active" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+      <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
+      <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+</ul>
 
     </aside>
     <main class="app-content">
@@ -267,7 +250,7 @@ id_folio = '$id';";
                         if($estado == "Entregado"){
                           echo "
                         <td>
-                          <button onclick='garantia($id), enviarorden($id);' class='btn btn-simple btn-success btn-icon edit' title='Reingreso por garantía' ><i ></i></button>
+                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Reingreso por garantía' ><i ></i></button>
                         </td>";
                       };
                       ?>
@@ -275,7 +258,7 @@ id_folio = '$id';";
                         if($estado == "En reparacion"){
                           echo "
                         <td>
-                          <button onclick='abono($id), enviarorden($id);' class='btn btn-simple btn-primary btn-icon edit' title='Ingresar abono' ><i ></i></button>
+                          <button onclick='abono($id), enviarorden($id_equipo);' class='btn btn-simple btn-primary btn-icon edit' title='Ingresar abono' ><i ></i></button>
                         </td>";
                       };
                       ?>
@@ -400,8 +383,6 @@ id_folio = '$id';";
     //Manda Llamar id,nombre y apellido
     //'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
 
-
-
     '<div class="row">'+
     '<div class="col-md-6">'+
       '<div class="form-group">'+
@@ -414,7 +395,7 @@ id_folio = '$id';";
     '<div class="col-md-6">'+
       '<div class="form-group">'+
             '<label>Folio cliente</label>'+
-            '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+            '<input type="text" value="'+id+'" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
     '</div>'+

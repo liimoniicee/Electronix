@@ -52,7 +52,7 @@ $en_ruta = "SELECT
     <!-- Font-icon css-->
     <!-- Font-icon css-->
 <link href= "assets/css/themify-icons.css" rel="stylesheet">
-
+<link rel="shortcut icon" href="assets/img/favicon.ico">
   </head>
 
 
@@ -97,9 +97,7 @@ $en_ruta = "SELECT
           </ul>
         </li>
         <!-- User Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="destroy.php" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="ti-shift-left"></i></a>
-
-        </li>
+        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
       </ul>
     </header>
     <!-- Sidebar menu-->

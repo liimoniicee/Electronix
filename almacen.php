@@ -27,7 +27,7 @@ $consulta = "SELECT * from reparar_tv r, clientes c, almacen a where r.estado = 
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
     <link href= "assets/css/themify-icons.css" rel="stylesheet">
-
+<link rel="shortcut icon" href="assets/img/favicon.ico">
       </head>
 
 
@@ -72,9 +72,7 @@ $consulta = "SELECT * from reparar_tv r, clientes c, almacen a where r.estado = 
               </ul>
             </li>
             <!-- User Menu-->
-            <li class="dropdown"><a class="app-nav__item" href="destroy.php" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="ti-shift-left"></i></a>
-
-            </li>
+            <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
           </ul>
         </header>
         <!-- Sidebar menu-->
