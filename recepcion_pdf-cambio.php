@@ -31,15 +31,15 @@ $restante= $_POST ['swal-input52'];
 
 
 
-  /*
+  
 
 
 $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_total='$costo' ,fecha_egreso=CURRENT_TIMESTAMP where id_folio='$id' and id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
- $sql = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' where idventa_tv='$idventa';";
+ $sql = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' , idvendedor='$var_clave', ubicacion='Cliente' id_equipo='$id_equipo' where idventa_tv='$idventa';";
  $res = $conn->query($sql);
- */
+ 
 //Generador de PDF
 //inserccion
   //$n_nombre=$_POST['nombre'];
