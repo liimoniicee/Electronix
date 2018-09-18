@@ -26,6 +26,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
   <head>
 <script src="assets\js\push.js/push.min.js" > </script>
 
+<script src="assets\js\plugins/bootstrap-notify.min.js"></script>
+
 
 
 
@@ -515,22 +517,27 @@ reverseButtons: true
 
 
 </html>
+<script type="text/javascript"> 
+$.notify("Hello World");
+</script>
+
 
   <?php
+  
   //notificacion tipo facebook
               $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){
-                $avi     = $fila['aviso'];
-                $fech_avi     = $fila['fecha'];
+                $avi1     = $fila['aviso'];
+                $fech_avi1     = $fila['fecha'];
 
           ?>
 
 <script> 
 
-Push.create("<?php echo $fech_avi; ?>", {
-  body:"<?php echo $avi; ?>",
-  icon:"assets/img/alert1.png",
-  timeout:10000
+Push.create("<?php echo $fech_avi1; ?>", {
+  body:"<?php echo $avi1; ?>",
+  icon:"assets/img/alert.png",
+  timeout:5000
 
 });
 
