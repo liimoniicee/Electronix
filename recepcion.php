@@ -27,16 +27,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 <script src="assets\js\push.js/push.min.js" > </script>
 
 
-<script> 
 
-Push.create("Titulo de notificacion", {
-  body:"Este es un mensaje nuevo alaverga perro me vale verga",
-  icon:"assets/img/alert1.png",
-  timeout:5000
-
-});
-
-</script>
 
     <!-- Open Graph Meta-->
     <title>Recepcion</title>
@@ -524,3 +515,24 @@ reverseButtons: true
 
 
 </html>
+
+  <?php
+  //notificacion tipo facebook
+              $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+                $avi     = $fila['aviso'];
+                $fech_avi     = $fila['fecha'];
+
+          ?>
+
+<script> 
+
+Push.create("<?php echo $fech_avi; ?>", {
+  body:"<?php echo $avi; ?>",
+  icon:"assets/img/alert1.png",
+  timeout:10000
+
+});
+
+</script>
+<?php } ?>

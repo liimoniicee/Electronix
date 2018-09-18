@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `almacen`
 --
-
+create database electronicax;
+use electronicax;
 DROP TABLE IF EXISTS `almacen`;
 CREATE TABLE IF NOT EXISTS `almacen` (
   `sub-ubicacion` varchar(50) DEFAULT NULL,

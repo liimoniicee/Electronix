@@ -531,3 +531,24 @@ id_folio = '$id';";
 
   </body>
 </html>
+
+  <?php
+  //notificacion tipo facebook
+              $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+                $avi     = $fila['aviso'];
+                $fech_avi     = $fila['fecha'];
+
+          ?>
+
+<script> 
+
+Push.create("<?php echo $fech_avi; ?>", {
+  body:"<?php echo $avi; ?>",
+  icon:"assets/img/alert1.png",
+  timeout:10000
+
+});
+
+</script>
+<?php } ?>
