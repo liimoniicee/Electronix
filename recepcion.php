@@ -24,6 +24,19 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 ?>
 <html lang="es">
   <head>
+<script src="assets\js\push.js/push.min.js" > </script>
+
+
+<script> 
+
+Push.create("Titulo de notificacion", {
+  body:"Este es un mensaje nuevo alaverga perro me vale verga",
+  icon:"assets/img/alert1.png",
+  timeout:5000
+
+});
+
+</script>
 
     <!-- Open Graph Meta-->
     <title>Recepcion</title>
@@ -58,7 +71,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       ?>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
+            <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
             <?php
               $ejec = mysqli_query($conn, $avisos);
@@ -508,4 +521,6 @@ reverseButtons: true
 </div>
 
   </body>
+
+
 </html>
