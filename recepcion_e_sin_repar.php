@@ -65,17 +65,18 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       ?>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
+            <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <?php
-              $ejec = mysqli_query($conn, $avisos);
-            while($fila=mysqli_fetch_array($ejec)){
-                $avi     = $fila['aviso'];
-                $fech_avi     = $fila['fecha'];
-
-          ?>
             <div class="app-notification__content">
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+              <li><a class="app-notification__item" href="javascript:;">
+
+                            <?php
+                              $ejec = mysqli_query($conn, $avisos);
+                            while($fila=mysqli_fetch_array($ejec)){
+                                $avi     = $fila['aviso'];
+                                $fech_avi     = $fila['fecha'];
+
+                          ?>
                   <div>
                     <p class="app-notification__message"><?php echo $avi; ?></p>
                     <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
@@ -227,7 +228,7 @@ function enviarorden(id){
       success : function(data) {
         //Manda Llamar id,nombre y apellido
 
-       $("#swal-input0").val(data.data.id);
+       //$("#swal-input0").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
@@ -297,7 +298,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -408,7 +409,7 @@ html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
 '<h5>Equipo que deja a cambio</h5>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
         '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
@@ -602,7 +603,7 @@ function operaciones()
 
           ?>
 
-<script> 
+<script>
 
 Push.create("<?php echo $fech_avi; ?>", {
   body:"<?php echo $avi; ?>",
