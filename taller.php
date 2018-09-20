@@ -106,17 +106,18 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       ?>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
+            <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <?php
-              $ejec = mysqli_query($conn, $avisos);
-            while($fila=mysqli_fetch_array($ejec)){
-                $avi     = $fila['aviso'];
-                $fech_avi     = $fila['fecha'];
-
-          ?>
             <div class="app-notification__content">
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+              <li><a class="app-notification__item" href="javascript:;">
+
+                            <?php
+                              $ejec = mysqli_query($conn, $avisos);
+                            while($fila=mysqli_fetch_array($ejec)){
+                                $avi     = $fila['aviso'];
+                                $fech_avi     = $fila['fecha'];
+
+                          ?>
                   <div>
                     <p class="app-notification__message"><?php echo $avi; ?></p>
                     <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
@@ -1162,7 +1163,7 @@ function operaciones()
 
           ?>
 
-<script> 
+<script>
 
 Push.create("<?php echo $fech_avi; ?>", {
   body:"<?php echo $avi; ?>",
