@@ -35,18 +35,19 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
+    <link href= "assets/css/themify-icons.css" rel="stylesheet">
 <link rel="shortcut icon" href="assets/img/favicon.ico">
 
   </head>
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="tecnico.php">ID de Usuario: <?php echo $var_name ?></a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: <?php echo $var_clave ?></a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
         <li class="app-search">
           <input class="app-search__input" type="search" placeholder="Search">
-          <button class="app-search__button"><i class="fa fa-search"></i></button>
+          <button class="app-search__button"><i class="ti-search"></i></button>
         </li>
         <!--Notification Menu-->
         <?php
@@ -58,7 +59,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       ?>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
+            <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
             <?php
               $ejec = mysqli_query($conn, $avisos);
@@ -81,21 +82,22 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
         </li>
         <!-- User Menu-->
         <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
+
+
       </ul>
     </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
 
-        <div>
-          <p class="app-sidebar__user-name"><?php echo $var_name ?></p>
 
-        </div>
+
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item active" href="tecnico.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Tareas</span></a></li>
-
-
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
+      <li><a class="app-menu__item" href="tecnico.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Tareas</span></a></li>
+    
+</ul>
 
 
 

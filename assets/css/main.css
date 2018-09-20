@@ -3,8 +3,7 @@
  * Vali Admin
  * Author: Pratik Borsadiya
  * ================================*/
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,400i,700);
-@import url(https://fonts.googleapis.com/css?family=Niconne);
+
 /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -13628,6 +13627,7 @@ be a descendant of the grid when it is being dragged.
   -webkit-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
+
 }
 
 @media (max-width: 767px) {
@@ -13639,7 +13639,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-sidebar__toggle:before {
-  content: "\f0c9";
+ /* content: "\f0c9";*/
   font-size: 21px;
 }
 
