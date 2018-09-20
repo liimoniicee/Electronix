@@ -227,7 +227,7 @@ function enviarorden(id){
       success : function(data) {
         //Manda Llamar id,nombre y apellido
 
-       $("#swal-input0").val(data.data.id);
+       //$("#swal-input0").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
@@ -297,7 +297,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -408,7 +408,7 @@ html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
 '<h5>Equipo que deja a cambio</h5>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
         '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
@@ -602,7 +602,7 @@ function operaciones()
 
           ?>
 
-<script> 
+<script>
 
 Push.create("<?php echo $fech_avi; ?>", {
   body:"<?php echo $avi; ?>",
