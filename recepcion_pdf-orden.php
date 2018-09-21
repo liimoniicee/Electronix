@@ -12,7 +12,7 @@ $nom = $_POST ['swal-input1'];
 $ape= $_POST ['swal-input2'];
 
 
-$equipo=$_POST['equipo'];
+  $equipo=$_POST['equipo'];
   $marca=$_POST['marca'];
   $modelo=$_POST['modelo'];
   $falla=$_POST['falla'];
@@ -28,8 +28,6 @@ $equipo=$_POST['equipo'];
  $res = $conn->query($sql);
 
 
-
-
 $consu = "select id_equipo, fecha_ingreso from reparar_tv ORDER BY fecha_ingreso desc LIMIT 1";
 $resu = $conn->query($consu);
 if($resu->num_rows > 0){
@@ -37,9 +35,13 @@ if($resu->num_rows > 0){
  while($row = $resu->fetch_assoc()) {
    $idequipo   =  $row["id_equipo"];
   }
-  $sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, id_folio)
-  VALUES ('Pendiente', '$comentario', 'recepcion', 'Taller', '$idequipo', '$id');";
+  $sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, id_folio, personal_id_personal)
+  VALUES ('Pendiente', '$comentario', 'recepcion', 'Taller', '$idequipo', '$id', '$var_clave');";
   $res2 = $conn->query($sql2);
+
+  $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
+  VALUES ('$var_clave', current_time, 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
+  $res3 = $conn->query($sql3);
 
 }
 
@@ -182,5 +184,4 @@ $pdf->Write(6,'Oficina: 688-28-96');
 
 
 $pdf->Output();
-
 ?>
