@@ -14,7 +14,7 @@ $nom = $_POST['swal-input3'];
 $ape = $_POST['swal-input4'];
 
 
-$sql = "Update reparar_tv set abono='$abo' where id_equipo='$id_equipo' and id_folio='$id'";
+$sql = "UPDATE reparar_tv set abono='$abo' where id_equipo='$id_equipo'";
 
 $res = $conn->query($sql);
 

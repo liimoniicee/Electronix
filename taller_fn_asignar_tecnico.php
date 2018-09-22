@@ -7,13 +7,12 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
-$id = $_POST ['swal-input0'];
 $id_e = $_POST ['swal-input1'];
 $id_pe = $_POST ['tecnico'];
 
 
 
-$sql = "UPDATE reparar_tv set estado='En reparacion', id_personal='$id_pe', fecha_entregar=CURRENT_TIMESTAMP where id_folio='$id' and id_equipo='$id_e';";
+$sql = "UPDATE reparar_tv set estado='En reparacion', id_personal='$id_pe', fecha_entregar=CURRENT_TIMESTAMP where id_equipo='$id_e';";
  $res = $conn->query($sql);
 
  if (!$res) {

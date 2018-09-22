@@ -298,7 +298,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                 <th data-field="destino" data-sortable="true">Destino</th>
 
                 <th data-field="fecha" data-sortable="true">Fecha finalizado</th>
-                <th class="disabled-sorting">Acción</th>
 
                 </thead>
                 <?php
@@ -318,8 +317,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                     <td><?php echo $dest ?></td>
                     <td><?php echo $fech ?></td>
                     <td>
-                    <button onclick="swal_entregados(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-                     <button onclick="borrar_entregados(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
+                    
                       </td>
       </tr>
       <?php } ?>
@@ -500,7 +498,7 @@ swal({
 title: 'Editar solicitud',
 html:
 
-'<form action="actual_concre" method="post" name="data">'+
+'<form action="actual_concre.php" method="post" name="data">'+
 //'<label for="exampleInputEmail1">id</label>' +
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
 '<div class="row">'+
@@ -606,10 +604,10 @@ reverseButtons: true
 
 
     swal({
-   title: 'Actualizar estatus',
+   title: 'Actualizar Status',
    html:
 
-   '<form action="actual_status" method="post" name="data">'+
+   '<form action="actual_status.php" method="post" name="data">'+
    //'<label for="exampleInputEmail1">id</label>' +
    '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
    '<div class="row">'+
@@ -718,7 +716,7 @@ reverseButtons: true
   swal({
  title: 'En ruta',
  html:
- '<form action="actual_entrega" method="post" name="data">'+
+ '<form action="actual_entrega.php" method="post" name="data">'+
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
  '<div class="row">'+
  '<div class="col-md-6">'+
@@ -862,7 +860,7 @@ reverseButtons: true
  title: 'Editar solicitud',
  html:
 
- '<form action="actual_status" method="post" name="data">'+
+ '<form action="actual_status.php" method="post" name="data">'+
  //'<label for="exampleInputEmail1">id</label>' +
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
  '<div class="row">'+
