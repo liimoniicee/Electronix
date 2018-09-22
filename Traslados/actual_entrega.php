@@ -28,7 +28,7 @@ id_traslado='$id'";
 
 $res = $conn->query($query);
 
-if($des == "Almacen"){
+if($des=="Almacen"){
 
     $query2 = "UPDATE
     reparar_tv
@@ -43,7 +43,7 @@ if($des == "Almacen"){
     
     
     $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-    VALUES ('$var_clave', CURRENT_TIME, 'Equipo nuevo en taller', 'Pendiente', 'Almacen');";
+    VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo nuevo en taller', 'Pendiente', 'Almacen');";
     $res3 = $conn->query($sql3);
     
     
@@ -63,7 +63,7 @@ if($des == "Almacen"){
     
     
     $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-    VALUES ('$var_clave', current_time, 'Equipo nuevo en taller', 'Pendiente', 'Taller');";
+    VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo nuevo en taller', 'Pendiente', 'Taller');";
     $res3 = $conn->query($sql3);
 }
 
