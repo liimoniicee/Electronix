@@ -12,6 +12,7 @@ $formateado= date('Y-m-d h:i:s', $ahora) ; // obtenemos la cadena en el formato 
 $id        = $_POST ['swal-input0'];
 $var_clave = $_SESSION['clave'];
 $des       = $_POST ['swal-input5'];
+$id_equipo = $_POST['swal-input7'];
 
 //consulta para obtener el id del becario
 $query = "UPDATE
@@ -24,6 +25,18 @@ WHERE
 id_traslado='$id'";
 
 $res = $conn->query($query);
+
+
+$query2 = "UPDATE
+reparar_tv
+SET
+estado = 'Pendiente',
+id_personal = '$var_clave',
+ubicacion= 'Taller'
+WHERE
+id_equipo='$id_equipo'";
+
+$res2 = $conn->query($query2);
 
 
 $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
