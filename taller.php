@@ -271,7 +271,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
         <th data-field="id">id_equipo</th>
-        <th data-field="folio" data-sortable="true">Folio</th>
       <th data-field="equipo" data-sortable="true">equipo</th>
       <th data-field="falla" data-sortable="true">falla</th>
       <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
@@ -294,14 +293,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
-                        <td><?php echo $id ?></td>
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="asignar_tec(<?php echo $id_equipo?>), mod_asignar_tec(<?php echo $id?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="asignar_tec(<?php echo $id_equipo?>), mod_asignar_tec(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
 
@@ -324,7 +322,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
                   <th data-field="id">id_equipo</th>
-                  <th data-field="folio" data-sortable="true">Folio</th>
 
                   <th data-field="equipo" data-sortable="true">equipo</th>
                   <th data-field="falla" data-sortable="true">falla</th>
@@ -349,7 +346,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
-                        <td><?php echo $id ?></td>
 
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
@@ -379,7 +375,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                     <thead>
                                     <!--<th data-field="state" data-checkbox="true"></th>-->
                                     <th data-field="id">id_equipo</th>
-                                    <th data-field="folio" data-sortable="true">Folio</th>
 
                                     <th data-field="equipo" data-sortable="true">equipo</th>
                                     <th data-field="falla" data-sortable="true">falla</th>
@@ -402,7 +397,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                     ?>
                                       <tr>
                                           <td><?php echo $id_equipo ?></td>
-                                          <td><?php echo $id ?></td>
 
                                           <td><?php echo $equipo ?></td>
                                           <td><?php echo $falla ?></td>
@@ -432,7 +426,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
                   <th data-field="id">id_equipo</th>
-                  <th data-field="folio" data-sortable="true">Folio</th>
 
                   <th data-field="equipo" data-sortable="true">equipo</th>
                   <th data-field="falla" data-sortable="true">falla</th>
@@ -457,7 +450,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
-                        <td><?php echo $id ?></td>
 
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
@@ -487,7 +479,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
               <thead>
               <!--<th data-field="state" data-checkbox="true"></th>-->
               <th data-field="id">id_equipo</th>
-              <th data-field="folio" data-sortable="true">Folio</th>
 
               <th data-field="equipo" data-sortable="true">equipo</th>
               <th data-field="falla" data-sortable="true">falla</th>
@@ -510,7 +501,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
               ?>
                 <tr>
                     <td><?php echo $id_equipo ?></td>
-                    <td><?php echo $id ?></td>
                     <td><?php echo $equipo ?></td>
                     <td><?php echo $falla ?></td>
                     <td><?php echo $fecha_ingreso ?></td>
@@ -539,7 +529,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                               <thead>
                               <!--<th data-field="state" data-checkbox="true"></th>-->
                               <th data-field="id">id_equipo</th>
-                              <th data-field="folio" data-sortable="true">Folio</th>
 
                               <th data-field="equipo" data-sortable="true">equipo</th>
                               <th data-field="falla" data-sortable="true">falla</th>
@@ -562,7 +551,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                               ?>
                                 <tr>
                                     <td><?php echo $id_equipo ?></td>
-                                    <td><?php echo $id ?></td>
                                     <td><?php echo $equipo ?></td>
                                     <td><?php echo $falla ?></td>
                                     <td><?php echo $fecha_ingreso ?></td>
@@ -910,7 +898,7 @@ function enviarreporte(id_equipo){
 function asignar_tec(id){
 
 swal({
-title: 'Garantia',
+title: 'Asignar técnico',
 html:
 '<div class="card-body"> <form action="taller_fn_asignar_tecnico.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 '<div class="row">'+
@@ -922,31 +910,6 @@ html:
 '</div>'+
 
 
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Nombre(s)</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Apellidos</label>'+
-        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
   '<label>Tecnico</label>'+

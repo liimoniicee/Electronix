@@ -23,7 +23,7 @@ $falla= $_POST ['swal-input12'];
 
 
 
-$sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_total='200' ,fecha_egreso=CURRENT_TIMESTAMP where id_folio='$id' and id_equipo='$id_equipo';";
+$sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_total='200' ,fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
 
