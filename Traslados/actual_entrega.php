@@ -26,6 +26,10 @@ id_traslado='$id'";
 $res = $conn->query($query);
 
 
+$sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
+VALUES ('$var_clave', current_time, 'Equipo nuevo en taller', 'Pendiente', 'Taller');";
+$res3 = $conn->query($sql3);
+
 
 if (!$res) {
    printf("Errormessage: %s\n", $conn->error);

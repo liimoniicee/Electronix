@@ -203,7 +203,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
                   <table id="a-tables" style="font-size:13px" class="table table-dark table-hover table-responsive">
                   <thead>
-                    <!--<th data-field="state" data-checkbox="true"></th>-->
+
                     <th data-field="id">id_equipo</th>
                   <th data-field="Marca" data-sortable="true">Marca</th>
                   <th data-field="Modelo" data-sortable="true">Modelo</th>

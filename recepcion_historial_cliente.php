@@ -122,9 +122,9 @@ id_folio = '$id';";
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
-      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
+      <li><a class="app-menu__item active" href="Recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
       <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon ti-settings"></i><span class="app-menu__label">Taller</span></a></li>
-      <li><a class="app-menu__item active" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+      <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
@@ -198,11 +198,8 @@ id_folio = '$id';";
 
       </div>
 
-              <div class="row">
-
-                  <div class="col-md-12">
-                    <div class="tile">
-                      <div class="tile-body">
+      <div class="tile">
+        <div class="tile-body">
 
           <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
@@ -270,16 +267,12 @@ id_folio = '$id';";
       </tbody>
   </table>
       </div>
-    </div>
-  </div>
-</div>
+
 
 
 </div>
 </div>
 
-        </div>
-      </div>
     </main>
     <!-- Essential javascripts for application to work-->
 
@@ -541,7 +534,7 @@ id_folio = '$id';";
 
           ?>
 
-<script> 
+<script>
 
 Push.create("<?php echo $fech_avi; ?>", {
   body:"<?php echo $avi; ?>",

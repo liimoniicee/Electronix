@@ -606,7 +606,7 @@ reverseButtons: true
 
 
     swal({
-   title: 'Editar solicitud',
+   title: 'Actualizar estatus',
    html:
 
    '<form action="actual_status" method="post" name="data">'+

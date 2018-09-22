@@ -24,7 +24,7 @@ $ape= $_POST ['swal-input2'];
 //checar la validacion(no funciona el else:v)
 
  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
- VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
+ VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente traslado','Recepcion', '$id');";
  $res = $conn->query($sql);
 
 
