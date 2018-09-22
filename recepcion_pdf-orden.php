@@ -22,6 +22,32 @@ $ape= $_POST ['swal-input2'];
  $comentario=$_POST['comen'];
 
 //checar la validacion(no funciona el else:v)
+if($servicio=="Compra"){
+
+  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
+  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente traslado','Recepcion', '$id');";
+  $res = $conn->query($sql);
+ 
+ 
+ $consu = "select id_equipo, fecha_ingreso from reparar_tv ORDER BY fecha_ingreso desc LIMIT 1";
+ $resu = $conn->query($consu);
+ if($resu->num_rows > 0){
+ 
+  while($row = $resu->fetch_assoc()) {
+    $idequipo   =  $row["id_equipo"];
+   }
+   $sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, id_folio, personal_id_personal)
+   VALUES ('Pendiente', '$comentario', 'recepcion', 'almacen', '$idequipo', '$id', '$var_clave');";
+   $res2 = $conn->query($sql2);
+ 
+   $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
+   VALUES ('$var_clave', current_time, 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
+   $res3 = $conn->query($sql3);
+
+  }
+
+}else{
+
 
  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente traslado','Recepcion', '$id');";
@@ -42,7 +68,7 @@ if($resu->num_rows > 0){
   $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
   VALUES ('$var_clave', current_time, 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
   $res3 = $conn->query($sql3);
-
+}
 }
 
   require 'assets/fpdf/fpdf.php';

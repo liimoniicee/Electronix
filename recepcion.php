@@ -350,7 +350,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -381,7 +381,7 @@ html:
 '<div class="col-md-12">'+
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
+        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
 
         '<label>Comentarios</label>'+
         '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+

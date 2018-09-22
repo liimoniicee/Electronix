@@ -9,7 +9,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-$consulta = "SELECT * from reparar_tv r, clientes c, almacen a where r.estado = 'Almacen' and c.id_folio = r.id_folio;";
+$consulta = "SELECT * from reparar_tv r, clientes c, almacen a where r.estado = 'Almacen';";
 
 $avisos = "SELECT
 *
@@ -149,6 +149,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     while($fila=mysqli_fetch_array($ejecutar)){
         $id_equipo          = $fila['id_equipo'];
         $id           = $fila['id_folio'];
+        $nombre           = $fila['nombre'];
+        $apellidos           = $fila['apellidos'];
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
         $sub_estado           = $fila['sub-estado'];
