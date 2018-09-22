@@ -21,15 +21,16 @@ id_traslado='$id'";
 
 $res = $conn->query($query);
 
-$query = "UPDATE
+$query2 = "UPDATE
 reparar_tv
 SET
 estado = 'Recoleccion traslado',
 id_personal = '$var_clave',
+ubicacion = 'Traslados'
 WHERE
 id_equipo='$id_equipo'";
 
-$res = $conn->query($query);
+$res2 = $conn->query($query2);
 
 
 
