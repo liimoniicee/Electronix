@@ -268,7 +268,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   <div id='show-me-two' style='display:none; border:2px solid #ccc'>
 
 
-          <table id="a-tables" class="table table-dark table-hover table-responsive">
+          <table id="tabla2" class="table table-dark table-hover table-responsive">
     <thead>
         <th data-field="id">id_equipo</th>
       <th data-field="equipo" data-sortable="true">equipo</th>
@@ -318,7 +318,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   <div id='show-me-three' style='display:none; border:2px solid #ccc'>
 
 
-                  <table id="a-tables" class="table table-dark table-hover table-responsive">
+                  <table id="tabla3" class="table table-dark table-hover table-responsive">
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
                   <th data-field="id">id_equipo</th>
@@ -371,7 +371,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 
 
-                                    <table id="a-tables" class="table table-dark table-hover table-responsive">
+                                    <table id="tabla4" class="table table-dark table-hover table-responsive">
                                     <thead>
                                     <!--<th data-field="state" data-checkbox="true"></th>-->
                                     <th data-field="id">id_equipo</th>
@@ -422,7 +422,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                     <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
 
 
-                  <table id="a-tables" class="table table-dark table-hover table-responsive">
+                  <table id="tabla5" class="table table-dark table-hover table-responsive">
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
                   <th data-field="id">id_equipo</th>
@@ -475,7 +475,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
               <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
 
 
-              <table id="a-tables" class="table table-dark table-hover table-responsive">
+              <table id="tabla6" class="table table-dark table-hover table-responsive">
               <thead>
               <!--<th data-field="state" data-checkbox="true"></th>-->
               <th data-field="id">id_equipo</th>
@@ -525,7 +525,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                               <div id='show-me-three5' style='display:none; border:2px solid #ccc'>
 
 
-                              <table id="a-tables" class="table table-dark table-hover table-responsive">
+                              <table id="tabla7" class="table table-dark table-hover table-responsive">
                               <thead>
                               <!--<th data-field="state" data-checkbox="true"></th>-->
                               <th data-field="id">id_equipo</th>
@@ -1135,5 +1135,15 @@ Push.create("<?php echo $fech_avi; ?>", {
 
 });
 
+</script>
+<script>
+$(document).ready(function() {
+    $('#tabla2').DataTable();
+    $('#tabla3').DataTable();
+    $('#tabla4').DataTable();
+    $('#tabla5').DataTable();
+    $('#tabla6').DataTable();
+    $('#tabla7').DataTable();
+} );
 </script>
 <?php } ?>

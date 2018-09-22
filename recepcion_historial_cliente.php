@@ -200,8 +200,7 @@ id_folio = '$id';";
 
       <div class="tile">
         <div class="tile-body">
-
-          <table id="bootstrap-table" class="table table-dark table-hover table-responsive">
+          <table id="tabla" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">ID</th>
@@ -628,6 +627,13 @@ Push.create("<?php echo $fech_avi; ?>", {
               });
       });
 
+  </script>
+
+  <script>
+  $(document).ready(function() {
+      $('#tabla').DataTable();
+
+  } );
   </script>
 
 
