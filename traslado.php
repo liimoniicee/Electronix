@@ -33,6 +33,12 @@ $en_ruta = "SELECT
  FROM
  traslado where id_personal='$var_clave' and estado='En ruta';";
 
+ $avisos = "SELECT
+ *
+ FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+
+ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+
 
 ?>
 
@@ -117,7 +123,7 @@ $en_ruta = "SELECT
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
       <li><a class="app-menu__item active" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
-      
+
 </ul>
 
     </aside>
@@ -168,7 +174,7 @@ $en_ruta = "SELECT
                                     <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
                                     <th data-field="destino" data-sortable="true">Destino</th>
                                     <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                                    <th class="disabled-sorting">Acción</th>
+
 
     																	</thead>
                                       <?php
@@ -187,9 +193,6 @@ $en_ruta = "SELECT
                             <td><?php echo $ubi ?></td>
                             <td><?php echo $dest ?></td>
                             <td><?php echo $fech ?></td>
-                            <td>
-                            <button onclick="swal_traslados(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-                            </td>
                           </tr>
                   <?php } ?>
     							</tbody>
@@ -213,7 +216,7 @@ $en_ruta = "SELECT
       <th data-field="destino" data-sortable="true">Destino</th>
 
                                                 <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                                                <th class="disabled-sorting">Acción</th>
+
 
                                               </thead>
                                               <?php
@@ -233,9 +236,7 @@ $en_ruta = "SELECT
                                                                     <td><?php echo $dest ?></td>
 
       <td><?php echo $fech ?></td>
-      <td>
-      <button onclick="swal_por_concretar(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-            </td>
+
         </tr>
         <?php } ?>
         </tbody>
@@ -256,7 +257,7 @@ $en_ruta = "SELECT
                     <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
                     <th data-field="destino" data-sortable="true">Destino</th>
                     <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                    <th class="disabled-sorting">Acción</th>
+
                                                     </thead>
                                                     <?php
                                                       $ejecutar4 = mysqli_query($conn, $en_ruta);
@@ -274,10 +275,7 @@ $en_ruta = "SELECT
                     <td><?php echo $ubi ?></td>
                     <td><?php echo $dest ?></td>
                     <td><?php echo $fech ?></td>
-                    <td>
-                    <button onclick="swal_enruta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
-                    <button onclick="borrar_enruta(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
-                    </td>
+
                     </tr>
                     <?php } ?>
                     </tbody>
@@ -297,7 +295,7 @@ $en_ruta = "SELECT
                 <th data-field="destino" data-sortable="true">Destino</th>
 
                 <th data-field="fecha" data-sortable="true">Fecha finalizado</th>
-                <th class="disabled-sorting">Acción</th>
+
 
                 </thead>
                 <?php
@@ -316,10 +314,7 @@ $en_ruta = "SELECT
                     <td><?php echo $ubi ?></td>
                     <td><?php echo $dest ?></td>
                     <td><?php echo $fech ?></td>
-                    <td>
-                    <button onclick="swal_entregados(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
-                     <button onclick="borrar_entregados(<?php echo $id ?>)" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
-                      </td>
+
       </tr>
       <?php } ?>
           </tbody>

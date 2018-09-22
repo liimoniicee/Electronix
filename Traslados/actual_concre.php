@@ -4,6 +4,7 @@ include 'fuctions.php';
 include 'conexion.php';
 verificar_sesion();
 
+
 $id = $_POST ['swal-input0'];
 $car = $_POST['swal-input8'];
 $var_clave= $_SESSION['clave'];
