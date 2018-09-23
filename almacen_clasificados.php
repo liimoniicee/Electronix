@@ -9,7 +9,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-$consulta = "SELECT * from reparar_tv  where ubicacion = 'Almacen';";
+$consulta = "SELECT * from almacen;";
 
 $avisos = "SELECT
 *
@@ -123,7 +123,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           <div class="col-lg-12">
             <p class="bs-component">
             <button class="btn btn btn-danger" onclick="location='almacen.php'"><i class="ti-thumb-down"></i>Almacen sin clasificar</button>
-            <button class="btn btn-success" type="button" onclick="location='almacen_clasificados.php'"><i class="ti-thumb-up"></i>Almacen clasificados</button>
+            <button class="btn btn-success" type="button" onclick="location='almacen_clasificados.php.php'"><i class="ti-thumb-up"></i>Almacen clasificados</button>
             </p>
 </div>
       <div class="col-md-12">
@@ -133,14 +133,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
-        <th data-field="id">id_equipo</th>
-      <th data-field="folio" data-sortable="true">Folio</th>   
-      <th data-field="marca" data-sortable="true">Marca</th>
-      <th data-field="modelo" data-sortable="true">Modelo</th>
-      <th data-field="servicio" data-sortable="true">Servicio</th>
-
-
-     
+        <th data-field="id">Id Almacen</th>
+        <th data-field="id_equipo">Id equipo</th>
+      <th data-field="marca" data-sortable="true">Id cliente</th>
+      <th data-field="modelo" data-sortable="true">Sub ubicacion</th>
+      <th data-field="servicio" data-sortable="true">Sub estado</th>
+      <th data-field="servicio" data-sortable="true">Id personal</th>
+    
       <th data-field="garantia" data-sortable="true">Acción</th>
 
 
@@ -149,21 +148,23 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
-        $id_equipo          = $fila['id_equipo'];
-        $id           = $fila['id_folio'];        
-        $marca           = $fila['marca'];
-        $modelo           = $fila['modelo'];
-        $servicio           = $fila['servicio'];
+      $id_almacen          = $fila['id_almacen'];
+        $id_equipo          = $fila['reparar_tv_id_equipo'];
+        $id           = $fila['clientes_id_folio'];        
+        $ubicacion           = $fila['sub-ubicacion'];
+        $estado           = $fila['sub-estado'];
+        $personal           = $fila['personal_id_personal'];
 
    
 
 ?>
                     <tr>
+                        <td><?php echo $id_almacen ?></td>
                         <td><?php echo $id_equipo ?></td>
                         <td><?php echo $id ?></td>             
-                        <td><?php echo $marca ?></td>
-                        <td><?php echo $modelo ?></td>
-                        <td><?php echo $servicio ?></td>
+                        <td><?php echo $ubicacion ?></td>
+                        <td><?php echo $estado ?></td>
+                        <td><?php echo $personal ?></td>
 
                 
                         <td>
@@ -242,7 +243,10 @@ function enviarorden(id){
        $("#swal-input0").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
-       
+       $("#swal-input3").val(data.data.nom);
+       $("#swal-input4").val(data.data.ape);
+       $("#swal-input5").val(data.data.cel);
+       $("#swal-input6").val(data.data.equi);
        $("#swal-input7").val(data.data.mar);
        $("#swal-input8").val(data.data.mod);
        $("#swal-input9").val(data.data.ser);
@@ -282,7 +286,7 @@ function enviarorden(id){
 function clasificar(id){
 
 swal({
-title: 'Asignar en almacen',
+title: 'Garantia',
 html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
@@ -302,7 +306,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input00" id="swal-input00" value="'+id+'"  readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input00" id="swal-input00" value="$id" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -310,18 +314,71 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Sub ubicacion</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" required class="form-control border-input">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Apellidos</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Sub estado</label>'+
-        '<input type="text" name="swal-input00" id="swal-input00" required class="form-control border-input">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo total</label>'+
+        '<input type="text" name="swal-input23" id="swal-input23" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
 
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Clasificar</Button>'+
