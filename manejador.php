@@ -43,7 +43,7 @@ if($resultado->num_rows > 0){
   		//$id = $row["ID_USUARIO"];//
   	    $_SESSION['nombre']=$var_nombre;
 
-  		header("location:traslado.php");
+  		header("location:Traslados/traslados.php");
   	}
     if($tipo == 'Administrador'){
     		$_SESSION['clave'] = $row["id_personal"];
