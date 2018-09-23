@@ -1,4 +1,4 @@
-
+  
 <?php
 session_start();
 include 'fuctions.php';
@@ -489,17 +489,23 @@ id_folio = '$id';";
     swal({
     title: 'Abonos',
     html:
-    '<div class="card-body"> <form action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    '<div class="card-body"> <form target="_blank" action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
-    '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly >' +
+    '<input name="swal-input00" type="hidden" id="swal-input00" value="'+id+'" class="form-control border-input" readonly >' +
     '<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
     '<input name="swal-input3" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
     '<input name="swal-input4" type="hidden" id="swal-input4" class="form-control border-input" readonly >' +
 
     '<div class="col-md-12">'+
       '<div class="form-group">'+
+      '<label>Cantidad abonada</label>'+
+            '<input type="number" name="swal-input21" id="swal-input21"  readonly class="form-control border-input">'+
+
             '<label>Cantidad que abona</label>'+
-            '<input type="number" name="swal-input21" id="swal-input21"  class="form-control border-input">'+
+            '<input type="number" name="swal-input25" id="swal-input25" equired placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+
+            '<label>Cantidad total abonada</label>'+
+            '<input type="number" name="swal-input26" id="swal-input26"  readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
 
@@ -547,6 +553,24 @@ Push.create("<?php echo $fech_avi; ?>", {
 </script>
 
 
+<script type="text/javascript">
+
+function operaciones()
+{
+  var abonada =document.getElementById('swal-input21').value;
+  var abono =document.getElementById('swal-input25').value;
+  var abonot =document.getElementById('swal-input26').value;
+
+
+  var suma =parseInt(abonada)+parseInt(abono);
+
+  var totalt =parseInt(document.getElementById('swal-input26').value= suma);
+
+
+}
+
+
+</script>
 
 <script type="text/javascript">
 

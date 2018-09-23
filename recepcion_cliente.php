@@ -91,86 +91,106 @@ header('recepcion.php');
     '<input type="hidden" name="swal-input2" value="<?php echo $ape ?>" id="swal-input2" class="form-control border-input" readonly >' +
 
 
-    '<div class="row">'+
-    '<div class="col-md-6">'+
-      '<div class="form-group">'+
-            '<label>Equipo</label>'+
-            '<select class="form-control form-control-sm" charset=utf-8" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
-            '<option value="Ventiladores">Ventiladores</option>'+
-            '<option value="Tarjeta madre">Tarjetas madre</option>'+
-            '<option value="Audio">Audio</option>'+
-            '<option value="Fuente de poder">Fuentes de poder</option>'+
-            '</select>' +
-        '</div>'+
+   '<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
+        '<option value="Ventiladores">Ventiladores</option>'+
+        '<option value="Tarjeta madre">Tarjetas madre</option>'+
+        '<option value="Audio">Audio</option>'+
+        '<option value="Fuente de poder">Fuentes de poder</option>'+
+        '</select>' +
     '</div>'+
-    '<div class="col-md-6">'+
-      '<div class="form-group">'+
-            '<label>Marca</label>'+
-            '<input type="text" name="marca" id="marca" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-        '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="serie" id="serie" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Accesorios</label>'+
+        '<input type="text" name="acce" id="acce" maxlength="25"  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+'<div class="form-group">'+
+        '<label>Tipo de servicio</label>'+
+        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
+
+        '<label>Comentarios</label>'+
+        '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
     '</div>'+
     '</div>'+
 
-    '<div class="row">'+
-    '<div class="col-md-6">'+
-      '<div class="form-group">'+
-            '<label>Modelo</label>'+
-            '<input type="text" name="modelo" id="modelo" maxlength="25" required class="form-control border-input">'+
-        '</div>'+
-    '</div>'+
 
-    '<div class="col-md-6">'+
-      '<div class="form-group">'+
-            '<label>Falla</label>'+
-            '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-        '</div>'+
-    '</div>'+
-    '</div>'+
-
-    '<div class="row">'+
-    '<div class="col-md-6">'+
-      '<div class="form-group">'+
-            '<label>Serie</label>'+
-            '<input type="text" name="serie" id="serie" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-        '</div>'+
-    '</div>'+
-
-    '<div class="col-md-6">'+
-      '<div class="form-group">'+
-            '<label>Accesorios</label>'+
-            '<input type="text" name="acce" id="acce" maxlength="25"  class="form-control border-input">'+
-        '</div>'+
-    '</div>'+
-    '</div>'+
-
-    '<div class="col-md-12">'+
-    '<div class="form-group">'+
-            '<label>Tipo de servicio</label>'+
-            '<select class="form-control form-control-sm" charset=utf-8" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Domicilio">Domicilio</option><option value="Garantia">Garantía</option><option value="Compra">Compra</option><option value="Revisión5">Revisión</option></select>' +
-
-            '<label>Comentarios</label>'+
-            '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
-        '</div>'+
-    '</div>'+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
 
 
-    '<div class="col-md-12">'+
-    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+'</form></div>',
 
+type: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: true,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+}).then((result) => {
+  if (result.value) {
+    swal(
+      'Éxito!',
+      'Orden registrada correctamente.',
+      'success'
+    )
+  } else if (
+    // Read more about handling dismissals
+    result.dismiss === swal.DismissReason.cancel
+  ) {
+    swal({
+    type: 'error',
+    title: 'Oops...',
+    text: 'No se registró la orden',
 
-    '</form></div>',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: '</form> Actualizar solicitud',
-    cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-    showConfirmButton: false,
-    focusConfirm: false,
-    buttonsStyling: false,
-    reverseButtons: true
-    })
-
-
+  }).then(function() {
+  // Redirect the user
+  window.location.href = "recepcion.php";
+  console.log('The Ok Button was clicked.');
+  });
 
     </script>
 

@@ -386,7 +386,7 @@ html:
         '<label>Comentarios</label>'+
         '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
     '</div>'+
-'</div>'+
+    '</div>'+
 
 
 '<div class="col-md-12">'+
@@ -394,19 +394,36 @@ html:
 
 
 '</form></div>',
+
+type: 'warning',
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
-confirmButtonText: '</form> Actualizar solicitud',
+confirmButtonText: '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>',
 cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: false,
+showConfirmButton: true,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
+}).then((result) => {
+  if (result.value) {
+    swal(
+      'Éxito!',
+      'Orden registrada correctamente.',
+      'success'
+    )
+  } else if (
+    // Read more about handling dismissals
+    result.dismiss === swal.DismissReason.cancel
+  ) {
+    swal(
+      'Orden cancelada',
+      'No se registró la orden :(',
+      'error'
+    )
+  }
 })
-
 };
-
 </script>
 
 
@@ -432,17 +449,34 @@ html:
 '<input input type="number" name="swal-input5" id="swal-input5" class="form-control border-input type="number" required></br>'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar cliente</Button>'+
 '</form></div>',
+type: 'warning',
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
-confirmButtonText: '</form> Actualizar solicitud',
+confirmButtonText: 'Actualizar solicitud',
 cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
+}).then((result) => {
+  if (result.value) {
+    swal(
+      'Éxito!',
+      'Cliente actualizado',
+      'success'
+    )
+  } else if (
+    // Read more about handling dismissals
+    result.dismiss === swal.DismissReason.cancel
+  ) {
+    swal(
+      'Actualizacion cancelada',
+      'No se actualizo el cliente :(',
+      'error'
+    )
+  }
 })
-
 };
 
 </script>
@@ -462,6 +496,7 @@ reverseButtons: true
    '<input input type="textarea" name="ape" id="ape" style="line-height: 150px; height:150px;" class="form-control border-input maxlength="100" required>' +
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
    '</form></div>',
+   type: 'warning',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
    cancelButtonColor: '#d33',
@@ -471,9 +506,16 @@ reverseButtons: true
    focusConfirm: false,
    buttonsStyling: false,
     reverseButtons: true
-  })
+  }).then(function (result) {
 
-  };
+swal(
+'Nuevo aviso!',
+'Aviso registrado correctamente',
+'success'
+)
+}).catch(swal.noop);
+
+};
   </script>
 
   <script type="text/javascript">
@@ -497,6 +539,7 @@ reverseButtons: true
    '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
    '</form></div>',
+   type: 'warning',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
    cancelButtonColor: '#d33',
@@ -506,9 +549,25 @@ reverseButtons: true
    focusConfirm: false,
    buttonsStyling: false,
     reverseButtons: true
-  })
-
-  };
+  }).then((result) => {
+  if (result.value) {
+    swal(
+      'Éxito!',
+      'Orden registrada correctamente.',
+      'success'
+    )
+  } else if (
+    // Read more about handling dismissals
+    result.dismiss === swal.DismissReason.cancel
+  ) {
+    swal(
+      'Cliente cancelada',
+      'No se agregó ningún cliente :(',
+      'error'
+    )
+  }
+})
+};
   </script>
 
 </div>

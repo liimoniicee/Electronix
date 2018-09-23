@@ -7,14 +7,15 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
-$id = $_POST['swal-input0'];
+$id = $_POST['swal-input00'];
 $id_equipo = $_POST['swal-input1'];
-$abo = $_POST['swal-input21'];
+$abo = $_POST['swal-input25'];
+$abot = $_POST['swal-input26'];
 $nom = $_POST['swal-input3'];
 $ape = $_POST['swal-input4'];
 
 
-$sql = "UPDATE reparar_tv set abono='$abo' where id_equipo='$id_equipo'";
+$sql = "UPDATE reparar_tv set abono='$abot' where id_equipo='$id_equipo'";
 
 $res = $conn->query($sql);
 
@@ -45,7 +46,7 @@ $pdf->SetXY(60,20);
 $pdf->Write(5,'Folio cliente:');
 
 $pdf->SetFont('Arial','B',16);
-$pdf->SetXY(94,20);
+$pdf->SetXY(95,20);
 $pdf->Write(5,$id);
 
 //fecha
