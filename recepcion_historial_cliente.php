@@ -62,12 +62,7 @@ id_folio = '$id';";
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
 <link href= "assets/css/themify-icons.css" rel="stylesheet">
-
-<!-- Bootstrap core CSS     -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-<!--  Paper Dashboard core CSS    -->
-
-
+<link rel="shortcut icon" href="assets/img/favicon.ico">
   </head>
 
     <body class="app sidebar-mini rtl">
@@ -208,9 +203,8 @@ id_folio = '$id';";
 
       <div class="tile">
         <div class="tile-body">
-          <table id="bootstrap-table" class="table table-dark table-responsive">
+          <table id="tabla" class="table table-dark table-responsive">
     <thead>
-        <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">ID</th>
       <th data-field="equipo" data-sortable="true">Equipo</th>
       <th data-field="marca" data-sortable="true">Marca</th>
@@ -251,20 +245,21 @@ id_folio = '$id';";
                         <td><?php echo $fecha_egreso ?></td>
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></td>
+                          <td>
                         <?php
                         if($estado == "En reparacion"){
                           echo "
-                        <td>
-                          <button onclick='abono($id), enviarorden($id_equipo);'class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingresa abono' ><i class='ti-image'></i></button>
-                        </td>";
+
+                          <button onclick='abono($id), enviarorden($id_equipo);'class='btn btn-simple btn-success btn-icon' title='Ingresa abono' ><i class='ti-money'></i></button>
+                        ";
                       }elseif($estado == "Entregado"){
                           echo "
-                        <td>
-                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingreso por garantia' ><i class='ti-image'></i></button>
-                        </td>";
+
+                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon' title='Ingreso por garantia' ><i class='ti-agenda'></i></button>
+                      ";
                       }
                       ?>
-
+</td>
           </tr>
         <?php } ?>
         </br>
@@ -301,57 +296,21 @@ id_folio = '$id';";
     <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
 
     <!-- Data table plugin-->
-    <!--  Bootstrap Table Plugin    -->
-    <script src="assets/js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
 
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-    <script type="text/javascript">
+    <script>
+    $(document).ready(function() {
+        $('#tabla').DataTable();
 
-        var $table = $('#bootstrap-table');
-              $().ready(function(){
-
-
-                  $table.bootstrapTable({
-                      toolbar: ".toolbar",
-                      clickToSelect: true,
-                      showRefresh: false,
-                      search: true,
-                      showToggle: true,
-                      showColumns: false,
-                      pagination: true,
-                      searchAlign: 'left',
-                      pageSize: 10,
-                      clickToSelect: false,
-                      pageList: [10,25,50,100],
-
-                      formatShowingRows: function(pageFrom, pageTo, totalRows){
-                          //do nothing here, we don't want to show the text "showing x of y from..."
-                      },
-                      formatRecordsPerPage: function(pageNumber){
-                          return pageNumber + " rows visible";
-                      },
-                      icons: {
-                          refresh: 'ti-reload',
-                          toggle: 'ti-align-left',
-                          columns: 'ti-list',
-                          detailOpen: 'ti-plus-',
-                          detailClose: 'ti-close'
-                      }
-                  });
-
-                  //activate the tooltips after the data table is initialized
-                  $('[rel="tooltip"]').tooltip();
-
-                  $(window).resize(function () {
-                      $table.bootstrapTable('resetView');
-                  });
-          });
-
-      </script>
+    } );
+    </script>
 
 
     <script>
