@@ -149,11 +149,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
       $id_almacen          = $fila['id_almacen'];
-        $id_equipo          = $fila['reparar_tv_id_equipo'];
-        $id           = $fila['clientes_id_folio'];        
-        $ubicacion           = $fila['sub-ubicacion'];
-        $estado           = $fila['sub-estado'];
-        $personal           = $fila['personal_id_personal'];
+        $id_equipo          = $fila['id_equipo'];
+        $id           = $fila['id_folio'];        
+        $ubicacion           = $fila['sub_ubicacion'];
+        $estado           = $fila['sub_estado'];
+        $personal           = $fila['id_personal'];
 
    
 

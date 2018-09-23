@@ -284,7 +284,7 @@ function clasificar(id){
 swal({
 title: 'Asignar en almacen',
 html:
-'<div class="card-body"> <form target="_blank" action="recepcion_pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form  action="almacen_fn_clasificar.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
 //'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
 
@@ -318,7 +318,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Sub estado</label>'+
-        '<input type="text" name="swal-input00" id="swal-input00" required class="form-control border-input">'+
+        '<input type="text" name="swal-input4" id="swal-input4" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
