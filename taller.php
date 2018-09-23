@@ -197,6 +197,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   </form>
                 </div>
                   <br><br>
+                  <!-- comienza tabla 1 -->
                   <div id='show-me'>
                     <div class="tile">
                       <div class="tile-body">
@@ -232,26 +233,34 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                     $ubi      = $fila['ubicacion'];
                     $id           = $fila['id_folio'];
                     $id_p           = $fila['id_personal'];
+      ?>
+      <tr>
+      <td><?php echo $id_equipo ?></td>
+      <td><?php echo $marc ?></td>
+      <td><?php echo $mod ?></td>
+      <td><?php echo $falla ?></td>
+      <td><?php echo $come ?></td>
+      <td><?php echo $fech_ing ?></td>
+      <td><?php echo $servi ?></td>
+      <td><?php echo $est ?></td>
+      <td><?php echo $ubi ?></td>
+      <td><?php echo $id ?></td>
+      <td><?php echo $id_p ?></td>
+      <td>
+      <?php
+      if($est == "Pendiente"){
+      echo "
+      <button onclick='asignar_tec($id_equipo), mod_asignar_tec($id_equipo);' title='Asignar tecnico' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+      ";
+    }elseif($est == "Diagnosticada"){
+      echo "
+      <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i ></i></button>
 
-                  ?>
-                                <tr>
-                                    <td><?php echo $id_equipo ?></td>
-                                    <td><?php echo $marc ?></td>
-                                    <td><?php echo $mod ?></td>
-                                    <td><?php echo $falla ?></td>
-                                    <td><?php echo $come ?></td>
-                                    <td><?php echo $fech_ing ?></td>
-                                    <td><?php echo $servi ?></td>
-                                    <td><?php echo $est ?></td>
-                                    <td><?php echo $ubi ?></td>
-                                    <td><?php echo $id ?></td>
-                                    <td><?php echo $id_p ?></td>
-                                    <td>
-                                    <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
-                                    <button onclick="costos(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
-
-                                    </td>
-
+      <button onclick='costos($id), enviarorden($id);' title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+      ";
+    }
+    ?>
+</td>
                       </tr>
                     <?php } ?>
                     <tbody></br>
