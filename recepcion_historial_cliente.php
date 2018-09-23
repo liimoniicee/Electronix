@@ -1,4 +1,4 @@
-  
+
 <?php
 session_start();
 include 'fuctions.php';
@@ -62,6 +62,11 @@ id_folio = '$id';";
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
 <link href= "assets/css/themify-icons.css" rel="stylesheet">
+
+<!-- Bootstrap core CSS     -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+<!--  Paper Dashboard core CSS    -->
+<link href="assets/css/paper-dashboard.css?v=1.2.1" rel="stylesheet"/>
 
   </head>
 
@@ -200,7 +205,7 @@ id_folio = '$id';";
 
       <div class="tile">
         <div class="tile-body">
-          <table id="tabla" class="table table-dark table-hover table-responsive">
+          <table id="bootstrap-table" class="table table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">ID</th>
@@ -213,9 +218,10 @@ id_folio = '$id';";
       <th data-field="fecha_egreso" data-sortable="true">Salida</th>
       <th data-field="estado" data-sortable="true">Estado</th>
       <th data-field="ubicacion" data-sortable="true">Ubicación</th>
-      <th data-field="accion" data-sortable="true">Acción</th>
+      <th data-field="actions" class="td-actions text-right">Acción</th>
 
     </thead>
+    <tbody>
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
@@ -243,25 +249,22 @@ id_folio = '$id';";
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></td>
                         <?php
-                        if($estado == "Entregado"){
-                          echo "
-                        <td>
-                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Reingreso por garantía' ><i ></i></button>
-                        </td>";
-                      };
-                      ?>
-                       <?php
                         if($estado == "En reparacion"){
                           echo "
                         <td>
-                          <button onclick='abono($id), enviarorden($id_equipo);' class='btn btn-simple btn-primary btn-icon edit' title='Ingresar abono' ><i ></i></button>
+                          <button onclick='garantia($id), enviarorden($id_equipo);'class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingreso por garantia' ><i class='ti-image'></i></button>
                         </td>";
-                      };
+                      }elseif($estado == "Entregado"){
+                          echo "
+                        <td>
+                          <button onclick='abono($id), enviarorden($id_equipo);' class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingreso por garantia' ><i class='ti-image'></i></button>
+                        </td>";
+                      }
                       ?>
 
           </tr>
         <?php } ?>
-        <tbody></br>
+        </br>
            <h2>Historial completo del cliente <?php echo $id ?></h2>
       </tbody>
   </table>
@@ -291,11 +294,8 @@ id_folio = '$id';";
     <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
 
     <!-- Data table plugin-->
-    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript">$('#a-tables').DataTable();</script>
-
-      <script src="assets/js/jquery.datatables.js"></script>
+    <!--  Bootstrap Table Plugin    -->
+    <script src="assets/js/bootstrap-table.js"></script>
 
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
@@ -542,14 +542,14 @@ id_folio = '$id';";
           ?>
 
 <script>
-
+/*
 Push.create("<?php echo $fech_avi; ?>", {
   body:"<?php echo $avi; ?>",
   icon:"assets/img/alert1.png",
   timeout:10000
 
 });
-
+*/
 </script>
 
 
@@ -575,58 +575,21 @@ function operaciones()
 <script type="text/javascript">
 
     var $table = $('#bootstrap-table');
-
-          function operateFormatter(value, row, index) {
-              return [
-          '<div class="table-icons">',
-                    '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
-              '<i class="ti-image"></i>',
-            '</a>',
-                    '<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
-                        '<i class="ti-pencil-alt"></i>',
-                    '</a>',
-                    '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
-                        '<i class="ti-close"></i>',
-                    '</a>',
-          '</div>',
-              ].join('');
-          }
-
           $().ready(function(){
-              window.operateEvents = {
-                  'click .view': function (e, value, row, index) {
-                      info = JSON.stringify(row);
 
-                      swal('You click view icon, row: ', info);
-                      console.log(info);
-                  },
-                  'click .edit': function (e, value, row, index) {
-                      info = JSON.stringify(row);
-
-                      swal('You click edit icon, row: ', info);
-                      console.log(info);
-                  },
-                  'click .remove': function (e, value, row, index) {
-                      console.log(row);
-                      $table.bootstrapTable('remove', {
-                          field: 'id',
-                          values: [row.id]
-                      });
-                  }
-              };
 
               $table.bootstrapTable({
                   toolbar: ".toolbar",
                   clickToSelect: true,
-                  showRefresh: true,
+                  showRefresh: false,
                   search: true,
                   showToggle: true,
-                  showColumns: true,
+                  showColumns: false,
                   pagination: true,
                   searchAlign: 'left',
-                  pageSize: 8,
+                  pageSize: 10,
                   clickToSelect: false,
-                  pageList: [8,10,25,50,100],
+                  pageList: [10,25,50,100],
 
                   formatShowingRows: function(pageFrom, pageTo, totalRows){
                       //do nothing here, we don't want to show the text "showing x of y from..."
@@ -635,10 +598,10 @@ function operaciones()
                       return pageNumber + " rows visible";
                   },
                   icons: {
-                      refresh: 'fa fa-refresh',
-                      toggle: 'fa fa-th-list',
-                      columns: 'fa fa-columns',
-                      detailOpen: 'fa fa-plus-circle',
+                      refresh: 'ti-reload',
+                      toggle: 'ti-align-left',
+                      columns: 'ti-list',
+                      detailOpen: 'ti-plus-',
                       detailClose: 'ti-close'
                   }
               });
@@ -652,13 +615,5 @@ function operaciones()
       });
 
   </script>
-
-  <script>
-  $(document).ready(function() {
-      $('#tabla').DataTable();
-
-  } );
-  </script>
-
 
 <?php } ?>

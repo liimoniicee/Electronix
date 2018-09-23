@@ -593,6 +593,7 @@ $.notify("Hello World");
           ?>
 
 <script>
+/*
 
 Push.create("<?php echo $fech_avi1; ?>", {
   body:"<?php echo $avi1; ?>",
