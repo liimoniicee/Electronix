@@ -153,10 +153,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
         $apellidos           = $fila['apellidos'];
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
-        $sub_estado           = $fila['sub-estado'];
-        $sub_ubicacion           = $fila['sub-ubicacion'];
-        $fecha_entregar        = $fila['fecha_entrada'];
-        $total        = $fila['fecha_salida'];
+     
+
 
 ?>
                     <tr>
@@ -168,10 +166,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
                         <td><?php echo $marca ?></td>
                         <td><?php echo $modelo ?></td>
-                        <td><?php echo $fecha_entregar ?></td>
-                        <td><?php echo $total ?></td>
+                      
                         <td>
-                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
+                        <button onclick="garantia(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
                         </td>
 
           </tr>
@@ -246,8 +243,7 @@ function enviarorden(id){
        $("#swal-input0").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
-       $("#swal-input3").val(data.data.nom);
-       $("#swal-input4").val(data.data.ape);
+
        $("#swal-input5").val(data.data.cel);
        $("#swal-input6").val(data.data.equi);
        $("#swal-input7").val(data.data.mar);
@@ -289,7 +285,7 @@ function enviarorden(id){
 function garantia(id){
 
 swal({
-title: 'Garantia',
+title: 'Clasificar en almacen',
 html:
 '<div class="card-body"> <form  action="almacen_fn_clasificar.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
@@ -309,7 +305,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input00" id="swal-input00" value="'+id+'" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -317,79 +313,23 @@ html:
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Nombre(s)</label>'+
-        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-
-
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Apellidos</label>'+
-        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Equipo</label>'+
-        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+        '<label>Sub ubicacion</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3"  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-<<<<<<< HEAD
         '<label>Sub estado</label>'+
-        '<input type="text" name="swal-input4" id="swal-input4" required class="form-control border-input">'+
-=======
-        '<label>Serie</label>'+
-        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
->>>>>>> a7529989051592adc411afdaba0fdba6b06fd6e6
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Costo total</label>'+
-        '<input type="text" name="swal-input23" id="swal-input23" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input4" id="swal-input4"  maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
 
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Clasificar</Button>'+
 
 '</form></div>',
 showCancelButton: true,
