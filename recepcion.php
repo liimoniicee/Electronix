@@ -330,7 +330,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Equipo</label>'+
-        '<select class="form-control form-control-sm" textalign="center" name="equipo" id="equipo"><option value="Television" >Televisión</option>'+
+        '<select class="form-control form-control-sm" textalign="center" required name="equipo" id="equipo"><option value="" ></option><option value="Television" >Televisión</option>'+
         '<option value="Ventiladores">Ventiladores</option>'+
         '<option value="Tarjeta madre">Tarjetas madre</option>'+
         '<option value="Audio">Audio</option>'+
@@ -381,7 +381,7 @@ html:
 '<div class="col-md-12">'+
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
+        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="" ></option><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
 
         '<label>Comentarios</label>'+
         '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+

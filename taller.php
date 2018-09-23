@@ -922,7 +922,8 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
   '<label>Tecnico</label>'+
-  '<select class="form-control form-control-sm" textalign="center" name="tecnico" id="tecnico">'+
+  '<select class="form-control form-control-sm" textalign="center" required name="tecnico" id="tecnico">'+
+  '<option value="" ></option>'+
   <?php
   $ejec7 = mysqli_query($conn, $tecnico);
   while($fila=mysqli_fetch_array($ejec7)){?>
