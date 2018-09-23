@@ -66,7 +66,7 @@ id_folio = '$id';";
 <!-- Bootstrap core CSS     -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
 <!--  Paper Dashboard core CSS    -->
-<link href="assets/css/paper-dashboard.css?v=1.2.1" rel="stylesheet"/>
+
 
   </head>
 
@@ -146,10 +146,13 @@ id_folio = '$id';";
       </div>
 <div class="content-panel">
   <div class="card-body text-white bg-primary mb-3">
-    <div class="card-header">Cliente
+    <div class="card-header">
+      <div class="row">
       <div class="col-md-2">
+        <label>Cliente</label>
         <input type="text" value="<?php echo $id ?>" readonly class="form-control border-input">
   </div>
+</div>
 </div>
             <div class="row">
 
@@ -252,12 +255,12 @@ id_folio = '$id';";
                         if($estado == "En reparacion"){
                           echo "
                         <td>
-                          <button onclick='garantia($id), enviarorden($id_equipo);'class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingreso por garantia' ><i class='ti-image'></i></button>
+                          <button onclick='abono($id), enviarorden($id_equipo);'class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingresa abono' ><i class='ti-image'></i></button>
                         </td>";
                       }elseif($estado == "Entregado"){
                           echo "
                         <td>
-                          <button onclick='abono($id), enviarorden($id_equipo);' class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingreso por garantia' ><i class='ti-image'></i></button>
+                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-info btn-icon table-action view' rel='tooltip' title='Ingreso por garantia' ><i class='ti-image'></i></button>
                         </td>";
                       }
                       ?>
@@ -276,6 +279,10 @@ id_folio = '$id';";
 </div>
 
     </main>
+
+
+
+
     <!-- Essential javascripts for application to work-->
 
     <!-- Page specific javascripts-->
@@ -302,6 +309,50 @@ id_folio = '$id';";
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
+    <script type="text/javascript">
+
+        var $table = $('#bootstrap-table');
+              $().ready(function(){
+
+
+                  $table.bootstrapTable({
+                      toolbar: ".toolbar",
+                      clickToSelect: true,
+                      showRefresh: false,
+                      search: true,
+                      showToggle: true,
+                      showColumns: false,
+                      pagination: true,
+                      searchAlign: 'left',
+                      pageSize: 10,
+                      clickToSelect: false,
+                      pageList: [10,25,50,100],
+
+                      formatShowingRows: function(pageFrom, pageTo, totalRows){
+                          //do nothing here, we don't want to show the text "showing x of y from..."
+                      },
+                      formatRecordsPerPage: function(pageNumber){
+                          return pageNumber + " rows visible";
+                      },
+                      icons: {
+                          refresh: 'ti-reload',
+                          toggle: 'ti-align-left',
+                          columns: 'ti-list',
+                          detailOpen: 'ti-plus-',
+                          detailClose: 'ti-close'
+                      }
+                  });
+
+                  //activate the tooltips after the data table is initialized
+                  $('[rel="tooltip"]').tooltip();
+
+                  $(window).resize(function () {
+                      $table.bootstrapTable('resetView');
+                  });
+          });
+
+      </script>
+
 
     <script>
     //Script para mandar ID para generar la orden
@@ -551,7 +602,7 @@ Push.create("<?php echo $fech_avi; ?>", {
 });
 */
 </script>
-
+<?php } ?>
 
 <script type="text/javascript">
 
@@ -571,49 +622,3 @@ function operaciones()
 
 
 </script>
-
-<script type="text/javascript">
-
-    var $table = $('#bootstrap-table');
-          $().ready(function(){
-
-
-              $table.bootstrapTable({
-                  toolbar: ".toolbar",
-                  clickToSelect: true,
-                  showRefresh: false,
-                  search: true,
-                  showToggle: true,
-                  showColumns: false,
-                  pagination: true,
-                  searchAlign: 'left',
-                  pageSize: 10,
-                  clickToSelect: false,
-                  pageList: [10,25,50,100],
-
-                  formatShowingRows: function(pageFrom, pageTo, totalRows){
-                      //do nothing here, we don't want to show the text "showing x of y from..."
-                  },
-                  formatRecordsPerPage: function(pageNumber){
-                      return pageNumber + " rows visible";
-                  },
-                  icons: {
-                      refresh: 'ti-reload',
-                      toggle: 'ti-align-left',
-                      columns: 'ti-list',
-                      detailOpen: 'ti-plus-',
-                      detailClose: 'ti-close'
-                  }
-              });
-
-              //activate the tooltips after the data table is initialized
-              $('[rel="tooltip"]').tooltip();
-
-              $(window).resize(function () {
-                  $table.bootstrapTable('resetView');
-              });
-      });
-
-  </script>
-
-<?php } ?>
