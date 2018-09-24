@@ -284,6 +284,7 @@ var id = id_equipo;
         '<label>Estado de la reparación</label>'+
 
         '<select class="form-control form-control-sm" text-align="center" required name="swal-input3" id="swal-input3">'+
+        '<option value="" ></option>'+
         '<option value="Reparado">Reparado</option>'+
         '<option value="Sin solucion">Sin solución</option>'+
         '<option value="Necesita refaccion">Necesita refacción</option>'+

@@ -305,7 +305,8 @@ function mod_vender(id){
 '<div class="col-md-6">'+
   '<div class="form-group">'+
  '<label>Id cliente</label>' +
- '<select class="form-control form-control-sm" textalign="center" name="tv_venta" id="tv_venta">'+
+ '<select class="form-control form-control-sm" textalign="center" required name="tv_venta" id="tv_venta">'+
+ '<option value="" ></option>'+
   <?php
   $ejec7 = mysqli_query($conn, $clientes);
   while($fila=mysqli_fetch_array($ejec7)){?>

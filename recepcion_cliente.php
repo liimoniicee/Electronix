@@ -160,7 +160,6 @@ header('recepcion.php');
 
 '</form></div>',
 
-type: 'warning',
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
@@ -170,27 +169,10 @@ showConfirmButton: true,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Éxito!',
-      'Orden registrada correctamente.',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === swal.DismissReason.cancel
-  ) {
-    swal({
-    type: 'error',
-    title: 'Oops...',
-    text: 'No se registró la orden',
 
-  }).then(function() {
-  // Redirect the user
-  window.location.href = "recepcion.php";
-  console.log('The Ok Button was clicked.');
-  });
+})
+
+};
 
     </script>
 
