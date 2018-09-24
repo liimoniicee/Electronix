@@ -13628,6 +13628,7 @@ be a descendant of the grid when it is being dragged.
   -o-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
 
+
 }
 
 @media (max-width: 767px) {
@@ -13639,7 +13640,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-sidebar__toggle:before {
- /* content: "\f0c9";*/
+  content: url("https://image.ibb.co/fzcuP9/menu_button_of_three_lines_outline_1.png");
   font-size: 21px;
 }
 
