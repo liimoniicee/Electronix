@@ -120,7 +120,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           <div class="col-lg-12">
             <p class="bs-component">
               <button class="btn btn-info" type="button" id='watch-me' onclick="nueva();" >Nueva publicacion</button>
-              <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Publicadas</button>
+              <button class="btn btn-success" type="button" onclick="location='ml_publicadas.php'">Publicadas</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Vendidas</button>
               <button class="btn btn-warning" type="button" id='see-me'>Solicitudes de taller</button>
               
