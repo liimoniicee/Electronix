@@ -105,7 +105,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     </aside>
     <main class="app-content">
       <div class="app-title">
-          <h1><i class="fa fa-dashboard"></i>Ventas</h1>
+          <h1><i class="fa fa-dashboard"></i>Refacciones publicadas</h1>
       </div>
 <div class="content-panel">
 
@@ -128,14 +128,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                 <div class="col-lg-4">
                   <div class="bs-component">
                     <div class="card">
-                      <h4 class="card-header"><?php echo $fila['marca']; ?></h4>
+                      <h3 class="card-header"><?php echo $fila['marca']; ?> <?php echo $fila['nombre']; ?></h3>
                       <div class="card-body">
-                        <h5 class="card-title"><?php echo $fila['modelo']; ?></h5>
-                        <h6 class="card-subtitle text-muted">$<?php echo $fila['precio']; ?></h6>
-                      </div><img style="height: 350px; width: 100%; display: block;" src="<?php echo $fila['imagen1']; ?>" alt="Card image">
+                        <h4 class="card-title"><?php echo $fila['modelo']; ?></h4>
+                        <h5 class="card-subtitle text-muted">$<?php echo $fila['precio']; ?></h5>
+                      </div>
+                      <embed type="text/html" src="<?php echo $fila['link']; ?>" width="380" height="300">
 
-                      <div class="card-footer text-muted"><?php echo  $fila['fecha_alta']; ?> </div>
-                        <button class="btn btn-primary" type="button" onclick="vender(<?php echo $fila['idventa_tv']; ?>), mod_vender(<?php echo $fila['idventa_tv']; ?>);">Vender</button>
+                      <div class="card-footer text-muted"><?php echo  $fila['fecha_entrada']; ?> </div>
+                        <button class="btn btn-primary" type="button" onclick="vender();">Cambiar estado</button>
                       </div>
 
                   </div><br></br>
