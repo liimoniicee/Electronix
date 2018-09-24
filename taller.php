@@ -202,7 +202,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                     <div class="tile">
                       <div class="tile-body">
 
-                  <table id="a-tables" style="font-size:13px" class="table table-dark table-hover table-responsive">
+                  <table id="a-tables"  class="table table-dark table-hover table-responsive">
                   <thead>
 
                     <th data-field="id">id_equipo</th>
@@ -214,7 +214,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   <th data-field="Servicio" data-sortable="true">Servicio</th>
                   <th data-field="Estado" data-sortable="true">Estado</th>
                   <th data-field="Ubicacion" data-sortable="true">Ubicación</th>
-                  <th data-field="Folio" data-sortable="true">Folio</th>
                   <th data-field="Personal" data-sortable="true">Personal</th>
                   <th data-field="Acción" data-sortable="true">Acción</th>
 
@@ -229,9 +228,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                     $come           = $fila['comentarios'];
                     $fech_ing       = $fila['fecha_ingreso'];
                     $servi          = $fila['servicio'];
-                    $est         = $fila['estado'];
-                    $ubi      = $fila['ubicacion'];
-                    $id           = $fila['id_folio'];
+                    $est            = $fila['estado'];
+                    $ubi            = $fila['ubicacion'];
+                    $id             = $fila['id_folio'];
                     $id_p           = $fila['id_personal'];
       ?>
       <tr>
@@ -244,7 +243,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <td><?php echo $servi ?></td>
       <td><?php echo $est ?></td>
       <td><?php echo $ubi ?></td>
-      <td><?php echo $id ?></td>
       <td><?php echo $id_p ?></td>
       <td>
       <?php
@@ -276,7 +274,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 <!-- comienza tabla 2 -->
                   <div id='show-me-two' style='display:none; border:2px solid #ccc'>
 
-
+                    <div class="tile">
+                      <div class="tile-body">
           <table id="tabla2" class="table table-dark table-hover table-responsive">
     <thead>
         <th data-field="id">id_equipo</th>
@@ -320,12 +319,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       </tbody>
   </table>
       </div>
+    </div>
+  </div>
 
                     <!--Termina tabla 2-->
 
                     <!--Comienza tabla 3-->
                   <div id='show-me-three' style='display:none; border:2px solid #ccc'>
-
+                    <div class="tile">
+                      <div class="tile-body">
 
                   <table id="tabla3" class="table table-dark table-hover table-responsive">
                   <thead>
@@ -371,14 +373,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   Equipos en reparación
                   </tbody>
                   </table>
-
+                </div>
+              </div>
 
                     </div>
                     <!-- Termina tabla 4 -->
 
                 <div id='show-me-three2' style='display:none; border:2px solid #ccc'>
 
-
+                  <div class="tile">
+                    <div class="tile-body">
 
                                     <table id="tabla4" class="table table-dark table-hover table-responsive">
                                     <thead>
@@ -424,12 +428,14 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                     Equipos en revisados
                                     </tbody>
                                     </table>
-
+                                  </div>
+                                </div>
 
                   </div>
                     <!-- Termina tabla 4 -->
                     <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
-
+                      <div class="tile">
+                        <div class="tile-body">
 
                   <table id="tabla5" class="table table-dark table-hover table-responsive">
                   <thead>
@@ -476,13 +482,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   </tbody>
                   </table>
 
-
+                </div>
+              </div>
                     </div>
 
                     <!-- Comienza tabla 5 -->
 
               <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
-
+                <div class="tile">
+                  <div class="tile-body">
 
               <table id="tabla6" class="table table-dark table-hover table-responsive">
               <thead>
@@ -525,14 +533,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   </tbody>
                   </table>
 
-
+                </div>
+              </div>
                     </div>
 
                 <!-- Comienza tabla 6 -->
 
 
                               <div id='show-me-three5' style='display:none; border:2px solid #ccc'>
-
+                                <div class="tile">
+                                  <div class="tile-body">
 
                               <table id="tabla7" class="table table-dark table-hover table-responsive">
                               <thead>
@@ -574,7 +584,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                   Equipos reparados
                                   </tbody>
                                   </table>
-
+                                </div>
+                              </div>
 
                                     </div>
                   <!-- Termina tabla 6-->
