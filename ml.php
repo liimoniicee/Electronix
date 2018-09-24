@@ -119,13 +119,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
           <div class="col-lg-12">
             <p class="bs-component">
-              <button class="btn btn-info" type="button" id='watch-me'>Nuevas</button>
-              <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Pendientes</button>
-              <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Publicadas</button>
-              <button class="btn btn-info" type="button" onclick="alerta();">Vendidas</button>
-              <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Ver todas</button>
-              <button class="btn btn-danger" type="button" id='see-me'>Solicitudes de taller</button>
-              <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Ventas</button>
+              <button class="btn btn-info" type="button" id='watch-me' onclick="nueva();" >Nueva publicacion</button>
+              <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'">Publicadas</button>
+              <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Vendidas</button>
+              <button class="btn btn-warning" type="button" id='see-me'>Solicitudes de taller</button>
+              
   </p>
 </div>
 </div>
@@ -362,6 +360,116 @@ var id = id_equipo;
 
   };
   </script>
+
+
+ <script type="text/javascript">
+//ventana de nuevo cliente
+    function nueva(){
+
+
+    swal({
+   title: 'Nueva publicacion',
+   html:
+'<div class="card-body"> <form action="ml_fn_nueva.php" method="post" name="data" enctype="multipart/form-data">'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+  '<label>Nombre de la pieza</label>'+
+'<input type="text" name="swal-input0"  id="swal-input0" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input" >' +//Id Equipo
+'</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input1"  id="swal-input1" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input2"  id="swal-input2" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Etiqueta 1</label>'+
+        '<input type="text" name="swal-input3"  id="swal-input3" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Etiqueta 2</label>'+
+        '<input type="text" name="swal-input4"  id="swal-input4" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Cantidad</label>'+
+        '<input type="number" name="swal-input5"  id="swal-input5" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Ubicacion</label>'+
+        '<input type="text" name="swal-input6"  id="swal-input6" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Precio</label>'+
+        '<input type="number" name="swal-input7"  id="swal-input7" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="col-lg-12">'+
+        '<label>Link</label>'+
+        '<input type="text" name="swal-input8"  id="swal-input8" required class="form-control border-input"></input></br>'+
+/*
+
+        '<iframe src="https://www.mercadolibre.com.mx">'+
+'</iframe>'+
+'</div>'+
+*/
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> ',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+  $("#swal-input4").change(function(){
+    if(this.value != 'no encontrada'){
+      $(".entradas").show();
+    }else{
+      $(".entradas").hide();
+    }
+  })
+
+  };
+  </script>
+
 
   </body>
 </html>
