@@ -11,9 +11,7 @@ $var_clave= $_SESSION['clave'];
 $venta="SELECT * from ventas_tv where estado = 'En venta';";
 
 $clientes="SELECT * from clientes order by id_folio desc ";
-$avisos = "SELECT
-*
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+$avisos = "SELECT * FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
@@ -109,14 +107,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       </div>
 <div class="content-panel">
 
-  <div class="col-lg-2"
-    <div class="bs-component">
-      <div class="card">
-        <div class="row">
-        <button class="btn btn-primary" type="button" onclick="nuevo();">Nuevo equipo a la venta</button>
+ <div class="card text-black bg-primaryx mb-3">
+  <div class="card-body">
 
-      </div>
-      </div>
+
+          <div class="col-lg-12">
+            <p class="bs-component">
+              <button class="btn btn-secondary" onclick="nuevo();"><i class="ti-plus"></i>Nueva venta</button>
+              <button class="btn btn-success" type="button" onclick="location='recepcion_ventas_apartadas.php'"><i class="ti-thumb-up"></i>Ventas apartadas a credito</button>
+              
+  </p>
     </div>
   </div><br></br>
 
@@ -135,7 +135,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                       </div><img style="height: 350px; width: 100%; display: block;" src="<?php echo $fila['imagen1']; ?>" alt="Card image">
 
                       <div class="card-footer text-muted"><?php echo  $fila['fecha_alta']; ?> </div>
-                        <button class="btn btn-primary" type="button" onclick="vender(<?php echo $fila['idventa_tv']; ?>), mod_vender(<?php echo $fila['idventa_tv']; ?>);">Vender</button>
+                        <button class="btn btn-success" type="button" onclick="vender(<?php echo $fila['idventa_tv']; ?>), mod_vender(<?php echo $fila['idventa_tv']; ?>);">Vender</button>
                       </div>
 
                   </div><br></br>
@@ -299,6 +299,27 @@ function mod_vender(id){
 '</div>'+
 '</div>'+
 
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+ '<label>Tipo de compra</label>' +
+ '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
+ '<option value=""></option>'+
+ '<option value="Contado">Contado</option>'+
+ '<option value="Credito">Credito</option>'+
+ '</select>' +
+ '</div>'+
+'</div>'+
+
+'<div class="col-md-6 costo" style="display:none;">'+
+  '<div class="form-group">'+
+ '<label>Cantidad a abonar</label>' +
+ '<input input type="number" name="costo1" id="costo1" class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+
+'</div>'+
+
 '<h3>Datos de cliente</h3>'+//datos de cliente
 
 '<div class="row">'+
@@ -348,6 +369,15 @@ function mod_vender(id){
 
 
 })
+
+ $("#compra").change(function(){
+    if(this.value == 'Credito'){
+      $(".costo").show();
+    }else{
+      $(".costo").hide();
+    }
+  })
+
 $('#tv_venta').on('change', function(){
 var id = $(this).val();
 

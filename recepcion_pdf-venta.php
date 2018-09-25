@@ -19,13 +19,28 @@ $modelo = $_POST ['mod'];
 $serie = $_POST ['ser'];
 $costo_total= $_POST ['costo'];
 
+$tipo = $_POST ['compra'];
+$abono = $_POST ['costo1'];
 
 
 
-$consulta = "UPDATE ventas_tv set estado ='Vendida' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' WHERE idventa_tv = '$idventa';";
 
 
-$resultado = $conn->query($consulta);
+if($tipo == 'Credito'){
+  
+  $sql1 = "UPDATE ventas_tv set estado ='Apartada' , ubicacion='Pendiente traslado' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' , abono='$abono' WHERE idventa_tv = '$idventa';";
+  $res = $conn->query($sql1);
+
+ 
+}else{
+ 
+  
+  $sql2 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' WHERE idventa_tv = '$idventa';";
+  $res2 = $conn->query($sql2);
+
+ 
+
+}
 
   
 //checar la validacion(no funciona el else:v)

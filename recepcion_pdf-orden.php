@@ -127,7 +127,7 @@ if($resu->num_rows > 0){
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(95,95);
-    $pdf->Write(5, $marca);
+    $pdf->Write(5, utf8_decode($marca));
     //modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(125,95);
@@ -135,7 +135,7 @@ if($resu->num_rows > 0){
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,95);
-    $pdf->Write(5,$modelo);
+    $pdf->Write(5,utf8_decode($modelo));
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,110);
@@ -152,7 +152,7 @@ if($resu->num_rows > 0){
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(60,125);
-  $pdf->Write(5,$falla);
+  $pdf->Write(5,utf8_decode($falla));
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,140);
@@ -160,7 +160,7 @@ if($resu->num_rows > 0){
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(55,140);
-  $pdf->Write(5,$servicio);
+  $pdf->Write(5,utf8_decode($servicio));
 
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(100,140);
@@ -168,7 +168,7 @@ if($resu->num_rows > 0){
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(145,140);
-  $pdf->Write(5,$accesorio);
+  $pdf->Write(5,utf8_decode($accesorio));
 
 //politicas
 $pdf->SetFont('Arial','',12);
