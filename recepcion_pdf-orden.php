@@ -106,11 +106,11 @@ if($resu->num_rows > 0){
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(102,80);
-    $pdf->Write(5,$nom);
+    $pdf->Write(5,utf8_decode($nom));
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,80);
-    $pdf->Write(5,$ape);
+    $pdf->Write(5,utf8_decode($ape));
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);

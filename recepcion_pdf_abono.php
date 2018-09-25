@@ -73,7 +73,7 @@ $pdf->Write(5,'Nombre(s):');
 
 $pdf->SetFont('Arial','B',18);
 $pdf->SetXY(50,60);
-$pdf->Write(5,$nom);
+$pdf->Write(5,utf8_decode($nom));
 
 $pdf->SetFont('Arial','',18);
 $pdf->SetXY(15,80);
@@ -81,7 +81,7 @@ $pdf->Write(5,'Apellidos:');
 
 $pdf->SetFont('Arial','B',18);
 $pdf->SetXY(50,80);
-$pdf->Write(5,$ape);
+$pdf->Write(5,utf8_decode($ape));
 
 //cantidad
 $pdf->SetFont('Arial','',18);

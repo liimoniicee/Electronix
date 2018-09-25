@@ -81,11 +81,11 @@ $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_to
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(102,80);
-    $pdf->Write(5,$nom);
+    $pdf->Write(5,utf8_decode($nom));
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,80);
-    $pdf->Write(5,$ape);
+    $pdf->Write(5,utf8_decode($ape));
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);
@@ -136,7 +136,7 @@ $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_to
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(45,125);
-  $pdf->Write(5,$marca);
+  $pdf->Write(5,utf8_decode($marca));
 
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(100,125);

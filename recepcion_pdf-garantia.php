@@ -78,11 +78,11 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(102,85);
-    $pdf->Write(5,$nom);
+    $pdf->Write(5,utf8_decode($nom));
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,85);
-    $pdf->Write(5,$ape);
+    $pdf->Write(5,utf8_decode($ape));
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);
@@ -91,7 +91,7 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(57,100);
-    $pdf->Write(5,$equipo);
+    $pdf->Write(5,utf8_decode($equipo));
     //marca
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(80,100);
@@ -99,7 +99,7 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(95,100);
-    $pdf->Write(5,$marca );
+    $pdf->Write(5,utf8_decode($marca));
     //modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(125,100);
@@ -107,7 +107,7 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,100);
-    $pdf->Write(5,$modelo);
+    $pdf->Write(5,utf8_decode($modelo));
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,115);
@@ -124,7 +124,7 @@ $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante=
 
   $pdf->SetFont('Arial','B',12);
   $pdf->SetXY(60,130);
-  $pdf->Write(5,$falla);
+  $pdf->Write(5,utf8_decode($falla));
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,145);
