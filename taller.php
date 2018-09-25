@@ -48,14 +48,11 @@ reparar_tv
 WHERE
 estado = 'Sin solucion';";
 
-$refaccion = "SELECT
-equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
-FROM
-reparar_tv
-WHERE
-estado = 'Necesita refaccion';";
-$avisos = "SELECT
-*
+$refaccion = "SELECT *
+FROM reparar_tv
+WHERE estado in('necesita refaccion', 'autorizacion taller');";
+
+$avisos = "SELECT *
 FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
@@ -248,13 +245,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <?php
       if($est == "Pendiente"){
       echo "
-      <button onclick='asignar_tec($id_equipo), mod_asignar_tec($id_equipo);' title='Asignar tecnico' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+      <button onclick='asignar_tec($id_equipo), enviarorden($id_equipo);' title='Asignar tecnico' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
       ";
     }elseif($est == "Diagnosticada"){
       echo "
       <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i ></i></button>
 
-      <button onclick='costos($id), enviarorden($id);' title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+      <button onclick='costos($id_equipo);' title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
       ";
     }
     ?>
@@ -283,7 +280,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <th data-field="falla" data-sortable="true">falla</th>
       <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
       <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
       <th data-field="accion" data-sortable="true">Acción</th>
     </thead>
     <?php
@@ -338,7 +335,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   <th data-field="falla" data-sortable="true">falla</th>
                   <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
                   <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>
                   <th data-field="accion" data-sortable="true">Acción</th>
 
                   </thead>
@@ -393,7 +390,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                     <th data-field="falla" data-sortable="true">falla</th>
                                     <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
                                     <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                                    <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                                    <th data-field="ubicacion" data-sortable="true">ubicacion</th>
                                     <th data-field="accion" data-sortable="true">Acción</th>
 
                                     </thead>
@@ -419,7 +416,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                           <td>
                                           <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
 
-                                          <button onclick="costos(<?php echo $id?>), enviarorden(<?php echo $id?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                                          <button onclick="costos(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                                           </td>
 
                                     </tr>
@@ -446,7 +443,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   <th data-field="falla" data-sortable="true">falla</th>
                   <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
                   <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                  <th data-field="Estado" data-sortable="true">Estado</th>
+                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>
                   <th data-field="accion" data-sortable="true">Acción</th>
 
                   </thead>
@@ -459,19 +457,26 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                   $falla          = $fila['falla'];
                   $fecha_ingreso        = $fila['fecha_ingreso'];
                   $fecha_entregar        = $fila['fecha_entregar'];
+                  $estado        = $fila['estado'];
                   $ubicacion        = $fila['ubicacion'];
 
 
                   ?>
                     <tr>
                         <td><?php echo $id_equipo ?></td>
-
                         <td><?php echo $equipo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
                         <td><?php echo $fecha_entregar ?></td>
+                        <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
+                          <?php
+                          if($estado == "Autorizacion taller"){
+                            echo "
+                            <button onclick='autorizacion_pieza(<?php echo $id_equipo?>);' title='Autorizacion de pieza' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+                            ";
+                          } ?>
                         </td>
 
                   </tr>
@@ -501,7 +506,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
               <th data-field="falla" data-sortable="true">falla</th>
               <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
               <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-              <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+              <th data-field="ubicacion" data-sortable="true">ubicacion</th>
               <th data-field="accion" data-sortable="true">Acción</th>
 
               </thead>
@@ -553,7 +558,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                               <th data-field="falla" data-sortable="true">falla</th>
                               <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
                               <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                              <th data-field="ubicacion" data-sortable="true">ubicacion</th>.
+                              <th data-field="ubicacion" data-sortable="true">ubicacion</th>
                               <th data-field="accion" data-sortable="true">Acción</th>
 
                               </thead>
@@ -769,65 +774,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 
   </script>
-<script>
-  function mod_asignar_tec(id){
-   $.ajax({
-       // la URL para la petición
-       url : 'recepcion_fn_historial_garantia.php',
-       // la información a enviar
-       // (también es posible utilizar una cadena de datos)
-       data : {
-          id : id
-       },
-       // especifica si será una petición POST o GET
-       type : 'POST',
-       // el tipo de información que se espera de respuesta
-       dataType : 'json',
-       // código a ejecutar si la petición es satisfactoria;
-       // la respuesta es pasada como argumento a la función
-       success : function(data) {
-         //Manda Llamar id,nombre y apellido
-         $("#swal-input0").val(data.data.id);
-         $("#swal-input1").val(data.data.id_e);
-         $("#swal-input2").val(data.data.id_pe);
-         $("#swal-input3").val(data.data.nom);
-         $("#swal-input4").val(data.data.ape);
-         $("#swal-input5").val(data.data.cel);
-         $("#swal-input6").val(data.data.equi);
-         $("#swal-input7").val(data.data.mar);
-         $("#swal-input8").val(data.data.mod);
-         $("#swal-input9").val(data.data.ser);
-         $("#swal-input10").val(data.data.cor);
-         $("#swal-input11").val(data.data.accesorios);
-         $("#swal-input12").val(data.data.falla);
-         $("#swal-input13").val(data.data.comentarios);
-         $("#swal-input14").val(data.data.fecha_ingreso);
-         $("#swal-input15").val(data.data.fecha_entrega);
-         $("#swal-input16").val(data.data.fecha_egreso);
-         $("#swal-input17").val(data.data.servicio);
-         $("#swal-input18").val(data.data.ubicacion);
-         $("#swal-input19").val(data.data.presupuesto);
-         $("#swal-input20").val(data.data.mano_obra);
-         $("#swal-input21").val(data.data.abono);
-         $("#swal-input22").val(data.data.restante);
-         $("#swal-input23").val(data.data.costo_total);
-         $("#swal-input24").val(data.data.estado);
 
-       },
-       // código a ejecutar si la petición falla;
-       // son pasados como argumentos a la función
-       // el objeto de la petición en crudo y código de estatus de la petición
-       error : function(xhr, status) {
-
-       },
-       // código a ejecutar sin importar si la petición falló o no
-       complete : function(xhr, status) {
-
-       }
-   });
-  }
-
-  </script>
 
 
 <script>
@@ -975,7 +922,7 @@ title: 'Asignar costos',
 html:
 '<div class="card-body"> <form action="taller_fn_costos.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
-'<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
+'<input type="hidden" name="swal-input1" value="'+id+'"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
 
 '<div class="row">'+
 '<div class="col-md-6">'+
