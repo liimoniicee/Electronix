@@ -123,7 +123,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
               <button class="btn btn-success" type="button" onclick="location='ml_publicadas.php'">Publicadas</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Vendidas</button>
               <button class="btn btn-warning" type="button" id='see-me'>Solicitudes de taller</button>
-              
+
   </p>
 </div>
 </div>
@@ -173,7 +173,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
               <td><?php echo $fecha_entregar ?></td>
               <td><?php echo $ubicacion ?></a></td>
               <td>
-              <button onclick="solicitud_pieza(<?php echo $id_equipo?>), mod_solicitud_pieza(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+              <button onclick="solicitud_pieza(<?php echo $id_equipo?>), mod_solicitud_pieza(<?php echo $id_equipo?>);" title="Solicitar pieza" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
               </td>
 
 
