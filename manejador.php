@@ -40,38 +40,38 @@ if($resultado->num_rows > 0){
 
   if($tipo == 'Traslado'){
   		$_SESSION['clave'] = $row["id_personal"];
-  		//$id = $row["ID_USUARIO"];//
   	    $_SESSION['nombre']=$var_nombre;
+        $_SESSION['tipo'] = $row["tipo"];
 
-  		header("location:Traslados/traslados.php");
+  		header("location:checkin_empleados.php");
   	}
     if($tipo == 'Administrador'){
     		$_SESSION['clave'] = $row["id_personal"];
-    		//$id = $row["ID_USUARIO"];//
     	    $_SESSION['nombre']=$var_nombre;
+          $_SESSION['tipo'] = $row["tipo"];
 
-    		header("location:recepcion.php");
+    		header("location:checkin_empleados.php");
     	}
       if($tipo == 'Tecnico'){
       		$_SESSION['clave'] = $row["id_personal"];
-      		//$id = $row["id_personal"];
       	    $_SESSION['nombre']=$var_nombre;
-			 // $id = $_POST ['id_personal'];
-      		header("location:tecnico.php");
+            $_SESSION['tipo'] = $row["tipo"];
+
+      		header("location:checkin_empleados.php");
       	}
         if($tipo == 'Recepcion'){
         		$_SESSION['clave'] = $row["id_personal"];
-        		//$id = $row["ID_USUARIO"];//
         	    $_SESSION['nombre']=$var_nombre;
+              $_SESSION['tipo'] = $row["tipo"];
 
-        		header("location:recepcion.php");
+      	header("location:checkin_empleados.php");
         	}
           if($tipo == 'Jefe de taller'){
           		$_SESSION['clave'] = $row["id_personal"];
-          		//$id = $row["ID_USUARIO"];//
           	    $_SESSION['nombre']=$var_nombre;
+                $_SESSION['tipo'] = $row["tipo"];
 
-          		header("location:j_taller.php");
+        	header("location:checkin_empleados.php");
           	}
 
 
