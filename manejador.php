@@ -38,44 +38,14 @@ if($resultado->num_rows > 0){
 	//Aspirantes
 
 
-  if($tipo == 'Traslado'){
+
   		$_SESSION['clave'] = $row["id_personal"];
   	    $_SESSION['nombre']=$var_nombre;
         $_SESSION['tipo'] = $row["tipo"];
 
   		header("location:checkin_empleados.php");
-  	}
-    if($tipo == 'Administrador'){
-    		$_SESSION['clave'] = $row["id_personal"];
-    	    $_SESSION['nombre']=$var_nombre;
-          $_SESSION['tipo'] = $row["tipo"];
 
-    		header("location:checkin_empleados.php");
-    	}
-      if($tipo == 'Tecnico'){
-      		$_SESSION['clave'] = $row["id_personal"];
-      	    $_SESSION['nombre']=$var_nombre;
-            $_SESSION['tipo'] = $row["tipo"];
-
-      		header("location:checkin_empleados.php");
-      	}
-        if($tipo == 'Recepcion'){
-        		$_SESSION['clave'] = $row["id_personal"];
-        	    $_SESSION['nombre']=$var_nombre;
-              $_SESSION['tipo'] = $row["tipo"];
-
-      	header("location:checkin_empleados.php");
-        	}
-          if($tipo == 'Jefe de taller'){
-          		$_SESSION['clave'] = $row["id_personal"];
-          	    $_SESSION['nombre']=$var_nombre;
-                $_SESSION['tipo'] = $row["tipo"];
-
-        	header("location:checkin_empleados.php");
-          	}
-
-
-    	 }//aqui termina el while
+}//aqui termina el while
 
 	}else{
 

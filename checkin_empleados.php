@@ -40,7 +40,7 @@ if($resu->num_rows > 0){
  if($tipo == "Administrador"){
   ?>
  window.location.href = "administrador.php";
-<?php }elseif($tipo == "Traslados"){ ?>
+<?php }elseif($tipo == "Traslado"){ ?>
 
 window.location.href = "Traslados/traslados.php";
 
@@ -52,7 +52,7 @@ window.location.href = "Traslados/traslados.php";
 
         window.location.href = "tecnico.php";
 
-          <?php }elseif($tipo == "Jefe de taller"){ ?>
+          <?php }elseif($tipo == "Jefe de Taller"){ ?>
 
             window.location.href = "Taller.php";
 
@@ -90,7 +90,7 @@ $sql = "INSERT INTO asistencia (fecha_entrada, fecha_salida, personal_id_persona
       if($tipo == "Administrador"){
        ?>
       window.location.href = "administrador.php";
-     <?php }elseif($tipo == "Traslados"){ ?>
+     <?php }elseif($tipo == "Traslado"){ ?>
 
      window.location.href = "Traslados/traslados.php";
 
@@ -102,7 +102,7 @@ $sql = "INSERT INTO asistencia (fecha_entrada, fecha_salida, personal_id_persona
 
              window.location.href = "tecnico.php";
 
-               <?php }elseif($tipo == "Jefe de taller"){ ?>
+               <?php }elseif($tipo == "Jefe de Taller"){ ?>
 
                  window.location.href = "Taller.php";
 
@@ -130,7 +130,7 @@ $sql = "INSERT INTO asistencia (fecha_entrada, fecha_salida, personal_id_persona
      if($tipo == "Administrador"){
       ?>
      window.location.href = "administrador.php";
-    <?php }elseif($tipo == "Traslados"){ ?>
+    <?php }elseif($tipo == "Traslado"){ ?>
 
     window.location.href = "Traslados/traslados.php";
 
@@ -142,7 +142,7 @@ $sql = "INSERT INTO asistencia (fecha_entrada, fecha_salida, personal_id_persona
 
             window.location.href = "tecnico.php";
 
-              <?php }elseif($tipo == "Jefe de taller"){ ?>
+              <?php }elseif($tipo == "Jefe de Taller"){ ?>
 
                 window.location.href = "Taller.php";
 
