@@ -12,18 +12,12 @@ $id = $_GET ['id'];
 //Tabla para ver todos los equipos
 $consulta = "SELECT
 equipo, marca,modelo,falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion, abono,restante
-FROM
-reparar_tv
-WHERE
+FROM reparar_tv  WHERE id_folio = '$id';";
 
-id_folio = '$id';";
+$consulta1= "SELECT * from ventas_tv where id_folio ='$id';";
 
-
-
-  $cons = "SELECT * FROM clientes WHERE id_folio = $id";
-
-
-   $resu = $conn->query($cons);
+$cons = "SELECT * FROM clientes WHERE id_folio = $id";
+$resu = $conn->query($cons);
 
 
    if($resu->num_rows > 0){
@@ -269,7 +263,7 @@ id_folio = '$id';";
           </tr>
         <?php } ?>
         </br>
-           <h2>Historial completo del cliente <?php echo $id ?></h2>
+           <h2>Historial reparacion del cliente <?php echo $id ?></h2>
       </tbody>
   </table>
       </div>
@@ -277,6 +271,60 @@ id_folio = '$id';";
 
 
 </div>
+
+
+<div class="tile">
+        <div class="tile-body">
+          <table id="tabla" class="table table-dark table-responsive">
+    <thead>
+        <th data-field="id">Id venta</th>
+      <th data-field="marca" data-sortable="true">Marca</th>
+      <th data-field="modelo" data-sortable="true">Modelo</th>
+      <th data-field="fecha_ingreso" data-sortable="true">Estado</th>
+      <th data-field="fecha_egreso" data-sortable="true">Fecha egreso</th>
+      <th data-field="estado" data-sortable="true">Tipo</th>
+      <th data-field="falla" data-sortable="true">costo</th>
+      <th data-field="ubicacion" data-sortable="true">Abono</th>
+
+
+    </thead>
+    <tbody>
+    <?php
+      $ejecutar = mysqli_query($conn, $consulta1);
+    while($fila=mysqli_fetch_array($ejecutar)){
+        $id_venta          = $fila['idventa_tv'];
+        $marca           = $fila['marca'];
+        $modelo           = $fila['modelo'];
+        $estado           = $fila['estado'];
+        $fecha        = $fila['fecha_egreso'];
+        $tipo        = $fila['tipo'];
+        $costo        = $fila['costo'];
+        $abono        = $fila['abono'];
+
+
+?>
+                    <tr>
+                        <td><?php echo $id_venta ?></td>
+                        <td><?php echo $marca ?></td>
+                        <td><?php echo $modelo ?></td>
+                        <td><?php echo $estado ?></td>
+                        <td><?php echo $fecha ?></td>
+                        <td><?php echo $tipo ?></td>
+                        <td><?php echo $costo ?></td>
+                        <td><?php echo $abono ?></td>
+                   
+          </tr>
+        <?php } ?>
+        </br>
+           <h2>Historial compras del cliente <?php echo $id ?></h2>
+      </tbody>
+  </table>
+      </div>
+
+
+
+</div>
+
 </div>
 
     </main>
