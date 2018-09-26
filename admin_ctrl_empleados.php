@@ -11,10 +11,16 @@ $var_clave= $_SESSION['clave'];
 
 
 
-$consulta = "SELECT
-*
+$empleados = "SELECT *
 FROM
 personal";
+
+$asistencia = "SELECT p.id_personal, p.nombre, a.fecha_entrada, a.fecha_salida
+FROM
+personal p, asistencia a
+where p.id_personal = a.personal_id_personal";
+
+
 $avisos = "SELECT
 *
 FROM avisos where tipo= 'Traslado' and estado='pendiente'";
@@ -87,7 +93,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           </ul>
         </li>
         <!-- User Menu-->
-        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
+        <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
 
 
       </ul>
@@ -129,19 +135,35 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 <div class="card text-black bg-primary mb-3">
   <div class="card-body">
 
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
-          <div class="col-lg-12">
-            <p class="bs-component">
-              <button class="btn btn-secondary" onclick="alerta();"><i class="ti-plus"></i>Nuevo cliente</button>
-              <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'"><i class="ti-thumb-up"></i>Equipos reparados</button>
-              <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'"><i class="ti-thumb-down"></i>Equipos sin solución</button>
-              <button class="btn btn-info" type="button" onclick="aviso();"><i class="ti-alert"></i>Avisos</button>
-              <button class="btn btn-warning" type="button"onclick="location='recepcion_ventas.php'"><i class="ti-shopping-cart"></i>Ventas</button>
-  </p>
-</div>
+      <button class="btn btn-success">agregar empleado</button>
+         <form id='form-id'>
+
+
+           <label class="btn btn-info active" id='watch-me'>
+             <input name='test' type='radio' checked /> Empleados
+             </label>
+
+             <label class="btn btn-info" id='see-me'>
+             <input name='test' type='radio' /> Asistencia
+           </label>
+
+             <label class="btn btn-info" id='look-me'>
+             <input name='test' type='radio' /> Estadisticas
+           </label>
+
+           <label class="btn btn-info" id='look-me2'>
+             <input name='test' type='radio' /> Nomina
+           </label>
+
+
+
+         </form>
+       </div><br></br>
 
 <div class="row">
-  <div class="col-md-12">
+  <div id="show-me">
     <div class="tile">
       <div class="tile-body">
           <table id="a-tables" class="table table-hover table-dark table-responsive">
@@ -159,8 +181,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     </thead>
     <?php
-      $ejecutar = mysqli_query($conn, $consulta);
-    while($fila=mysqli_fetch_array($ejecutar)){
+      $ejec1 = mysqli_query($conn, $empleados);
+    while($fila=mysqli_fetch_array($ejec1)){
         $id          = $fila['id_personal'];
         $tip           = $fila['tipo'];
         $usu          = $fila['usuario'];
@@ -175,15 +197,14 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td width="8%"><?php echo $id ?></td>
                         <td width="14%"><?php echo $tip ?></td>
                         <td width="14%"><?php echo $usu ?></td>
-                        <td width="14%"><?php echo $contra ?></td>
+                        <td width="14%" class="hidetext"><?php echo $contra ?></td>
                         <td width="14%"><?php echo $nom ?></td>
                         <td width="14%"><?php echo $ape ?></td>
-                        <td width="14%"><?php echo $cor ?></td>
-                        <td width="14%"><?php echo $cel ?></td>
+                        <td width="8%"><?php echo $cor ?></td>
+                        <td width="8%"><?php echo $cel ?></td>
                         <td width="14%">
-                        <a href="#" onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Actualizar cliente" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
-                        <a href="#" onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Nueva orden"><i class="btn-sm btn-success ti-plus"></i></a>
-                        <a href="recepcion_historial_cliente.php?id=<?php echo $id; ?>"  title="Historial"><i class="btn-sm btn-secondary ti-agenda"></i></a>
+                        <a href="#" onclick="modificar_emp(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                        <a href="#" onclick="elim_emp(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
                         </td>
 
 
@@ -199,6 +220,58 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 </div>
 </div>
 </div>
+<!-- termina tabla 1-->
+
+<!-- Empieza tabla 2-->
+<div id="show-me-two" style='display:none; border:2px solid #ccc'>
+  <div class="tile">
+    <div class="tile-body">
+        <table id="tabla2" class="table table-hover table-dark table-responsive">
+  <thead>
+
+      <th>id</th>
+    <th>nombre</th>
+    <th>fecha entrada</th>
+    <th>fecha salida</th>
+    <th class="disabled-sorting">Acción</th>
+
+  </thead>
+  <?php
+    $ejec2 = mysqli_query($conn, $asistencia);
+  while($fila=mysqli_fetch_array($ejec2)){
+      $id          = $fila['id_personal'];
+      $nom           = $fila['nombre'];
+      $fech_e          = $fila['fecha_entrada'];
+      $fech_s          = $fila['fecha_salida'];
+
+
+?>
+                  <tr>
+                      <td width="8%"><?php echo $id ?></td>
+                      <td width="14%"><?php echo $nom ?></td>
+                      <td width="14%"><?php echo $fech_e ?></td>
+                      <td width="14%"><?php echo $fech_s ?></td>
+                      <td width="14%">
+                      <a href="#" onclick="modificar_emp(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                      <a href="#" onclick="elim_emp(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
+                      </td>
+
+
+
+
+
+        </tr>
+      <?php } ?>
+      <tbody></br>
+          Asistencia por día
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- termina tabla 2-->
+
+
 </div>
 </div>
 </div>
@@ -230,6 +303,98 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
+
+
+      <script type="text/javascript">
+      $(document).ready(function ()
+       {
+         //primero
+        $("#watch-me").click(function()
+        {
+         $("#show-me:hidden").show('slow');
+         $("#show-me-two").hide();
+         $("#show-me-three").hide();
+         $("#show-me-three2").hide();
+         $("#show-me-three5").hide();
+         $("#show-me-three3").hide();
+         $("#show-me-three4").hide();
+         });
+         $("#watch-me").click(function()
+        {
+          if($('watch-me').prop('checked')===false)
+         {
+          $('#show-me').hide();
+         }
+        });
+
+        //segundo
+        $("#see-me").click(function()
+        {
+          $("#show-me-two:hidden").show('slow');
+         $("#show-me").hide();
+         $("#show-me-three").hide();
+         $("#show-me-three2").hide();
+         $("#show-me-three5").hide();
+         $("#show-me-three3").hide();
+         $("#show-me-three4").hide();
+         });
+         $("#see-me").click(function()
+        {
+          if($('see-me-two').prop('checked')===false)
+         {
+          $('#show-me-two').hide();
+         }
+        });
+
+        //tercero
+        $("#look-me").click(function()
+        {
+          $("#show-me-three:hidden").show('slow');
+         $("#show-me").hide();
+         $("#show-me-two").hide();
+         $("#show-me-three2").hide();
+         $("#show-me-three5").hide();
+         $("#show-me-three3").hide();
+         $("#show-me-three4").hide();
+         });
+         $("#look-me").click(function()
+        {
+          if($('see-me-three').prop('checked')===false)
+         {
+          $('#show-me-three').hide();
+         }
+        });
+
+        //cuarto
+        $("#look-me2").click(function()
+        {
+          $("#show-me-three2:hidden").show('slow');
+         $("#show-me").hide();
+         $("#show-me-two").hide();
+         $("#show-me-three").hide();
+         $("#show-me-three5").hide();
+
+         });
+         $("#look-me2").click(function()
+        {
+          if($('see-me-three2').prop('checked')===false)
+         {
+          $('#show-me-three2').hide();
+         }
+        });
+
+       });
+
+
+      </script>
+      <script>
+      $(document).ready(function() {
+          $('#tabla2').DataTable();
+          $('#tabla3').DataTable();
+          $('#tabla4').DataTable();
+      } );
+      </script>
+
 
     <div class="content-panel">
  <div class="col-lg-7">
@@ -572,6 +737,7 @@ swal(
 })
 };
   </script>
+
 
 </div>
 </div>
