@@ -82,7 +82,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           </ul>
         </li>
         <!-- User Menu-->
-        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
+        <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
 
 
       </ul>
@@ -97,7 +97,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
       <li><a class="app-menu__item active" href="tecnico.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Tareas</span></a></li>
-    
+
 </ul>
 
 

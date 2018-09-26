@@ -79,7 +79,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
               </ul>
             </li>
             <!-- User Menu-->
-            <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
+            <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
           </ul>
         </header>
         <!-- Sidebar menu-->
@@ -125,7 +125,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
             <p class="bs-component">
               <button class="btn btn-danger" onclick="location='almacen.php'"><i class="ti-thumb-down"></i>Almacen sin clasificar</button>
               <button class="btn btn-success" type="button" onclick="location='almacen_clasificados.php'"><i class="ti-thumb-up"></i>Almacen clasificados</button>
-            
+
   </p>
   </div>
 
@@ -138,7 +138,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">Id equipo</th>
-      <th data-field="folio" data-sortable="true">Folio</th>  
+      <th data-field="folio" data-sortable="true">Folio</th>
       <th data-field="marca" data-sortable="true">Marca</th>
       <th data-field="modelo" data-sortable="true">Modelo</th>
       <th data-field="fecha_entrega" data-sortable="true">Servicio</th>
@@ -156,7 +156,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
         $servicio           = $fila['servicio'];
-        $estado           = $fila['estado'];   
+        $estado           = $fila['estado'];
 
 
 ?>
@@ -167,7 +167,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td><?php echo $modelo ?></td>
                         <td><?php echo $servicio ?></td>
                         <td><?php echo $estado ?></td>
-                      
+
                         <td>
                         <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
                         </td>

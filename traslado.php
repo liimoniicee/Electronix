@@ -110,7 +110,7 @@ $en_ruta = "SELECT
           </ul>
         </li>
         <!-- User Menu-->
-        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
+        <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
       </ul>
     </header>
     <!-- Sidebar menu-->

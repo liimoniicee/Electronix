@@ -80,7 +80,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           </ul>
         </li>
         <!-- User Menu-->
-        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
+        <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
       </ul>
     </header>
     <!-- Sidebar menu-->
@@ -115,7 +115,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
             <p class="bs-component">
               <button class="btn btn-secondary" onclick="nuevo();"><i class="ti-plus"></i>Nueva venta</button>
               <button class="btn btn-success" type="button" onclick="location='recepcion_ventas_apartadas.php'"><i class="ti-thumb-up"></i>Ventas apartadas a credito</button>
-              
+
   </p>
     </div>
   </div><br></br>
@@ -417,7 +417,7 @@ alert('hubo un error')
 
           ?>
 
-<script> 
+<script>
 
 Push.create("<?php echo $fech_avi; ?>", {
   body:"<?php echo $avi; ?>",

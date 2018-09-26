@@ -108,7 +108,7 @@ id_folio = '$id';";
             </ul>
           </li>
           <!-- User Menu-->
-          <li class="dropdown"><a class="app-nav__item" href="destroy.php" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="ti-shift-left"></i></a>
+          <li class="dropdown"><a class="app-nav__item" href="checkout_empleados.php" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="ti-shift-left"></i></a>
 
           </li>
         </ul>
