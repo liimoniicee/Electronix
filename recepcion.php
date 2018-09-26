@@ -318,7 +318,7 @@ function orden(id){
 swal({
 title: 'Nueva orden de servicio',
 html:
-'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 
 '<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" >' +
 '<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" >' +
@@ -388,26 +388,28 @@ html:
 
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Registrar y generar reporte</Button>'+
 
-
+<?php
+include "recepcion.php";
+?>
 '</form></div>',
 
 type: 'warning',
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
-confirmButtonText: '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>',
+confirmButtonText: 'Registrar y generar reporte',
 cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: true,
+showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
 }).then((result) => {
   if (result.value) {
     swal(
-      'Éxito!',
-      'Orden registrada correctamente.',
+      'Orden lista',
+      'No se registró la orden :(',
       'success'
     )
   } else if (
