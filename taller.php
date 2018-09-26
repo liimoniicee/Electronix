@@ -391,6 +391,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                     <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
                                     <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
                                     <th data-field="ubicacion" data-sortable="true">ubicacion</th>
+                                    <th data-field="servicio" data-sortable="true">servicio</th>
                                     <th data-field="accion" data-sortable="true">Acción</th>
 
                                     </thead>
@@ -404,10 +405,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                     $fecha_ingreso        = $fila['fecha_ingreso'];
                                     $fecha_entregar        = $fila['fecha_entregar'];
                                     $ubicacion        = $fila['ubicacion'];
+                                    $servi        = $fila['servicio'];
+
                                     ?>
                                       <tr>
                                           <td><?php echo $id_equipo ?></td>
-
                                           <td><?php echo $equipo ?></td>
                                           <td><?php echo $falla ?></td>
                                           <td><?php echo $fecha_ingreso ?></td>

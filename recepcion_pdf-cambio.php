@@ -28,6 +28,9 @@ $valor= $_POST ['swal-input50'];
 $costo= $_POST ['costo'];
 $restante= $_POST ['swal-input52'];
 
+$tipo= $_POST ['compra'];
+$abono= $_POST ['costo1'];
+
 
 
 
@@ -37,9 +40,14 @@ $restante= $_POST ['swal-input52'];
 $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_total='$costo' ,fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
- $sql1 = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' , idvendedor='$var_clave', ubicacion='Cliente', id_equipo='$id_equipo' where idventa_tv='$idventa';";
- $res1 = $conn->query($sql1);
- 
+ if($tipo=="Credito"){
+
+  $sql1 = "UPDATE ventas_tv set estado ='Apartada' , ubicacion='Pendiente traslado' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' , abono='$abono' WHERE idventa_tv = '$idventa';";
+  $res1 = $conn->query($sql1);
+ }else{
+ $sql2 = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' , idvendedor='$var_clave', ubicacion='Cliente', tipo='$tipo',id_equipo='$id_equipo' where idventa_tv='$idventa';";
+ $res2 = $conn->query($sql2);
+ }
 //Generador de PDF
 //inserccion
   //$n_nombre=$_POST['nombre'];
@@ -95,6 +103,7 @@ $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_to
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(57,95);
     $pdf->Write(5,'television');
+  
     //marca
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(80,95);
@@ -129,6 +138,8 @@ $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_to
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(70,110);
   $pdf->Write(5,'television');
+
+
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,125);
@@ -156,11 +167,11 @@ $pdf->SetXY(67,140);
 $pdf->Write(6,$abono);
 
 $pdf->SetFont('Arial','',12);
-$pdf->SetXY(78,140);
+$pdf->SetXY(87,140);
 $pdf->Write(6,utf8_decode('más el valor de su televisión: $'));
 
 $pdf->SetFont('Arial','B',12);
-$pdf->SetXY(140,140);
+$pdf->SetXY(145,140);
 $pdf->Write(6,$valor);
 
 $pdf->SetFont('Arial','',12);
@@ -180,6 +191,14 @@ $pdf->SetXY(86,170);
 $pdf->Write(6,$restante);
 
 
+    //tipo de compra
+    $pdf->SetFont('Arial','',12);
+    $pdf->SetXY(115,170);
+    $pdf->Write(5,'tipo de compra:');
+
+    $pdf->SetFont('Arial','B',12);
+    $pdf->SetXY(145,170);
+    $pdf->Write(5,$tipo);
 
 
 

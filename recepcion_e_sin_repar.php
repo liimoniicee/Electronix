@@ -471,6 +471,28 @@ html:
 
 
 '<h5>Costos</h5>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+ '<label>Tipo de compra</label>' +
+ '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
+ '<option value=""></option>'+
+ '<option value="Contado">Contado</option>'+
+ '<option value="Credito">Credito</option>'+
+ '</select>' +
+ '</div>'+
+'</div>'+
+
+'<div class="col-md-6 costo" style="display:none;">'+
+  '<div class="form-group">'+
+ '<label>Cantidad a abonar</label>' +
+ '<input input type="number" name="costo1" id="costo1" class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+
+'</div>'+
+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -517,6 +539,15 @@ focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
 })
+
+ $("#compra").change(function(){
+    if(this.value == 'Credito'){
+      $(".costo").show();
+    }else{
+      $(".costo").hide();
+    }
+  })
+
 $('#tv_venta').on('change', function(){
 var id = $(this).val();
 
@@ -580,8 +611,10 @@ function operaciones()
   var abono =document.getElementById('swal-input21').value;
   var valor =document.getElementById('swal-input50').value;
   var costo =document.getElementById('costo').value;
+  var costo1 =document.getElementById('costo1').value;
 
-  var suma =parseInt(abono)+parseInt(valor);
+
+  var suma =parseInt(abono)+parseInt(valor)+parseInt(costo1);
 
   var sub =parseInt(costo)-parseInt(suma);
 
