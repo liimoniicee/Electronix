@@ -99,7 +99,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+      <li><a class="app-menu__item" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
     </aside>
@@ -109,16 +109,21 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       </div>
 <div class="content-panel">
 
-  <div class="col-lg-2"
-    <div class="bs-component">
-      <div class="card">
-        <div class="row">
-        <button class="btn btn-primary" type="button" onclick="nuevo();">Nuevo equipo a la venta</button>
+<div class="card text-black bg-primary mb-3">
+  <div class="card-body">
 
-      </div>
-      </div>
-    </div>
-  </div><br></br>
+
+          <div class="col-lg-12">
+            <p class="bs-component">
+              <button class="btn btn-info" type="button" id='watch-me' onclick="nueva();" >Nueva publicacion</button>
+              <button class="btn btn-success" type="button" onclick="location='ml_publicadas.php'">Publicadas</button>
+              <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Vendidas</button>
+              <button class="btn btn-warning" type="button" id='see-me'>Solicitudes de taller</button>
+
+  </p>
+</div>
+</div>
+        </div><br></br>
 
 
               <div class="row">

@@ -96,7 +96,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
           <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
           <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-          <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+          <li><a class="app-menu__item" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
     </ul>
 
 
@@ -246,8 +246,10 @@ function enviarorden(id_venta){
      success : function(data) {
        //Manda Llamar id,nombre y apellido
        $("#swal-input0").val(data.data.id_folio);
-       $("#swal-input1").val(data.data.marca);
-       $("#swal-input2").val(data.data.modelo);
+       $("#swal-input1").val(data.data.nom);
+       $("#swal-input2").val(data.data.ape);
+       $("#swal-input3").val(data.data.abono);
+
 /*
        $("#swal-input5").val(data.data.serie);
        $("#swal-input6").val(data.data.costo);
@@ -286,20 +288,19 @@ function enviarorden(id_venta){
     '<div class="card-body"> <form target="_blank" action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
     '<input name="swal-input0" value="'+id+'" type="text" id="swal-input0"  class="form-control border-input" readonly >' +
-    '<input name="swal-input1" type="text" id="swal-input1" class="form-control border-input" readonly >' +
-    '<input name="swal-input3" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
-    '<input name="swal-input4" type="hidden" id="swal-input4" class="form-control border-input" readonly >' +
+    '<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
+    '<input name="swal-input2" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
 
     '<div class="col-md-12">'+
       '<div class="form-group">'+
       '<label>Cantidad abonada</label>'+
-            '<input type="number" name="swal-input21" id="swal-input21"  readonly class="form-control border-input">'+
+            '<input type="number" name="swal-input3" id="swal-input3"  readonly class="form-control border-input">'+
 
             '<label>Cantidad que abona</label>'+
-            '<input type="number" name="swal-input25" id="swal-input25" equired placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+            '<input type="number" name="swal-input4" id="swal-input4" equired placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
 
             '<label>Cantidad total abonada</label>'+
-            '<input type="number" name="swal-input26" id="swal-input26"  readonly class="form-control border-input">'+
+            '<input type="number" name="swal-input5" id="swal-input5"  readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
 
