@@ -11,7 +11,7 @@ $var_clave= $_SESSION['clave'];
 $id = $_GET ['id'];
 //Tabla para ver todos los equipos
 $consulta = "SELECT
-equipo, marca,modelo,falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+equipo, marca,modelo,falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion, abono,restante
 FROM
 reparar_tv
 WHERE
@@ -127,7 +127,7 @@ id_folio = '$id';";
       <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+      <li><a class="app-menu__item" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
     </aside>
@@ -215,6 +215,8 @@ id_folio = '$id';";
       <th data-field="fecha_egreso" data-sortable="true">Salida</th>
       <th data-field="estado" data-sortable="true">Estado</th>
       <th data-field="ubicacion" data-sortable="true">Ubicación</th>
+      <th data-field="abono" data-sortable="true">Abonado</th>
+      <th data-field="restante" data-sortable="true">Restante</th>
       <th data-field="actions" class="td-actions text-right">Acción</th>
 
     </thead>
@@ -232,6 +234,8 @@ id_folio = '$id';";
         $fecha_egreso        = $fila['fecha_egreso'];
         $estado        = $fila['estado'];
         $ubicacion        = $fila['ubicacion'];
+        $abono        = $fila['abono'];
+        $restante        = $fila['restante'];
 
 ?>
                     <tr>
@@ -245,6 +249,8 @@ id_folio = '$id';";
                         <td><?php echo $fecha_egreso ?></td>
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></td>
+                        <td><?php echo $abono?></td>
+                        <td><?php echo $restante ?></td>
                           <td>
                         <?php
                         if($estado == "En reparacion"){
