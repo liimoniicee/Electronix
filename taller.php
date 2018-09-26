@@ -25,21 +25,21 @@ equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso,
 FROM
 reparar_tv
 WHERE
-estado = 'Pendiente';";
+estado = 'Pendiente' and ubicacion='Taller';";
 
 $revisados = "SELECT
 equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
-estado = 'Diagnosticada';";
+estado = 'Diagnosticada' and ubicacion='Taller';";
 
 $en_repar = "SELECT
 equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
-estado = 'En reparacion';";
+estado = 'En reparacion' and ubicacion='Taller';";
 
 $sinsolucion = "SELECT
 equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
@@ -304,7 +304,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="asignar_tec(<?php echo $id_equipo?>), mod_asignar_tec(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="asignar_tec(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                         </td>
 
 
@@ -872,7 +872,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Id equipo</label>'+
-        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input1" id="swal-input1"  readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 

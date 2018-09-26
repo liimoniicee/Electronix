@@ -40,8 +40,8 @@ if($servicio=="Compra"){
    VALUES ('Pendiente', '$comentario', 'recepcion', 'almacen', '$idequipo', '$id', '$var_clave');";
    $res2 = $conn->query($sql2);
  
-   $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-   VALUES ('$var_clave', current_time, 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
+   $sql3 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)
+   VALUES ('$var_clave', 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
    $res3 = $conn->query($sql3);
 
   }
@@ -65,8 +65,8 @@ if($resu->num_rows > 0){
   VALUES ('Pendiente', '$comentario', 'recepcion', 'Taller', '$idequipo', '$id', '$var_clave');";
   $res2 = $conn->query($sql2);
 
-  $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-  VALUES ('$var_clave', current_time, 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
+  $sql3 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)
+  VALUES ('$var_clave', 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
   $res3 = $conn->query($sql3);
 }
 }
