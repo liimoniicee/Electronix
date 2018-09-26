@@ -280,7 +280,7 @@ function enviarorden(id_venta){
 
 <script type="text/javascript">
     //ventana actualizar cliente
-    function abono(id){
+    function abono(id,abono){
 
     swal({
     title: 'Abonos',
@@ -294,10 +294,10 @@ function enviarorden(id_venta){
     '<div class="col-md-12">'+
       '<div class="form-group">'+
       '<label>Cantidad abonada</label>'+
-            '<input type="number" name="swal-input3" id="swal-input3"  readonly class="form-control border-input">'+
+            '<input type="number" name="swal-input3" id="swal-input3"    readonly class="form-control border-input">'+
 
             '<label>Cantidad que abona</label>'+
-            '<input type="number" name="swal-input4" id="swal-input4" equired placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+            '<input type="number" name="swal-input4" id="swal-input4" required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
 
             '<label>Cantidad total abonada</label>'+
             '<input type="number" name="swal-input5" id="swal-input5"  readonly class="form-control border-input">'+
