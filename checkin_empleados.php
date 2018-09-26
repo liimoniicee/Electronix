@@ -81,7 +81,7 @@ $sql = "INSERT INTO asistencia (fecha_entrada, fecha_salida, personal_id_persona
        <body>
        <script>
        swal({
-      title: "Éxito!",
+      title: "Exito!",
       text: "Has checado entrada exitosamente",
       type: "success"
       }).then(function() {

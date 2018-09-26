@@ -28,9 +28,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 <script src="assets\js\plugins/bootstrap-notify.min.js"></script>
 
-
-
-
     <!-- Open Graph Meta-->
     <title>Recepcion</title>
     <meta charset="utf-8">
@@ -390,9 +387,7 @@ html:
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Registrar y generar reporte</Button>'+
 
-<?php
-include "recepcion.php";
-?>
+
 '</form></div>',
 
 type: 'warning',
@@ -405,23 +400,7 @@ showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Orden lista',
-      'No se registró la orden :(',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === swal.DismissReason.cancel
-  ) {
-    swal(
-      'Orden cancelada',
-      'No se registró la orden :(',
-      'error'
-    )
-  }
+
 })
 };
 </script>
@@ -459,25 +438,8 @@ showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Éxito!',
-      'Cliente actualizado',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === swal.DismissReason.cancel
-  ) {
-    swal(
-      'Actualizacion cancelada',
-      'No se actualizo el cliente :(',
-      'error'
-    )
-  }
 })
-};
+  };
 
 </script>
 
@@ -506,16 +468,8 @@ reverseButtons: true
    focusConfirm: false,
    buttonsStyling: false,
     reverseButtons: true
-  }).then(function (result) {
-
-swal(
-'Nuevo aviso!',
-'Aviso registrado correctamente',
-'success'
-)
-}).catch(swal.noop);
-
-};
+  })
+  };
   </script>
 
   <script type="text/javascript">
@@ -549,23 +503,7 @@ swal(
    focusConfirm: false,
    buttonsStyling: false,
     reverseButtons: true
-  }).then((result) => {
-  if (result.value) {
-    swal(
-      'Éxito!',
-      'Orden registrada correctamente.',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === swal.DismissReason.cancel
-  ) {
-    swal(
-      'Cliente cancelada',
-      'No se agregó ningún cliente :(',
-      'error'
-    )
-  }
+
 })
 };
   </script>

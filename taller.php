@@ -90,7 +90,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
         <li class="app-search">
-          <input class="app-search__input" type="search" placeholder="Search">
+          <input class="app-search__input" type="search" placeholder="Buscar">
           <button class="app-search__button"><i class="ti-search"></i></button>
         </li>
         <!--Notification Menu-->
@@ -126,7 +126,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           </ul>
         </li>
         <!-- User Menu-->
-        <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
+        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
       </ul>
     </header>
     <!-- Sidebar menu-->
@@ -143,14 +143,14 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-      <li><a class="app-menu__item" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
     </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Taller</h1>
+          <h3><i class="fa fa-dashboard"></i>Taller</h3>
           <p>Dar un buen servicio es nuestra prioridad</p>
         </div>
       </div>

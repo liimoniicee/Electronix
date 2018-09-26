@@ -33,7 +33,7 @@ if($resu->num_rows > 0){
    <script>
    swal({
  title: "Error!",
- text: "ya has checado salida el día de hoy!",
+ text: "Ya has checado salida el día de hoy!",
  type: "error"
  }).then(function() {
  // Redirect the user
@@ -55,7 +55,7 @@ $sql = "UPDATE asistencia SET fecha_salida = CURRENT_TIMESTAMP WHERE personal_id
        <body>
        <script>
        swal({
-      title: "Éxito!",
+      title: "Exito!",
       text: "Has checado salida exitosamente",
       type: "success"
       }).then(function() {
