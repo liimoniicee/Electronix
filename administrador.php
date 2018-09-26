@@ -7,169 +7,222 @@ verificar_sesion();
 
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
+
+$avisos = "SELECT
+*
+FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+
+
 ?>
-<html lang="en">
+<html lang="es">
   <head>
+<script src="assets\js\push.js/push.min.js" > </script>
+
+<script src="assets\js\plugins/bootstrap-notify.min.js"></script>
+
+
+
+
+    <!-- Open Graph Meta-->
+    <title>Administrador</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/chartist.css">
 
-    <title>Electronica RSH</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/essential_icon/font/flaticon.css">
+    <!-- Font-icon css-->
+  <link href= "assets/css/themify-icons.css" rel="stylesheet">
+<link rel="shortcut icon" href="assets/img/favicon.ico">
   </head>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: <?php echo $var_clave ?></a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="Search">
+          <button class="app-search__button"><i class="ti-search"></i></button>
+        </li>
+        <!--Notification Menu-->
+        <?php
+          $ejec0 = mysqli_query($conn, $num_avisos);
+        while($fila=mysqli_fetch_array($ejec0)){
+            $num_avi     = $fila['COUNT(*)'];
 
-  <body>
+      }
+      ?>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
-            <!--logo start-->
-            <a href="index.html" class="logo"><b>Administrador</b></a>
-            <!--logo end-->
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="destroy.php">Salir</a></li>
-            	</ul>
+            <div class="app-notification__content">
+            <?php
+            $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+            $avi     = $fila['aviso'];
+            $fech_avi     = $fila['fecha'];
+            ?>
+
+              <li><a class="app-notification__item" href="javascript:;">
+
+                  <div>
+                    <p class="app-notification__message"><?php echo $avi; ?></p>
+                    <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
+                  </div></a></li>
+                <?php } ?>
+
             </div>
-        </header>
-      <!--header end-->
+            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+          </ul>
+        </li>
+        <!-- User Menu-->
+        <a class="app-nav__item" href="destroy.php"><i class="ti-shift-left"></i></a>
 
-      <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
 
-              	  <p class="centered"><img src="assets/img/friends/fr-02.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered"><?php echo $var_name ?></h5>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
 
-                  <li class="sub-menu">
-                      <a href="inicio.php">
-                          <i class="flaticon-home"></i>
-                          <span>inicio</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="recepcion.php">
-                          <i class="flaticon-user-5"></i>
-                          <span>Recepción</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="clientes.php">
-                          <i class="flaticon-id-card-5"></i>
-                          <span>Clientes</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a  href="taller.php">
-                          <i class="flaticon-user-7"></i>
-                          <span>Taller</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="mercado.php">
-                          <i class="flaticon-worldwide"></i>
-                          <span>Mercado</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="traslado.php">
-                          <i class="flaticon-send"></i>
-                          <span>Traslados</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="almacen.php">
-                          <i class="flaticon-home-2"></i>
-                          <span>Almacen</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a class= "active" href="administrador.php">
-                          <i class="flaticon-user-6"></i>
-                          <span>Administrador</span>
-                      </a>
-                  </li>
 
-              </ul>
-              <!-- sidebar menu end-->
+
+      </div>
+      <ul class="app-menu">
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
+      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
+      <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon ti-settings"></i><span class="app-menu__label">Taller</span></a></li>
+      <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+      <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
+      <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
+      <li><a class="app-menu__item active" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+</ul>
+
+
+
+
+    </aside>
+    <main class="app-content">
+
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i>Recepción</h1>
+          <p>Dar un buen servicio es nuestra prioridad</p>
+        </div>
+
+      </div>
+      <div class="card text-black bg-primary mb-3">
+        <div class="card-body">
+
+                <div class="col-lg-12">
+                  <p class="bs-component">
+                    <button class="btn btn-info" onclick="location='admin_ctrl_empleados.php'"><i class="ti-settings"></i>Control de empleados</button>
+                    <button class="btn btn-info" onclick="location='recepcion_e_reparados.php'"><i class="ti-money"></i>Ventas</button>
+                    <button class="btn btn-info" onclick="location='recepcion_e_sin_repar.php'"><i class="ti-settings"></i>Editar solicitudes</button>
+                    <button class="btn btn-info" onclick="aviso();"><i class="ti-shopping-cart"></i>Compras</button>
+                    <button class="btn btn-info" onclick="location='recepcion_ventas.php'"><i class="ti-list"></i>Contratos</button>
+                    <button class="btn btn-info" onclick="location='recepcion_ventas.php'"><i class="ti-alert"></i>avisos</button>
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Ventas del mes</h3>
+            <div class="ct-chart ct-perfect-fourth">
+
+            </div>
           </div>
-      </aside>
-      <!--sidebar end-->
+        </div>
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Support Requests</h3>
+            <div class="ct-chart ct-golden-section" id="chart2">
 
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Blank Page</h3>
-          	<div class="row mt">
-          		<div class="col-lg-12">
-          		<p>Place your content here.</p>
-          		</div>
-          	</div>
-
-		</section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
-
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2014 - Alvarez.is
-              <a href="blank.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
+            </div>
           </div>
-      </footer>
-      <!--footer end-->
-  </section>
+        </div>
+      </div>
+    </div>
+    </div>
 
+
+</main>
+    <!-- Essential javascripts for application to work-->
+
+    <!-- Page specific javascripts-->
+    <!-- Google analytics script-->
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
+   <!-- Essential javascripts for application to work-->
+   <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="assets/js/plugins/pace.min.js"></script>
+     <!-- Page specific javascripts-->
+    <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
 
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
+
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+    <script src="assets/js/sweetalert2.js"></script>
+
+    <!-- Circle Percentage-chart -->
+  	<script src="assets/js/jquery.easypiechart.min.js"></script>
+
+  	<!--  Charts Plugin -->
+  	<script src="assets/js/chartist.min.js"></script>
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
-    <!--script for this page-->
+<script>
 
-  <script>
-      //custom select box
+new Chartist.Line('.ct-chart', {
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+  series: [
+    [12, 9, 7, 8, 5],
+    [2, 1, 3.5, 7, 3],
+    [1, 3, 4, 5, 6]
+  ]
+}, {
+  fullWidth: true,
+  chartPadding: {
+    right: 40
+  }
+});
 
-      $(function(){
-          $('select.styled').customSelect();
-      });
+new Chartist.Bar('#chart2', {
+   labels: [1, 2, 3, 4],
+   series: [[5, 2, 8, 3]]
+ });
 
-  </script>
+</script>
 
   </body>
+
+
 </html>
+  <?php
+
+  //notificacion tipo facebook
+              $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+                $avi1     = $fila['aviso'];
+                $fech_avi1     = $fila['fecha'];
+
+          ?>
+
+
+<?php } ?>

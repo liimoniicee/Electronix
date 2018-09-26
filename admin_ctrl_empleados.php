@@ -12,9 +12,9 @@ $var_clave= $_SESSION['clave'];
 
 
 $consulta = "SELECT
-id_folio, nombre, apellidos,direccion, celular, correo, puntos
+*
 FROM
-clientes ORDER BY fecha desc";
+personal";
 $avisos = "SELECT
 *
 FROM avisos where tipo= 'Traslado' and estado='pendiente'";
@@ -32,7 +32,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 
     <!-- Open Graph Meta-->
-    <title>Recepcion</title>
+    <title>Control de empleados</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,7 +106,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+      <li><a class="app-menu__item" href="administracion.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
 
@@ -116,7 +116,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Recepción</h1>
+          <h1><i class="fa fa-dashboard"></i>Control de empleados</h1>
           <p>Dar un buen servicio es nuestra prioridad</p>
         </div>
 
@@ -147,34 +147,39 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           <table id="a-tables" class="table table-hover table-dark table-responsive">
     <thead>
 
-        <th data-field="id">id</th>
-      <th data-field="fecha" data-sortable="true">Nombre</th>
-      <th data-field="estatus" data-sortable="true">Apellidos</th>
-      <th data-field="estatus" data-sortable="true">Direccion</th>
-      <th data-field="estatus" data-sortable="true">Celular</th>
-      <th data-field="estatus" data-sortable="true">Correo</th>
+        <th>id</th>
+      <th>tipo</th>
+      <th>usuario</th>
+      <th>contrasena</th>
+      <th>nombre</th>
+      <th>apellidos</th>
+      <th>Correo</th>
+      <th>Celular</th>
       <th class="disabled-sorting">Acción</th>
 
     </thead>
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
-        $id          = $fila['id_folio'];
-        $nom           = $fila['nombre'];
-        $ape          = $fila['apellidos'];
-        $dir          = $fila['direccion'];
-        $cel        = $fila['celular'];
+        $id          = $fila['id_personal'];
+        $tip           = $fila['tipo'];
+        $usu          = $fila['usuario'];
+        $contra          = $fila['contrasena'];
+        $nom        = $fila['nombre'];
+        $ape        = $fila['apellidos'];
         $cor        = $fila['correo'];
-
+        $cel        = $fila['celular'];
 
 ?>
                     <tr>
                         <td width="8%"><?php echo $id ?></td>
+                        <td width="14%"><?php echo $tip ?></td>
+                        <td width="14%"><?php echo $usu ?></td>
+                        <td width="14%"><?php echo $contra ?></td>
                         <td width="14%"><?php echo $nom ?></td>
                         <td width="14%"><?php echo $ape ?></td>
-                        <td width="14%"><?php echo $dir ?></td>
-                        <td width="14%"><?php echo $cel ?></td>
                         <td width="14%"><?php echo $cor ?></td>
+                        <td width="14%"><?php echo $cel ?></td>
                         <td width="14%">
                         <a href="#" onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Actualizar cliente" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
                         <a href="#" onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Nueva orden"><i class="btn-sm btn-success ti-plus"></i></a>
@@ -575,30 +580,3 @@ swal(
 
 
 </html>
-<script type="text/javascript">
-$.notify("Hello World");
-</script>
-
-
-  <?php
-
-  //notificacion tipo facebook
-              $ejec = mysqli_query($conn, $avisos);
-            while($fila=mysqli_fetch_array($ejec)){
-                $avi1     = $fila['aviso'];
-                $fech_avi1     = $fila['fecha'];
-
-          ?>
-
-<script>
-/*
-
-Push.create("<?php echo $fech_avi1; ?>", {
-  body:"<?php echo $avi1; ?>",
-  icon:"assets/img/alert.png",
-  timeout:5000
-
-});
-
-</script>
-<?php } ?>

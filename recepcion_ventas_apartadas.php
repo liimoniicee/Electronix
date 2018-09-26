@@ -125,7 +125,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
             <p class="bs-component">
             <button class="btn btn-secondary" onclick="location='recepcion_ventas.php'"><i class="ti-plus"></i>Ventas</button>
               <button class="btn btn-success" type="button" onclick="location='recepcion_ventas_apartadas.php'"><i class="ti-thumb-up"></i>Ventas apartadas a credito</button>
-            
+
   </p>
   </div>
 
@@ -138,7 +138,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">Id venta</th>
-      <th data-field="folio" data-sortable="true">Folio cliente</th>  
+      <th data-field="folio" data-sortable="true">Folio cliente</th>
       <th data-field="marca" data-sortable="true">Marca</th>
       <th data-field="modelo" data-sortable="true">Modelo</th>
       <th data-field="fecha_entrega" data-sortable="true">Ubicacion</th>
@@ -156,8 +156,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
         $marca           = $fila['marca'];
         $modelo           = $fila['modelo'];
         $ubicacion           = $fila['ubicacion'];
-        $costo           = $fila['costo'];   
-        $abono           = $fila['abono'];   
+        $costo           = $fila['costo'];
+        $abono           = $fila['abono'];
 
 
 
@@ -171,9 +171,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td><?php echo $costo ?></td>
                         <td><?php echo $abono ?></td>
 
-                      
+
                         <td>
-                        <button onclick="abono(<?php echo $id_cliente ?>), enviarorden(<?php echo $id_venta ?>);" class="btn btn-simple btn-warning btn-icon edit" title="Abonar"><i ></i></button>
+                        <button onclick="abono(<?php echo $id_cliente?>), enviarorden(<?php echo $id_venta ?>);" class="btn btn-simple btn-warning btn-icon edit" title="Abonar"><i ></i></button>
                         </td>
 
           </tr>
@@ -258,7 +258,7 @@ function enviarorden(id_venta){
        $("#swal-input11").val(data.data.tipo);
        $("#swal-input21").val(data.data.abono);
 */
-     
+
 
      },
      // código a ejecutar si la petición falla;
@@ -278,14 +278,14 @@ function enviarorden(id_venta){
 
 <script type="text/javascript">
     //ventana actualizar cliente
-    function abono(id_venta){
+    function abono(id){
 
     swal({
     title: 'Abonos',
     html:
     '<div class="card-body"> <form target="_blank" action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
-    '<input name="swal-input0" type="text" id="swal-input0"  class="form-control border-input" readonly >' +
+    '<input name="swal-input0" value="'+id+'" type="text" id="swal-input0"  class="form-control border-input" readonly >' +
     '<input name="swal-input1" type="text" id="swal-input1" class="form-control border-input" readonly >' +
     '<input name="swal-input3" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
     '<input name="swal-input4" type="hidden" id="swal-input4" class="form-control border-input" readonly >' +
