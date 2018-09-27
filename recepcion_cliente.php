@@ -1,9 +1,6 @@
-  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-
-
+ <link rel="stylesheet" type="text/css" href="assets/css/main.css">
  <script src="assets/js/sweetalert2.all.min.js"></script>
  <script src="assets/js/sweetalert2.js"></script>
-
 
 <?php
 
@@ -165,23 +162,17 @@ confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
 confirmButtonText: '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>',
 cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: true,
+
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
 
 })
 
-};
-
     </script>
 
   </body>
   <?php
- }
-
-
 }
-
-
+ }
 ?>
