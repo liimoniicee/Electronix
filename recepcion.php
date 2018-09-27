@@ -336,7 +336,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Marca</label>'+
-        '<input type="text" name="marca" id="marca" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+        '<input type="text" name="marca" id="marca" maxlength="25" pattern="[A-Za-z]{5}" title="Sólo letras"  onkeyup="this.value = this.value.toUpperCase();"  required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -345,14 +345,14 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9]{5}" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="falla" id="falla" pattern="[A-Za-z0-9]{5}" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -361,14 +361,14 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Serie</label>'+
-        '<input type="text" name="serie" id="serie" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="serie" id="serie" pattern="[A-Za-z0-9]{5}" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Accesorios</label>'+
-        '<input type="text" name="acce" id="acce" maxlength="25"  class="form-control border-input">'+
+        '<input type="text" name="acce" id="acce" maxlength="25" pattern="[A-Za-z0-9]{5}" title="Sólo letras y números" class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -379,7 +379,7 @@ html:
         '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="" ></option><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
 
         '<label>Comentarios</label>'+
-        '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
+        '<textarea type="text" name="comen" id="comen" pattern="[A-Za-z0-9]{5}" title="Sólo letras y números" class="form-control border-input"></textarea>'+
     '</div>'+
     '</div>'+
 
@@ -417,9 +417,9 @@ html:
 '<div class="col-lg-12"> <form action="recepcion_cliente_actualizar.php" method="post" name="data">'+
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
 '<label>Nombre(s)</label>' +
-'<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
+'<input input type="text" name="swal-input1" id="swal-input1" pattern="[A-Za-z]{5}" title="Sólo letras"  class="form-control border-input maxlength="25" required>' +
 '<label>Apellidos</label>' +
-'<input input type="text" name="swal-input2" id="swal-input2" class="form-control border-input maxlength="25" required>' +
+'<input input type="text" name="swal-input2" id="swal-input2" pattern="[A-Za-z]{5}" title="Sólo letras"  class="form-control border-input maxlength="25" required>' +
 '<label>Direccion</label>' +
 '<input input type="text" name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" required>' +
 '<label>Correo</label>' +
@@ -482,11 +482,11 @@ reverseButtons: true
    html:
    '<div class="col-lg-12"> <form action="recepcion_cliente.php" method="post" name="data">'+
    '<label>Nombre(s)</label>' +
-   '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
+   '<input input type="text" name="nom" id="nom" pattern="[A-Za-z]{5}" title="Sólo letras" class="form-control border-input maxlength="25" required>' +
    '<label>Apellidos</label>' +
-   '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
+   '<input input type="text" name="ape" id="ape" pattern="[A-Za-z]{5}" title="Sólo letras" class="form-control border-input maxlength="25" required>' +
    '<label>Direccion</label>' +
-   '<input input type="text" name="dire" id="dire" class="form-control border-input maxlength="25" required>' +
+   '<input input type="text" name="dire" id="dire" pattern="[A-Za-z0-9]{5}" title="Sólo letras y números" class="form-control border-input maxlength="25" required>' +
    '<label>Correo</label>' +
    '<input input type="text" name="cor" id="cor" class="form-control border-input">' +
    '<label>Celular</label>' +
