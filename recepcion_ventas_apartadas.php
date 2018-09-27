@@ -250,6 +250,11 @@ function enviarorden(id){
        $("#ape").val(data.data.ape);
        $("#id").val(data.data.id_folio);
        $("#abono").val(data.data.abono);
+       $("#idventa").val(data.data.id_v);
+
+
+
+       
 
 /*
        $("#swal-input5").val(data.data.serie);
@@ -286,17 +291,17 @@ function enviarorden(id){
     swal({
     title: 'Abonos',
     html:
-    '<div class="card-body"> <form target="_blank" action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    '<div class="card-body"> <form target="_blank" action="recepcion_venta_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
-    '<input name="swal-input0" value="'+id+'" type="text" id="swal-input0"  class="form-control border-input" readonly >' +
-    '<input name="abono" type="text" id="abono" class="form-control border-input" readonly >' +
-    '<input name="nom" type="text" id="nom" class="form-control border-input" readonly >' +
-    '<input name="ape" type="text" id="ape" class="form-control border-input" readonly >' +
+    '<input name="idventa" type="hidden" id="idventa"  class="form-control border-input" readonly >' +
+    '<input name="swal-input0" value="'+id+'" type="hidden" id="swal-input0"  class="form-control border-input" readonly >' +
+    '<input name="nom" type="hidden" id="nom" class="form-control border-input" readonly >' +
+    '<input name="ape" type="hidden" id="ape" class="form-control border-input" readonly >' +
 
     '<div class="col-md-12">'+
       '<div class="form-group">'+
       '<label>Cantidad abonada</label>'+
-            '<input type="number" name="swal-input3" id="swal-input3"    readonly class="form-control border-input">'+
+            '<input type="number" name="abono" id="abono"    readonly class="form-control border-input">'+
 
             '<label>Cantidad que abona</label>'+
             '<input type="number" name="swal-input4" id="swal-input4" required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
@@ -326,6 +331,23 @@ function enviarorden(id){
 
     </script>
 
+<script type="text/javascript">
+
+function operaciones()
+{
+  var abonada =document.getElementById('abono').value;
+  var abono =document.getElementById('swal-input4').value;
+
+
+  var suma =parseInt(abonada)+parseInt(abono);
+
+  var totalt =parseInt(document.getElementById('swal-input5').value= suma);
+
+
+}
+
+
+</script>
 
   </body>
 </html>
