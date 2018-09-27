@@ -45,6 +45,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/swal-forms.css">
+
+
 
     <!-- Font-icon css-->
   <link href= "assets/css/themify-icons.css" rel="stylesheet">
@@ -137,7 +140,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
-      <button class="btn btn-success">agregar empleado</button>
+      <button class="btn btn-success" onclick="agregar_empleado()">agregar empleado</button>
          <form id='form-id'>
 
 
@@ -300,7 +303,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
-
+    <script src="assets/sweet-alert.js"></script>
+    <script src="assets/swal-forms.js"></script>
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
@@ -688,53 +692,28 @@ swal(
 
   <script type="text/javascript">
 //ventana de nuevo cliente
-    function alerta(){
+    function agregar_empleado(){
 
+      swal.withForm({
+     title: 'Agregar empleado',
+     text: 'Agregar empleado',
+     showCancelButton: true,
+     confirmButtonColor: '#DD6B55',
+     confirmButtonText: 'Agregar!',
+     closeOnConfirm: true,
+     formFields: [
+       { id: 'usuario', placeholder: 'Usuario', required: true },
+       { id: 'password', type: 'password', required: true },
+       { id: 'nombre', placeholder: 'Nombre', required: true },
+       { id: 'apellidos', placeholder: 'Apellidos', required: true },
+       { id: 'correo', type: 'Email' },
+       { id: 'celular', type: 'Number', required: true },
 
-    swal({
-   title: 'Agregar cliente',
-   html:
-   '<div class="col-lg-12"> <form action="recepcion_cliente.php" method="post" name="data">'+
-   '<label>Nombre(s)</label>' +
-   '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
-   '<label>Apellidos</label>' +
-   '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
-   '<label>Direccion</label>' +
-   '<input input type="text" name="dire" id="dire" class="form-control border-input maxlength="25" required>' +
-   '<label>Correo</label>' +
-   '<input input type="text" name="cor" id="cor" class="form-control border-input">' +
-   '<label>Celular</label>' +
-   '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
-   '</form></div>',
-   type: 'warning',
-   showCancelButton: true,
-   confirmButtonColor: '#3085d6',
-   cancelButtonColor: '#d33',
-   confirmButtonText: '</form> Actualizar solicitud',
-   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-   showConfirmButton: false,
-   focusConfirm: false,
-   buttonsStyling: false,
-    reverseButtons: true
-  }).then((result) => {
-  if (result.value) {
-    swal(
-      'Éxito!',
-      'Orden registrada correctamente.',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === swal.DismissReason.cancel
-  ) {
-    swal(
-      'Cliente cancelada',
-      'No se agregó ningún cliente :(',
-      'error'
-    )
-  }
-})
+     ]
+   }, function(isConfirm) {
+      window.location.href = ".php";
+
+    })
 };
   </script>
 
