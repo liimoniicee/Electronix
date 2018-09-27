@@ -206,7 +206,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td width="8%"><?php echo $cor ?></td>
                         <td width="8%"><?php echo $cel ?></td>
                         <td width="14%">
-                        <a href="#" onclick="modificar_emp(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                        <a href="#" onclick="actual_emp(<?php echo $id ?>), actual_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
                         <a href="#" onclick="borrar_emp(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
                         </td>
 
@@ -429,7 +429,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
          showCancelButton: true,
          confirmButtonColor: '#3085d6',
          cancelButtonColor: '#d33',
-         confirmButtonText: '</form> Actualizar solicitud',
          cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
          showConfirmButton: false,
          focusConfirm: false,
@@ -476,6 +475,86 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
   });
   }
   </script>
+
+
+   <script type="text/javascript">
+  function actual_mod(id){
+    $.ajax({
+        // la URL para la petición
+        url : 'admin_fn_actual_emp.php',
+        // la información a enviar
+        // (también es posible utilizar una cadena de datos)
+        data : {
+           id : id
+        },
+        // especifica si será una petición POST o GET
+        type : 'POST',
+        // el tipo de información que se espera de respuesta
+        dataType : 'json',
+        // código a ejecutar si la petición es satisfactoria;
+        // la respuesta es pasada como argumento a la función
+        success : function(data) {
+
+          $("#usuario").val(data.data.usu);
+          $("#pass").val(data.data.pass);
+          $("#nom").val(data.data.nom);
+          $("#ape").val(data.data.ape);
+          $("#usu").val(data.data.dir);
+          $("#cor").val(data.data.cor);
+          $("#cel").val(data.data.cel);
+
+        },
+        // código a ejecutar si la petición falla;
+        // son pasados como argumentos a la función
+        // el objeto de la petición en crudo y código de estatus de la petición
+        error : function(xhr, status) {
+
+        },
+        // código a ejecutar sin importar si la petición falló o no
+        complete : function(xhr, status) {
+
+        }
+    });
+  }
+
+  </script>
+
+  <script type="text/javascript">
+ //ventana actualizar cliente
+ function actual_emp(id){
+
+ swal({
+ title: 'Actualizar empleado',
+ html:
+ '<div class="col-lg-12"> <form action="admin_actual_emp.php" method="post" name="data">'+
+ '<input id="id" value="'+id+'" type="hidden">' +
+ '<label>Usuario</label>' +
+ '<input input type="text" name="usuario" id="usuario" class="form-control border-input maxlength="25" required>' +
+ '<label>Contraseña</label>' +
+ '<input input type="password" name="pass" id="pass" class="form-control border-input maxlength="25" required>' +
+ '<label>Nombre(s)</label>' +
+ '<input input type="text" name="nom" id="nom"  class="form-control border-input maxlength="25" required>' +
+ '<label>Apellidos</label>' +
+ '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
+ '<label>Correo</label>' +
+ '<input input type="email" name="cor" id="cor" class="form-control border-input ">' +
+ '<label>Celular</label>' +
+ '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+ '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar empleado</Button>'+
+ '</form></div>',
+ showCancelButton: true,
+ confirmButtonColor: '#3085d6',
+ cancelButtonColor: '#d33',
+ confirmButtonText: 'Actualizar empleado',
+ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+ showConfirmButton: false,
+ focusConfirm: false,
+ buttonsStyling: false,
+ reverseButtons: true
+ })
+   };
+
+ </script>
 
 
   </body>
