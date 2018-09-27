@@ -1,10 +1,4 @@
-<<<<<<< HEAD
  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-=======
-<link rel="stylesheet" type="text/css" href="assets/css/main.css">
-
-
->>>>>>> 4e6f88c4681fbc4de0c71e9090e7dfb3209c0c6b
  <script src="assets/js/sweetalert2.all.min.js"></script>
  <script src="assets/js/sweetalert2.js"></script>
 
@@ -137,21 +131,11 @@ focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
 })
-<<<<<<< HEAD
 
-=======
-};
->>>>>>> 4e6f88c4681fbc4de0c71e9090e7dfb3209c0c6b
     </script>
 
   </body>
   <?php
-<<<<<<< HEAD
-}
- }
-?>
-=======
   }
   }
 ?>
->>>>>>> 4e6f88c4681fbc4de0c71e9090e7dfb3209c0c6b
