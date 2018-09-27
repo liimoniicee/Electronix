@@ -10,9 +10,7 @@ if(isset($_POST['id'])){
   $id = $_POST['id'];
 
 
-  $consulta = "SELECT r.idventa_tv, r.marca, ,r.modelo, c.nombre, c.apellidos, r.serie, r.costo,  r.estado, r.id_personal,r.idvendedor, r.ubicacion,
-  r.id_equipo, r.id_folio, r.tipo, r.abono
-
+  $consulta = "SELECT r.idventa_tv, c.nombre, c.apellidos, r.id_folio, r.abono
 FROM clientes c, ventas_tv r
 WHERE r.idventa_tv = $id
 and c.id_folio = r.id_folio";
@@ -26,21 +24,11 @@ and c.id_folio = r.id_folio";
   $response['data'] = array (
     "id"         =>  $id,
     "id_v"       =>  $row["idventa_tv"],
-    "marca"       =>  $row["marca"],
-    "modelo"      =>  $row["modelo"],
     "nom"         =>  $row["nombre"],
     "ape"         =>  $row["apellidos"],
-    "serie"       =>  $row["serie"],
-    "costo"       =>  $row["costo"],
-    "estado"      =>  $row["estado"],
-    "id_personal"  =>  $row["id_personal"],
-    "idvendedor"  =>  $row["idvendedor"],
-    "ubicacion"   =>  $row["ubicacion"],
-    "id_equipo"   =>  $row["id_equipo"],
     "id_folio"   =>  $row["id_folio"],
-    "tipo"        =>  $row["tipo"],
     "abono"       =>  $row["abono"],
-    
+
   );
    }
    }

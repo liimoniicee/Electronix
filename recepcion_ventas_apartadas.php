@@ -173,7 +173,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 
                         <td>
-                        <button onclick="abono(<?php echo $id_cliente?>), enviarorden(<?php echo $id_venta ?>);" class="btn btn-simple btn-warning btn-icon edit" title="Abonar"><i ></i></button>
+                        <button onclick="abono(<?php echo $id_cliente ?>), enviarorden(<?php echo $id_venta ?>);" class="btn btn-simple btn-warning btn-icon edit" title="Abonar"><i ></i></button>
                         </td>
 
           </tr>
@@ -228,7 +228,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 </div>
 <script>
 //Script para mandar ID para generar la orden
-function enviarorden(id_venta){
+function enviarorden(id){
  $.ajax({
      // la URL para la petición
      url : 'recepcion_fn_ventas_apartadas.php',
@@ -245,10 +245,11 @@ function enviarorden(id_venta){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id_folio);
-       $("#swal-input1").val(data.data.nom);
-       $("#swal-input2").val(data.data.ape);
-       $("#swal-input3").val(data.data.abono);
+
+       $("#nom").val(data.data.nom);
+       $("#ape").val(data.data.ape);
+       $("#id").val(data.data.id_folio);
+       $("#abono").val(data.data.abono);
 
 /*
        $("#swal-input5").val(data.data.serie);
@@ -280,7 +281,7 @@ function enviarorden(id_venta){
 
 <script type="text/javascript">
     //ventana actualizar cliente
-    function abono(id,abono){
+    function abono(id){
 
     swal({
     title: 'Abonos',
@@ -288,8 +289,9 @@ function enviarorden(id_venta){
     '<div class="card-body"> <form target="_blank" action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
     '<input name="swal-input0" value="'+id+'" type="text" id="swal-input0"  class="form-control border-input" readonly >' +
-    '<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
-    '<input name="swal-input2" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
+    '<input name="abono" type="text" id="abono" class="form-control border-input" readonly >' +
+    '<input name="nom" type="text" id="nom" class="form-control border-input" readonly >' +
+    '<input name="ape" type="text" id="ape" class="form-control border-input" readonly >' +
 
     '<div class="col-md-12">'+
       '<div class="form-group">'+

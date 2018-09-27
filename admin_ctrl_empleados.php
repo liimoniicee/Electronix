@@ -45,7 +45,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="assets/swal-forms.css">
+
 
 
 
@@ -110,12 +110,12 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       </div>
       <ul class="app-menu">
       <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
-      <li><a class="app-menu__item active" href="Recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
+      <li><a class="app-menu__item" href="Recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
       <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon ti-settings"></i><span class="app-menu__label">Taller</span></a></li>
       <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-      <li><a class="app-menu__item" href="administracion.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+      <li><a class="app-menu__item active" href="administracion.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
 
@@ -207,7 +207,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td width="8%"><?php echo $cel ?></td>
                         <td width="14%">
                         <a href="#" onclick="modificar_emp(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
-                        <a href="#" onclick="elim_emp(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
+                        <a href="#" onclick="borrar_emp(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
                         </td>
 
 
@@ -236,7 +236,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <th>nombre</th>
     <th>fecha entrada</th>
     <th>fecha salida</th>
-    <th class="disabled-sorting">Acción</th>
 
   </thead>
   <?php
@@ -254,10 +253,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                       <td width="14%"><?php echo $nom ?></td>
                       <td width="14%"><?php echo $fech_e ?></td>
                       <td width="14%"><?php echo $fech_s ?></td>
-                      <td width="14%">
-                      <a href="#" onclick="modificar_emp(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
-                      <a href="#" onclick="elim_emp(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
-                      </td>
+
 
 
 
@@ -303,8 +299,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
-    <script src="assets/sweet-alert.js"></script>
-    <script src="assets/swal-forms.js"></script>
+
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
@@ -400,328 +395,88 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       </script>
 
 
-    <div class="content-panel">
- <div class="col-lg-7">
-
- <script type="text/javascript">
-function enviarmod(id){
-  $.ajax({
-      // la URL para la petición
-      url : 'recepcion_fn_actualizar_cliente.php',
-      // la información a enviar
-      // (también es posible utilizar una cadena de datos)
-      data : {
-         id : id
-      },
-      // especifica si será una petición POST o GET
-      type : 'POST',
-      // el tipo de información que se espera de respuesta
-      dataType : 'json',
-      // código a ejecutar si la petición es satisfactoria;
-      // la respuesta es pasada como argumento a la función
-      success : function(data) {
-        $("#swal-input0").val(data.data.id);
-        $("#swal-input1").val(data.data.nom);
-        $("#swal-input2").val(data.data.ape);
-        $("#swal-input3").val(data.data.dir);
-        $("#swal-input4").val(data.data.cor);
-        $("#swal-input5").val(data.data.cel);
-
-      },
-      // código a ejecutar si la petición falla;
-      // son pasados como argumentos a la función
-      // el objeto de la petición en crudo y código de estatus de la petición
-      error : function(xhr, status) {
-
-      },
-      // código a ejecutar sin importar si la petición falló o no
-      complete : function(xhr, status) {
-
-      }
-  });
-}
-
-</script>
-
- <script type="text/javascript">
- //Script para mandar ID para generar la orden
-function enviarorden(id){
-  $.ajax({
-      // la URL para la petición
-      url : 'recepcion_fn_actualizar_cliente.php',
-      // la información a enviar
-      // (también es posible utilizar una cadena de datos)
-      data : {
-         id : id
-      },
-      // especifica si será una petición POST o GET
-      type : 'POST',
-      // el tipo de información que se espera de respuesta
-      dataType : 'json',
-      // código a ejecutar si la petición es satisfactoria;
-      // la respuesta es pasada como argumento a la función
-      success : function(data) {
-        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id);
-        $("#swal-input1").val(data.data.nom);
-        $("#swal-input2").val(data.data.ape);
-
-
-
-      },
-      // código a ejecutar si la petición falla;
-      // son pasados como argumentos a la función
-      // el objeto de la petición en crudo y código de estatus de la petición
-      error : function(xhr, status) {
-
-      },
-      // código a ejecutar sin importar si la petición falló o no
-      complete : function(xhr, status) {
-
-      }
-  });
-}
-
-</script>
-
-<script type="text/javascript">
-//ventana orden de servición
-function orden(id){
-
-
-swal({
-title: 'Nueva orden de servicio',
-html:
-'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
-
-'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" >' +
-'<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" >' +
-'<input type="hidden" name="swal-input2"  id="swal-input2" class="form-control border-input" >' +
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Equipo</label>'+
-        '<select class="form-control form-control-sm" textalign="center" required name="equipo" id="equipo"><option value="" ></option><option value="Television" >Televisión</option>'+
-        '<option value="Ventiladores">Ventiladores</option>'+
-        '<option value="Tarjeta madre">Tarjetas madre</option>'+
-        '<option value="Audio">Audio</option>'+
-        '<option value="Fuente de poder">Fuentes de poder</option>'+
-        '</select>' +
-    '</div>'+
-'</div>'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="marca" id="marca" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="serie" id="serie" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Accesorios</label>'+
-        '<input type="text" name="acce" id="acce" maxlength="25"  class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="col-md-12">'+
-'<div class="form-group">'+
-        '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="" ></option><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
-
-        '<label>Comentarios</label>'+
-        '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
-    '</div>'+
-    '</div>'+
-
-
-'<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
-
-
-'</form></div>',
-
-type: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>',
-cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: true,
-focusConfirm: false,
-buttonsStyling: false,
-reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Éxito!',
-      'Orden registrada correctamente.',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === swal.DismissReason.cancel
-  ) {
-    swal(
-      'Orden cancelada',
-      'No se registró la orden :(',
-      'error'
-    )
-  }
-})
-};
-</script>
-
-
- <script type="text/javascript">
-//ventana actualizar cliente
-function alerta1(id){
-
-
-swal({
-title: 'Actualizar cliente',
-html:
-'<div class="col-lg-12"> <form action="recepcion_cliente_actualizar.php" method="post" name="data">'+
-'<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
-'<label>Nombre(s)</label>' +
-'<input input type="text" name="swal-input1" id="swal-input1"  class="form-control border-input maxlength="25" required>' +
-'<label>Apellidos</label>' +
-'<input input type="text" name="swal-input2" id="swal-input2" class="form-control border-input maxlength="25" required>' +
-'<label>Direccion</label>' +
-'<input input type="text" name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" required>' +
-'<label>Correo</label>' +
-'<input input type="email" name="swal-input4" id="swal-input4" class="form-control border-input ">' +
-'<label>Celular</label>' +
-'<input input type="number" name="swal-input5" id="swal-input5" class="form-control border-input type="number" required></br>'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar cliente</Button>'+
-'</form></div>',
-type: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText: 'Actualizar solicitud',
-cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: false,
-focusConfirm: false,
-buttonsStyling: false,
-reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Éxito!',
-      'Cliente actualizado',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === swal.DismissReason.cancel
-  ) {
-    swal(
-      'Actualizacion cancelada',
-      'No se actualizo el cliente :(',
-      'error'
-    )
-  }
-})
-};
-
-</script>
-
- <script type="text/javascript">
-//Nuevo Aviso
-    function aviso(){
-
-
-    swal({
-   title: 'Nuevo aviso',
-   html:
-   '<div class="col-lg-12"> <form action="funciones/new_aviso.php" method="post" name="data">'+
-   '<label>Folio(s)</label>' +
-   '<input input type="number" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
-   '<label>Aviso</label>' +
-   '<input input type="textarea" name="ape" id="ape" style="line-height: 150px; height:150px;" class="form-control border-input maxlength="100" required>' +
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
-   '</form></div>',
-   type: 'warning',
-   showCancelButton: true,
-   confirmButtonColor: '#3085d6',
-   cancelButtonColor: '#d33',
-   confirmButtonText: '</form> Registrar aviso',
-   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-   showConfirmButton: false,
-   focusConfirm: false,
-   buttonsStyling: false,
-    reverseButtons: true
-  }).then(function (result) {
-
-swal(
-'Nuevo aviso!',
-'Aviso registrado correctamente',
-'success'
-)
-}).catch(swal.noop);
-
-};
-  </script>
-
   <script type="text/javascript">
 //ventana de nuevo cliente
     function agregar_empleado(){
 
-      swal.withForm({
-     title: 'Agregar empleado',
-     text: 'Agregar empleado',
-     showCancelButton: true,
-     confirmButtonColor: '#DD6B55',
-     confirmButtonText: 'Agregar!',
-     closeOnConfirm: true,
-     formFields: [
-       { id: 'usuario', placeholder: 'Usuario', required: true },
-       { id: 'password', type: 'password', required: true },
-       { id: 'nombre', placeholder: 'Nombre', required: true },
-       { id: 'apellidos', placeholder: 'Apellidos', required: true },
-       { id: 'correo', type: 'Email' },
-       { id: 'celular', type: 'Number', required: true },
+          swal({
+         title: 'Agregar empleado',
+         html:
+         '<div class="col-lg-12"> <form action="admin_agregar_emp.php" method="post" name="data">'+
+         '<label>Tipo</label>'+
+         '<select class="form-control form-control-sm" textalign="center" required name="tipo" id="tipo"><option value="Administrador" >Administrador</option>'+
+         '<option value="Almacen">Almacen</option>'+
+         '<option value="Jefe de Taller">Jefe de taller</option>'+
+         '<option value="Taller">Taller</option>'+
+         '<option value="Tecnico">Tecnico</option>'+
+         '<option value="Recepcion">Recepcion</option>'+
+         '</select>' +
+         '<label>Usuario</label>' +
+         '<input input type="text" name="usu" id="usu" class="form-control border-input maxlength="25" required>' +
+         '<label>Contraseña</label>' +
+         '<input input type="password" name="pass" id="pass" class="form-control border-input maxlength="25" required>' +
+         '<label>Nombre(s)</label>' +
+         '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
+         '<label>Apellidos</label>' +
+         '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
+         '<label>Correo</label>' +
+         '<input input type="text" name="cor" id="cor" class="form-control border-input maxlength="25" required>' +
+         '<label>Celular</label>' +
+         '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+         '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar empleado</Button>'+
+         '</form></div>',
 
-     ]
-   }, function(isConfirm) {
-      window.location.href = ".php";
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: '</form> Actualizar solicitud',
+         cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+         showConfirmButton: false,
+         focusConfirm: false,
+         buttonsStyling: false,
+          reverseButtons: true
 
-    })
+      })
 };
   </script>
 
 
-</div>
-</div>
+  <script>
+  function borrar_emp(id){
+  swal({
+     title: 'Estás seguro?',
+     text: "Esta acción no se puede revertir!",
+     type: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Si!, borralo',
+     showLoaderOnConfirm: true,
+     preConfirm: function() {
+       return new Promise(function(resolve) {
+
+         $.ajax({
+          url: 'admin_borrar_emp.php',
+          type: 'POST',
+          data: 'delete='+id,
+          dataType: 'json'
+       })
+       .done(function(response){
+          swal('Deleted!', response.message, response.status).then(function(){
+              location.reload();
+          });
+
+       })
+       .fail(function(){
+          swal('Oops...', 'Something went wrong with ajax !', 'error');
+       });
+       });
+     },
+     allowOutsideClick: false
+  });
+  }
+  </script>
+
 
   </body>
-
-
 </html>
