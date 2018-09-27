@@ -114,7 +114,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           <div class="col-lg-12">
             <p class="bs-component">
               <button class="btn btn-secondary" onclick="nuevo();"><i class="ti-plus"></i>Nueva venta</button>
-              <button class="btn btn-success" type="button" onclick="location='recepcion_ventas_apartadas.php'"><i class="ti-thumb-up"></i>Ventas apartadas a credito</button>
+              <button class="btn btn-success" type="button" onclick="location='recepcion_ventas_apartadas.php'"><i class="ti-thumb-up"></i>Ventas apartadas </button>
 
   </p>
     </div>
@@ -306,7 +306,7 @@ function mod_vender(id){
  '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
  '<option value=""></option>'+
  '<option value="Contado">Contado</option>'+
- '<option value="Credito">Credito</option>'+
+ '<option value="Apartado">Apartado</option>'+
  '</select>' +
  '</div>'+
 '</div>'+
@@ -371,7 +371,7 @@ function mod_vender(id){
 })
 
  $("#compra").change(function(){
-    if(this.value == 'Credito'){
+    if(this.value == 'Apartado'){
       $(".costo").show();
     }else{
       $(".costo").hide();

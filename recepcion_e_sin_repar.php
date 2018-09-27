@@ -479,7 +479,7 @@ html:
  '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
  '<option value=""></option>'+
  '<option value="Contado">Contado</option>'+
- '<option value="Credito">Credito</option>'+
+ '<option value="Apartado">Apartado</option>'+
  '</select>' +
  '</div>'+
 '</div>'+
@@ -541,7 +541,7 @@ reverseButtons: true
 })
 
  $("#compra").change(function(){
-    if(this.value == 'Credito'){
+    if(this.value == 'Apartado'){
       $(".costo").show();
     }else{
       $(".costo").hide();
