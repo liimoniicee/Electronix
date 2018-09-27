@@ -15,7 +15,7 @@ $empleados = "SELECT *
 FROM
 personal";
 
-$asistencia = "SELECT p.id_personal, p.nombre, a.fecha_entrada, a.fecha_salida
+$asistencia = "SELECT p.id_personal, p.nombre, a.fecha, a.hora_entrada, a.hora_salida
 FROM
 personal p, asistencia a
 where p.id_personal = a.personal_id_personal";
@@ -234,30 +234,27 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
       <th>id</th>
     <th>nombre</th>
-    <th>fecha entrada</th>
-    <th>fecha salida</th>
-
+    <th>fecha</th>
+    <th>Hora entrada</th>
+    <th>Hora salida</th>
   </thead>
   <?php
     $ejec2 = mysqli_query($conn, $asistencia);
   while($fila=mysqli_fetch_array($ejec2)){
       $id          = $fila['id_personal'];
       $nom           = $fila['nombre'];
-      $fech_e          = $fila['fecha_entrada'];
-      $fech_s          = $fila['fecha_salida'];
+      $fech          = $fila['fecha'];
+      $hora_e          = $fila['hora_entrada'];
+      $hora_s          = $fila['hora_salida'];
 
 
 ?>
                   <tr>
                       <td width="8%"><?php echo $id ?></td>
                       <td width="14%"><?php echo $nom ?></td>
-                      <td width="14%"><?php echo $fech_e ?></td>
-                      <td width="14%"><?php echo $fech_s ?></td>
-
-
-
-
-
+                      <td width="14%"><?php echo $fech ?></td>
+                      <td width="14%"><?php echo $hora_e ?></td>
+                      <td width="14%"><?php echo $hora_s ?></td>
 
         </tr>
       <?php } ?>

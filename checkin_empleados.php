@@ -13,17 +13,17 @@ include'conexion.php';
 session_start();
 date_default_timezone_set('America/Mazatlan');
 $diahoy = date("Y-m-d");
-$horahoy = date("H:i:sa");
+$horahoy = date("H:i:s");
 
 //obtenemos la clave del usuario que desea registrar su entrada
 $id = $_SESSION["clave"];
 $tipo = $_SESSION["tipo"];
 
 
-$consu = "select p.id_personal, a.fecha_entrada from personal p, asistencia a
-where p.id_personal = $id
-and a.personal_id_personal = p.id_personal
-and a.fecha_entrada = '$diahoy'";
+$consu = "select a.personal_id_personal, p.id_personal from personal p, asistencia a
+where id_personal = $id
+and p.id_personal = a.personal_id_personal
+and a.fecha = '$diahoy'";
 
 $resu = $conn->query($consu);
 if($resu->num_rows > 0){
@@ -73,8 +73,8 @@ window.location.href = "Traslados/traslados.php";
 
 //hacemos un registro en la base de datos rellenando los campos con la hora actual, la fecha actual y la clave del usuario al que se
 //asignan estos datos
-$sql = "INSERT INTO asistencia (fecha_entrada, fecha_salida, personal_id_personal)
-        VALUES(CURRENT_TIMESTAMP, NULL, '$id')";
+$sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_personal)
+        VALUES('$diahoy', '$horahoy', NULL, '$id')";
 //si la consulta devuelve un estado verdadero entonces hace lo siguiente
     if ($conn->query($sql) === TRUE) {
       ?>
@@ -122,7 +122,7 @@ $sql = "INSERT INTO asistencia (fecha_entrada, fecha_salida, personal_id_persona
        <script>
        swal({
      title: "Error!",
-     text: "Algo esta mal",
+     text: "Algo esta mal <?php echo $horahoy , $diahoy; ?>",
      type: "error"
      }).then(function() {
      // Redirect the user
