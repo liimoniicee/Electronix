@@ -305,7 +305,7 @@ var id = id_equipo;
 
 '<div class="col-md-12 entradas" style="display:none;">'+
 '<label># de pieza que necesita</label>'+
-'<input type="text" name="swal-input4" value="NA" id="swal-input4" class="form-control border-input"  ><br></br>'+
+'<input type="text" name="swal-input4" value="NA" id="swal-input4" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"  ><br></br>'+
 '</div>'+
 '</div>'+
 '</div>'+

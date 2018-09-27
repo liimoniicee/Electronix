@@ -26,7 +26,7 @@ $abono = $_POST ['costo1'];
 
 
 
-if($tipo == 'Credito'){
+if($tipo == 'Apartado'){
   
   $sql1 = "UPDATE ventas_tv set estado ='Apartada' , ubicacion='Pendiente traslado' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' , abono='$abono' WHERE idventa_tv = '$idventa';";
   $res = $conn->query($sql1);

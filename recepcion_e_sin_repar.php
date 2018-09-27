@@ -290,7 +290,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Id equipo</label>'+
-        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<input type="number" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -298,7 +298,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
+        '<input type="number" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -479,7 +479,7 @@ html:
  '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
  '<option value=""></option>'+
  '<option value="Contado">Contado</option>'+
- '<option value="Credito">Credito</option>'+
+ '<option value="Apartado">Apartado</option>'+
  '</select>' +
  '</div>'+
 '</div>'+
@@ -541,7 +541,7 @@ reverseButtons: true
 })
 
  $("#compra").change(function(){
-    if(this.value == 'Credito'){
+    if(this.value == 'Apartado'){
       $(".costo").show();
     }else{
       $(".costo").hide();

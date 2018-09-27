@@ -114,7 +114,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           <div class="col-lg-12">
             <p class="bs-component">
               <button class="btn btn-secondary" onclick="nuevo();"><i class="ti-plus"></i>Nueva venta</button>
-              <button class="btn btn-success" type="button" onclick="location='recepcion_ventas_apartadas.php'"><i class="ti-thumb-up"></i>Ventas apartadas a credito</button>
+              <button class="btn btn-success" type="button" onclick="location='recepcion_ventas_apartadas.php'"><i class="ti-thumb-up"></i>Ventas apartadas </button>
 
   </p>
     </div>
@@ -230,11 +230,11 @@ function mod_vender(id){
  html:
  '<div class="col-lg-12"> <form action="recepcion_ventas_nuevo.php" method="post" name="data" enctype="multipart/form-data">'+
  '<label>Marca</label>' +
- '<input input type="text" name="marc" id="marc" class="form-control border-input" maxlength="20" required>' +
+ '<input input type="text" name="marc" id="marc" pattern="[A-Za-z]+" title="Sólo letras" class="form-control border-input" maxlength="20" required>' +
  '<label>Modelo</label>' +
- '<input input type="text" name="mod" id="mod" class="form-control border-input maxlength="20" required>' +
+ '<input input type="text" name="mod" id="mod" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input maxlength="20" required>' +
  '<label>Serie</label>' +
- '<input input type="text" name="ser" id="ser" class="form-control border-input maxlength="20" required>' +
+ '<input input type="text" name="ser" id="ser" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input maxlength="20" required>' +
  '<label>Costo</label>' +
  '<input input type="number" name="costo" id="costo" class="form-control border-input" maxlength="20" required>' +
  '<label>imagen</label>' +
@@ -270,14 +270,14 @@ function mod_vender(id){
 '<div class="col-md-6">'+
   '<div class="form-group">'+
  '<label>Marca</label>' +
- '<input input type="text" name="marc" id="marc" readonly class="form-control border-input">' +
+ '<input input type="text" name="marc" id="marc" pattern="[A-Za-z]+" title="Sólo letras" readonly class="form-control border-input">' +
  '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
  '<label>Modelo</label>' +
- '<input input type="text" name="mod" id="mod" readonly class="form-control border-input">' +
+ '<input input type="text" name="mod" id="mod" pattern="[A-Za-z0-9]+" title="Sólo letras y números" readonly  class="form-control border-input">' +
  '</div>'+
 '</div>'+
 '</div>'+
@@ -286,7 +286,7 @@ function mod_vender(id){
 '<div class="col-md-6">'+
   '<div class="form-group">'+
  '<label>Serie</label>' +
- '<input input type="text" name="ser" id="ser" readonly class="form-control border-input">' +
+ '<input input type="text" name="ser" id="ser" pattern="[A-Za-z0-9]+" title="Sólo letras y números" readonly class="form-control border-input">' +
  '</div>'+
 '</div>'+
 
@@ -306,7 +306,7 @@ function mod_vender(id){
  '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
  '<option value=""></option>'+
  '<option value="Contado">Contado</option>'+
- '<option value="Credito">Credito</option>'+
+ '<option value="Apartado">Apartado</option>'+
  '</select>' +
  '</div>'+
 '</div>'+
@@ -340,7 +340,7 @@ function mod_vender(id){
 '<div class="col-md-6">'+
   '<div class="form-group">'+
  '<label>Nombre(s)</label>' +
- '<input input type="text" name="nombre" id="nombre" readonly class="form-control border-input">' +
+ '<input input type="text" name="nombre" id="nombre" pattern="[A-Za-z]+" title="Sólo letras" readonly class="form-control border-input">' +
  '</div>'+
 '</div>'+
 '</div>'+
@@ -349,7 +349,7 @@ function mod_vender(id){
 '<div class="col-md-6">'+
   '<div class="form-group">'+
  '<label>Apellidos</label>' +
- '<input input type="text" name="apellidos" id="apellidos" readonly class="form-control border-input">' +
+ '<input input type="text" name="apellidos" id="apellidos" pattern="[A-Za-z]+" title="Sólo letras" readonly class="form-control border-input">' +
  '</div>'+
 '</div>'+
 '</div>'+
@@ -371,7 +371,7 @@ function mod_vender(id){
 })
 
  $("#compra").change(function(){
-    if(this.value == 'Credito'){
+    if(this.value == 'Apartado'){
       $(".costo").show();
     }else{
       $(".costo").hide();
