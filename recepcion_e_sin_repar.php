@@ -290,7 +290,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Id equipo</label>'+
-        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<input type="number" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -298,7 +298,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="text" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
+        '<input type="number" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+

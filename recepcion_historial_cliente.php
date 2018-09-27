@@ -445,7 +445,7 @@ $resu = $conn->query($cons);
     '<div class="col-md-6">'+
       '<div class="form-group">'+
             '<label>Id equipo</label>'+
-            '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+            '<input type="number" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
 
@@ -453,7 +453,7 @@ $resu = $conn->query($cons);
     '<div class="col-md-6">'+
       '<div class="form-group">'+
             '<label>Folio cliente</label>'+
-            '<input type="text" value="'+id+'" readonly class="form-control border-input">'+
+            '<input type="number" value="'+id+'" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
     '</div>'+

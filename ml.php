@@ -376,14 +376,14 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
   '<label>Nombre de la pieza</label>'+
-'<input type="text" name="swal-input0"  id="swal-input0" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input" >' +//Id Equipo
+'<input type="text" name="swal-input0"  id="swal-input0" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input" >' +//Id Equipo
 '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Marca</label>'+
-        '<input type="text" name="swal-input1"  id="swal-input1" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input1"  id="swal-input1" pattern="[A-Za-z]+" title="Sólo letras" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 '</div>'+
@@ -393,14 +393,14 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Modelo</label>'+
-        '<input type="text" name="swal-input2"  id="swal-input2" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input2"  id="swal-input2" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Etiqueta 1</label>'+
-        '<input type="text" name="swal-input3"  id="swal-input3" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input3"  id="swal-input3" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 '</div>'+
@@ -409,7 +409,7 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Etiqueta 2</label>'+
-        '<input type="text" name="swal-input4"  id="swal-input4" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input4"  id="swal-input4" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
@@ -426,7 +426,7 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Ubicacion</label>'+
-        '<input type="text" name="swal-input6"  id="swal-input6" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input6"  id="swal-input6" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
