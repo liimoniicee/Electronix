@@ -58,7 +58,7 @@ header('recepcion.php');
     ?>
     <body>
     <script type="text/javascript">
-  var cel = <?php echo $cel ?>
+  var cel = <?php echo $cel; ?>;
     swal({
     title: 'Nueva orden de servicio',
     html:
@@ -139,6 +139,6 @@ reverseButtons: true
 
   </body>
   <?php
- }
-}
+  }
+  }
 ?>

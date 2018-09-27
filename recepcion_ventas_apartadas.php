@@ -144,6 +144,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <th data-field="fecha_entrega" data-sortable="true">Ubicacion</th>
       <th data-field="costo" data-sortable="true">Costo total</th>
       <th data-field="garantia" data-sortable="true">Abonado</th>
+      <th data-field="accion" data-sortable="true">Accion</th>
+
 
 
 
@@ -172,9 +174,22 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td><?php echo $abono ?></td>
 
 
-                        <td>
-                        <button onclick="abono(<?php echo $id_cliente ?>), enviarorden(<?php echo $id_venta ?>);" class="btn btn-simple btn-warning btn-icon edit" title="Abonar"><i ></i></button>
-                        </td>
+                           <td>
+                        <?php
+                        if($costo == $abono){
+                          echo "
+
+                          <button onclick='abono($id_cliente), enviarorden($id_venta);' class='btn btn-simple btn-success ' title='Generar garantía'><i ></i></button>
+                        ";
+                      }elseif($costo > $abono){
+                          echo "
+
+                          <button onclick='abono($id_cliente), enviarorden($id_venta);' class='btn btn-simple btn-warning ' title='Abonar'><i ></i></button>
+                          ";
+                      }
+                      ?>
+</td>
+
 
           </tr>
         <?php } ?>

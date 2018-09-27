@@ -561,7 +561,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label># carro</label>'+
-        '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+        '<input type="number" name="swal-input8" id="swal-input8" class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -678,7 +678,7 @@ swal(
    '<div class="col-md-6">'+
      '<div class="form-group">'+
            '<label># carro</label>'+
-           '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+           '<input type="number" name="swal-input8" id="swal-input8" class="form-control border-input">'+
        '</div>'+
    '</div>'+
    '</div>'+
@@ -794,7 +794,7 @@ swal(
  '<div class="col-md-6">'+
    '<div class="form-group">'+
          '<label># carro</label>'+
-         '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+         '<input type="number" name="swal-input8" id="swal-input8" class="form-control border-input">'+
      '</div>'+
  '</div>'+
  '</div>'+
@@ -947,7 +947,7 @@ swal(
  '<div class="col-md-6">'+
    '<div class="form-group">'+
          '<label># carro</label>'+
-         '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+         '<input type="number" name="swal-input8" id="swal-input8" class="form-control border-input">'+
      '</div>'+
  '</div>'+
  '</div>'+
