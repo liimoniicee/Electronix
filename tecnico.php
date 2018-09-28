@@ -19,7 +19,7 @@ FROM reparar_tv
 WHERE estado='En reparacion' ";
 $avisos = "SELECT
 *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Tecnico' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 ?>

@@ -13,7 +13,7 @@ $consulta = "SELECT * from almacen;";
 
 $avisos = "SELECT
 *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Almacen' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 

@@ -53,7 +53,7 @@ FROM reparar_tv
 WHERE estado in('necesita refaccion', 'autorizacion taller');";
 
 $avisos = "SELECT *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Taller' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
@@ -418,7 +418,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                           <td>
                                           <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
 
-                                          <button onclick="costos(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                                          <button onclick="costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                                           </td>
 
                                     </tr>
@@ -803,6 +803,9 @@ function enviarorden(id){
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
        $("#swal-input4").val(data.data.ape);
+       $("#swal-input21").val(data.data.abono);
+       $("#swal-input19").val(data.data.presupuesto);
+       $("#swal-input20").val(data.data.mano_obra);
 
      },
      // código a ejecutar si la petición falla;
@@ -936,7 +939,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo mano de obra</label>'+
-        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25" onkeypress="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -945,7 +948,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Abono del cliente</label>'+
-        '<input type="number" name="swal-input21" id="swal-input21"  required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+        '<input type="number" name="swal-input21" id="swal-input21"  readonly  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '<div class="col-md-6">'+

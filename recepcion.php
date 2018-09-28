@@ -15,9 +15,10 @@ $consulta = "SELECT
 id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
 clientes ORDER BY fecha desc";
+
 $avisos = "SELECT
 *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Recepcion' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 

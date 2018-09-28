@@ -23,7 +23,7 @@ where p.id_personal = a.personal_id_personal";
 
 $avisos = "SELECT
 *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Administrador' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 

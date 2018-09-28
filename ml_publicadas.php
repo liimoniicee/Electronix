@@ -13,7 +13,7 @@ $venta="SELECT * from refacciones_tv where estado = 'Publicada';";
 $clientes="SELECT * from clientes order by id_folio desc ";
 $avisos = "SELECT
 *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Mercado' and estado='pendiente'";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 
