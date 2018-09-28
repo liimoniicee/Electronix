@@ -35,9 +35,9 @@ $en_ruta = "SELECT
 
  $avisos = "SELECT
  *
- FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+ FROM avisos where tipo= 'Traslado' and estado='pendiente' order by fecha desc;";
 
- $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente' order by fecha desc;";
+ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente' ";
 
 
 ?>

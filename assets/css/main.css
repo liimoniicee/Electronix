@@ -13676,6 +13676,7 @@ be a descendant of the grid when it is being dragged.
   -webkit-transition: background-color 0.3s ease;
   -o-transition: background-color 0.3s ease;
   transition: background-color 0.3s ease;
+
 }
 
 .app-nav__item:hover, .app-nav__item:focus {
@@ -15256,3 +15257,9 @@ be a descendant of the grid when it is being dragged.
   color: #666;
 }
 .hidetext { -webkit-text-security: disc; /* Default */ }
+
+.notificacion {
+  color: #FF3333;
+  font-size:300px;
+
+}
