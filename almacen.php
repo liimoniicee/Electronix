@@ -11,9 +11,7 @@ $var_clave= $_SESSION['clave'];
 
 $consulta = "SELECT * from reparar_tv where estado = 'Almacen';";
 
-$avisos = "SELECT
-*
-FROM avisos where tipo= 'Almacen' and estado='pendiente'";
+$avisos = "SELECT * FROM avisos where tipo= 'Almacen' and estado='pendiente' order by fecha desc;";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 

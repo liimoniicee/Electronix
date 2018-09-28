@@ -27,12 +27,12 @@ $res = $conn->query($query);
 
 if($tipo == "Venta"){
 
-    $query2 = "UPDATE ventas_tv SET estado = 'Recoleccion traslado', id_personal = '$var_clave', ubicacion = '$ubi esperando traslado' WHERE idventa_tv='$id_equipo'";
+    $query2 = "UPDATE ventas_tv SET  id_personal = '$var_clave', ubicacion = '$ubi esperando traslado' WHERE idventa_tv='$id_equipo'";
     $res2 = $conn->query($query2);
 
 }else{
 
-    $query3 = "UPDATE reparar_tv SET estado = 'Recoleccion traslado', id_personal = '$var_clave', ubicacion = '$ubi esperando traslado' WHERE id_equipo='$id_equipo'";
+    $query3 = "UPDATE reparar_tv SET  id_personal = '$var_clave', ubicacion = '$ubi esperando traslado' WHERE id_equipo='$id_equipo'";
     $res3 = $conn->query($query3);
 
 }

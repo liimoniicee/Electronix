@@ -806,6 +806,8 @@ function enviarorden(id){
        $("#swal-input21").val(data.data.abono);
        $("#swal-input19").val(data.data.presupuesto);
        $("#swal-input20").val(data.data.mano_obra);
+       $("#swal-input23").val(data.data.restante);
+
 
      },
      // código a ejecutar si la petición falla;
@@ -928,6 +930,7 @@ html:
 '<div class="card-body"> <form action="taller_fn_costos.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
 '<input type="hidden" name="swal-input1" value="'+id+'"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
+'<h5>Escribir todos los campos sin excepción.</h5>'+
 
 '<div class="row">'+
 '<div class="col-md-6">'+

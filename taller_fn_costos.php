@@ -16,36 +16,29 @@ $res = $_POST['swal-input22'];
 $tot = $_POST['swal-input23'];
 $est = $_POST['swal-input24'];
 
-
-
-if($est =="Sin solucion"){
 $sql = "Update reparar_tv set presupuesto = $pre, mano_obra =$man, abono=$abo, restante= $res, costo_total= $tot, estado='$est' where id_equipo= $id;";
 $res = $conn->query($sql);
 
-$sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, personal_id_personal)
-VALUES ('Pendiente', '$comentario', 'Taller', 'Almacen', '$id', '$var_clave');";
+if($est =='Sin solucion'){
+
+
+$sql2 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)
+VALUES ('Pendiente', 'Taller', 'Recepcion', '$id', '$var_clave');";
 $res2 = $conn->query($sql2);
 
 $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id sin solución, en ruta a almacen', 'Pendiente', 'Almacen');";
+VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id sin solución, en ruta a recepcion', 'Pendiente', 'Recepcion');";
 $res3 = $conn->query($sql3);
 
 }else{
 
-  $sql4 = "Update reparar_tv set presupuesto = $pre, mano_obra =$man, abono=$abo, restante= $res, costo_total= $tot, estado='$est' where id_equipo= $id;";
 
-$res4 = $conn->query($sql4);
 
 $sql5 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id reparado, esperando en taller, marcar al cliente', 'Pendiente', 'Recepcion');";
+VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id reparado, traslado pendiente a recepcion, marcar a cliente', 'Pendiente', 'Recepcion');";
 $res5 = $conn->query($sql5);
 }
 
-if (!$res) {
-   printf("Errormessage: %s\n", $conn->error);
-}
-else{
-
-  echo "<script>window.open('taller.php','_self')</script>";}
+  echo "<script>window.open('taller.php','_self')</script>";
 
 ?>

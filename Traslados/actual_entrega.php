@@ -31,34 +31,35 @@ id_traslado='$id'";
 $res = $conn->query($query);
 
 if($des=="Almacen"){
-//cuando un equipo en reparacion  o una venta va hacia almacen(no encontró destinatario)
-    $query2 = "UPDATE
-    reparar_tv
-    SET
-    estado = 'Pendiente ruta almacen',
-    id_personal = '$var_clave',
-    ubicacion= '$ubi'
-    WHERE
-    id_equipo='$id_equipo'";
-    
-    $res2 = $conn->query($query2);
-    
-    
-    $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-    VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id_equipo no encontrado, en ruta a almacen', 'Pendiente', 'Almacen');";
-    $res3 = $conn->query($sql3);
-    
-    $query4 = "UPDATE
-    ventas_tv
-    SET
-    estado = 'Pendiente ruta almacen',
-    id_personal = '$var_clave',
-    ubicacion= '$ubi'
-    WHERE
-    idventa_tv='$id_equipo' and tipo='Venta'";
-    
-    $res4 = $conn->query($query4);
 
+    if($ubi=="Recepcion"){
+
+        $query2 = "UPDATE reparar_tv SET id_personal = '$var_clave',ubicacion= '$ubi en ruta a Almacaen' WHERE id_equipo='$id_equipo'";
+    
+        $res2 = $conn->query($query2);
+        
+        
+        $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
+        VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id_equipo no encontrado, en ruta a almacen', 'Pendiente', 'Almacen');";
+        $res3 = $conn->query($sql3);
+
+        $query12 = "UPDATE traslado SET estado = 'En ruta', ubicacion = '$des', destino='Almacen' WHERE id_traslado='$id'";
+        $res12 = $conn->query($query12);
+    }
+//cuando un equipo en reparacion  o una venta va hacia almacen(no encontró destinatario)
+$query10 = "UPDATE reparar_tv SET estado = 'Pendiente ruta almacen',id_personal = '$var_clave',ubicacion= '$ubi'WHERE id_equipo='$id_equipo'";    
+$res10 = $conn->query($query10);
+
+
+$sql9 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
+VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id_equipo no encontrado, en ruta a almacen', 'Pendiente', 'Almacen');";
+$res3 = $conn->query($sql9);
+    
+$query4 = "UPDATE ventas_tv SET id_personal = '$var_clave', ubicacion= 'En ruta $ubi' WHERE idventa_tv='$id_equipo' and tipo='Venta'";    
+$res4 = $conn->query($query4);
+
+$query11 = "UPDATE traslado SET estado = 'En ruta', ubicacion = '$des', destino='Almacen' WHERE id_traslado='$id'";
+$res11 = $conn->query($query11);
 
 }if($tipo=="Venta"){
 //cuando una venta va en ruta al cliente
@@ -87,13 +88,13 @@ id_equipo='$id_equipo'";
     $res8 = $conn->query($query8);
   
 
-}if($des=="Taller"){
+}else{
 
     //enquipo en reparacion cuando se mueve hacia el taller
     $query6 = "UPDATE
     reparar_tv
     SET
-    estado = 'Pendiente',
+    estado = 'Reparada',
     id_personal = '$var_clave',
     ubicacion= '$des'
     WHERE
@@ -101,15 +102,7 @@ id_equipo='$id_equipo'";
     
     $res6 = $conn->query($query6);
     
-    
-}else{
-
-
 }
+header("Location: traslados.php");
 
-
-if (!$res) {
-   printf("Errormessage: %s\n", $conn->error);
-}
-else{header("Location: traslados.php");}
 ?>
