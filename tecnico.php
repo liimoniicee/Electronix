@@ -16,6 +16,7 @@ verificar_sesion();
  FROM reparar_tv
  WHERE estado='En reparacion' and id_personal='$var_clave';";
 
+<<<<<<< HEAD
  $consulta1 = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
  FROM reparar_tv
  WHERE estado='En reparacion' ";
@@ -29,6 +30,16 @@ verificar_sesion();
  FROM reparar_tv
  WHERE estado in('necesita refaccion', 'autorizacion taller')";
 
+=======
+$consulta1 = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
+FROM reparar_tv
+WHERE estado='En reparacion' ";
+$avisos = "SELECT
+*
+FROM avisos where tipo= 'Tecnico' and estado='pendiente' order by fecha desc;";
+
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Tecnico' and estado='pendiente' ";
+>>>>>>> 63fb32f486c37f3305c3cee66e9b55e434a6068e
 ?>
 <html lang="es">
 <head>
@@ -61,9 +72,15 @@ verificar_sesion();
         while($fila=mysqli_fetch_array($ejec0)){
             $num_avi     = $fila['COUNT(*)'];
 
+<<<<<<< HEAD
         }
         ?>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+=======
+}
+      ?>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
+>>>>>>> 63fb32f486c37f3305c3cee66e9b55e434a6068e
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 

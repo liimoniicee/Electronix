@@ -46,8 +46,9 @@ $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_to
   $res1 = $conn->query($sql1);
 
   $sql3 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_folio, personal_id_personal)
-  VALUES ('Pendiente', 'recepcion', 'almacen', '$id_equipo', '$id', '$var_clave');";
+  VALUES ('Pendiente', 'Recepcion', 'Almacen', '$id_equipo', '$id', '$var_clave');";
   $res3 = $conn->query($sql3);
+
  }else{
  $sql2 = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' , idvendedor='$var_clave', ubicacion='Cliente', tipo='$tipo',id_equipo='$id_equipo' where idventa_tv='$idventa';";
  $res2 = $conn->query($sql2);

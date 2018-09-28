@@ -13,9 +13,9 @@ $consulta = "SELECT * from ventas_tv where estado = 'Apartada';";
 
 $avisos = "SELECT
 *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Recepcion' and estado='pendiente'  order by fecha desc;";
 
-$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='pendiente'";
 
 
 
@@ -54,7 +54,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     }
           ?>
-            <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+            <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
               <ul class="app-notification dropdown-menu dropdown-menu-right">
                 <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
@@ -179,7 +179,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         if($costo == $abono){
                           echo "
 
-                          <button onclick='abono($id_cliente), enviarorden($id_venta);' class='btn btn-simple btn-success ' title='Generar garantía'><i ></i></button>
+                          <button onclick='garantia($id_cliente), enviarorden($id_venta);' class='btn btn-simple btn-success ' title='Generar garantía'><i ></i></button>
                         ";
                       }elseif($costo > $abono){
                           echo "
@@ -266,6 +266,10 @@ function enviarorden(id){
        $("#id").val(data.data.id_folio);
        $("#abono").val(data.data.abono);
        $("#idventa").val(data.data.id_v);
+       $("#marca").val(data.data.marca);
+       $("#modelo").val(data.data.modelo);
+       $("#serie").val(data.data.serie);
+       $("#costo").val(data.data.costo);
 
 
 
@@ -345,6 +349,111 @@ function enviarorden(id){
     };
 
     </script>
+
+<script type="text/javascript">
+//ventana orden de servición
+function garantia(id){
+
+swal({
+title: 'Garantia venta',
+html:
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-venta_apartadas.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+//'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Id venta</label>'+
+        '<input type="number" name="idventa" id="idventa" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio cliente</label>'+
+        '<input type="number" value="'+id+'" name="folio" id="folio" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="nom" id="nom" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Apellidos</label>'+
+        '<input type="text" name="ape" id="ape" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="serie" id="serie" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo total</label>'+
+        '<input type="text" name="costo" id="costo" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
 
 <script type="text/javascript">
 

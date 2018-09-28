@@ -15,12 +15,11 @@ $consulta = "SELECT
 id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
 clientes ORDER BY fecha desc";
+
 $avisos = "SELECT
-*
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Recepcion' and estado='pendiente'  order by fecha desc;";
 
-$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
-
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='pendiente'";
 ?>
 <html lang="es">
   <head>
@@ -59,7 +58,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
       }
       ?>
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i><span class='notificacion'><?php echo $num_avi ?></span> </a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
@@ -515,30 +514,6 @@ reverseButtons: true
 
 
 </html>
-<script type="text/javascript">
-$.notify("Hello World");
-</script>
 
 
-  <?php
 
-  //notificacion tipo facebook
-              $ejec = mysqli_query($conn, $avisos);
-            while($fila=mysqli_fetch_array($ejec)){
-                $avi1     = $fila['aviso'];
-                $fech_avi1     = $fila['fecha'];
-
-          ?>
-
-<script>
-/*
-
-Push.create("<?php echo $fech_avi1; ?>", {
-  body:"<?php echo $avi1; ?>",
-  icon:"assets/img/alert.png",
-  timeout:5000
-
-});
-
-</script>
-<?php } ?>

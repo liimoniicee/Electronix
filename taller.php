@@ -53,9 +53,9 @@ FROM reparar_tv
 WHERE estado in('necesita refaccion', 'autorizacion taller');";
 
 $avisos = "SELECT *
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+FROM avisos where tipo= 'Taller' and estado='pendiente' order by fecha desc;";
 
-$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pendiente'";
 
 ?>
 
@@ -101,7 +101,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
       }
       ?>
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i><span class='notificacion'><?php echo $num_avi ?></span> </a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
@@ -415,10 +415,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                           <td><?php echo $fecha_ingreso ?></td>
                                           <td><?php echo $fecha_entregar ?></td>
                                           <td><?php echo $ubicacion ?></a></td>
+                                          <td><?php echo $servi ?></a></td>
                                           <td>
                                           <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
 
-                                          <button onclick="costos(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                                          <button onclick="costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
                                           </td>
 
                                     </tr>
@@ -803,6 +804,11 @@ function enviarorden(id){
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
        $("#swal-input4").val(data.data.ape);
+       $("#swal-input21").val(data.data.abono);
+       $("#swal-input19").val(data.data.presupuesto);
+       $("#swal-input20").val(data.data.mano_obra);
+       $("#swal-input23").val(data.data.restante);
+
 
      },
      // código a ejecutar si la petición falla;
@@ -925,6 +931,7 @@ html:
 '<div class="card-body"> <form action="taller_fn_costos.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
 '<input type="hidden" name="swal-input1" value="'+id+'"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
+'<h5>Escribir todos los campos sin excepción.</h5>'+
 
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -936,7 +943,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo mano de obra</label>'+
-        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25" onkeypress="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -945,7 +952,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Abono del cliente</label>'+
-        '<input type="number" name="swal-input21" id="swal-input21"  required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+        '<input type="number" name="swal-input21" id="swal-input21"  readonly  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '<div class="col-md-6">'+

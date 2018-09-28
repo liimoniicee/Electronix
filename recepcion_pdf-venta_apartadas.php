@@ -7,45 +7,24 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
-
-
-$id = $_POST ['tv_venta'];
-
-$nom = $_POST ['nombre'];
-$ape= $_POST ['apellidos'];
-$idventa = $_POST ['swal-input0'];
-$marca= $_POST ['marc'];
-$modelo = $_POST ['mod'];
-$serie = $_POST ['ser'];
+$id = $_POST ['folio'];
+$idventa = $_POST ['idventa'];
+$nom = $_POST ['nom'];
+$ape= $_POST ['ape'];
+$marca= $_POST ['marca'];
+$modelo = $_POST ['modelo'];
+$serie = $_POST ['serie'];
 $costo_total= $_POST ['costo'];
 
-$tipo = $_POST ['compra'];
-$abono = $_POST ['costo1'];
 
 
 
+$sql = "UPDATE ventas_tv set estado='Pendiente traslado', abono='0' ,fecha_egreso=CURRENT_TIMESTAMP where idventa_tv='$idventa';";
+$res = $conn->query($sql);
 
+$sql2 = "UPDATE traslado set estado='Pendiente', destino='Recepcion' where id_venta='$idventa';";
+$res2 = $conn->query($sql2);
 
-if($tipo == 'Apartado'){
-  
-  $sql1 = "UPDATE ventas_tv set estado ='Apartada' , ubicacion='Pendiente traslado' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' , abono='$abono' WHERE idventa_tv = '$idventa';";
-  $res = $conn->query($sql1);
-
- 
-$sql4 = "INSERT into traslado(estado,ubicacion,destino,id_equipo,id_folio,tipo) VALUES('Pendiente','Recepcion','Almacen','$idventa','$id','Venta');";
-$res4 = $conn->query($sql4);
-
-}else{
- 
-  
-  $sql2 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' WHERE idventa_tv = '$idventa';";
-  $res2 = $conn->query($sql2);
-
- 
-
-}
-
-  
 //checar la validacion(no funciona el else:v)
 
 
@@ -63,7 +42,7 @@ $res4 = $conn->query($sql4);
     $pdf->SetTitle($title);
     $pdf->SetFont('Arial','B',24);
     $pdf->SetX(80);
-    $pdf->Write(5,utf8_decode("Garantía"));
+    $pdf->Write(5,utf8_decode("Garantia"));
 
     $pdf->Image('assets/img/logo.jpg',17,25,66);
 //folio
@@ -90,7 +69,7 @@ $res4 = $conn->query($sql4);
     $pdf->Write(5,'Equipo vendido con el folio:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(70,70);
+    $pdf->SetXY(80,70);
     $pdf->Write(5,$idventa);
 
     $pdf->SetFont('Arial','',12);
@@ -99,28 +78,28 @@ $res4 = $conn->query($sql4);
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(102,85);
-    $pdf->Write(5,$nom);
+    $pdf->Write(5,utf8_decode($nom));
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,85);
-    $pdf->Write(5,$ape);
+    $pdf->Write(5,utf8_decode($ape));
 
     //marca y modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(17,100);
-    $pdf->Write(5,utf8_decode("En la venta televisión"));
+    $pdf->Write(5,utf8_decode("En la compra de una television"));
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(57,100);
     $pdf->Write(5,'');
     //marca
     $pdf->SetFont('Arial','',12);
-    $pdf->SetXY(60,100);
+    $pdf->SetXY(80,100);
     $pdf->Write(5,'marca:');
 
     $pdf->SetFont('Arial','B',12);
-    $pdf->SetXY(75,100);
-    $pdf->Write(5,$marca );
+    $pdf->SetXY(95,100);
+    $pdf->Write(5,utf8_decode($marca));
     //modelo
     $pdf->SetFont('Arial','',12);
     $pdf->SetXY(125,100);
@@ -128,7 +107,7 @@ $res4 = $conn->query($sql4);
 
     $pdf->SetFont('Arial','B',12);
     $pdf->SetXY(145,100);
-    $pdf->Write(5,$modelo);
+    $pdf->Write(5,utf8_decode($modelo));
   //Número de serie
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,115);
@@ -138,8 +117,16 @@ $res4 = $conn->query($sql4);
   $pdf->SetXY(53,115);
   $pdf->Write(5,$serie);
 
-//Falla 
+//Falla
+/*
+  $pdf->SetFont('Arial','',12);
+  $pdf->SetXY(17,130);
+  $pdf->Write(5,'Con la(s) falla(s) de:');
 
+  $pdf->SetFont('Arial','B',12);
+  $pdf->SetXY(60,130);
+  $pdf->Write();
+  */
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
   $pdf->SetXY(17,130);
@@ -153,7 +140,7 @@ $res4 = $conn->query($sql4);
 
 //politicas 
 $pdf->SetFont('Arial','',12);
-$pdf->SetXY(17,170);
+$pdf->SetXY(17,155);
 $pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
 falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de la presente hasta los 
 seis meses siguientes. 

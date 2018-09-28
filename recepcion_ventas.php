@@ -11,9 +11,9 @@ $var_clave= $_SESSION['clave'];
 $venta="SELECT * from ventas_tv where estado = 'En venta';";
 
 $clientes="SELECT * from clientes order by id_folio desc ";
-$avisos = "SELECT * FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+$avisos = "SELECT * FROM avisos where tipo= 'Recepcion' and estado='pendiente'  order by fecha desc;";
 
-$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='pendiente'";
 
 ?>
 <html lang="es">
@@ -56,7 +56,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 }
       ?>
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
 
