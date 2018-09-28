@@ -415,6 +415,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                           <td><?php echo $fecha_ingreso ?></td>
                                           <td><?php echo $fecha_entregar ?></td>
                                           <td><?php echo $ubicacion ?></a></td>
+                                          <td><?php echo $servi ?></a></td>
                                           <td>
                                           <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
 

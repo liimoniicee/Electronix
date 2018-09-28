@@ -514,20 +514,7 @@ reverseButtons: true
 
 
 </html>
-<script type="text/javascript">
-$.notify("Hello World");
-</script>
 
-
-  <?php
-
-  //notificacion tipo facebook
-              $ejec = mysqli_query($conn, $avisos);
-            while($fila=mysqli_fetch_array($ejec)){
-                $avi1     = $fila['aviso'];
-                $fech_avi1     = $fila['fecha'];
-
-          ?>
 
 <script>
 /*
