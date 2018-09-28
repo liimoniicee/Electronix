@@ -282,9 +282,11 @@ $resu = $conn->query($cons);
       <th data-field="modelo" data-sortable="true">Modelo</th>
       <th data-field="fecha_ingreso" data-sortable="true">Estado</th>
       <th data-field="fecha_egreso" data-sortable="true">Fecha egreso</th>
-      <th data-field="estado" data-sortable="true">Tipo</th>
-      <th data-field="falla" data-sortable="true">costo</th>
-      <th data-field="ubicacion" data-sortable="true">Abono</th>
+      <th data-field="tipo" data-sortable="true">Tipo</th>
+      <th data-field="estado" data-sortable="true">Estado</th>
+      <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+      <th data-field="costo" data-sortable="true">costo</th>
+      <th data-field="abono" data-sortable="true">Abono</th>
 
 
     </thead>
@@ -298,6 +300,8 @@ $resu = $conn->query($cons);
         $estado           = $fila['estado'];
         $fecha        = $fila['fecha_egreso'];
         $tipo        = $fila['tipo'];
+        $estado        = $fila['estado'];
+        $ubicacion        = $fila['ubicacion'];
         $costo        = $fila['costo'];
         $abono        = $fila['abono'];
 
@@ -310,6 +314,8 @@ $resu = $conn->query($cons);
                         <td><?php echo $estado ?></td>
                         <td><?php echo $fecha ?></td>
                         <td><?php echo $tipo ?></td>
+                        <td><?php echo $estado ?></td>
+                        <td><?php echo $ubicacion ?></td>
                         <td><?php echo $costo ?></td>
                         <td><?php echo $abono ?></td>
                    

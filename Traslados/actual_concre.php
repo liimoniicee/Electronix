@@ -9,6 +9,13 @@ $id = $_POST ['swal-input0'];
 $car = $_POST['swal-input8'];
 $var_clave= $_SESSION['clave'];
 $id_equipo = $_POST['swal-input7'];
+$carro = $_POST['swal-input8'];
+
+$tipo = $_POST['swal-input11'];
+$ubi = $_POST['swal-input4'];
+$des       = $_POST ['swal-input5'];
+
+
 //consulta para obtener el id del becario
 $query = "UPDATE
 traslado
@@ -20,17 +27,21 @@ id_traslado='$id'";
 
 $res = $conn->query($query);
 
-$query2 = "UPDATE
-reparar_tv
-SET
-estado = 'En ruta traslado',
-id_personal = '$var_clave',
-ubicacion = 'Traslados'
-WHERE
-id_equipo='$id_equipo'";
+if($tipo == "Venta"){
 
+$query2 = "UPDATE ventas_tv SET estado = 'En ruta a $des', id_personal = '$var_clave', ubicacion = '$carro'
+WHERE
+idventa_tv='$id_equipo'";
 $res2 = $conn->query($query2);
 
+}else{
+
+$query3 = "UPDATE reparar_tv SET estado = 'En ruta a $des', id_personal = '$var_clave', ubicacion = '$carro'
+WHERE
+id_equipo='$id_equipo'";
+$res3 = $conn->query($query3);
+
+}
 
 
 if (!$res) {

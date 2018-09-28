@@ -164,7 +164,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 <!-- pendientes -->
                   <table id="a-tables" class="table table-dark table-responsive">
     																	<thead>
-                                    <th data-field="id">id</th>
+                                    <th data-field="id">Id traslado</th>
+                                    <th data-field="id">Id equipo</th>
                                     <th data-field="estado" data-sortable="true">Estado</th>
                                     <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
                                     <th data-field="destino" data-sortable="true">Destino</th>
@@ -176,6 +177,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                                         $ejecutar1 = mysqli_query($conn, $pendiente);
                                       while($fila=mysqli_fetch_array($ejecutar1)){
                                           $id     = $fila['id_traslado'];
+                                          $id_e     = $fila['id_equipo'];
                                           $sta     = $fila['estado'];
                                           $ubi      = $fila['ubicacion'];
                                           $dest      = $fila['destino'];
@@ -184,6 +186,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                             <tbody>
                             <tr>
                             <td><?php echo $id ?></td>
+                            <td><?php echo $id_e ?></td>
                             <td><?php echo $sta ?></td>
                             <td><?php echo $ubi ?></td>
                             <td><?php echo $dest ?></td>
@@ -208,33 +211,34 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 
                                               <thead>
-        <th data-field="id">id</th>
-        <th data-field="estado" data-sortable="true">Estado</th>
-       <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-      <th data-field="destino" data-sortable="true">Destino</th>
+                                              <th data-field="id">Id traslado</th>
+                                    <th data-field="id">Id equipo</th>
+                                    <th data-field="estado" data-sortable="true">Estado</th>
+                                    <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                                    <th data-field="destino" data-sortable="true">Destino</th>
+                                    <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
+                                    <th class="disabled-sorting">Acción</th>
 
-                                                <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                                                <th class="disabled-sorting">Acción</th>
-
-                                              </thead>
-                                              <?php
-                                                $ejecutar3 = mysqli_query($conn, $concretar);
-                                              while($fila=mysqli_fetch_array($ejecutar3)){
-                                                  $id     = $fila['id_traslado'];
-                                                  $sta     = $fila['estado'];
-                                                  $ubi      = $fila['ubicacion'];
-                                                  $dest      = $fila['destino'];
-                                                  $fech   = $fila['fecha_solicitud'];
-                                          ?>
-                                                                <tbody>
-                                                              <tr>
-                                                                    <td><?php echo $id ?></td>
-                                                                    <td><?php echo $sta ?></td>
-                                                                    <td><?php echo $ubi ?></td>
-                                                                    <td><?php echo $dest ?></td>
-
-      <td><?php echo $fech ?></td>
-      <td>
+    																	</thead>
+                                      <?php
+                                        $ejecutar3 = mysqli_query($conn, $concretar);
+                                      while($fila=mysqli_fetch_array($ejecutar3)){
+                                          $id     = $fila['id_traslado'];
+                                          $id_e     = $fila['id_equipo'];
+                                          $sta     = $fila['estado'];
+                                          $ubi      = $fila['ubicacion'];
+                                          $dest      = $fila['destino'];
+                                          $fech   = $fila['fecha_solicitud'];
+                                  ?>
+                            <tbody>
+                            <tr>
+                            <td><?php echo $id ?></td>
+                            <td><?php echo $id_e ?></td>
+                            <td><?php echo $sta ?></td>
+                            <td><?php echo $ubi ?></td>
+                            <td><?php echo $dest ?></td>
+                            <td><?php echo $fech ?></td>
+                            <td>
       <button onclick="swal_por_concretar(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
             </td>
         </tr>
@@ -252,30 +256,34 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                     <table id="a-tables" class="table table-dark table-hover table-responsive">
 
                       <thead>
-                    <th data-field="id">id</th>
-                    <th data-field="estado" data-sortable="true">Estado</th>
-                    <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-                    <th data-field="destino" data-sortable="true">Destino</th>
-                    <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                    <th class="disabled-sorting">Acción</th>
-                                                    </thead>
-                                                    <?php
-                                                      $ejecutar4 = mysqli_query($conn, $en_ruta);
-                                                    while($fila=mysqli_fetch_array($ejecutar4)){
-                                                        $id     = $fila['id_traslado'];
-                                                        $sta     = $fila['estado'];
-                                                        $ubi      = $fila['ubicacion'];
-                    $dest      = $fila['destino'];
-                    $fech   = $fila['fecha_solicitud'];
-                    ?>
-                    <tbody>
-                    <tr>
-                    <td><?php echo $id ?></td>
-                    <td><?php echo $sta ?></td>
-                    <td><?php echo $ubi ?></td>
-                    <td><?php echo $dest ?></td>
-                    <td><?php echo $fech ?></td>
-                    <td>
+                      <th data-field="id">Id traslado</th>
+                                    <th data-field="id">Id equipo</th>
+                                    <th data-field="estado" data-sortable="true">Estado</th>
+                                    <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                                    <th data-field="destino" data-sortable="true">Destino</th>
+                                    <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
+                                    <th class="disabled-sorting">Acción</th>
+
+    																	</thead>
+                                      <?php
+                                        $ejecutar4 = mysqli_query($conn, $en_ruta);
+                                      while($fila=mysqli_fetch_array($ejecutar4)){
+                                          $id     = $fila['id_traslado'];
+                                          $id_e     = $fila['id_equipo'];
+                                          $sta     = $fila['estado'];
+                                          $ubi      = $fila['ubicacion'];
+                                          $dest      = $fila['destino'];
+                                          $fech   = $fila['fecha_solicitud'];
+                                  ?>
+                            <tbody>
+                            <tr>
+                            <td><?php echo $id ?></td>
+                            <td><?php echo $id_e ?></td>
+                            <td><?php echo $sta ?></td>
+                            <td><?php echo $ubi ?></td>
+                            <td><?php echo $dest ?></td>
+                            <td><?php echo $fech ?></td>
+                            <td>
                     <button onclick="swal_enruta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
                     <button onclick="borrar_enruta(<?php echo $id ?>)" class="btn btn- btn-danger btn-icon remove"><i class="ti-close"></i></a>
                     </td>
@@ -292,31 +300,34 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <table id="a-tables" class="table table-dark table-hover table-responsive">
                 <thead>
 
-                <th data-field="id">id</th>
-                <th data-field="estado" data-sortable="true">Estado</th>
-                <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-                <th data-field="destino" data-sortable="true">Destino</th>
+               <th data-field="id">Id traslado</th>
+                                    <th data-field="id">Id equipo</th>
+                                    <th data-field="estado" data-sortable="true">Estado</th>
+                                    <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                                    <th data-field="destino" data-sortable="true">Destino</th>
+                                    <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
+                                    <th class="disabled-sorting">Acción</th>
 
-                <th data-field="fecha" data-sortable="true">Fecha finalizado</th>
-
-                </thead>
-                <?php
-                $ejecutar2 = mysqli_query($conn, $entregado);
-                while($fila=mysqli_fetch_array($ejecutar2)){
-                $id     = $fila['id_traslado'];
-                $sta     = $fila['estado'];
-                $ubi      = $fila['ubicacion'];
-                $dest      = $fila['destino'];
-                $fech   = $fila['fecha_finalizado'];
-                ?>
-                  <tbody>
-                    <tr>
-                    <td><?php echo $id ?></td>
-                    <td><?php echo $sta ?></td>
-                    <td><?php echo $ubi ?></td>
-                    <td><?php echo $dest ?></td>
-                    <td><?php echo $fech ?></td>
-                    <td>
+    																	</thead>
+                                      <?php
+                                        $ejecutar5 = mysqli_query($conn, $entregado);
+                                      while($fila=mysqli_fetch_array($ejecutar5)){
+                                          $id     = $fila['id_traslado'];
+                                          $id_e     = $fila['id_equipo'];
+                                          $sta     = $fila['estado'];
+                                          $ubi      = $fila['ubicacion'];
+                                          $dest      = $fila['destino'];
+                                          $fech   = $fila['fecha_solicitud'];
+                                  ?>
+                            <tbody>
+                            <tr>
+                            <td><?php echo $id ?></td>
+                            <td><?php echo $id_e ?></td>
+                            <td><?php echo $sta ?></td>
+                            <td><?php echo $ubi ?></td>
+                            <td><?php echo $dest ?></td>
+                            <td><?php echo $fech ?></td>
+                            <td>
 
                       </td>
       </tr>
@@ -471,6 +482,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           $("#swal-input8").val(data.data.car);
           $("#swal-input9").val(data.data.per);
           $("#swal-input10").val(data.data.fol);
+          $("#swal-input11").val(data.data.tipo);
+
         },
 
         // código a ejecutar si la petición falla;
@@ -501,6 +514,9 @@ html:
 '<form action="actual_concre.php" method="post" name="data">'+
 //'<label for="exampleInputEmail1">id</label>' +
 '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
+'<input name="swal-input11" type="hidden" id="swal-input11" class="form-control border-input" readonly>' +
+
+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -610,6 +626,8 @@ reverseButtons: true
    '<form action="actual_status.php" method="post" name="data">'+
    //'<label for="exampleInputEmail1">id</label>' +
    '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
+   '<input name="swal-input11" type="hidden" id="swal-input11" class="form-control border-input" readonly>' +
+
    '<div class="row">'+
    '<div class="col-md-6">'+
      '<div class="form-group">'+
@@ -714,10 +732,12 @@ reverseButtons: true
 
 
   swal({
- title: 'En ruta',
+ title: 'Confirmar entrega',
  html:
  '<form action="actual_entrega.php" method="post" name="data">'+
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
+ '<input name="swal-input11" type="hidden" id="swal-input11" class="form-control border-input" readonly>' +
+
  '<div class="row">'+
  '<div class="col-md-6">'+
    '<div class="form-group">'+
@@ -863,6 +883,8 @@ reverseButtons: true
  '<form action="actual_status.php" method="post" name="data">'+
  //'<label for="exampleInputEmail1">id</label>' +
  '<input name="swal-input0" type="hidden" id="swal-input0" class="form-control border-input" readonly>' +
+ '<input name="swal-input11" type="hidden" id="swal-input11" class="form-control border-input" readonly>' +
+
  '<div class="row">'+
  '<div class="col-md-6">'+
    '<div class="form-group">'+
