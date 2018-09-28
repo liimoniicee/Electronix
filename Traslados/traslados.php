@@ -286,7 +286,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 
                     </div>
-                    <!-- Termina tabla 4 -->
+                    <!-- Termina tabla 3 -->
 
                 <div id='show-me-three2'style='display:none; border:2px solid #ccc'>
     <table id="a-tables" class="table table-dark table-hover table-responsive">

@@ -15,11 +15,6 @@ $empleados = "SELECT *
 FROM
 personal";
 
-$asistencia = "SELECT p.id_personal, p.nombre, a.fecha, a.hora_entrada, a.hora_salida
-FROM
-personal p, asistencia a
-where p.id_personal = a.personal_id_personal";
-
 
 $avisos = "SELECT
 *
@@ -115,7 +110,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-      <li><a class="app-menu__item active" href="administracion.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+      <li><a class="app-menu__item active" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
 
@@ -228,8 +223,23 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 <!-- Empieza tabla 2-->
 <div id="show-me-two" style='display:none; border:2px solid #ccc'>
   <div class="tile">
+    <div class="col-sm-2">
+    <select class="form-control form-control-sm" textalign="center" required name="tipo" id="fecha_asi">
+    <option value="dia">Día</option>
+    <option value="semana">Semana</option>
+    <option value="mes">Mes</option>
+    <option value="todas">Todas</option>
+    </select>
+  </div>
     <div class="tile-body">
         <table id="tabla2" class="table table-hover table-dark table-responsive">
+<?php
+          $asistencia = "SELECT p.id_personal, p.nombre, a.fecha, a.hora_entrada, a.hora_salida
+          FROM
+          personal p, asistencia a
+          where p.id_personal = a.personal_id_personal";
+          ?>
+
   <thead>
 
       <th>id</th>
