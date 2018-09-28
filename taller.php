@@ -101,7 +101,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
 
       }
       ?>
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i><span class='notificacion'><?php echo $num_avi ?></span> </a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 

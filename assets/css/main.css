@@ -15259,7 +15259,7 @@ be a descendant of the grid when it is being dragged.
 .hidetext { -webkit-text-security: disc; /* Default */ }
 
 .notificacion {
-  color: #29a329;
-  font-size:18px;
+  color: #fff;
+  font-size:23px;
 
 }
