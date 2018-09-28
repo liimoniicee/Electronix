@@ -27,7 +27,7 @@ VALUES ('Pendiente', 'Taller', 'Recepcion', '$id', '$var_clave');";
 $res2 = $conn->query($sql2);
 
 $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id sin solución, en ruta a recepcion', 'Pendiente', 'Recepcion');";
+VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id sin solución, en ruta a recepcion, solicitar cambio a cliente', 'Pendiente', 'Recepcion');";
 $res3 = $conn->query($sql3);
 
 }else{

@@ -53,7 +53,7 @@ FROM reparar_tv
 WHERE estado in('necesita refaccion', 'autorizacion taller');";
 
 $avisos = "SELECT *
-FROM avisos where tipo= 'Taller' and estado='pendiente'";
+FROM avisos where tipo= 'Taller' and estado='pendiente' order by fecha desc;";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
 

@@ -47,7 +47,7 @@ if($des=="Almacen"){
         $res12 = $conn->query($query12);
     }
 //cuando un equipo en reparacion  o una venta va hacia almacen(no encontró destinatario)
-$query10 = "UPDATE reparar_tv SET estado = 'Pendiente ruta almacen',id_personal = '$var_clave',ubicacion= '$ubi'WHERE id_equipo='$id_equipo'";    
+$query10 = "UPDATE reparar_tv SET id_personal = '$var_clave',ubicacion= '$ubi en ruta a almacen' WHERE id_equipo='$id_equipo'";    
 $res10 = $conn->query($query10);
 
 
@@ -94,7 +94,6 @@ id_equipo='$id_equipo'";
     $query6 = "UPDATE
     reparar_tv
     SET
-    estado = 'Reparada',
     id_personal = '$var_clave',
     ubicacion= '$des'
     WHERE

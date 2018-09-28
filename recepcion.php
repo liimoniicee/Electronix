@@ -20,7 +20,7 @@ $avisos = "SELECT
 *
 FROM avisos where tipo= 'Recepcion' and estado='pendiente'";
 
-$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente' order by fecha desc;";
 
 ?>
 <html lang="es">
