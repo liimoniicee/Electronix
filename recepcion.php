@@ -516,15 +516,4 @@ reverseButtons: true
 </html>
 
 
-<script>
-/*
 
-Push.create("<?php echo $fech_avi1; ?>", {
-  body:"<?php echo $avi1; ?>",
-  icon:"assets/img/alert.png",
-  timeout:5000
-
-});
-
-</script>
-<?php } ?>
