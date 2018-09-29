@@ -38,9 +38,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 <link href= "assets/css/themify-icons.css" rel="stylesheet">
 <link rel="shortcut icon" href="assets/img/favicon.ico">
 
-<script type="text/javascript" src="assets/js/Smoothbox/smoothbox.jquery2.min.js"></script>
-<link rel="stylesheet" type="text/css" href="assets/css/smoothbox.css">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+<link rel="stylesheet" href="assets/js/venobox/venobox.css" type="text/css" media="screen" />
+<script type="text/javascript" ssrc="assets/js/venobox/venobox.min.js"></script>
+<script type="text/javascript" src="assets/js/galeria.js"></script>
+
+<script type="text/javascript" src="assets/js/jquery-3.2.1.min"></script>
+
+
 
 
 
@@ -188,9 +192,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $total ?></td>
                         <td><?php echo $ubicacion ?></td>
                         <td>
-                        <a class="sb" href='assets/galeria/1.jpg' title='Hey heres a caption'>Galería reporte</a>
-                        <a class="sb" href="assets/galeria/1.jpg" title="Caption One">Image One</a><br>
-                    <a class="sb" href='assets/galeria/2.jpg' title='Hey heres a caption'>Galería reporte</a>
+                        <a class="hey" data-gall="myGallery" href="assets/galeria/1.jpg" title="Ver galería"><img src="assets/galeria/gallery.png" alt="img-01" ></a>
+                        <a class="hey" data-gall="myGallery" href="assets/galeria/2.jpg"   title="Ver galería"><img src="assets/galeria/gallery.png" alt="img-02" ></a>
+                        <a class="hey" data-gall="myGallery" href="assets/galeria/3.jpg" type="hidden" title="Ver galería"></a>
+
+
                         <?php
                         
                         if($ubicacion == "Recepcion"){
