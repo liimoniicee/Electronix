@@ -63,7 +63,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
 }
       ?>
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i  class="ti-bell"></i><?php echo $num_avi ?></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
@@ -145,6 +145,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
       <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
       <th data-field="costo" data-sortable="true">Restante</th>
+      <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
       <th data-field="garantia" data-sortable="true">Acción</th>
 
 
@@ -162,7 +163,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
         $modelo           = $fila['modelo'];
         $fecha_entregar        = $fila['fecha_entregar'];
         $total        = $fila['restante'];
-
+        $ubicacion        = $fila['ubicacion'];
 
 
 
@@ -178,8 +179,26 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $modelo ?></td>
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $total ?></td>
+                        <td><?php echo $ubicacion ?></td>
                         <td>
-                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
+
+                        <?php
+                        
+                        if($ubicacion == "Recepcion"){
+                          echo "
+                          <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+
+                          <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+
+                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-warning btn-icon edit' title='Generar garantía'><i class='ti-receipt' ></i></button>
+
+
+                          ";
+                      }else{  echo "                        
+                        <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+                                ";
+                    }
+                      ?>
                         </td>
 
           </tr>
@@ -434,3 +453,207 @@ Push.create("<?php echo $fech_avi; ?>", {
 
 </script>
 <?php } ?>
+
+<script>
+//Script para mandar ID para generar la orden
+function enviarreporte(id_equipo){
+ $.ajax({
+     // la URL para la petición
+     url : 'recepcion_fn_reporte.php',
+     // la información a enviar
+     // (también es posible utilizar una cadena de datos)
+     data : {
+      id_equipo : id_equipo
+     },
+     // especifica si será una petición POST o GET
+     type : 'POST',
+     // el tipo de información que se espera de respuesta
+     dataType : 'json',
+     // código a ejecutar si la petición es satisfactoria;
+     // la respuesta es pasada como argumento a la función
+     success : function(data) {
+       //Manda Llamar id,nombre y apellido
+       $("#swal-input0").val(data.data.id_equipo);
+       $("#swal-input1").val(data.data.falla);
+       $("#swal-input2").val(data.data.solu);
+       $("#swal-input3").val(data.data.conc);
+       $("#swal-input4").val(data.data.part);
+       $("#swal-input5").val(data.data.pers);
+     },
+     // código a ejecutar si la petición falla;
+     // son pasados como argumentos a la función
+     // el objeto de la petición en crudo y código de estatus de la petición
+     error : function(xhr, status) {
+
+     },
+     // código a ejecutar sin importar si la petición falló o no
+     complete : function(xhr, status) {
+
+     }
+ });
+}
+
+</script>
+
+<script type="text/javascript">
+//ventana actualizar cliente
+function reporte(id_equipo){
+
+
+swal({
+title: 'Reporte de tecnico',
+html:
+'<div class="card-body"> <form action="#" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Falla revisada</label>'+
+        '<textarea type="text" name="swal-input1" id="swal-input1"  readonly class="form-control border-input"></textarea>'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Procedimiento que se realizó</label>'+
+        '<textarea type="text" readonly name="swal-input2" id="swal-input2"  class="form-control border-input"></textarea>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Estado de reparación</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3"  required readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Parte que necesita</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4"  required readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="col-md-12">'+
+
+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+</script>
+
+
+<script type="text/javascript">
+//ventana orden de servición
+function traslado(id){
+
+
+swal({
+title: 'Nueva solicitud de traslado',
+html:
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<input type="text" name="swal-input0"  id="swal-input0"  class="form-control border-input" >' +
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ubicacion</label>'+
+        '<input type="text" name="ubicacion" id="ubicacion"  pattern="[A-Za-z]+" title="Sólo letras"  value="Recepcion" readonly required class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        
+        '<select class="form-control form-control-sm" textalign="center" required name="equipo" id="equipo"><option value="" ></option><option value="Television" >Televisión</option>'+
+        '<option value="Ventiladores">Ventiladores</option>'+
+        '<option value="Tarjeta madre">Tarjetas madre</option>'+
+        '<option value="Audio">Audio</option>'+
+        '<option value="Fuente de poder">Fuentes de poder</option>'+
+        '</select>' +
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="falla" id="falla" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="serie" id="serie" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Accesorios</label>'+
+        '<input type="text" name="acce" id="acce" maxlength="25" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+'<div class="form-group">'+
+        '<label>Tipo de servicio</label>'+
+        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="" ></option><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
+
+        '<label>Comentarios</label>'+
+        '<textarea type="text" name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+    '</div>'+
+    '</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Registrar y generar reporte</Button>'+
+
+
+'</form></div>',
+
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Registrar y generar reporte',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+
+})
+};
+</script>

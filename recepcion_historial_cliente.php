@@ -78,7 +78,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
   }
         ?>
-          <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
+          <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i  class="ti-bell"></i><?php echo $num_avi ?></a>
             <ul class="app-notification dropdown-menu dropdown-menu-right">
               <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
 
@@ -256,8 +256,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                           echo "
 
                           <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon' title='Ingreso por garantia' ><i class='ti-agenda'></i></button>
-                      ";
-                      }
+                      
+
+                          ";
+                      
+                    }
                       ?>
 </td>
           </tr>
