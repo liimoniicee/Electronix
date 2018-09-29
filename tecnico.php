@@ -12,14 +12,15 @@ verificar_sesion();
  $var_name=$_SESSION['nombre'];
  $var_clave= $_SESSION['clave'];
 
- $consulta = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
+ $pendientes = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
  FROM reparar_tv
  WHERE estado='En reparacion' and id_personal='$var_clave';";
 
-<<<<<<< HEAD
- $consulta1 = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
+ $historial = "SELECT id_equipo,equipo, marca,modelo, falla, estado, comentarios
  FROM reparar_tv
- WHERE estado='En reparacion' ";
+ WHERE estado='Reparada' and id_personal='$var_clave';";
+
+
  $avisos = "SELECT
  *
  FROM avisos where tipo= 'Traslado' and estado='pendiente'";
@@ -30,16 +31,6 @@ verificar_sesion();
  FROM reparar_tv
  WHERE estado in('necesita refaccion', 'autorizacion taller')";
 
-=======
-$consulta1 = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
-FROM reparar_tv
-WHERE estado='En reparacion' ";
-$avisos = "SELECT
-*
-FROM avisos where tipo= 'Tecnico' and estado='pendiente' order by fecha desc;";
-
-$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Tecnico' and estado='pendiente' ";
->>>>>>> 63fb32f486c37f3305c3cee66e9b55e434a6068e
 ?>
 <html lang="es">
 <head>
@@ -71,16 +62,10 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Tecnico' and estado='pen
           $ejec0 = mysqli_query($conn, $num_avisos);
         while($fila=mysqli_fetch_array($ejec0)){
             $num_avi     = $fila['COUNT(*)'];
-
-<<<<<<< HEAD
         }
         ?>
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
-=======
-}
-      ?>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
->>>>>>> 63fb32f486c37f3305c3cee66e9b55e434a6068e
+
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
@@ -147,9 +132,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Tecnico' and estado='pen
                       <input name='test' type='radio' /> Estadisticas
                     </label>
 
-                    <label class="btn btn-success" id='look-me2'>
-                      <input name='test' type='radio' /> n
-                    </label>
 
                   </form>
                 </div>
@@ -171,7 +153,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Tecnico' and estado='pen
 
                       </thead>
                       <?php
-                        $ejecutar2 = mysqli_query($conn, $consulta1);
+                        $ejecutar2 = mysqli_query($conn, $pendientes);
                       while($fila=mysqli_fetch_array($ejecutar2)){
                         $id_equipo          = $fila['id_equipo'];
                         $equipo           = $fila['equipo'];
@@ -266,45 +248,53 @@ Equipos que necesitan refaccion
                     <!--Termina tabla 2-->
 
                     <!--Comienza tabla 3-->
-                  <div id='show-me-three' style='display:none; border:2px solid #ccc'>
+                    <div id="show-me-three" style='display:none; border:2px solid #ccc'>
+                        <div class="tile">
+                          <div class="tile-body">
+                              <table id="tabla3" class="table table-hover table-dark table-responsive">
+                        <thead>
+
+                            <th width="10%" data-field="id">ID Equipo</th>
+                          <th width="10%" data-field="equipo" data-sortable="true">equipo</th>
+                          <th width="14%" data-field="marca" data-sortable="true">marca</th>
+                          <th width="14%" data-field="modelo" data-sortable="true">modelo</th>
+                          <th width="14%" data-field="falla" data-sortable="true">falla</th>
+                          <th width="14%" data-field="falla" data-sortable="true">estado</th>
+                          <th width="18%" class="disabled-sorting">Comentarios extras</th>
 
 
-                    <table id="a-tables" class="table table-dark table-hover table-responsive">
+                        </thead>
+                        <?php
+                          $ejecutar3 = mysqli_query($conn, $historial);
+                        while($fila=mysqli_fetch_array($ejecutar3)){
+                          $id_equipo          = $fila['id_equipo'];
+                          $equipo           = $fila['equipo'];
+                          $marca           = $fila['marca'];
+                          $modelo          = $fila['modelo'];
+                          $falla          = $fila['falla'];
+                          $estado          = $fila['estado'];
+                          $comentarios          = $fila['comentarios'];
 
-                      <thead>
-                    <th data-field="id">id</th>
-                    <th data-field="estado" data-sortable="true">Estado</th>
-                    <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-                    <th data-field="destino" data-sortable="true">Destino</th>
-                    <th data-field="fecha" data-sortable="true">Fecha solicitud</th>
-                    <th class="disabled-sorting">Acción</th>
-                                                    </thead>
-                                                    <?php
-                                                      $ejecutar4 = mysqli_query($conn, $en_ruta);
-                                                    while($fila=mysqli_fetch_array($ejecutar4)){
-                                                        $id     = $fila['id_traslado'];
-                                                        $sta     = $fila['estado'];
-                                                        $ubi      = $fila['ubicacion'];
-                    $dest      = $fila['destino'];
-                    $fech   = $fila['fecha_solicitud'];
+
                     ?>
-                    <tbody>
-                    <tr>
-                    <td><?php echo $id ?></td>
-                    <td><?php echo $sta ?></td>
-                    <td><?php echo $ubi ?></td>
-                    <td><?php echo $dest ?></td>
-                    <td><?php echo $fech ?></td>
-                    <td>
-                    <button onclick="swal_enruta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
-                    <button onclick="borrar_enruta(<?php echo $id ?>)" class="btn btn- btn-danger btn-icon remove"><i class="ti-close"></i></a>
-                    </td>
-                    </tr>
-                    <?php } ?>
-                    </tbody>
-                    </table>
+                                        <tr>
+                                            <td ><?php echo $id_equipo ?></td>
+                                            <td ><?php echo $equipo ?></td>
+                                            <td ><?php echo $marca ?></td>
+                                            <td ><?php echo $modelo ?></td>
+                                            <td ><?php echo $falla ?></td>
+                                            <td ><?php echo $estado ?></td>
+                                            <td ><?php echo $comentarios ?></td>
 
 
+                              </tr>
+                            <?php } ?>
+                            <tbody></br>
+                                Resultado de clientes
+                          </tbody>
+                      </table>
+                    </div>
+                    </div>
                     </div>
                     <!-- Termina tabla 3 -->
 
@@ -380,6 +370,19 @@ Equipos que necesitan refaccion
   <!--common script for all pages-->
   <script src="assets/js/common-scripts.js"></script>
 
+<!-- script tabla con buscador -->
+  <script>
+  $(document).ready(function() {
+      $('#tabla2').DataTable();
+      $('#tabla3').DataTable();
+      $('#tabla4').DataTable();
+      $('#tabla5').DataTable();
+      $('#tabla6').DataTable();
+      $('#tabla7').DataTable();
+  } );
+  </script>
+
+<!--script paneles ocultos -->
   <script type="text/javascript">
   $(document).ready(function ()
    {

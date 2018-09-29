@@ -187,27 +187,36 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
+<?php
+$graficames = "SELECT costo_total, fecha_egreso
+              FROM reparar_tv
+              WHERE estado = 'Entregado'
+              and month(fecha_egreso) = 7
+              ORDER BY costo_total ASC";
+
+
+ ?>
+
+
 <script>
 
-new Chartist.Line('.ct-chart', {
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-  series: [
-    [12, 9, 7, 8, 5],
-    [2, 1, 3.5, 7, 3],
-    [1, 3, 4, 5, 6]
-  ]
-}, {
-  fullWidth: true,
-  chartPadding: {
-    right: 40
-  }
+new Chartist.Bar('.ct-chart', {
 });
+</script>
+<script>
+new Chartist.Line('.chart2', {
+  <?php
+    $ejec1 = mysqli_query($conn, $graficames);
+  while($row=mysqli_fetch_array($ejec1)){
 
-new Chartist.Bar('#chart2', {
-   labels: [1, 2, 3, 4],
-   series: [[5, 2, 8, 3]]
- });
-
+    echo "
+    labels:['".$row["fecha_egreso"]."',],
+    series:[['".$row["costo_total"]."'],],
+    ";}?>
+}, {
+  low: 0,
+  showArea: true
+});
 </script>
 
   </body>
@@ -215,7 +224,6 @@ new Chartist.Bar('#chart2', {
 
 </html>
   <?php
-
   //notificacion tipo facebook
               $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){

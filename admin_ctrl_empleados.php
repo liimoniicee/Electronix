@@ -160,7 +160,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
          </form>
        </div><br></br>
 
-<div class="row">
+
   <div id="show-me">
     <div class="tile">
       <div class="tile-body">
@@ -223,14 +223,33 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 <!-- Empieza tabla 2-->
 <div id="show-me-two" style='display:none; border:2px solid #ccc'>
   <div class="tile">
+    <div class="row">
     <div class="col-sm-2">
-    <select class="form-control form-control-sm" textalign="center" required name="tipo" id="fecha_asi">
-    <option value="dia">Día</option>
-    <option value="semana">Semana</option>
+    <select class="form-control form-control-sm" name="fecha_asi" id="fecha_asi">
+    <option value="hoy">Hoy</option>
     <option value="mes">Mes</option>
     <option value="todas">Todas</option>
     </select>
   </div>
+  <div class="col-sm-2 sel_mes" style="display:none;">
+  <select class="form-control form-control-sm" name="tipo" id="selec_mes">
+  <option value="1">Enero</option>
+  <option value="2">Febrero</option>
+  <option value="3">Marzo</option>
+  <option value="4">Abril</option>
+  <option value="5">Mayo</option>
+  <option value="6">Junio</option>
+  <option value="7">Julio</option>
+  <option value="8">Agosto</option>
+  <option value="9">Semptiembre</option>
+  <option value="10">Octubre</option>
+  <option value="11">Noviembre</option>
+  <option value="12">Diciembre</option>
+  </select>
+</div>
+</div>
+
+
     <div class="tile-body">
         <table id="tabla2" class="table table-hover table-dark table-responsive">
 <?php
@@ -277,10 +296,64 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 </div>
 <!-- termina tabla 2-->
 
+<!-- empieza tabla 3-->
+<div id="show-me-three" style='display:none; border:2px solid #ccc'>
+  <div class="tile">
+    <div class="tile-body">
+        <table id="a-tables" class="table table-hover table-dark table-responsive">
+  <thead>
+
+      <th>id</th>
+    <th>tipo</th>
+    <th>usuario</th>
+    <th>nombre</th>
+    <th>apellidos</th>
+    <th class="disabled-sorting">Acción</th>
+
+  </thead>
+  <?php
+    $ejec1 = mysqli_query($conn, $empleados);
+  while($fila=mysqli_fetch_array($ejec1)){
+      $id          = $fila['id_personal'];
+      $tip           = $fila['tipo'];
+      $usu          = $fila['usuario'];
+      $nom        = $fila['nombre'];
+      $ape        = $fila['apellidos'];
+
+?>
+                  <tr>
+                      <td width="8%"><?php echo $id ?></td>
+                      <td width="14%"><?php echo $tip ?></td>
+                      <td width="14%"><?php echo $usu ?></td>
+                      <td width="14%"><?php echo $nom ?></td>
+                      <td width="14%"><?php echo $ape ?></td>
+                      <td width="14%">
+                      <a href="#" onclick="actual_emp(<?php echo $id ?>), actual_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                      <a href="#" onclick="borrar_emp(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
+                      </td>
+
+
+
+
+
+        </tr>
+      <?php } ?>
+      <tbody></br>
+          Resultado de clientes
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- termina tabla 3-->
+
+
+
+
 
 </div>
 </div>
-</div>
+
     </main>
     <!-- Essential javascripts for application to work-->
 
@@ -309,6 +382,24 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
+
+    <!-- script para mostrar select despues de seleccionar un valor -->
+    <script>
+    $(document).ready(function ()
+     {
+    $("#fecha_asi").change(function(){
+      if(this.value == 'mes'){
+        $(".sel_mes").show();
+      }else(this.value == 'dia'){
+        $(".sel_mes").hide();
+
+      }else(this.value == 'todas'){
+        $(".sel_mes").hide();
+
+      }
+    })
+    });
+    </script>
 
 
       <script type="text/javascript">
