@@ -62,7 +62,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
 }
       ?>
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i> <?php echo $num_avi ?></a>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i  class="ti-bell"></i><?php echo $num_avi ?></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
@@ -124,39 +124,64 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
-        <th data-field="folio" data-sortable="true">Folio</th>
+      <th data-field="folio" data-sortable="true">Folio</th>
+      <th data-field="nombre" data-sortable="true">Nombre</th>
+      <th data-field="apellido" data-sortable="true">Apellidos</th>
 
-      <th data-field="equipo" data-sortable="true">equipo</th>
-      <th data-field="falla" data-sortable="true">falla</th>
-      <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-      <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-      <th data-field="accion" data-sortable="true">Acción</th>
+      <th data-field="marca" data-sortable="true">Marca</th>
+      <th data-field="modelo" data-sortable="true">Modelo</th>
+
+      <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
+      <th data-field="costo" data-sortable="true">Restante</th>
+      <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+      <th data-field="garantia" data-sortable="true">Acción</th>
 
     </thead>
     <?php
       $ejecutar = mysqli_query($conn, $consulta);
     while($fila=mysqli_fetch_array($ejecutar)){
-        $id_equipo          = $fila['id_equipo'];
+      $id_equipo          = $fila['id_equipo'];
         $id           = $fila['id_folio'];
-        $equipo           = $fila['equipo'];
-        $falla          = $fila['falla'];
-        $fecha_ingreso        = $fila['fecha_ingreso'];
+        $nombre          = $fila['nombre'];
+        $apellidos        = $fila['apellidos'];
+
+        $marca           = $fila['marca'];
+        $modelo           = $fila['modelo'];
         $fecha_entregar        = $fila['fecha_entregar'];
+        $total        = $fila['restante'];
         $ubicacion        = $fila['ubicacion'];
 ?>
                     <tr>
-                        <td><?php echo $id_equipo ?></td>
+                    <td><?php echo $id_equipo ?></td>
                         <td><?php echo $id ?></td>
-                        <td><?php echo $equipo ?></td>
-                        <td><?php echo $falla ?></td>
-                        <td><?php echo $fecha_ingreso ?></td>
+                        <td><?php echo $nombre ?></td>
+                        <td><?php echo $apellidos ?></td>
+
+
+                        <td><?php echo $marca ?></td>
+                        <td><?php echo $modelo ?></td>
                         <td><?php echo $fecha_entregar ?></td>
-                        <td><?php echo $ubicacion ?></a></td>
+                        <td><?php echo $total ?></td>
+                        <td><?php echo $ubicacion ?></td>
                         <td>
-                        <button onclick="devolucion(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" title="Devolucion de equipo" class="btn btn-simple btn-warning btn-icon edit"><i ></i></button>
-                        <button onclick="cambio(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" title="Cambiar equipo" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
-                        </td>
+
+<?php
+
+if($ubicacion == "Recepcion"){
+  echo "
+  <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+
+  <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+
+
+
+  ";
+}else{  echo "                        
+<button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+        ";
+}
+?>
+</td>
           </tr>
         <?php } ?>
         <tbody></br>
@@ -647,3 +672,179 @@ Push.create("<?php echo $fech_avi; ?>", {
 
 </script>
 <?php } ?>
+
+
+<script>
+//Script para mandar ID para generar la orden
+function enviarreporte(id_equipo){
+ $.ajax({
+     // la URL para la petición
+     url : 'recepcion_fn_reporte.php',
+     // la información a enviar
+     // (también es posible utilizar una cadena de datos)
+     data : {
+      id_equipo : id_equipo
+     },
+     // especifica si será una petición POST o GET
+     type : 'POST',
+     // el tipo de información que se espera de respuesta
+     dataType : 'json',
+     // código a ejecutar si la petición es satisfactoria;
+     // la respuesta es pasada como argumento a la función
+     success : function(data) {
+       //Manda Llamar id,nombre y apellido
+       $("#swal-input0").val(data.data.id_equipo);
+       $("#swal-input1").val(data.data.falla);
+       $("#swal-input2").val(data.data.solu);
+       $("#swal-input3").val(data.data.conc);
+       $("#swal-input4").val(data.data.part);
+       $("#swal-input5").val(data.data.pers);
+     },
+     // código a ejecutar si la petición falla;
+     // son pasados como argumentos a la función
+     // el objeto de la petición en crudo y código de estatus de la petición
+     error : function(xhr, status) {
+
+     },
+     // código a ejecutar sin importar si la petición falló o no
+     complete : function(xhr, status) {
+
+     }
+ });
+}
+
+</script>
+
+<script type="text/javascript">
+//ventana actualizar cliente
+function reporte(id_equipo){
+
+
+swal({
+title: 'Reporte de tecnico',
+html:
+'<div class="card-body"> <form action="#" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Falla revisada</label>'+
+        '<textarea type="text" name="swal-input1" id="swal-input1"  readonly class="form-control border-input"></textarea>'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Procedimiento que se realizó</label>'+
+        '<textarea type="text" readonly name="swal-input2" id="swal-input2"  class="form-control border-input"></textarea>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Estado de reparación</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3"  required readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Parte que necesita</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4"  required readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="col-md-12">'+
+
+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+</script>
+
+
+<script type="text/javascript">
+//ventana orden de servición
+function traslado(id){
+
+
+swal({
+title: 'Nueva solicitud de traslado',
+html:
+'<div class="card-body"> <form action="recepcion_fn_traslado.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
+'<label>Id equipo</label>'+
+
+'<input type="text" name="swal-input0"  id="swal-input0" readonly class="form-control border-input" >' +
+'<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ubicacion</label>'+
+        '<input type="text" name="ubicacion" id="ubicacion"  pattern="[A-Za-z]+" title="Sólo letras"  value="Recepcion" readonly required class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Destino</label>'+
+        
+        '<select class="form-control form-control-sm" textalign="center" required name="destino" id="destino"><option value="" >'+
+        '</option><option value="Almacen" >Almacen</option>'+
+        '<option value="Cliente">Cliente</option>'+ 
+        '</select>' +
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+  
+  '<label>Direccion</label>'+
+        '<textarea type="text" required name="dire" dire="dire" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+
+        '<label>Comentarios</label>'+
+        '<textarea type="text" required name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+    '</div>'+
+    '</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Solicitar traslado</Button>'+
+
+
+'</form></div>',
+
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Registrar y generar reporte',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+
+})
+};
+</script>
