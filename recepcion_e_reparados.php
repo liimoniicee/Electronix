@@ -37,6 +37,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     <!-- Font-icon css-->
 <link href= "assets/css/themify-icons.css" rel="stylesheet">
 <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+<script type="text/javascript" src="assets/js/Smoothbox/smoothbox.jquery2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="assets/css/smoothbox.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+
+
+
   </head>
 
 
@@ -181,7 +188,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $total ?></td>
                         <td><?php echo $ubicacion ?></td>
                         <td>
-
+                        <a class="sb" href='assets/galeria/1.jpg' title='Hey heres a caption'>Galería reporte</a>
+                        <a class="sb" href="assets/galeria/1.jpg" title="Caption One">Image One</a><br>
+                    <a class="sb" href='assets/galeria/2.jpg' title='Hey heres a caption'>Galería reporte</a>
                         <?php
                         
                         if($ubicacion == "Recepcion"){
@@ -195,8 +204,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
                           ";
                       }else{  echo "                        
-                        <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
-                                ";
+                        
+                        
+                    <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+                    
+                 
+
+                    ";
                     }
                       ?>
                         </td>
@@ -539,7 +553,7 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-
+//
 
 '<div class="col-md-12">'+
 

@@ -304,7 +304,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="asignar_tec(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="asignar_tec(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i class="ti-user"></i></button>
                         </td>
 
 
@@ -417,9 +417,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                           <td><?php echo $ubicacion ?></a></td>
                                           <td><?php echo $servi ?></a></td>
                                           <td>
-                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
+                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i class="ti-agenda"></i></button>
 
-                                          <button onclick="costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                                          <button onclick="costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i class="ti-money"></i></button>
                                           </td>
 
                                     </tr>
@@ -477,7 +477,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                           <?php
                           if($estado == "Autorizacion taller"){
                             echo "
-                            <button onclick='autorizacion_pieza(<?php echo $id_equipo?>);' title='Autorizacion de pieza' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+                            <button onclick='autorizacion_pieza(<?php echo $id_equipo?>);' title='Autorizacion de pieza' class='btn btn-simple btn-success btn-icon edit'><i class='ti-check-box' ></i></button>
                             ";
                           } ?>
                         </td>
@@ -1042,7 +1042,7 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-
+'</div><img style="height: 350px; width: 100%; display: block;" src="<?php echo $fila['imagen1']; ?>" alt="Card image">'+
 
 '<div class="col-md-12">'+
 
