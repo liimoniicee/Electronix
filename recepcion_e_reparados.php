@@ -507,6 +507,7 @@ html:
 
 '<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
 
+
 '<div class="row">'+
 '<div class="col-md-12">'+
   '<div class="form-group">'+
@@ -569,8 +570,10 @@ swal({
 title: 'Nueva solicitud de traslado',
 html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
+'<label>Id equipo</label>'+
 
-'<input type="text" name="swal-input0"  id="swal-input0"  class="form-control border-input" >' +
+'<input type="text" name="swal-input0"  id="swal-input0" readonly class="form-control border-input" >' +
+'<input type="hidden" value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
 
 
 '<div class="row">'+
@@ -583,63 +586,31 @@ html:
 '</div>'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label>Marca</label>'+
+        '<label>Destino</label>'+
         
-        '<select class="form-control form-control-sm" textalign="center" required name="equipo" id="equipo"><option value="" ></option><option value="Television" >Televisión</option>'+
-        '<option value="Ventiladores">Ventiladores</option>'+
-        '<option value="Tarjeta madre">Tarjetas madre</option>'+
-        '<option value="Audio">Audio</option>'+
-        '<option value="Fuente de poder">Fuentes de poder</option>'+
+        '<select class="form-control form-control-sm" textalign="center" required name="destino" id="destino"><option value="" >'+
+        '</option><option value="Almacen" >Almacen</option>'+
+        '<option value="Cliente">Cliente</option>'+ 
         '</select>' +
     '</div>'+
 '</div>'+
 '</div>'+
 
 '<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="serie" id="serie" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Accesorios</label>'+
-        '<input type="text" name="acce" id="acce" maxlength="25" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
 '<div class="col-md-12">'+
-'<div class="form-group">'+
-        '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="" ></option><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
+  '<div class="form-group">'+
+  
+  '<label>Direccion</label>'+
+        '<textarea type="text" required name="dire" dire="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
 
         '<label>Comentarios</label>'+
-        '<textarea type="text" name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+        '<textarea type="text" required name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
     '</div>'+
     '</div>'+
 
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Registrar y generar reporte</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Solicitar traslado</Button>'+
 
 
 '</form></div>',
