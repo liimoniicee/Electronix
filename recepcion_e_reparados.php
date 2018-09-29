@@ -569,11 +569,11 @@ function traslado(id){
 swal({
 title: 'Nueva solicitud de traslado',
 html:
-'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="card-body"> <form action="recepcion_fn_traslado.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 '<label>Id equipo</label>'+
 
 '<input type="text" name="swal-input0"  id="swal-input0" readonly class="form-control border-input" >' +
-'<input type="hidden" value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
+'<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
 
 
 '<div class="row">'+
@@ -601,7 +601,7 @@ html:
   '<div class="form-group">'+
   
   '<label>Direccion</label>'+
-        '<textarea type="text" required name="dire" dire="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+        '<textarea type="text" required name="dire" dire="dire" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
 
         '<label>Comentarios</label>'+
         '<textarea type="text" required name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
