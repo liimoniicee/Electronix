@@ -34,10 +34,11 @@ $en_ruta = "SELECT
  traslado where id_personal='$var_clave' and estado='En ruta';";
 
 $avisos = "SELECT
-*
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+ *
+ FROM avisos where tipo= 'Traslados' and estado='pendiente' order by fecha desc;";
 
-$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslados' and estado='pendiente' ";
+
 ?>
 
 

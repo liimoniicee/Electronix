@@ -23,9 +23,9 @@ verificar_sesion();
 
  $avisos = "SELECT
  *
- FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+ FROM avisos where tipo= 'Tecnico' and estado='pendiente' and id_personal='$var_clave'";
 
- $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Tecnico' and estado='pendiente'";
 
  $refaccion = "SELECT *
  FROM reparar_tv

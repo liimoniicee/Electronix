@@ -211,6 +211,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="ubicacion" data-sortable="true">Ubicación</th>
       <th data-field="abono" data-sortable="true">Abonado</th>
       <th data-field="restante" data-sortable="true">Restante</th>
+      <th data-field="servicio" data-sortable="true">Servicio</th>
       <th data-field="actions" class="td-actions text-right">Acción</th>
 
     </thead>
@@ -230,6 +231,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
         $ubicacion        = $fila['ubicacion'];
         $abono        = $fila['abono'];
         $restante        = $fila['restante'];
+        $servicio        = $fila['servicio'];
 
 ?>
                     <tr>
@@ -245,6 +247,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $ubicacion ?></td>
                         <td><?php echo $abono?></td>
                         <td><?php echo $restante ?></td>
+                        <td><?php echo $servicio ?></td>
                           <td>
                         <?php
                         if($estado == "En reparacion"){
@@ -288,7 +291,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="tipo" data-sortable="true">Tipo</th>
       <th data-field="estado" data-sortable="true">Estado</th>
       <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-      <th data-field="costo" data-sortable="true">costo</th>
+      <th data-field="costo" data-sortable="true">Costo</th>
       <th data-field="abono" data-sortable="true">Abono</th>
 
 
@@ -446,9 +449,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     swal({
     title: 'Reingreso por garantía',
     html:
-    '<div class="card-body"> <form target="_blank" action="recepcion_pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    '<div class="card-body"> <form action="recepcion_fn_reingreso.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
-    //'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
 
     '<div class="row">'+
     '<div class="col-md-6">'+
@@ -462,7 +464,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     '<div class="col-md-6">'+
       '<div class="form-group">'+
             '<label>Folio cliente</label>'+
-            '<input type="number" value="'+id+'" readonly class="form-control border-input">'+
+            '<input type="number" value="'+id+'" name="swal-input00" id="swal-input00" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
     '</div>'+

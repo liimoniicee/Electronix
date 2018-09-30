@@ -78,7 +78,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <    <div class="app-notification__content">
+               <div class="app-notification__content">
             <?php
             $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){
@@ -157,6 +157,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
       <th data-field="costo" data-sortable="true">Restante</th>
       <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+
       <th data-field="garantia" data-sortable="true">Acción</th>
 
 
@@ -175,6 +176,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
         $fecha_entregar        = $fila['fecha_entregar'];
         $total        = $fila['restante'];
         $ubicacion        = $fila['ubicacion'];
+        $servicio        = $fila['servicio'];
+
 
 
 
@@ -191,24 +194,37 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $total ?></td>
                         <td><?php echo $ubicacion ?></td>
+
                         <td>
                         <a class="hey" data-gall="myGallery" href="assets/galeria/1.jpg" title="Ver galería"><img src="assets/galeria/gallery.png" alt="img-01" ></a>
-                        <a class="hey" data-gall="myGallery" href="assets/galeria/2.jpg"   title="Ver galería"><img src="assets/galeria/gallery.png" alt="img-02" ></a>
+                        <a class="hey" data-gall="myGallery" href="assets/galeria/2.jpg"   title="Ver galería"></a>
                         <a class="hey" data-gall="myGallery" href="assets/galeria/3.jpg" type="hidden" title="Ver galería"></a>
 
 
                         <?php
                         
                         if($ubicacion == "Recepcion"){
-                          echo "
-                          <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+                          
+                          if($servicio =="Garantia"){
+                            echo "
+                            <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
 
-                          <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+                            <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+  
+                            <button onclick='entregar($id), enviarorden($id_equipo);' class='btn btn-simple btn-danger btn-icon edit' title='Entregar equipo'><i class='ti-agenda' ></i></button>
 
-                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-warning btn-icon edit' title='Generar garantía'><i class='ti-receipt' ></i></button>
+                            ";
+                          }
+                          if($servicio =="Reparacion"){
+                            echo "
+                            <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
 
+                            <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+                            <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-warning btn-icon edit' title='Generar garantía'><i class='ti-receipt' ></i></button>
 
-                          ";
+                            ";
+                          }
+
                       }else{  echo "                        
                         
                         
@@ -449,7 +465,123 @@ reverseButtons: true
 
 </script>
 
+<script type="text/javascript">
+//ventana orden de servición
+function entregar(id){
 
+swal({
+title: 'Entregar equipo',
+html:
+'<div class="card-body"> <form  action="recepcion_fn_entregar.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+//'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Id equipo</label>'+
+        '<input type="number" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio cliente</label>'+
+        '<input type="number" value="'+id+'" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Apellidos</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo total</label>'+
+        '<input type="text" name="swal-input23" id="swal-input23" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Entregar equipo</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
   </body>
 </html>
 

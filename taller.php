@@ -275,13 +275,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                       <div class="tile-body">
           <table id="tabla2" class="table table-dark table-hover table-responsive">
     <thead>
-        <th data-field="id">id_equipo</th>
-      <th data-field="equipo" data-sortable="true">equipo</th>
-      <th data-field="falla" data-sortable="true">falla</th>
-      <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-      <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-      <th data-field="accion" data-sortable="true">Acción</th>
+    <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
     </thead>
     <?php
       $ejec2 = mysqli_query($conn, $pendientes);
@@ -329,14 +329,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                   <table id="tabla3" class="table table-dark table-hover table-responsive">
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
-                  <th data-field="id">id_equipo</th>
-
-                  <th data-field="equipo" data-sortable="true">equipo</th>
-                  <th data-field="falla" data-sortable="true">falla</th>
-                  <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                  <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-                  <th data-field="accion" data-sortable="true">Acción</th>
+                  <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
                   </thead>
                   <?php
@@ -384,15 +383,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                     <table id="tabla4" class="table table-dark table-hover table-responsive">
                                     <thead>
                                     <!--<th data-field="state" data-checkbox="true"></th>-->
-                                    <th data-field="id">id_equipo</th>
-
-                                    <th data-field="equipo" data-sortable="true">equipo</th>
-                                    <th data-field="falla" data-sortable="true">falla</th>
-                                    <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                                    <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                                    <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-                                    <th data-field="servicio" data-sortable="true">servicio</th>
-                                    <th data-field="accion" data-sortable="true">Acción</th>
+                                    <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
                                     </thead>
                                     <?php
@@ -440,15 +437,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                   <table id="tabla5" class="table table-dark table-hover table-responsive">
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
-                  <th data-field="id">id_equipo</th>
-
-                  <th data-field="equipo" data-sortable="true">equipo</th>
-                  <th data-field="falla" data-sortable="true">falla</th>
-                  <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                  <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                  <th data-field="Estado" data-sortable="true">Estado</th>
-                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-                  <th data-field="accion" data-sortable="true">Acción</th>
+                  <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
                   </thead>
                   <?php
@@ -503,14 +498,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
               <table id="tabla6" class="table table-dark table-hover table-responsive">
               <thead>
               <!--<th data-field="state" data-checkbox="true"></th>-->
-              <th data-field="id">id_equipo</th>
-
-              <th data-field="equipo" data-sortable="true">equipo</th>
-              <th data-field="falla" data-sortable="true">falla</th>
-              <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-              <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-              <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-              <th data-field="accion" data-sortable="true">Acción</th>
+              <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
               </thead>
               <?php
@@ -555,13 +549,12 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                               <table id="tabla7" class="table table-dark table-hover table-responsive">
                               <thead>
                               <!--<th data-field="state" data-checkbox="true"></th>-->
-                              <th data-field="id">id_equipo</th>
-
-                              <th data-field="equipo" data-sortable="true">equipo</th>
-                              <th data-field="falla" data-sortable="true">falla</th>
-                              <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                              <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                              <th data-field="ubicacion" data-sortable="true">ubicacion</th>
+                              <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
                               <th data-field="accion" data-sortable="true">Acción</th>
 
                               </thead>
