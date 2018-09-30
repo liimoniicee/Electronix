@@ -105,7 +105,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <div class="app-notification__content">
+      <div class="app-notification__content">
             <?php
             $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){
@@ -943,7 +943,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo mano de obra</label>'+
-        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25" onkeypress="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25"  onkeypress="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -982,7 +982,7 @@ html:
 '<div class="col-md-12">'+
 
 
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar costos y estado</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar costos, estado y solicitud de traslado</Button>'+
 
 '</form></div>',
 showCancelButton: true,
@@ -1042,7 +1042,6 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-'</div><img style="height: 350px; width: 100%; display: block;" src="<?php echo $fila['imagen1']; ?>" alt="Card image">'+
 
 '<div class="col-md-12">'+
 

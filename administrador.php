@@ -61,7 +61,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <div class="app-notification__content">
+           <div class="app-notification__content">
             <?php
             $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){

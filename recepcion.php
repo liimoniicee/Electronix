@@ -16,8 +16,7 @@ id_folio, nombre, apellidos,direccion, celular, correo, puntos
 FROM
 clientes ORDER BY fecha desc";
 
-$avisos = "SELECT
-FROM avisos where tipo= 'Recepcion' and estado='pendiente'  order by fecha desc;";
+$avisos = "SELECT * FROM avisos where tipo= 'Recepcion' and estado='pendiente'  order by fecha desc;";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='pendiente'";
 ?>

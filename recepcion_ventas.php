@@ -60,15 +60,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
 
+           <div class="app-notification__content">
             <?php
-              $ejec = mysqli_query($conn, $avisos);
+            $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){
-                $avi     = $fila['aviso'];
-                $fech_avi     = $fila['fecha'];
+            $avi     = $fila['aviso'];
+            $fech_avi     = $fila['fecha'];
+            ?>
 
-          ?>
-            <div class="app-notification__content">
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+              <li><a class="app-notification__item" href="javascript:;">
+
                   <div>
                     <p class="app-notification__message"><?php echo $avi; ?></p>
                     <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
