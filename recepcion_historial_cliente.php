@@ -249,12 +249,19 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $restante ?></td>
                         <td><?php echo $servicio ?></td>
                           <td>
+
                         <?php
                         if($estado == "En reparacion"){
                           echo "
 
                           <button onclick='abono($id), enviarorden($id_equipo);'class='btn btn-simple btn-success btn-icon' title='Ingresa abono' ><i class='ti-money'></i></button>
                         ";
+                        }if($ubicacion == "Almacen"){
+                          echo "
+
+                          <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-primary btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+                        ";
+                      
                       }elseif($estado == "Entregado"){
                           echo "
 
@@ -645,4 +652,72 @@ function operaciones()
 }
 
 
+</script>
+
+<script type="text/javascript">
+//ventana orden de servición
+function traslado(id){
+
+
+swal({
+title: 'Nueva solicitud de traslado',
+html:
+'<div class="card-body"> <form action="recepcion_fn_traslado.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
+'<label>Id equipo</label>'+
+
+'<input type="text" name="swal-input0"  id="swal-input0" readonly class="form-control border-input" >' +
+'<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ubicacion</label>'+
+        '<input type="text" name="ubicacion" id="ubicacion"  pattern="[A-Za-z]+" title="Sólo letras"  value="Almacen" readonly required class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Destino</label>'+
+        
+        '<select class="form-control form-control-sm" textalign="center" required name="destino" id="destino"><option value="" >'+
+        '</option><option value="Recepcion" >Recepcion</option>'+
+        '<option value="Cliente">Cliente</option>'+ 
+        '</select>' +
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+  
+  '<label>Direccion</label>'+
+        '<textarea type="text" required name="dire" dire="dire" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+
+        '<label>Comentarios</label>'+
+        '<textarea type="text" required name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+    '</div>'+
+    '</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Solicitar traslado</Button>'+
+
+
+'</form></div>',
+
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Registrar y generar reporte',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+
+})
+};
 </script>

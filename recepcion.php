@@ -350,7 +350,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+        '<input type="text" name="falla" id="falla" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -384,6 +384,7 @@ html:
 
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Registrar y generar reporte</Button>'+
+
 
 
 '</form></div>',

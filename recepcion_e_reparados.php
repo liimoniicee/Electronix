@@ -306,7 +306,7 @@ function enviarorden(id){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id);
+       $("#swal-input00").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);

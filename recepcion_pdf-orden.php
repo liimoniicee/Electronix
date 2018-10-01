@@ -25,7 +25,7 @@ $ape= $_POST ['swal-input2'];
 if($servicio=="Compra"){
 
   $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
-  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente traslado','Recepcion', '$id');";
+  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
   $res = $conn->query($sql);
  
  
@@ -37,7 +37,7 @@ if($servicio=="Compra"){
     $idequipo   =  $row["id_equipo"];
    }
    $sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, id_folio, personal_id_personal)
-   VALUES ('Pendiente', '$comentario', 'recepcion', 'almacen', '$idequipo', '$id', '$var_clave');";
+   VALUES ('Pendiente', '$comentario', 'Recepcion', 'Almacen', '$idequipo', '$id', '$var_clave');";
    $res2 = $conn->query($sql2);
  
    $sql3 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)

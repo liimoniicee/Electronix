@@ -19,11 +19,8 @@ $sql = "UPDATE reparar_tv set estado='En reparacion', id_personal='$id_pe', fech
  VALUES ('$id_pe', 'Felicidades, te han asignado una tarea nueva', 'Pendiente', 'Tecnico');";
  $res3 = $conn->query($sql3);
 
- if (!$res) {
-    printf("Errormessage: %s\n", $conn->error);
- }
- else{
+
  echo "<script>window.open('taller.php','_self')</script>";
- }
+ 
 
  ?>

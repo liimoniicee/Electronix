@@ -21,11 +21,9 @@ verificar_sesion();
  WHERE estado='Reparada' and id_personal='$var_clave';";
 
 
- $avisos = "SELECT
- *
- FROM avisos where tipo= 'Tecnico' and estado='pendiente' and id_personal='$var_clave'";
+ $avisos = "SELECT *  FROM avisos where tipo='Tecnico' and estado='Pendiente' and id_personal='$var_clave'";
 
- $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Tecnico' and estado='pendiente'";
+ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo='Tecnico' AND estado='Pendiente' AND id_personal='$var_clave'";
 
  $refaccion = "SELECT *
  FROM reparar_tv

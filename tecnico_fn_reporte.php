@@ -53,19 +53,8 @@ if($estado == 'Necesita refaccion'){
 
   $res1 = $conn->query($sql1);
 
-  if (!$res) {
-    printf("Errormessage: %s\n", $conn->error);
-  }
-
-  if (!$res1) {
-    printf("Errormessage: %s\n", $conn->error);
-  }
-  if (!$res3) {
-    printf("Errormessage: %s\n", $conn->error);
-  }
-  else{
-   //echo "<script>alert('Usuario agregado exitosamente con el folio=$')</script>";
-   echo "<script>window.open('tecnico.php','_self')</script>";}
+ 
+   echo "<script>window.open('tecnico.php','_self')</script>";
 }else{
   $sql2 = "INSERT INTO reportes_tecnicos (falla_especifica, solucion_especifica, conclusion, solicitud, parte, estado, imagen1,imagen2,imagen3, id_personal, id_equipo)
   VALUES ('$falla', '$proc', '$estado','NA','$parte','$estado2','$destino','$destino2','$destino3','$var_clave','$id_equipo');";
@@ -73,18 +62,7 @@ if($estado == 'Necesita refaccion'){
 
   $res2 = $conn->query($sql2);
 
-  if (!$res) {
-    printf("Errormessage: %s\n", $conn->error);
-  }
-
-  if (!$res1) {
-    printf("Errormessage: %s\n", $conn->error);
-  }
-  if (!$res3) {
-    printf("Errormessage: %s\n", $conn->error);
-  }
-  else{
-   //echo "<script>alert('Usuario agregado exitosamente con el folio=$')</script>";
-   echo "<script>window.open('tecnico.php','_self')</script>";}
+ 
+   echo "<script>window.open('tecnico.php','_self')</script>";
 
 }
