@@ -173,8 +173,10 @@ if($ubicacion == "Recepcion"){
   echo "
   <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
 
-  <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
 
+  <button onclick='cambio($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Cambiar equipo por venta'><i class='ti-exchange-vertical' ></i></button>
+
+  <button onclick='devolucion($id), enviarorden($id_equipo);' class='btn btn-simple btn-danger btn-icon edit' title='Devolución'><i class='ti-back-left' ></i></button>
 
 
   ";
