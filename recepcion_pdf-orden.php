@@ -36,12 +36,12 @@ if($servicio=="Compra"){
   while($row = $resu->fetch_assoc()) {
     $idequipo   =  $row["id_equipo"];
    }
-   $sql2 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, id_folio, personal_id_personal)
-   VALUES ('Pendiente', '$comentario', 'Recepcion', 'Almacen', '$idequipo', '$id', '$var_clave');";
+   $sql2 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_folio, id_personal)
+   VALUES ('Pendiente', 'Recepcion', 'Taller', '$idequipo', '$id', '$var_clave');";
    $res2 = $conn->query($sql2);
  
    $sql3 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)
-   VALUES ('$var_clave', 'Equipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
+   VALUES ('$var_clave', 'Equipo $idequipo nuevo en recepcion, pasa a recojer', 'Pendiente', 'Traslados');";
    $res3 = $conn->query($sql3);
 
   }
@@ -50,7 +50,7 @@ if($servicio=="Compra"){
 
 
  $sql4 = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
- VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente traslado','Recepcion', '$id');";
+ VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
  $res4 = $conn->query($sql4);
 
 
@@ -61,12 +61,12 @@ if($resu->num_rows > 0){
  while($row = $resu->fetch_assoc()) {
    $idequipo   =  $row["id_equipo"];
   }
-  $sql5 = "INSERT INTO traslado(estado, comentarios, ubicacion, destino, id_equipo, id_folio, personal_id_personal)
-  VALUES ('Pendiente', '$comentario', 'Recepcion', 'Taller', '$idequipo', '$id', '$var_clave');";
+  $sql5 = "INSERT INTO traslado(estado,ubicacion, destino, id_equipo, id_folio, id_personal)
+  VALUES ('Pendiente', 'Recepcion','Taller', '$idequipo', '$id', '$var_clave');";
   $res5 = $conn->query($sql5);
 
   $sql6 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)
-  VALUES ('$var_clave', 'Equipo nuevo en recepcion, pasar a recoger', 'Pendiente', 'Traslados');";
+  VALUES ('$var_clave', 'Equipo $idequipo nuevo en recepcion, pasar a recoger', 'Pendiente', 'Traslados');";
   $res6 = $conn->query($sql6);
 }
 }

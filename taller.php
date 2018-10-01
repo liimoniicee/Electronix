@@ -930,7 +930,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo de refacción</label>'+
-        '<input name="swal-input19"  id="swal-input19" type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input19"  id="swal-input19" readonly type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '<div class="col-md-6">'+
