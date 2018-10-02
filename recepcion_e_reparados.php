@@ -625,7 +625,7 @@ function enviarreporte(id_equipo){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id_equipo);
+       $("#swal-input00").val(data.data.id_equipo);
        $("#swal-input1").val(data.data.falla);
        $("#swal-input2").val(data.data.solu);
        $("#swal-input3").val(data.data.conc);
@@ -724,7 +724,7 @@ html:
 '<div class="card-body"> <form action="recepcion_fn_traslado.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 '<label>Id equipo</label>'+
 
-'<input type="text" name="swal-input0"  id="swal-input0" readonly class="form-control border-input" >' +
+'<input type="text" name="swal-input00"  id="swal-input00" readonly class="form-control border-input" >' +
 '<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
 
 

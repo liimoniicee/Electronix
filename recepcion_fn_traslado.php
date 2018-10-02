@@ -8,7 +8,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 $id = $_POST ['id_folio'];
-$id_equipo = $_POST ['swal-input0'];
+$id_equipo = $_POST ['swal-input00'];
 $ubi = $_POST ['ubicacion'];
 $des= $_POST ['destino'];
 
@@ -22,7 +22,7 @@ VALUES ('Pendiente', '$ubi', '$des','$direccion','$comentarios','$id_equipo', '$
 $res2 = $conn->query($sql2);
 
 
-$sql = "UPDATE reparar_tv set ubicacion = '$ubi en ruta a $des' where id_equipo= $id_equipo;";
+$sql = "UPDATE reparar_tv set ubicacion = '$ubi en ruta a $des' where id_equipo= '$id_equipo';";
 $res = $conn->query($sql);
 //checar la validacion(no funciona el else:v)
 
