@@ -383,12 +383,11 @@ html:
 
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Registrar y generar reporte</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
 
 
 
 '</form></div>',
-
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
@@ -398,6 +397,8 @@ showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
+
+
 
 })
 };
