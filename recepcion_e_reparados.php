@@ -372,7 +372,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="number" value="'+id+'" readonly class="form-control border-input">'+
+        '<input type="number" value="'+id+'" name="id_folio" id="id_folio" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
