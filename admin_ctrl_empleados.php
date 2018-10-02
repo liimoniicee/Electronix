@@ -21,6 +21,8 @@ WHERE tipo in('Recepcion', 'tecnico');
 ";
 
 
+
+
 $avisos = "SELECT
 *
 FROM avisos where tipo= 'Administrador' and estado='pendiente'";
@@ -334,7 +336,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                       <td><?php echo $ape ?></td>
                       <td>
                       <a href="#" onclick="bonificacion(<?php echo $id ?>), boni_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
-                      <a href="#" onclick="historial_swal();" title="Historial" ><i class="btn-sm btn-warning ti-list"></i></a>
+                      <a href="#" onclick="historial_swal(<?php echo $id ?>);" title="Historial" ><i class="btn-sm btn-warning ti-list"></i></a>
 
                       </td>
 
@@ -663,8 +665,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
  <script type="text/javascript">
 //ventana actualizar cliente
-function historial_swal(){
+function historial_swal(id){
 
+  var variableJS = id;
+  <?php
+  $id = "<script> document.write(variableJS) </script>";
+  $historial = "SELECT id_equipo,equipo, marca,modelo, falla, estado, comentarios
+  FROM reparar_tv
+  WHERE estado='Reparada' and id_personal='$id';";
+  ?>
 swal({
 title: 'Historial de concepciones',
 html:
@@ -672,32 +681,26 @@ html:
 '<table id="tablahis" class="table table-hover table-dark table-responsive">'+
 '<thead>'+
 
-'<th>id</th>'+
-'<th >tipo</th>'+
-'<th >usuario</th>'+
-'<th >nombre</th>'+
-'<th >apellidos</th>'+
+'<th>Equipo</th>'+
+'<th >Modelo</th>'+
+'<th >Falla</th>'+
+'<th >Estado</th>'+
 '</thead>'+
-<?php
-  $ejec2 = mysqli_query($conn, $asistencia);
-while($fila=mysqli_fetch_array($ejec2)){
-    $id          = $fila['id_personal'];
-    $nom           = $fila['nombre'];
-    $fech          = $fila['fecha'];
-    $hora_e          = $fila['hora_entrada'];
-    $hora_s          = $fila['hora_salida'];
-
-
-?>
-          '<tr>'+
+          <?php
+            $ejec4 = mysqli_query($conn, $historial);
+          while($fila=mysqli_fetch_array($ejec4)){
+              $id          = $fila['equipo'];
+              $nom           = $fila['modelo'];
+              $fech          = $fila['falla'];
+              $hora_e          = $fila['estado'];
+          ?>
+                    '<tr>'+
               '<td ><?php echo $id ?></td>'+
-              '<td><?php echo $tip ?></td>'+
-              '<td><?php echo $usu ?></td>'+
               '<td><?php echo $nom ?></td>'+
-              '<td><?php echo $ape ?></td>'+
-              <?php } ?>
-
+              '<td><?php echo $fech ?></td>'+
+              '<td><?php echo $hora_e ?></td>'+
 '</tr>'+
+  <?php } ?>
 '<tbody></br>'+
 'Comisión de empleados'+
 '</tbody>'+
