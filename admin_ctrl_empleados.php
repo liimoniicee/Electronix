@@ -15,6 +15,11 @@ $empleados = "SELECT *
 FROM
 personal";
 
+$comision = "SELECT *
+FROM personal
+WHERE tipo in('Recepcion', 'tecnico');
+";
+
 
 $avisos = "SELECT
 *
@@ -163,7 +168,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
   <div id="show-me">
     <div class="tile">
-      <div class="tile-body">
+      <div class="tile-body text-center">
           <table id="a-tables" class="table table-hover table-dark table-responsive">
     <thead>
 
@@ -212,7 +217,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
           </tr>
         <?php } ?>
         <tbody></br>
-            Resultado de clientes
+            Empleados
       </tbody>
   </table>
 </div>
@@ -222,7 +227,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 <!-- Empieza tabla 2-->
 <div id="show-me-two" style='display:none; border:2px solid #ccc'>
-  <div class="tile">
+  <div class="tile  text-center">
     <div class="row">
     <div class="col-sm-2">
     <select class="form-control form-control-sm" name="fecha_asi" id="fecha_asi">
@@ -298,21 +303,21 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 <!-- empieza tabla 3-->
 <div id="show-me-three" style='display:none; border:2px solid #ccc'>
-  <div class="tile">
+  <div class="tile text-center">
     <div class="tile-body">
-        <table id="a-tables" class="table table-hover table-dark table-responsive">
+        <table id="tabla3" class="table table-hover table-dark table-responsive">
   <thead>
 
       <th>id</th>
-    <th>tipo</th>
-    <th>usuario</th>
-    <th>nombre</th>
-    <th>apellidos</th>
+    <th >tipo</th>
+    <th >usuario</th>
+    <th >nombre</th>
+    <th >apellidos</th>
     <th class="disabled-sorting">Acción</th>
 
   </thead>
   <?php
-    $ejec1 = mysqli_query($conn, $empleados);
+    $ejec1 = mysqli_query($conn, $comision);
   while($fila=mysqli_fetch_array($ejec1)){
       $id          = $fila['id_personal'];
       $tip           = $fila['tipo'];
@@ -322,14 +327,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 ?>
                   <tr>
-                      <td width="8%"><?php echo $id ?></td>
-                      <td width="14%"><?php echo $tip ?></td>
-                      <td width="14%"><?php echo $usu ?></td>
-                      <td width="14%"><?php echo $nom ?></td>
-                      <td width="14%"><?php echo $ape ?></td>
-                      <td width="14%">
-                      <a href="#" onclick="actual_emp(<?php echo $id ?>), actual_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
-                      <a href="#" onclick="borrar_emp(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
+                      <td ><?php echo $id ?></td>
+                      <td><?php echo $tip ?></td>
+                      <td><?php echo $usu ?></td>
+                      <td><?php echo $nom ?></td>
+                      <td><?php echo $ape ?></td>
+                      <td>
+                      <a href="#" onclick="bonificacion(<?php echo $id ?>), boni_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                      <a href="#" onclick="historial_swal();" title="Historial" ><i class="btn-sm btn-warning ti-list"></i></a>
+
                       </td>
 
 
@@ -339,7 +345,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
         </tr>
       <?php } ?>
       <tbody></br>
-          Resultado de clientes
+    Comisión de empleados
     </tbody>
 </table>
 </div>
@@ -385,20 +391,21 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <!-- script para mostrar select despues de seleccionar un valor -->
     <script>
-    $(document).ready(function ()
+  /*  $(document).ready(function ()
      {
     $("#fecha_asi").change(function(){
       if(this.value == 'mes'){
         $(".sel_mes").show();
-      }else(this.value == 'dia'){
-        $(".sel_mes").hide();
 
-      }else(this.value == 'todas'){
+      }else{
         $(".sel_mes").hide();
+      }if(this.value == 'dia'){
 
       }
     })
-    });
+  });*/
+
+
     </script>
 
 
@@ -653,6 +660,175 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
    };
 
  </script>
+
+ <script type="text/javascript">
+//ventana actualizar cliente
+function historial_swal(){
+
+swal({
+title: 'Historial de concepciones',
+html:
+
+'<table id="tablahis" class="table table-hover table-dark table-responsive">'+
+'<thead>'+
+
+'<th>id</th>'+
+'<th >tipo</th>'+
+'<th >usuario</th>'+
+'<th >nombre</th>'+
+'<th >apellidos</th>'+
+'</thead>'+
+<?php
+  $ejec2 = mysqli_query($conn, $asistencia);
+while($fila=mysqli_fetch_array($ejec2)){
+    $id          = $fila['id_personal'];
+    $nom           = $fila['nombre'];
+    $fech          = $fila['fecha'];
+    $hora_e          = $fila['hora_entrada'];
+    $hora_s          = $fila['hora_salida'];
+
+
+?>
+          '<tr>'+
+              '<td ><?php echo $id ?></td>'+
+              '<td><?php echo $tip ?></td>'+
+              '<td><?php echo $usu ?></td>'+
+              '<td><?php echo $nom ?></td>'+
+              '<td><?php echo $ape ?></td>'+
+              <?php } ?>
+
+'</tr>'+
+'<tbody></br>'+
+'Comisión de empleados'+
+'</tbody>'+
+'</table>',
+
+
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Actualizar empleado',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+  };
+
+</script>
+
+
+
+
+
+ <script type="text/javascript">
+function boni_mod(id){
+  $.ajax({
+      // la URL para la petición
+      url : 'admin_boni_fn_mod.php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+
+        $("#mano").val(data.data.man);
+        $("#total").val(data.data.total);
+
+        var manox =document.getElementById('mano').value;
+        var totales = (5*parseInt(manox))/100;
+        var totalt = parseInt(document.getElementById('ganado').value= totales);
+        console.log('datos:', manox);
+
+
+      },
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+
+      },
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+
+      }
+  });
+}
+
+</script>
+
+ <script type="text/javascript">
+//ventana actualizar cliente
+function bonificacion(id){
+
+
+swal({
+title: 'Producción de empleado',
+html:
+'<div class="card-body"> <form action="taller_fn_costos.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Mano de obra</label>'+
+        '<input name="mano"  id="mano"  type="number" maxlength="25" readonly  required class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Total de productividad</label>'+
+        '<input name="total"  id="total"  type="number" maxlength="25" readonly  required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Porcentaje de comisión</label>'+
+        '<input type="text" value="5%"  readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Comisión ganada</label>'+
+        '<input name="ganado" id="ganado" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Total</label>'+
+        '<input name="swal-input23"  id="swal-input23" type="number" name="marca" id="marca" maxlength="25" required readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'</form>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+</script>
 
 
   </body>
