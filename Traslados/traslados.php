@@ -623,7 +623,7 @@ reverseButtons: true
 
    '<form action="actual_status.php" method="post" name="data">'+
    //'<label for="exampleInputEmail1">id</label>' +
-   '<input name="swal-input0" type="text" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
+   '<input name="swal-input00" type="text" id="swal-input00" value="'+id+'"class="form-control border-input" readonly>' +
 
    '<div class="row">'+
    '<div class="col-md-6">'+
