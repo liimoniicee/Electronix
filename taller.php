@@ -242,16 +242,18 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
       <td><?php echo $ubi ?></td>
       <td><?php echo $id_p ?></td>
       <td>
+      <button onclick='costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);'  title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i class="ti-money"></i></button>
+
       <?php
       if($est == "Pendiente"){
       echo "
-      <button onclick='asignar_tec($id_equipo), enviarorden($id_equipo);' title='Asignar tecnico' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+
+      <button onclick='asignar_tec($id_equipo), enviarorden($id_equipo);' title='Asignar tecnico' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-user'></i></button>
       ";
     }elseif($est == "Diagnosticada"){
       echo "
       <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i ></i></button>
 
-      <button onclick='costos($id_equipo);' title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
       ";
     }
     ?>

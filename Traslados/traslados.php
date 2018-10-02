@@ -540,7 +540,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label># carro</label>'+
-        '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -733,7 +733,7 @@ reverseButtons: true
  '<div class="col-md-6">'+
    '<div class="form-group">'+
          '<label># carro</label>'+
-         '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+         '<input type="text" name="swal-input8" id="swal-input8" readonly class="form-control border-input">'+
      '</div>'+
  '</div>'+
  '</div>'+
@@ -865,7 +865,7 @@ reverseButtons: true
  '<div class="col-md-6">'+
    '<div class="form-group">'+
          '<label># carro</label>'+
-         '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+         '<input type="text" name="swal-input8" id="swal-input8" readonly class="form-control border-input">'+
      '</div>'+
  '</div>'+
  '</div>'+
