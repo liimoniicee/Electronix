@@ -7,7 +7,7 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
-$id = $_POST ['swal-input0'];
+$id = $_POST ['id_folio'];
 $id_equipo = $_POST ['swal-input1'];
 $nom = $_POST ['swal-input3'];
 $ape= $_POST ['swal-input4'];

@@ -105,7 +105,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <div class="app-notification__content">
+      <div class="app-notification__content">
             <?php
             $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){
@@ -242,16 +242,18 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
       <td><?php echo $ubi ?></td>
       <td><?php echo $id_p ?></td>
       <td>
+      <button onclick='costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);'  title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i class="ti-money"></i></button>
+
       <?php
       if($est == "Pendiente"){
       echo "
-      <button onclick='asignar_tec($id_equipo), enviarorden($id_equipo);' title='Asignar tecnico' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+
+      <button onclick='asignar_tec($id_equipo), enviarorden($id_equipo);' title='Asignar tecnico' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-user'></i></button>
       ";
     }elseif($est == "Diagnosticada"){
       echo "
       <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i ></i></button>
 
-      <button onclick='costos($id_equipo);' title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
       ";
     }
     ?>
@@ -275,13 +277,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                       <div class="tile-body">
           <table id="tabla2" class="table table-dark table-hover table-responsive">
     <thead>
-        <th data-field="id">id_equipo</th>
-      <th data-field="equipo" data-sortable="true">equipo</th>
-      <th data-field="falla" data-sortable="true">falla</th>
-      <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-      <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-      <th data-field="accion" data-sortable="true">Acción</th>
+    <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
     </thead>
     <?php
       $ejec2 = mysqli_query($conn, $pendientes);
@@ -304,7 +306,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $ubicacion ?></a></td>
                         <td>
-                        <button onclick="asignar_tec(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                        <button onclick="asignar_tec(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo?>);" title="Asignar tecnico" class="btn btn-simple btn-success btn-icon edit"><i class="ti-user"></i></button>
                         </td>
 
 
@@ -329,14 +331,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                   <table id="tabla3" class="table table-dark table-hover table-responsive">
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
-                  <th data-field="id">id_equipo</th>
-
-                  <th data-field="equipo" data-sortable="true">equipo</th>
-                  <th data-field="falla" data-sortable="true">falla</th>
-                  <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                  <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-                  <th data-field="accion" data-sortable="true">Acción</th>
+                  <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
                   </thead>
                   <?php
@@ -384,15 +385,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                     <table id="tabla4" class="table table-dark table-hover table-responsive">
                                     <thead>
                                     <!--<th data-field="state" data-checkbox="true"></th>-->
-                                    <th data-field="id">id_equipo</th>
-
-                                    <th data-field="equipo" data-sortable="true">equipo</th>
-                                    <th data-field="falla" data-sortable="true">falla</th>
-                                    <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                                    <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                                    <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-                                    <th data-field="servicio" data-sortable="true">servicio</th>
-                                    <th data-field="accion" data-sortable="true">Acción</th>
+                                    <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
                                     </thead>
                                     <?php
@@ -417,9 +416,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                           <td><?php echo $ubicacion ?></a></td>
                                           <td><?php echo $servi ?></a></td>
                                           <td>
-                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i ></i></button>
+                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i class="ti-agenda"></i></button>
 
-                                          <button onclick="costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
+                                          <button onclick="costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i class="ti-money"></i></button>
                                           </td>
 
                                     </tr>
@@ -440,15 +439,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                   <table id="tabla5" class="table table-dark table-hover table-responsive">
                   <thead>
                   <!--<th data-field="state" data-checkbox="true"></th>-->
-                  <th data-field="id">id_equipo</th>
-
-                  <th data-field="equipo" data-sortable="true">equipo</th>
-                  <th data-field="falla" data-sortable="true">falla</th>
-                  <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                  <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                  <th data-field="Estado" data-sortable="true">Estado</th>
-                  <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-                  <th data-field="accion" data-sortable="true">Acción</th>
+                  <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
                   </thead>
                   <?php
@@ -477,7 +474,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                           <?php
                           if($estado == "Autorizacion taller"){
                             echo "
-                            <button onclick='autorizacion_pieza(<?php echo $id_equipo?>);' title='Autorizacion de pieza' class='btn btn-simple btn-success btn-icon edit'><i ></i></button>
+                            <button onclick='autorizacion_pieza(<?php echo $id_equipo?>);' title='Autorizacion de pieza' class='btn btn-simple btn-success btn-icon edit'><i class='ti-check-box' ></i></button>
                             ";
                           } ?>
                         </td>
@@ -503,14 +500,13 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
               <table id="tabla6" class="table table-dark table-hover table-responsive">
               <thead>
               <!--<th data-field="state" data-checkbox="true"></th>-->
-              <th data-field="id">id_equipo</th>
-
-              <th data-field="equipo" data-sortable="true">equipo</th>
-              <th data-field="falla" data-sortable="true">falla</th>
-              <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-              <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-              <th data-field="ubicacion" data-sortable="true">ubicacion</th>
-              <th data-field="accion" data-sortable="true">Acción</th>
+              <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+                              <th data-field="accion" data-sortable="true">Acción</th>
 
               </thead>
               <?php
@@ -555,13 +551,12 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                               <table id="tabla7" class="table table-dark table-hover table-responsive">
                               <thead>
                               <!--<th data-field="state" data-checkbox="true"></th>-->
-                              <th data-field="id">id_equipo</th>
-
-                              <th data-field="equipo" data-sortable="true">equipo</th>
-                              <th data-field="falla" data-sortable="true">falla</th>
-                              <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-                              <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-                              <th data-field="ubicacion" data-sortable="true">ubicacion</th>
+                              <th data-field="id">ID equipo</th>
+                              <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="falla" data-sortable="true">Falla</th>
+                              <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
+                              <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
+                              <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
                               <th data-field="accion" data-sortable="true">Acción</th>
 
                               </thead>
@@ -937,13 +932,13 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo de refacción</label>'+
-        '<input name="swal-input19"  id="swal-input19" type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input19"  id="swal-input19"  type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo mano de obra</label>'+
-        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25" onkeypress="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25"  onkeypress="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -982,7 +977,7 @@ html:
 '<div class="col-md-12">'+
 
 
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar costos y estado</Button>'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar costos, estado y solicitud de traslado</Button>'+
 
 '</form></div>',
 showCancelButton: true,
@@ -1042,7 +1037,6 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-
 
 '<div class="col-md-12">'+
 

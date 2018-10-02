@@ -81,23 +81,23 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
           <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i  class="ti-bell"></i><?php echo $num_avi ?></a>
             <ul class="app-notification dropdown-menu dropdown-menu-right">
               <li class="app-notification__title">You have <?php echo $num_avi ?> new notifications.</li>
-
-              <?php
-                $ejec = mysqli_query($conn, $avisos);
-              while($fila=mysqli_fetch_array($ejec)){
-                  $avi     = $fila['aviso'];
-                  $fech_avi     = $fila['fecha'];
-
-            ?>
               <div class="app-notification__content">
-                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-                    <div>
-                      <p class="app-notification__message"><?php echo $avi; ?></p>
-                      <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
-                    </div></a></li>
-                  <?php } ?>
+            <?php
+            $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+            $avi     = $fila['aviso'];
+            $fech_avi     = $fila['fecha'];
+            ?>
 
-              </div>
+              <li><a class="app-notification__item" href="javascript:;">
+
+                  <div>
+                    <p class="app-notification__message"><?php echo $avi; ?></p>
+                    <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
+                  </div></a></li>
+                <?php } ?>
+
+            </div>
               <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
             </ul>
           </li>
@@ -211,6 +211,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="ubicacion" data-sortable="true">Ubicación</th>
       <th data-field="abono" data-sortable="true">Abonado</th>
       <th data-field="restante" data-sortable="true">Restante</th>
+      <th data-field="servicio" data-sortable="true">Servicio</th>
       <th data-field="actions" class="td-actions text-right">Acción</th>
 
     </thead>
@@ -230,6 +231,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
         $ubicacion        = $fila['ubicacion'];
         $abono        = $fila['abono'];
         $restante        = $fila['restante'];
+        $servicio        = $fila['servicio'];
 
 ?>
                     <tr>
@@ -245,13 +247,21 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $ubicacion ?></td>
                         <td><?php echo $abono?></td>
                         <td><?php echo $restante ?></td>
+                        <td><?php echo $servicio ?></td>
                           <td>
+
                         <?php
                         if($estado == "En reparacion"){
                           echo "
 
                           <button onclick='abono($id), enviarorden($id_equipo);'class='btn btn-simple btn-success btn-icon' title='Ingresa abono' ><i class='ti-money'></i></button>
                         ";
+                        }if($ubicacion == "Almacen"){
+                          echo "
+
+                          <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-primary btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+                        ";
+                      
                       }elseif($estado == "Entregado"){
                           echo "
 
@@ -288,7 +298,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="tipo" data-sortable="true">Tipo</th>
       <th data-field="estado" data-sortable="true">Estado</th>
       <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
-      <th data-field="costo" data-sortable="true">costo</th>
+      <th data-field="costo" data-sortable="true">Costo</th>
       <th data-field="abono" data-sortable="true">Abono</th>
 
 
@@ -446,9 +456,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     swal({
     title: 'Reingreso por garantía',
     html:
-    '<div class="card-body"> <form target="_blank" action="recepcion_pdf-garantia.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    '<div class="card-body"> <form action="recepcion_fn_reingreso.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     //Manda Llamar id,nombre y apellido
-    //'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
 
     '<div class="row">'+
     '<div class="col-md-6">'+
@@ -462,7 +471,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     '<div class="col-md-6">'+
       '<div class="form-group">'+
             '<label>Folio cliente</label>'+
-            '<input type="number" value="'+id+'" readonly class="form-control border-input">'+
+            '<input type="number" value="'+id+'" name="swal-input00" id="swal-input00" readonly class="form-control border-input">'+
         '</div>'+
     '</div>'+
     '</div>'+
@@ -643,4 +652,72 @@ function operaciones()
 }
 
 
+</script>
+
+<script type="text/javascript">
+//ventana orden de servición
+function traslado(id){
+
+
+swal({
+title: 'Nueva solicitud de traslado',
+html:
+'<div class="card-body"> <form action="recepcion_fn_traslado.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
+'<label>Id equipo</label>'+
+
+'<input type="text" name="swal-input0"  id="swal-input0" readonly class="form-control border-input" >' +
+'<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ubicacion</label>'+
+        '<input type="text" name="ubicacion" id="ubicacion"  pattern="[A-Za-z]+" title="Sólo letras"  value="Almacen" readonly required class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Destino</label>'+
+        
+        '<select class="form-control form-control-sm" textalign="center" required name="destino" id="destino"><option value="" >'+
+        '</option><option value="Recepcion" >Recepcion</option>'+
+        '<option value="Cliente">Cliente</option>'+ 
+        '</select>' +
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+  
+  '<label>Direccion</label>'+
+        '<textarea type="text" required name="dire" dire="dire" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+
+        '<label>Comentarios</label>'+
+        '<textarea type="text" required name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+    '</div>'+
+    '</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd"  >Solicitar traslado</Button>'+
+
+
+'</form></div>',
+
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Registrar y generar reporte',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+
+})
+};
 </script>

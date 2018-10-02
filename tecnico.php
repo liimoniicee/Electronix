@@ -21,11 +21,9 @@ verificar_sesion();
  WHERE estado='Reparada' and id_personal='$var_clave';";
 
 
- $avisos = "SELECT
- *
- FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+ $avisos = "SELECT *  FROM avisos where tipo='Tecnico' and estado='Pendiente' and id_personal='$var_clave'";
 
- $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo='Tecnico' AND estado='Pendiente' AND id_personal='$var_clave'";
 
  $refaccion = "SELECT *
  FROM reparar_tv
@@ -69,7 +67,7 @@ verificar_sesion();
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <div class="app-notification__content">
+             <div class="app-notification__content">
             <?php
             $ejec = mysqli_query($conn, $avisos);
             while($fila=mysqli_fetch_array($ejec)){
@@ -174,7 +172,7 @@ verificar_sesion();
 
 
                                           <td>
-                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo ?>);" class="btn btn-simple btn-success btn-icon edit" title="Nueva orden"><i ></i></button>
+                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo ?>);" class="btn btn-simple btn-success btn-icon edit" title="Crear reporte"><i class="btn-sm btn-secondary ti-agenda"></i></button>
 
 
                                           </td>

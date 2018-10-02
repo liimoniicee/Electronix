@@ -19,12 +19,12 @@ $est = $_POST['swal-input24'];
 $sql = "Update reparar_tv set presupuesto = $pre, mano_obra =$man, abono=$abo, restante= $res, costo_total= $tot, estado='$est' where id_equipo= $id;";
 $res = $conn->query($sql);
 
-if($est =='Sin solucion'){
-
-
 $sql2 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)
 VALUES ('Pendiente', 'Taller', 'Recepcion', '$id', '$var_clave');";
 $res2 = $conn->query($sql2);
+
+if($est =='Sin solucion'){
+
 
 $sql3 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
 VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id sin solución, en ruta a recepcion, solicitar cambio a cliente', 'Pendiente', 'Recepcion');";

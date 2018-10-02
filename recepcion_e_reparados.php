@@ -37,6 +37,17 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     <!-- Font-icon css-->
 <link href= "assets/css/themify-icons.css" rel="stylesheet">
 <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+<link rel="stylesheet" href="assets/js/venobox/venobox.css" type="text/css" media="screen" />
+<script type="text/javascript" ssrc="assets/js/venobox/venobox.min.js"></script>
+<script type="text/javascript" src="assets/js/galeria.js"></script>
+
+<script type="text/javascript" src="assets/js/jquery-3.2.1.min"></script>
+
+
+
+
+
   </head>
 
 
@@ -67,16 +78,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
 
-            <div class="app-notification__content">
+               <div class="app-notification__content">
+            <?php
+            $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+            $avi     = $fila['aviso'];
+            $fech_avi     = $fila['fecha'];
+            ?>
+
               <li><a class="app-notification__item" href="javascript:;">
 
-                            <?php
-                              $ejec = mysqli_query($conn, $avisos);
-                            while($fila=mysqli_fetch_array($ejec)){
-                                $avi     = $fila['aviso'];
-                                $fech_avi     = $fila['fecha'];
-
-                          ?>
                   <div>
                     <p class="app-notification__message"><?php echo $avi; ?></p>
                     <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
@@ -146,6 +157,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="fecha_entrega" data-sortable="true">Reparación</th>
       <th data-field="costo" data-sortable="true">Restante</th>
       <th data-field="ubicacion" data-sortable="true">Ubicacion</th>
+
       <th data-field="garantia" data-sortable="true">Acción</th>
 
 
@@ -164,6 +176,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
         $fecha_entregar        = $fila['fecha_entregar'];
         $total        = $fila['restante'];
         $ubicacion        = $fila['ubicacion'];
+        $servicio        = $fila['servicio'];
+
 
 
 
@@ -180,23 +194,45 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $fecha_entregar ?></td>
                         <td><?php echo $total ?></td>
                         <td><?php echo $ubicacion ?></td>
+
                         <td>
+                        <a class="hey" data-gall="myGallery" href="assets/galeria/1.jpg" title="Ver galería"><img src="assets/galeria/gallery.png" alt="img-01" ></a>
+                        <a class="hey" data-gall="myGallery" href="assets/galeria/2.jpg"   title="Ver galería"></a>
+                        <a class="hey" data-gall="myGallery" href="assets/galeria/3.jpg" type="hidden" title="Ver galería"></a>
+
 
                         <?php
                         
                         if($ubicacion == "Recepcion"){
-                          echo "
-                          <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+                          
+                          if($servicio =="Garantia"){
+                            echo "
+                            <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
 
-                          <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+                            <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+  
+                            <button onclick='entregar($id), enviarorden($id_equipo);' class='btn btn-simple btn-danger btn-icon edit' title='Entregar equipo'><i class='ti-agenda' ></i></button>
 
-                          <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-warning btn-icon edit' title='Generar garantía'><i class='ti-receipt' ></i></button>
+                            ";
+                          }
+                          if($servicio =="Reparacion"){
+                            echo "
+                            <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
 
+                            <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
+                            <button onclick='garantia($id), enviarorden($id_equipo);' class='btn btn-simple btn-warning btn-icon edit' title='Generar garantía'><i class='ti-receipt' ></i></button>
 
-                          ";
+                            ";
+                          }
+
                       }else{  echo "                        
-                        <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
-                                ";
+                        
+                        
+                    <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+                    
+                 
+
+                    ";
                     }
                       ?>
                         </td>
@@ -270,7 +306,7 @@ function enviarorden(id){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id);
+       $("#swal-input00").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
@@ -336,7 +372,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Folio cliente</label>'+
-        '<input type="number" value="'+id+'" readonly class="form-control border-input">'+
+        '<input type="number" value="'+id+'" name="id_folio" id="id_folio" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -429,7 +465,123 @@ reverseButtons: true
 
 </script>
 
+<script type="text/javascript">
+//ventana orden de servición
+function entregar(id){
 
+swal({
+title: 'Entregar equipo',
+html:
+'<div class="card-body"> <form  action="recepcion_fn_entregar.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+//'<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly >' +
+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Id equipo</label>'+
+        '<input type="number" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio cliente</label>'+
+        '<input type="number" value="'+id+'" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Apellidos</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo total</label>'+
+        '<input type="text" name="swal-input23" id="swal-input23" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Entregar equipo</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
   </body>
 </html>
 
@@ -473,7 +625,7 @@ function enviarreporte(id_equipo){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
-       $("#swal-input0").val(data.data.id_equipo);
+       $("#swal-input00").val(data.data.id_equipo);
        $("#swal-input1").val(data.data.falla);
        $("#swal-input2").val(data.data.solu);
        $("#swal-input3").val(data.data.conc);
@@ -539,7 +691,7 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-
+//
 
 '<div class="col-md-12">'+
 
@@ -572,7 +724,7 @@ html:
 '<div class="card-body"> <form action="recepcion_fn_traslado.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 '<label>Id equipo</label>'+
 
-'<input type="text" name="swal-input0"  id="swal-input0" readonly class="form-control border-input" >' +
+'<input type="text" name="swal-input00"  id="swal-input00" readonly class="form-control border-input" >' +
 '<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
 
 
