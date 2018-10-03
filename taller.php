@@ -418,7 +418,20 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                           <td>
                                           <button onclick="reporte(<?php echo $id_equipo?>), enviarreporte(<?php echo $id_equipo?>);" title="Ver reporte" class="btn btn-simple btn-primary btn-icon edit"><i class="ti-agenda"></i></button>
 
-                                          <button onclick="costos(<?php echo $id_equipo?>),enviarorden(<?php echo $id_equipo?>);" title="Asignar Costos" class="btn btn-simple btn-success btn-icon edit"><i class="ti-money"></i></button>
+                                          
+                                          <?php
+                          if($servi =="Compra"){
+                            echo "
+                            <button onclick='valor($id_equipo),enviarorden($id_equipo);'title='Asignar valor' class='btn btn-simple btn-warning btn-icon edit'><i class='ti-money'></i></button>
+                            ";
+                          }if($servi =="Reparacion"){
+                            echo "
+                            <button onclick='costos($id_equipo),enviarorden($id_equipo);' title='Asignar Costos' class='btn btn-simple btn-success btn-icon edit'><i class='ti-money'></i></button>
+
+                            ";
+
+                          } ?>
+
                                           </td>
 
                                     </tr>
@@ -803,6 +816,11 @@ function enviarorden(id){
        $("#swal-input19").val(data.data.presupuesto);
        $("#swal-input20").val(data.data.mano_obra);
        $("#swal-input23").val(data.data.restante);
+       $("#swal-input25").val(data.data.valor);
+       $("#swal-servicio").val(data.data.servicio);
+
+
+
 
 
      },
@@ -1056,6 +1074,49 @@ reverseButtons: true
 
 };
 </script>
+
+ <script type="text/javascript">
+//ventana actualizar cliente
+function valor(id){
+
+
+swal({
+title: 'Asignar valor al equipo',
+html:
+'<div class="card-body"> <form action="taller_fn_valor.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<input type="hidden" name="swal-servicio" id="swal-servicio" class="form-control border-input" readonly >' +//Id Equipo
+'<input type="hidden" name="swal-input1" value="'+id+'"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
+'<h5>Valor al equipo que se va a comprar.</h5>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Valor de equipo</label>'+
+        '<input name="swal-input25"  id="swal-input25"  type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+
+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar valor</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+</script>
+
 
 <script type="text/javascript">
 

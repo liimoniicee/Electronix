@@ -15,6 +15,10 @@ $abo = $_POST['swal-input21'];
 $res = $_POST['swal-input22'];
 $tot = $_POST['swal-input23'];
 $est = $_POST['swal-input24'];
+$valor = $_POST['swal-input25'];
+$servicio = $_POST['swal-servicio'];
+
+
 
 
 
@@ -45,7 +49,20 @@ $res4 = $conn->query($sql4);
   
 $sql5 = "UPDATE reparar_tv set presupuesto = $pre, mano_obra =$man, abono=$abo, restante= $res, costo_total= $tot, estado='$est', ubicacion='Taller en ruta a Recepcion' where id_equipo= $id;";
 $res5 = $conn->query($sql5);
-  }else{
+  }if($servicio =='Compra'){
+
+  
+    $sql7 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)
+    VALUES ('Pendiente', 'Taller', 'Recepcion', '$id', '$var_clave');";
+    $res7 = $conn->query($sql7);
+    
+      $sql4 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
+    VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id valorado para compra, marcar a cliente', 'Pendiente', 'Recepcion');";
+    $res4 = $conn->query($sql4);
+      
+    $sql5 = "UPDATE reparar_tv set valor = $valor, estado='Valorada', ubicacion='Taller en ruta a Recepcion' where id_equipo= $id;";
+    $res5 = $conn->query($sql5);
+      }else{
 
 $sql6 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
 VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id necesita refaccion, traslado pendiente a recepcion, marcar a cliente', 'Pendiente', 'Recepcion');";

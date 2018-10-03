@@ -9,7 +9,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-$consulta = "SELECT * from reparar_tv where estado = 'Almacen';";
+$consulta = "SELECT * from reparar_tv where ubicacion = 'Almacen';";
 
 $avisos = "SELECT * FROM avisos where tipo= 'Almacen' and estado='pendiente' order by fecha desc;";
 
@@ -167,7 +167,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Almacen' and estado='pen
                         <td><?php echo $estado ?></td>
 
                         <td>
-                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-warning btn-icon edit" title="Generar garantía"><i ></i></button>
+                        <button onclick="garantia(<?php echo $id?>), enviarorden(<?php echo $id_equipo?>);" class="btn btn-simple btn-success btn-icon edit" title="Registrar en almacen"><i class="ti-save"></i></button>
                         </td>
 
           </tr>

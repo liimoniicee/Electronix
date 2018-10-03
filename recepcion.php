@@ -130,6 +130,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
               <button class="btn btn-secondary" onclick="alerta();"><i class="ti-plus"></i>Nuevo cliente</button>
               <button class="btn btn-success" type="button" onclick="location='recepcion_e_reparados.php'"><i class="ti-thumb-up"></i>Equipos reparados</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'"><i class="ti-thumb-down"></i>Equipos sin solución</button>
+              <button class="btn btn-basic" type="button" onclick="location='recepcion_e_valorados.php'"><i class="ti-money"></i>Equipos valorados</button>
+
               <button class="btn btn-info" type="button" onclick="aviso();"><i class="ti-alert"></i>Avisos</button>
               <button class="btn btn-warning" type="button"onclick="location='recepcion_ventas.php'"><i class="ti-shopping-cart"></i>Ventas</button>
   </p>

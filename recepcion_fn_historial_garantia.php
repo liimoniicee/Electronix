@@ -16,7 +16,7 @@ if(isset($_POST['id'])){
   FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = $id";*/
 $consulta = "SELECT r.id_equipo, r.id_personal, c.nombre, c.apellidos, c.celular, c.correo,r.equipo, r.marca, r.modelo,r.serie, r.accesorios,
                     r.falla, r.comentarios, r.fecha_ingreso, r.fecha_entregar, r.fecha_egreso, r.servicio,
-                    r.ubicacion, r.presupuesto, r.mano_obra, r.abono, r.restante, r.costo_total, r.estado
+                    r.ubicacion, r.presupuesto, r.mano_obra, r.abono, r.restante, r.costo_total,r.valor, r.estado
               FROM clientes c, reparar_tv r
               WHERE r.id_equipo = $id
               and c.id_folio = r.id_folio";
@@ -52,6 +52,7 @@ $consulta = "SELECT r.id_equipo, r.id_personal, c.nombre, c.apellidos, c.celular
     "abono"         =>  $row["abono"],
     "restante"      =>  $row["restante"],
     "costo_total"   =>  $row["costo_total"],
+    "valor"         =>  $row["valor"],
     "estado"        =>  $row["estado"],
 
 
