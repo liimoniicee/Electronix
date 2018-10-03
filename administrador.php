@@ -130,24 +130,30 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                     <button class="btn btn-info" onclick="location='recepcion_ventas.php'"><i class="ti-alert"></i>avisos</button>
         </p>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="tile">
-            <h3 class="tile-title">Ventas del mes</h3>
-            <div class="ct-chart ct-perfect-fourth">
-
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="tile">
-            <h3 class="tile-title">Support Requests</h3>
-            <div class="ct-chart ct-golden-section" id="chart2">
-
-            </div>
-          </div>
+      <div class="card-body">
+        <div class="col-sm-2">
+          <select class="form-control form-control-sm" onChange="mostrarResultados(this.value);">
+              <?php
+                  for($i=2017;$i<2030;$i++){
+                      if($i == 2018){
+                          echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                      }else{
+                          echo '<option value="'.$i.'">'.$i.'</option>';
+                      }
+                  }
+              ?>
+          </select>
         </div>
       </div>
+      <div class="card">
+      <div class="resultados"><canvas id="grafico"></canvas></div>
+    </div>
+  </body>
+
+
+
+
+
     </div>
     </div>
 
@@ -178,46 +184,48 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/sweetalert2.js"></script>
 
-    <!-- Circle Percentage-chart -->
-  	<script src="assets/js/jquery.easypiechart.min.js"></script>
-
-  	<!--  Charts Plugin -->
-  	<script src="assets/js/chartist.min.js"></script>
-
+    <script src="assets/js/chartjs/Chart.bundle.js"></script>
+    <script src="assets/js/chartjs/Chart.bundle.min.js"></script>
+    <script src="assets/js/chartjs/Chart.js"></script>
+    <script src="assets/js/chartjs/Chart.min.js"></script>
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
+    <script src="assets/js/jquery.js"></script>
 
-<?php
-$graficames = "SELECT costo_total, fecha_egreso
-              FROM reparar_tv
-              WHERE estado = 'Entregado'
-              and month(fecha_egreso) = 7
-              ORDER BY costo_total ASC";
+    <script>
+            $(document).ready(mostrarResultados(2018));
+                function mostrarResultados(year){
+                    $('.resultados').html('<canvas id="grafico"></canvas>');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'admin_fn_procesa.php',
+                        data: 'year='+year,
+                        dataType: 'JSON',
+                        success:function(response){
+                            var Datos = {
+                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    datasets : [
+                                        {
+                                          label: "Ganancias de Tv reparadas",
+                                          backgroundColor: '#0C83B6',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data : response
+                                        }
+                                    ]
+                                }
+                            var contexto = document.getElementById('grafico').getContext('2d');
+                            window.Barra = new Chart(contexto,{
+                                      type: 'bar',
+                                            data: Datos,
+                                                options: {}
+                                                  });
+                            Barra.clear();
+                        }
+                    });
+                    return false;
+                }
+    </script>
 
-
- ?>
-
-
-<script>
-
-new Chartist.Bar('.ct-chart', {
-});
-</script>
-<script>
-new Chartist.Line('.chart2', {
-  <?php
-    $ejec1 = mysqli_query($conn, $graficames);
-  while($row=mysqli_fetch_array($ejec1)){
-
-    echo "
-    labels:['".$row["fecha_egreso"]."',],
-    series:[['".$row["costo_total"]."'],],
-    ";}?>
-}, {
-  low: 0,
-  showArea: true
-});
-</script>
 
   </body>
 
