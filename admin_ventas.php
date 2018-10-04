@@ -26,7 +26,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
 
 
     <!-- Open Graph Meta-->
-    <title>Administrador</title>
+    <title>Administrador ventas</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -112,7 +112,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
 
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Recepción</h1>
+          <h1><i class="fa fa-dashboard"></i>Administrador ventas</h1>
           <p>Dar un buen servicio es nuestra prioridad</p>
         </div>
 
@@ -122,12 +122,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
 
                 <div class="col-lg-12">
                   <p class="bs-component">
-                    <button class="btn btn-info" onclick="location='admin_ctrl_empleados.php'"><i class="ti-settings"></i>Control de empleados</button>
-                    <button class="btn btn-info" onclick="location='admin_ventas.php'"><i class="ti-money"></i>Ventas</button>
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-settings"></i>Editar solicitudes</button>
-                    <button class="btn btn-info" onclick="aviso();"><i class="ti-shopping-cart"></i>Compras</button>
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-list"></i>Contratos</button>
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-alert"></i>avisos</button>
+                    <button class="btn btn-info" onclick="location='#'"><i class="ti-settings"></i>Ventas total</button>
+                    <button class="btn btn-info" onclick="location='#'"><i class="ti-money"></i>Ventas tv</button>
+                    <button class="btn btn-info" onclick="location='#'"><i class="ti-settings"></i>Ventas refacciones</button>
         </p>
       </div>
       <div class="card-body">
@@ -198,7 +195,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                     $('.resultados').html('<canvas id="grafico"></canvas>');
                     $.ajax({
                         type: 'POST',
-                        url: 'admin_fn_procesa.php',
+                        url: 'admin_fn_procesa_ventas.php',
                         data: 'year='+year,
                         dataType: 'JSON',
                         success:function(response){
@@ -206,7 +203,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                                     labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                                     datasets : [
                                         {
-                                          label: "Ganancias de ventas",
+                                          label: "Ganancias de ventas totales",
                                           backgroundColor: '#0C83B6',
                                           borderColor: 'rgb(255, 99, 132)',
                                           data : response

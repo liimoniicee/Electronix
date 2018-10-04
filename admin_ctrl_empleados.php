@@ -17,7 +17,7 @@ personal";
 
 $comision = "SELECT *
 FROM personal
-WHERE tipo in('Recepcion', 'tecnico');
+WHERE tipo ='Tecnico';
 ";
 
 
@@ -211,11 +211,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <a href="#" onclick="actual_emp(<?php echo $id ?>), actual_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
                         <a href="#" onclick="borrar_emp(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
                         </td>
-
-
-
-
-
           </tr>
         <?php } ?>
         <tbody></br>
@@ -329,21 +324,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 ?>
                   <tr>
-                      <td ><?php echo $id ?></td>
-                      <td><?php echo $tip ?></td>
-                      <td><?php echo $usu ?></td>
-                      <td><?php echo $nom ?></td>
-                      <td><?php echo $ape ?></td>
-                      <td>
+                      <td width="8%"><?php echo $id ?></td>
+                      <td width="8%"><?php echo $tip ?></td>
+                      <td width="8%"><?php echo $usu ?></td>
+                      <td width="8%"><?php echo $nom ?></td>
+                      <td width="8%"><?php echo $ape ?></td>
+                      <td width="8%">
                       <a href="#" onclick="bonificacion(<?php echo $id ?>), boni_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
                       <a href="#" onclick="historial_swal(<?php echo $id ?>);" title="Historial" ><i class="btn-sm btn-warning ti-list"></i></a>
-
                       </td>
-
-
-
-
-
         </tr>
       <?php } ?>
       <tbody></br>
@@ -355,8 +344,76 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 </div>
 <!-- termina tabla 3-->
 
+<!-- empieza tabla 4 -->
+
+<div id="show-me-three2" style='display:none; border:2px solid #ccc'>
+  <div class="card-body bg-primary mb-3">
+
+            <div class="tile text-black">
+            <table id="tabla4" class="table table-hover table-dark table-responsive">
+          <thead>
+            <tr class="encabezado">
+          <th>id</th>
+
+          <th>nombre</th>
+          <th>apellidos</th>
+          <th>Correo</th>
+          <th>Sueldo</th>
+            </tr>
+          </thead>
+          <?php
+          $ejec1 = mysqli_query($conn, $empleados);
+          while($fila=mysqli_fetch_array($ejec1)){
+          $id          = $fila['id_personal'];
+          $nom        = $fila['nombre'];
+          $ape        = $fila['apellidos'];
+          $cor        = $fila['correo'];
+          $suel       = $fila['sueldo'];
 
 
+          ?>
+          <script>
+          var valor=<?php echo $suel ?>;
+          var total = parseInt(valor)*48;
+
+          </script>
+                      <tr>
+                          <td width="8%"><?php echo $id ?></td>
+                          <td width="14%"><?php echo $nom ?></td>
+                          <td width="14%"><?php echo $ape ?></td>
+                          <td width="8%"><?php echo $cor ?></td>
+                          <td width="8%"><script> document.write(parseInt(total)) </script></td>
+            </tr>
+            <?php } ?>
+            <tr class="total">
+              <td>su total:</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+            </tr>
+
+          <tbody></br>
+              Empleados
+          </tbody>
+          </table>
+        </div>
+        <div class="row text-white">
+
+          <div class="col-md-2">
+              <div class="form-group">
+                  <label >Total Nomina</label>
+                  <input type="text" readonly class="form-control border-input" >
+              </div>
+          </div>
+          <div class="col-md-2">
+              <div class="form-group">
+                  <label >Total de percepciones</label>
+                  <input type="text" readonly class="form-control border-input" >
+              </div>
+          </div>
+</div>
 
 
 </div>
@@ -391,6 +448,31 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
 
+
+    <script>
+    $(document).ready(function() {
+
+ CalcularTotal();
+
+});
+function CalcularTotal()
+{
+var totals = [0, 0, 0, 0, 0];
+ var $filas= $("#tabla4 tr:not('.total, .encabezado')");
+
+  $filas.each(function() {
+    $(this).find('td').each(function(i) {
+      if (i != 0)
+        totals[i - 1] += parseInt($(this).html());
+    });
+  });
+  $(".total td").each(function(i) {
+    if (i != 0)
+      $(this).html(totals[i - 1]);
+  });
+}
+    </script>
+
     <!-- script para mostrar select despues de seleccionar un valor -->
     <script>
   /*  $(document).ready(function ()
@@ -406,7 +488,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       }
     })
   });*/
-
 
     </script>
 
@@ -749,8 +830,6 @@ function boni_mod(id){
         var manox =document.getElementById('mano').value;
         var totales = (5*parseInt(manox))/100;
         var totalt = parseInt(document.getElementById('ganado').value= totales);
-        console.log('datos:', manox);
-
 
       },
       // código a ejecutar si la petición falla;
