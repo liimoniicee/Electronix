@@ -6,10 +6,10 @@ verificar_sesion();
 
 
 $response = array();
-if(isset($_POST['Id_refacciones'])){
-  $id_ref = $_POST['Id_refacciones'];
+if(isset($_POST['id'])){
+  $id = $_POST['id'];
 
-$consulta = "SELECT * FROM refacciones_tv WHERE Id_refaccion=$id_ref";
+$consulta = "SELECT * FROM refacciones_tv WHERE Id_refacciones=$id";
 
 
    $resultado = $conn->query($consulta);
@@ -20,7 +20,7 @@ $consulta = "SELECT * FROM refacciones_tv WHERE Id_refaccion=$id_ref";
     while($row = $resultado->fetch_assoc()) {
   $response['data'] = array (
 
-    "Id_refacciones"          =>  $id_ref,
+    "Id_refacciones"          =>  $id,
     "link"        =>  $row["link"],
     "nombre"         =>  $row["nombre"],
     "marca"         =>  $row["marca"],
@@ -41,7 +41,7 @@ $consulta = "SELECT * FROM refacciones_tv WHERE Id_refaccion=$id_ref";
    }
 
   $response['codigo'] = 1;
-  $response['msj'] = "El id se recibio ".$id_ref;
+  $response['msj'] = "El id se recibio ".$id;
 }
 else{
   $response['codigo'] = 0;

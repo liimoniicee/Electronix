@@ -152,7 +152,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
       <?php
       $ejec3 = mysqli_query($conn, $publicadas);
       while($fila=mysqli_fetch_array($ejec3)){
-     $id_ref           = $fila['Id_refacciones'];
+     $id           = $fila['Id_refacciones'];
       $nombre           = $fila['nombre'];
       $marca           = $fila['marca'];
       $modelo          = $fila['modelo'];
@@ -163,13 +163,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
       $etiqueta_1          = $fila['etiqueta_1'];
       $etiqueta_2        = $fila['etiqueta_2'];
       $link        = $fila['link'];
-
- ;
-
-
       ?>
           <tr>
-         
+
               <td><?php echo $nombre ?></td>
               <td><?php echo $marca ?></td>
               <td><?php echo $modelo ?></td>
@@ -180,7 +176,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
               <td><?php echo $etiqueta_1 ?></td>
               <td><?php echo $etiqueta_2 ?></a></td>
               <td>
-              <button onclick="estado(<?php echo $id_ref?>), refaccion(<?php echo $id_ref?>);" title="Cambiar estado" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-star"></i></button>
+              <button onclick="estado(<?php echo $id?>), refaccion(<?php echo $id?>);" title="Cambiar estado" class="btn btn-simple btn-warning btn-sm"><i class="ti-star"></i></button>
               </td>
 
 
@@ -324,7 +320,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
 <script>
 
 //Script para mandar ID para generar la orden
-function refaccion(id_ref){
+function refaccion(id){
 $.ajax({
 
     // la URL para la petición
@@ -332,7 +328,7 @@ $.ajax({
     // la información a enviar
     // (también es posible utilizar una cadena de datos)
     data : {
-      id_ref : id_ref
+      id : id
     },
     // especifica si será una petición POST o GET
     type : 'POST',
@@ -586,7 +582,7 @@ var id = id_equipo;
 
  <script type="text/javascript">
 //ventana de nuevo cliente
-    function estado($id_ref){
+    function estado(id){
 
 
     swal({
@@ -594,7 +590,7 @@ var id = id_equipo;
    html:
 '<div class="card-body"> <form action="ml_fn_nueva.php" method="post" name="data" enctype="multipart/form-data">'+
 
-'<input type="number" value="'+id_ref+'" name="swal-input00"  id="swal-input00" class="form-control border-input" >' +//Id Equipo
+'<input type="number" value="'+id+'" name="swal-input00"  id="swal-input00" class="form-control border-input" >' +//Id Equipo
 
 
 '<div class="row">'+
