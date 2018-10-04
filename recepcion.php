@@ -159,14 +159,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                       <input name='test' type='radio' /> Equipos valorados
                     </label>
 
-                    <label class="btn btn-info" id='look-me3'>
-                      <a  /> Nueva notificacion
-                    </label>
+                        <button class="btn btn-info" type="button" onclick="aviso();">Nuevo aviso</button>
+
 
                   
 
                   </form>
                 </div>
+          
+
+
 
 
 
@@ -219,7 +221,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 </div></div></div>
 
 
- <div id='show-me-two'>
+ <div id='show-me-two' style='display:none; border:2px solid #ccc'>
                     <div class="tile">
                       <div class="tile-body">
         
@@ -272,10 +274,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $ubicacion ?></td>
 
                         <td>
+                        <!--
                         <a class="hey" data-gall="myGallery" href="assets/galeria/1.jpg" title="Ver galería"><img src="assets/galeria/gallery.png" alt="img-01" ></a>
                         <a class="hey" data-gall="myGallery" href="assets/galeria/2.jpg"   title="Ver galería"></a>
                         <a class="hey" data-gall="myGallery" href="assets/galeria/3.jpg" type="hidden" title="Ver galería"></a>
-
+-->
 
                         <?php
                         
@@ -320,7 +323,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
   </div></div></div>
 
   
-  <div id='show-me-three'>
+  <div id='show-me-three'  style='display:none; border:2px solid #ccc'>
                     <div class="tile">
                       <div class="tile-body">
        
@@ -396,7 +399,7 @@ if($ubicacion == "Recepcion"){
   </table>
 </div></div></div>
 
-  <div id='show-me-four'>
+  <div id='show-me-three2' style='display:none; border:2px solid #ccc'>
   <div class="tile">
                       <div class="tile-body">
 
@@ -450,9 +453,9 @@ if($ubicacion == "Recepcion"){
 
 if($ubicacion == "Recepcion"){
   echo "
-  <button onclick='devolucion($id), enviarorden($id_equipo);' class='btn btn-simple btn-danger btn-icon edit' title='Devolución'><i class='ti-back-left' ></i></button>
 
   <button onclick='pagar($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Pagar'><i class='ti-money' ></i></button>
+  <button onclick='devolucion($id), enviarorden($id_equipo);' class='btn btn-simple btn-danger btn-icon edit' title='Devolución'><i class='ti-back-left' ></i></button>
 
 
   ";
@@ -471,7 +474,8 @@ if($ubicacion == "Recepcion"){
 
 </div>
 </div>
-</div>
+
+
     </main>
     <!-- Essential javascripts for application to work-->
 
@@ -830,6 +834,314 @@ function actualizar(id){
 
 </script>
 
+
+<script type="text/javascript">
+//ventana orden de servición
+function cambio(id){
+
+
+swal({
+title: 'Cambio',
+html:
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+'<h5>Equipo que deja a cambio</h5>'+
+        '<input type="hidden" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<h5>Equipo que compra</h5>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>ID Venta</label>'+
+  '<select class="form-control form-control-sm" textalign="center" required name="tv_venta" id="tv_venta">'+
+  '<option value="" ></option>'+
+  <?php
+  $ejec7 = mysqli_query($conn, $venta);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["idventa_tv"].'">'.$fila["idventa_tv"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+
+
+
+'<h5>Costos</h5>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+ '<label>Tipo de compra</label>' +
+ '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
+ '<option value=""></option>'+
+ '<option value="Contado">Contado</option>'+
+ '<option value="Apartado">Apartado</option>'+
+ '</select>' +
+ '</div>'+
+'</div>'+
+
+'<div class="col-md-6 costo" style="display:none;">'+
+  '<div class="form-group">'+
+ '<label>Cantidad a abonar</label>' +
+ '<input input type="number" name="costo1" id="costo1" class="form-control border-input">' +
+ '</div>'+
+'</div>'+
+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Abono del cliente</label>'+
+        '<input type="text" name="swal-input21" id="swal-input21" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Valor de su televisión</label>'+
+        '<input type="number" name="swal-input50" id="swal-input50"  required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Costo de tv</label>'+
+        '<input type="text" name="costo" id="costo" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Total a pagar</label>'+
+        '<input type="text" name="swal-input52" id="swal-input52" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Cambiar equipo y generar garantía</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> ',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+ $("#compra").change(function(){
+    if(this.value == 'Apartado'){
+      $(".costo").show();
+    }else{
+      $(".costo").hide();
+    }
+  })
+
+$('#tv_venta').on('change', function(){
+var id = $(this).val();
+
+
+$.ajax({
+  type: 'POST',
+  url: 'obtener_tv_ventas.php',
+  data: {id: id},
+  dataType : 'json',
+})
+.done(function(data){
+
+  $("#modelo").val(data.data.mod);
+  $("#marca").val(data.data.mar);
+  $("#costo").val(data.data.cost);
+
+})
+.fail(function(){
+alert('hubo un error')
+})
+
+})
+
+};
+
+</script>
+
+
+<script type="text/javascript">
+//devolucion
+function devolucion(id){
+
+
+swal({
+title: 'Devolución de equipo',
+html:
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-devolucion.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+'<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+
+
+//Manda Llamar id,nombre y apellido
+'<h5>Al devolver el equipo se cobrará $200.00</h5>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Id equipo</label>'+
+        '<input type="number" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Folio cliente</label>'+
+        '<input type="number" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Nombre(s)</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Celular</label>'+
+        '<input type="text" name="swal-input5" id="swal-input5" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ingreso</label>'+
+        '<input type="text" name="swal-input14" id="swal-input14" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Ubicación</label>'+
+        '<input type="text" name="swal-input18" id="swal-input18" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Servicio</label>'+
+        '<input type="text" name="swal-input17" id="swal-input17" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Devolver equipo</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Devolver equipo',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+};
+
+</script>
+
 <script type="text/javascript">
 //ventana orden de servición
 function orden(id){
@@ -930,6 +1242,107 @@ reverseButtons: true
 </script>
 
 
+<script type="text/javascript">
+//ventana orden de servición
+function pagar(id){
+
+
+swal({
+title: 'Compra',
+html:
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-compra.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+//Manda Llamar id,nombre y apellido
+'<h5>Equipo que nos vende</h5>'+
+        '<input type="hidden" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input12" id="swal-input12" readonly class="form-control border-input">'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Marca</label>'+
+        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+  '<label>Modelo</label>'+
+        '<input type="text" name="swal-input8" id="swal-input8" readonly maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+
+'<h5>Costo</h5>'+
+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Valorada en la cantidad de</label>'+
+        '<input type="text" name="swal-input25" id="swal-input25" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Pagar al cliente y solicitar traslado</Button>'+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> ',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
+ $("#compra").change(function(){
+    if(this.value == 'Apartado'){
+      $(".costo").show();
+    }else{
+      $(".costo").hide();
+    }
+  })
+
+$('#tv_venta').on('change', function(){
+var id = $(this).val();
+
+
+$.ajax({
+  type: 'POST',
+  url: 'obtener_tv_ventas.php',
+  data: {id: id},
+  dataType : 'json',
+})
+.done(function(data){
+
+  $("#modelo").val(data.data.mod);
+  $("#marca").val(data.data.mar);
+  $("#costo").val(data.data.cost);
+
+})
+.fail(function(){
+alert('hubo un error')
+})
+
+})
+
+};
+
+</script>
+
  <script type="text/javascript">
 //ventana actualizar cliente
 function alerta1(id){
@@ -975,12 +1388,18 @@ reverseButtons: true
     swal({
    title: 'Nuevo aviso',
    html:
-   '<div class="col-lg-12"> <form action="funciones/new_aviso.php" method="post" name="data">'+
-   '<label>Folio(s)</label>' +
-   '<input input type="number" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
+   '<div class="col-lg-12"> <form action="" method="post" name="data">'+
+
+   '<label>A quien va dirigido</label>' +
+   '<select class="form-control form-control-sm" required textalign="center" name="receptor" id="receptor"><option value="" ></option><option value="Administrador" >Administrador</option><option value="Jefe de taller">Jefe de taller</option></select>' +
+
+
    '<label>Aviso</label>' +
-   '<input input type="textarea" name="ape" id="ape" style="line-height: 150px; height:150px;" class="form-control border-input maxlength="100" required>' +
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
+   '<textarea type="text" name="aviso" id="aviso" pattern="[A-Za-z0-9 ]+" required title="Sólo letras y números" class="form-control border-input"></textarea>'+
+   
+'<br>'+
+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Enviar notificación</Button>'+
    '</form></div>',
    type: 'warning',
    showCancelButton: true,
@@ -1017,7 +1436,6 @@ reverseButtons: true
    '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
    '</form></div>',
-   type: 'warning',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
    cancelButtonColor: '#d33',
