@@ -161,6 +161,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
                         <button class="btn btn-info" type="button" onclick="aviso();">Nuevo aviso</button>
 
+                        <button class="btn btn-success" type="button" onclick="location.href='recepcion_ventas.php'" >Ventas</button>
 
                   
 
@@ -1388,7 +1389,7 @@ reverseButtons: true
     swal({
    title: 'Nuevo aviso',
    html:
-   '<div class="col-lg-12"> <form action="" method="post" name="data">'+
+   '<div class="col-lg-12"> <form action="recepcion_fn_aviso.php" method="post" name="data">'+
 
    '<label>A quien va dirigido</label>' +
    '<select class="form-control form-control-sm" required textalign="center" name="receptor" id="receptor"><option value="" ></option><option value="Administrador" >Administrador</option><option value="Jefe de taller">Jefe de taller</option></select>' +
