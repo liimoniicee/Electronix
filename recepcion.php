@@ -776,6 +776,7 @@ function enviarorden(id){
        $("#swal-input21").val(data.data.abono);
        $("#swal-input22").val(data.data.restante);
        $("#swal-input23").val(data.data.costo_total);
+       $("#swal-input50").val(data.data.valor);
        $("#swal-input24").val(data.data.estado);
 
      },
@@ -942,7 +943,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Valor de su televisión</label>'+
-        '<input type="number" name="swal-input50" id="swal-input50"  required placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+        '<input type="number" name="swal-input50" id="swal-input50"  onchange="operaciones();"  placeholder="Escribir con punto decimal" class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -951,14 +952,14 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo de tv</label>'+
-        '<input type="text" name="costo" id="costo" readonly class="form-control border-input">'+
+        '<input type="text" name="costo" id="costo"  readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Total a pagar</label>'+
-        '<input type="text" name="swal-input52" id="swal-input52" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input52" id="swal-input52" required readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+

@@ -147,6 +147,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
       <th data-field="fecha_ingreso" data-sortable="true">Entrada</th>
       <th data-field="fecha_entregar" data-sortable="true">Etiqueta 1</th>
       <th data-field="ubicacion" data-sortable="true">Etiqueta 2</th>
+
       <th data-field="accion" data-sortable="true">Acción</th>
       </thead>
       <?php
@@ -175,6 +176,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
               <td><?php echo $fecha_entrada ?></td>
               <td><?php echo $etiqueta_1 ?></td>
               <td><?php echo $etiqueta_2 ?></a></td>
+
               <td>
               <button onclick="estado(<?php echo $id?>), refaccion(<?php echo $id?>);" title="Cambiar estado" class="btn btn-simple btn-warning btn-sm"><i class="ti-star"></i></button>
               </td>
@@ -349,7 +351,8 @@ $.ajax({
       $("#swal-input7").val(data.data.fecha_entrada);
       $("#swal-input8").val(data.data.etiqueta_1);
       $("#swal-input9").val(data.data.etiqueta_2);
-      $("#swal-inpu10").val(data.data.link);
+      $("#swal-input10").val(data.data.link);
+
 
 
 
@@ -588,9 +591,9 @@ var id = id_equipo;
     swal({
    title: 'Cambiar estado',
    html:
-'<div class="card-body"> <form action="ml_fn_nueva.php" method="post" name="data" enctype="multipart/form-data">'+
+'<div class="card-body"> <form action="ml_fn_refaccion.php" method="post" name="data" enctype="multipart/form-data">'+
 
-'<input type="number" value="'+id+'" name="swal-input00"  id="swal-input00" class="form-control border-input" >' +//Id Equipo
+'<input type="hidden" value="'+id+'" name="swal-input00"   id="swal-input00" class="form-control border-input" >' +//Id Equipo
 
 
 '<div class="row">'+
@@ -621,7 +624,7 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Etiqueta 1</label>'+
-        '<input type="text" name="swal-input3"  id="swal-input3" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input8"  id="swal-input8" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 '</div>'+
@@ -630,14 +633,14 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Etiqueta 2</label>'+
-        '<input type="text" name="swal-input4"  id="swal-input4" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input9"  id="swal-input9" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Cantidad en stock</label>'+
-        '<input type="number" name="swal-input5"  id="swal-input5" required class="form-control border-input"></input>'+
+        '<input type="number" name="swal-input3"  id="swal-input3" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 '</div>'+
@@ -647,21 +650,25 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Ubicacion</label>'+
-        '<input type="text" name="swal-input6"  id="swal-input6" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Caja 25, Pie 35"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input4 "  id="swal-input4" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Caja 25, Pie 35"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Precio</label>'+
-        '<input type="number" name="swal-input7"  id="swal-input7" required class="form-control border-input"></input>'+
+        '<input type="number" name="swal-input6"  id="swal-input6" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 '</div>'+
 
 '<div class="col-lg-12">'+
+'<label>Estado</label>'+
+'<select class="form-control form-control-sm" required textalign="center" name="swal-input5" id="swal-input5"><option value="" ></option><option value="Publicada" >Publicada</option><option value="Vendida">Vendida</option><option value="No publicada">No publicada</option></select>' +
+
+
         '<label>Link</label>'+
-        '<input type="text" name="swal-input8"  id="swal-input8" required  class="form-control border-input"></input></br>'+
+        '<input type="text" name="swal-input10"  id="swal-input10" required  class="form-control border-input"></input></br>'+
 /*
 
         '<iframe src="https://www.mercadolibre.com.mx">'+
