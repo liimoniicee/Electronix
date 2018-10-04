@@ -166,6 +166,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $total ?></td>
                         <td><?php echo $ubicacion ?></td>
                         <td>
+                        <button onclick='reporte(<?php echo "$id_equipo" ; ?>), enviarreporte(<?php echo "$id_equipo" ; ?>);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
 
 <?php
 
@@ -178,7 +179,6 @@ if($ubicacion == "Recepcion"){
 
   ";
 }else{  echo "                        
-<button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
         ";
 }
 ?>
