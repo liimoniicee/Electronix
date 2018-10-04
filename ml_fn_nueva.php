@@ -21,7 +21,6 @@ VALUES ('$link','$nombre', '$marca', '$modelo', '$cantidad','$ubicacion', 'Publi
 $res = $conn->query($sql);
 
 
-$res = $conn->query($sql);
 
 if (!$res) {
    printf("Errormessage: %s\n", $conn->error);

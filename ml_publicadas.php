@@ -8,7 +8,7 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-$venta="SELECT * from refacciones_tv where estado = 'Publicada';";
+$publicadas="SELECT * from refacciones_tv where estado = 'Publicada';";
 
 $clientes="SELECT * from clientes order by id_folio desc ";
 $avisos = "SELECT

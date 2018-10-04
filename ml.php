@@ -13,6 +13,10 @@ $var_clave= $_SESSION['clave'];
 $solicitud_taller = "SELECT *
 FROM reparar_tv
 WHERE estado='Necesita refaccion'";
+
+$publicadas="SELECT * from refacciones_tv where estado = 'Publicada';";
+
+
 $avisos = "SELECT
 *
 FROM avisos where tipo= 'Mercado' and estado='pendiente' order by fecha desc;";
@@ -119,8 +123,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
 
           <div class="col-lg-12">
             <p class="bs-component">
-              <button class="btn btn-info" type="button" id='watch-me' onclick="nueva();" >Nueva publicacion</button>
-              <button class="btn btn-success" type="button" onclick="location='ml_publicadas.php'">Publicadas</button>
+              <button class="btn btn-info" type="button"  onclick="nueva();" >Nueva publicacion</button>
+              <button class="btn btn-success" type="button" id='watch-me'>Publicadas</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Vendidas</button>
               <button class="btn btn-warning" type="button" id='see-me'>Solicitudes de taller</button>
 
@@ -131,6 +135,62 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
 
         <div id='show-me'>
 
+
+      <table id="a-tables" class="table table-dark table-hover table-responsive">
+      <thead>
+      <th data-field="folio" data-sortable="true">Nombre</th>
+      <th data-field="equipo" data-sortable="true">Marca</th>
+      <th data-field="falla" data-sortable="true">Modelo</th>
+      <th data-field="fecha_ingreso" data-sortable="true">Stock</th>
+      <th data-field="fecha_entregar" data-sortable="true">Ubicación</th>
+      <th data-field="ubicacion" data-sortable="true">Precio</th>
+      <th data-field="fecha_ingreso" data-sortable="true">Entrada</th>
+      <th data-field="fecha_entregar" data-sortable="true">Etiqueta 1</th>
+      <th data-field="ubicacion" data-sortable="true">Etiqueta 2</th>
+      <th data-field="accion" data-sortable="true">Acción</th>
+      </thead>
+      <?php
+      $ejec3 = mysqli_query($conn, $publicadas);
+      while($fila=mysqli_fetch_array($ejec3)){
+     $id_ref           = $fila['Id_refacciones'];
+      $nombre           = $fila['nombre'];
+      $marca           = $fila['marca'];
+      $modelo          = $fila['modelo'];
+      $cantidad        = $fila['cantidad'];
+      $ubicacion        = $fila['ubicacion'];
+      $precio        = $fila['precio'];
+      $fecha_entrada           = $fila['fecha_entrada'];
+      $etiqueta_1          = $fila['etiqueta_1'];
+      $etiqueta_2        = $fila['etiqueta_2'];
+      $link        = $fila['link'];
+
+ ;
+
+
+      ?>
+          <tr>
+         
+              <td><?php echo $nombre ?></td>
+              <td><?php echo $marca ?></td>
+              <td><?php echo $modelo ?></td>
+              <td><?php echo $cantidad ?></td>
+              <td><?php echo $ubicacion ?></td>
+              <td><?php echo $precio ?></a></td>
+              <td><?php echo $fecha_entrada ?></td>
+              <td><?php echo $etiqueta_1 ?></td>
+              <td><?php echo $etiqueta_2 ?></a></td>
+              <td>
+              <button onclick="estado(<?php echo $id_ref?>), refaccion(<?php echo $id_ref?>);" title="Cambiar estado" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-star"></i></button>
+              </td>
+
+
+
+      </tr>
+      <?php } ?>
+      <tbody></br>
+      Equipos pendientes
+      </tbody>
+      </table>
         </div>
 
         </div>
@@ -264,6 +324,59 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
 <script>
 
 //Script para mandar ID para generar la orden
+function refaccion(id_ref){
+$.ajax({
+
+    // la URL para la petición
+    url : 'ml_fn_refaccion.php',
+    // la información a enviar
+    // (también es posible utilizar una cadena de datos)
+    data : {
+      id_ref : id_ref
+    },
+    // especifica si será una petición POST o GET
+    type : 'POST',
+    // el tipo de información que se espera de respuesta
+    dataType : 'json',
+    // código a ejecutar si la petición es satisfactoria;
+    // la respuesta es pasada como argumento a la función
+    success : function(data) {
+      //Manda Llamar id,nombre y apellido
+      $("#swal-input00").val(data.data.Id_refacciones);
+      $("#swal-input0").val(data.data.nombre);
+      $("#swal-input1").val(data.data.marca);
+      $("#swal-input2").val(data.data.modelo);
+      $("#swal-input3").val(data.data.cantidad);
+      $("#swal-input4").val(data.data.ubicacion);
+      $("#swal-input5").val(data.data.estado);
+      $("#swal-input6").val(data.data.precio);
+      $("#swal-input7").val(data.data.fecha_entrada);
+      $("#swal-input8").val(data.data.etiqueta_1);
+      $("#swal-input9").val(data.data.etiqueta_2);
+      $("#swal-inpu10").val(data.data.link);
+
+
+
+
+    },
+    // código a ejecutar si la petición falla;
+    // son pasados como argumentos a la función
+    // el objeto de la petición en crudo y código de estatus de la petición
+    error : function(xhr, status) {
+
+    },
+    // código a ejecutar sin importar si la petición falló o no
+    complete : function(xhr, status) {
+
+    }
+});
+}
+
+</script>
+
+<script>
+
+//Script para mandar ID para generar la orden
 function mod_solicitud_pieza(id_equipo){
 $.ajax({
 
@@ -376,14 +489,14 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
   '<label>Nombre de la pieza</label>'+
-'<input type="text" name="swal-input0"  id="swal-input0" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input" >' +//Id Equipo
+'<input type="text" name="swal-input0"  id="swal-input0" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Tarjeta Main"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input" >' +//Id Equipo
 '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Marca</label>'+
-        '<input type="text" name="swal-input1"  id="swal-input1" pattern="[A-Za-z]+" title="Sólo letras" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input1"  id="swal-input1" pattern="[A-Za-z ]+" placeholder="Ejem. Samsung"  title="Sólo letras" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 '</div>'+
@@ -393,14 +506,14 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Modelo</label>'+
-        '<input type="text" name="swal-input2"  id="swal-input2" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input2"  id="swal-input2" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Etiqueta 1</label>'+
-        '<input type="text" name="swal-input3"  id="swal-input3" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input3"  id="swal-input3" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 '</div>'+
@@ -409,13 +522,13 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Etiqueta 2</label>'+
-        '<input type="text" name="swal-input4"  id="swal-input4" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input4"  id="swal-input4" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
 '<div class="form-group">'+
-        '<label>Cantidad</label>'+
+        '<label>Cantidad en stock</label>'+
         '<input type="number" name="swal-input5"  id="swal-input5" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
@@ -426,7 +539,7 @@ var id = id_equipo;
 '<div class="col-md-6">'+
 '<div class="form-group">'+
         '<label>Ubicacion</label>'+
-        '<input type="text" name="swal-input6"  id="swal-input6" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="swal-input6"  id="swal-input6" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Caja 25, Pie 35"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
         '</div>'+
 '</div>'+
 
@@ -440,7 +553,7 @@ var id = id_equipo;
 
 '<div class="col-lg-12">'+
         '<label>Link</label>'+
-        '<input type="text" name="swal-input8"  id="swal-input8" required class="form-control border-input"></input></br>'+
+        '<input type="text" name="swal-input8"  id="swal-input8" required  class="form-control border-input"></input></br>'+
 /*
 
         '<iframe src="https://www.mercadolibre.com.mx">'+
@@ -469,6 +582,120 @@ var id = id_equipo;
 
   };
   </script>
+
+
+ <script type="text/javascript">
+//ventana de nuevo cliente
+    function estado($id_ref){
+
+
+    swal({
+   title: 'Cambiar estado',
+   html:
+'<div class="card-body"> <form action="ml_fn_nueva.php" method="post" name="data" enctype="multipart/form-data">'+
+
+'<input type="number" value="'+id_ref+'" name="swal-input00"  id="swal-input00" class="form-control border-input" >' +//Id Equipo
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+  '<label>Nombre de la pieza</label>'+
+'<input type="text" name="swal-input0"  id="swal-input0" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Tarjeta Main"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input" >' +//Id Equipo
+'</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="swal-input1"  id="swal-input1" pattern="[A-Za-z ]+" placeholder="Ejem. Samsung"  title="Sólo letras" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="swal-input2"  id="swal-input2" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Etiqueta 1</label>'+
+        '<input type="text" name="swal-input3"  id="swal-input3" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Etiqueta 2</label>'+
+        '<input type="text" name="swal-input4"  id="swal-input4" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Cantidad en stock</label>'+
+        '<input type="number" name="swal-input5"  id="swal-input5" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Ubicacion</label>'+
+        '<input type="text" name="swal-input6"  id="swal-input6" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Caja 25, Pie 35"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+'<div class="form-group">'+
+        '<label>Precio</label>'+
+        '<input type="number" name="swal-input7"  id="swal-input7" required class="form-control border-input"></input>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="col-lg-12">'+
+        '<label>Link</label>'+
+        '<input type="text" name="swal-input8"  id="swal-input8" required  class="form-control border-input"></input></br>'+
+/*
+
+        '<iframe src="https://www.mercadolibre.com.mx">'+
+'</iframe>'+
+'</div>'+
+*/
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> ',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+  $("#swal-input4").change(function(){
+    if(this.value != 'no encontrada'){
+      $(".entradas").show();
+    }else{
+      $(".entradas").hide();
+    }
+  })
+
+  };
+  </script>
+
+
 
 
   </body>
