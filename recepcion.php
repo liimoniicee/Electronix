@@ -754,7 +754,7 @@ function enviarorden(id){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
-       $("#swal-input00").val(data.data.id);
+       $("#swal-input0").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
@@ -1156,7 +1156,7 @@ title: 'Nueva orden de servicio',
 html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 
-'<input type="text" value="'+id+'" id="swal-input0" name="swal-input1" class="form-control border-input" >' +
+'<input type="text" value="'+id+'" id="swal-input0" name="swal-input0" class="form-control border-input" >' +
 '<input type="hidden" name="swal-input1" id="swal-input1" class="form-control border-input" >' +
 '<input type="hidden" name="swal-input2" id="swal-input2" class="form-control border-input" >' +
 
