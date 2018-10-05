@@ -1,4 +1,4 @@
-<?php   
+<?php
 session_start();
 include 'fuctions.php';
 include 'conexion.php';
@@ -21,31 +21,39 @@ $costo_total= $_POST ['costo'];
 
 $tipo = $_POST ['compra'];
 $abono = $_POST ['costo1'];
-
+$diahoy = date("Y-m-d");
+$horahoy = date("H:i:s");
 
 
 
 
 if($tipo == 'Apartado'){
-  
+
   $sql1 = "UPDATE ventas_tv set estado ='Apartada' , ubicacion='Pendiente traslado' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' , abono='$abono' WHERE idventa_tv = '$idventa';";
   $res = $conn->query($sql1);
 
- 
+
 $sql4 = "INSERT into traslado(estado,ubicacion,destino,id_equipo,id_folio,tipo) VALUES('Pendiente','Recepcion','Almacen','$idventa','$id','Venta');";
 $res4 = $conn->query($sql4);
 
 }else{
- 
-  
-  $sql2 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' WHERE idventa_tv = '$idventa';";
-  $res2 = $conn->query($sql2);
 
- 
+   /*$ingreso = "INSERT INTO ingresos(fecha_ingreso) VALUES(CURRENT_TIMESTAMP)";
+   $resul = $conn->query($ingreso);
+   $consu = "select id_ingresos, fecha_ingreso from ingresos ORDER BY fecha_ingreso desc LIMIT 1";
+   $resu = $conn->query($consu);
+   if($resu->num_rows > 0){
+    while($row = $resu->fetch_assoc()) {
+      $idingreso   =  $row["id_ingresos"];
+    }*/
+  $sql2 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' ingresos_id_ingresos='$idingreso' WHERE idventa_tv = '$idventa';";
+  $res2 = $conn->query($sql2);
+//}
+
 
 }
 
-  
+
 //checar la validacion(no funciona el else:v)
 
 
@@ -54,7 +62,7 @@ $res4 = $conn->query($sql4);
 //inserccion
   //$n_nombre=$_POST['nombre'];
   //$a_apellido=$_POST['apellido'];
-  
+
 
   require 'assets/fpdf/fpdf.php';
     $pdf = new FPDF();
@@ -138,7 +146,7 @@ $res4 = $conn->query($sql4);
   $pdf->SetXY(53,115);
   $pdf->Write(5,$serie);
 
-//Falla 
+//Falla
 
 //servicio y accesorios.
   $pdf->SetFont('Arial','',12);
@@ -149,14 +157,14 @@ $res4 = $conn->query($sql4);
   $pdf->SetXY(62,130);
   $pdf->Write(5,$costo_total);
 
-  
 
-//politicas 
+
+//politicas
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
-falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de la presente hasta los 
-seis meses siguientes. 
+$pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo
+falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de la presente hasta los
+seis meses siguientes.
 
 "));
 
