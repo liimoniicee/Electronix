@@ -163,11 +163,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
                         <button class="btn btn-success" type="button" onclick="location.href='recepcion_ventas.php'" >Ventas</button>
 
-                  
+
 
                   </form>
                 </div>
-          
+
 
 
 
@@ -208,10 +208,12 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td width="14%"><?php echo $cel ?></td>
                         <td width="14%"><?php echo $cor ?></td>
                         <td width="14%">
-                        <a href="#" onclick="alerta1(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" title="Actualizar cliente" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
-                        <a href="#" onclick="orden(<?php echo $id ?>), enviarorden(<?php echo $id ?>);" title="Nueva orden"><i class="btn-sm btn-success ti-plus"></i></a>
-                        <a href="recepcion_historial_cliente.php?id=<?php echo $id; ?>"  title="Historial"><i class="btn-sm btn-secondary ti-agenda"></i></a>
-                        </td>
+                          <?php
+                          echo "
+                        <a href='#' onclick='alerta1($id), enviarmod( $id);' title='Actualizar cliente' ><i class='btn-sm btn-warning ti-pencil-alt'></i></a>
+                        <a href='#' onclick='orden($id), enviarmod( $id);' title='Nueva orden'><i class='btn-sm btn-success ti-plus'></i></a>
+                        <a href='recepcion_historial_cliente.php?id=$id'  title='Historial'><i class='btn-sm btn-secondary ti-agenda'></i></a>
+                      </td>"; ?>
 
           </tr>
         <?php } ?>
@@ -225,7 +227,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
  <div id='show-me-two' style='display:none; border:2px solid #ccc'>
                     <div class="tile">
                       <div class="tile-body">
-        
+
 <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
@@ -282,15 +284,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 -->
 
                         <?php
-                        
+
                         if($ubicacion == "Recepcion"){
-                          
+
                           if($servicio =="Garantia"){
                             echo "
                             <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
 
                             <button onclick='traslado($id), enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon edit' title='Solicitar traslado'><i class='ti-truck' ></i></button>
-  
+
                             <button onclick='entregar($id), enviarorden($id_equipo);' class='btn btn-simple btn-danger btn-icon edit' title='Entregar equipo'><i class='ti-agenda' ></i></button>
 
                             ";
@@ -305,11 +307,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                             ";
                           }
 
-                      }else{  echo "                        
-                        
-                        
+                      }else{  echo "
+
+
                     <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
-                    
+
                     ";
                     }
                       ?>
@@ -323,11 +325,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
   </table>
   </div></div></div>
 
-  
+
   <div id='show-me-three'  style='display:none; border:2px solid #ccc'>
                     <div class="tile">
                       <div class="tile-body">
-       
+
                       <table id="a-tables" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
@@ -386,7 +388,7 @@ if($ubicacion == "Recepcion"){
 
 
   ";
-}else{  echo "                        
+}else{  echo "
 <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
         ";
 }
@@ -460,7 +462,7 @@ if($ubicacion == "Recepcion"){
 
 
   ";
-}else{  echo "                        
+}else{  echo "
         ";
 }
 ?>
@@ -1154,9 +1156,9 @@ title: 'Nueva orden de servicio',
 html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 
-'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" >' +
-'<input type="hidden" name="swal-input1"  id="swal-input1" class="form-control border-input" >' +
-'<input type="hidden" name="swal-input2"  id="swal-input2" class="form-control border-input" >' +
+'<input type="text" value="'+id+'" class="form-control border-input" >' +
+'<input type="hidden" name="swal-input1" id="swal-input1" class="form-control border-input" >' +
+'<input type="hidden" name="swal-input2" id="swal-input2" class="form-control border-input" >' +
 
 '<div class="row">'+
 '<div class="col-md-6">'+
@@ -1398,7 +1400,7 @@ reverseButtons: true
 
    '<label>Aviso</label>' +
    '<textarea type="text" name="aviso" id="aviso" pattern="[A-Za-z0-9 ]+" required title="Sólo letras y números" class="form-control border-input"></textarea>'+
-   
+
 '<br>'+
 
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Enviar notificación</Button>'+
@@ -1545,10 +1547,10 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Destino</label>'+
-        
+
         '<select class="form-control form-control-sm" textalign="center" required name="destino" id="destino"><option value="" >'+
         '</option><option value="Almacen" >Almacen</option>'+
-        '<option value="Cliente">Cliente</option>'+ 
+        '<option value="Cliente">Cliente</option>'+
         '</select>' +
     '</div>'+
 '</div>'+
@@ -1557,7 +1559,7 @@ html:
 '<div class="row">'+
 '<div class="col-md-12">'+
   '<div class="form-group">'+
-  
+
   '<label>Direccion</label>'+
         '<textarea type="text" required name="dire" dire="dire" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
 
@@ -1830,6 +1832,3 @@ reverseButtons: true
 
 
 </html>
-
-
-
