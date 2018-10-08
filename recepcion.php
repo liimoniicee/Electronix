@@ -1291,7 +1291,7 @@ html:
 '<div class="col-md-12">'+
   '<div class="form-group">'+
         '<label>Valorada en la cantidad de</label>'+
-        '<input type="text" name="swal-input25" id="swal-input25" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input50" id="swal-input50" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 

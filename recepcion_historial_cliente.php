@@ -251,7 +251,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                           <td>
 
                         <?php
-                        if($estado == "En reparacion"){
+                        if($estado == "En reparacion" or $estado=="Diagnosticada"){
                           echo "
 
                           <button onclick='abono($id), enviarorden($id_equipo);'class='btn btn-simple btn-success btn-icon' title='Ingresa abono' ><i class='ti-money'></i></button>
@@ -584,7 +584,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
             '<input type="number" name="swal-input21" id="swal-input21"  readonly class="form-control border-input">'+
 
             '<label>Cantidad que abona</label>'+
-            '<input type="number" name="swal-input25" id="swal-input25" equired placeholder="Escribir con punto decimal" onkeypress="operaciones();" class="form-control border-input">'+
+            '<input type="number" name="swal-input25" id="swal-input25" equired placeholder="Escribir con punto decimal" onchange="operaciones();" class="form-control border-input">'+
 
             '<label>Cantidad total abonada</label>'+
             '<input type="number" name="swal-input26" id="swal-input26"  readonly class="form-control border-input">'+
@@ -644,9 +644,9 @@ function operaciones()
   var abonot =document.getElementById('swal-input26').value;
 
 
-  var suma =parseInt(abonada)+parseInt(abono);
+   suma =parseInt(abonada)+parseInt(abono);
 
-  var totalt =parseInt(document.getElementById('swal-input26').value= suma);
+   totalt =parseInt(document.getElementById('swal-input26').value= suma);
 
 
 }
