@@ -881,7 +881,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
   '<label>ID Venta</label>'+
-  '<select class="form-control form-control-sm" textalign="center" required name="tv_venta" id="tv_venta">'+
+  '<select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">'+
   '<option value="" ></option>'+
   <?php
   $ejec7 = mysqli_query($conn, $venta);
@@ -917,7 +917,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
  '<label>Tipo de compra</label>' +
- '<select class="form-control form-control-sm" textalign="center" required name="compra" id="compra">'+
+ '<select class="form-control form-control-sm" textalign="center" onchange="operaciones();"  required name="compra" id="compra">'+
  '<option value=""></option>'+
  '<option value="Contado">Contado</option>'+
  '<option value="Apartado">Apartado</option>'+
@@ -928,7 +928,7 @@ html:
 '<div class="col-md-6 costo" style="display:none;">'+
   '<div class="form-group">'+
  '<label>Cantidad a abonar</label>' +
- '<input input type="number" name="costo1" id="costo1" class="form-control border-input">' +
+ '<input input type="number" name="costo1" id="costo1" value="0" onchange="operaciones();" class="form-control border-input">' +
  '</div>'+
 '</div>'+
 
@@ -938,14 +938,14 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Abono del cliente</label>'+
-        '<input type="text" name="swal-input21" id="swal-input21" readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input21" id="swal-input21"  readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Valor de su televisión</label>'+
-        '<input type="number" name="swal-input50" id="swal-input50"  onchange="operaciones();"  placeholder="Escribir con punto decimal" class="form-control border-input">'+
+        '<input type="number" name="swal-input50" id="swal-input50" readonly  placeholder="Escribir con punto decimal" class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -954,7 +954,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo de tv</label>'+
-        '<input type="text" name="costo" id="costo"  readonly class="form-control border-input">'+
+        '<input type="text" name="costo" id="costo" readonly  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -1822,6 +1822,27 @@ reverseButtons: true
 })
 
 };
+
+</script>
+
+<script type="text/javascript">
+
+function operaciones()
+{
+  var abono =document.getElementById('swal-input21').value;
+  var valor =document.getElementById('swal-input50').value;
+  var costo =document.getElementById('costo').value;
+  var costo1 =document.getElementById('costo1').value;
+
+
+   suma =parseInt(abono)+parseInt(valor)+parseInt(costo1);
+
+   sub =parseInt(costo)-parseInt(suma);
+
+   total =parseInt(document.getElementById('swal-input52').value= sub);
+
+}
+
 
 </script>
 

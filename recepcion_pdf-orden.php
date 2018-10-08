@@ -173,9 +173,9 @@ if($resu->num_rows > 0){
 //politicas
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,'No nos hacemos responsables por equipos olvidados, tanto como los que estan reparados y los
-que no, en caso de ser un servicio a domicilio, no se le cobrara por la revision solo si reparamos
-su equipo, en caso de que no desee una reparacion, se le cobrara $200.00 por el traslado');
+$pdf->Write(6,utf8_decode('No nos hacemos responsables por equipos olvidados, tanto como los que estan reparados y los
+que no, en caso de ser un servicio a domicilio, no se le cobrara por la revision solo sí reparamos
+su equipo, en caso de que no desee una reparación, se le cobrara $200.00'));
 
 //footer :v
 $pdf->SetFont('Arial','',12);

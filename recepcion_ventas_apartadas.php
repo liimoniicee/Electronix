@@ -463,9 +463,9 @@ function operaciones()
   var abono =document.getElementById('swal-input4').value;
 
 
-  var suma =parseInt(abonada)+parseInt(abono);
+   suma =parseInt(abonada)+parseInt(abono);
 
-  var totalt =parseInt(document.getElementById('swal-input5').value= suma);
+   totalt =parseInt(document.getElementById('swal-input5').value= suma);
 
 
 }

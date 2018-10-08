@@ -1126,12 +1126,12 @@ function operaciones()
   var mano =document.getElementById('swal-input20').value;
   var abono =document.getElementById('swal-input21').value;
 
-  var suma =parseInt(refaccion)+parseInt(mano);
+   suma =parseInt(refaccion)+parseInt(mano);
 
-  var total =parseInt(suma)-parseInt(abono);
+   total =parseInt(suma)-parseInt(abono);
 
-  var subtotal =parseInt(document.getElementById('swal-input22').value= suma);
-  var totalt =parseInt(document.getElementById('swal-input23').value= total);
+   subtotal =parseInt(document.getElementById('swal-input22').value= suma);
+   totalt =parseInt(document.getElementById('swal-input23').value= total);
 
 
 }

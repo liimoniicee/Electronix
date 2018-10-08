@@ -148,8 +148,8 @@ $pdf->Write(6,$valor);
 //politicas 
 $pdf->SetFont('Arial','',10);
 $pdf->SetXY(17,182);
-$pdf->Write(6,utf8_decode("Este documento declara que el cliente está de acuerdo con la venta de su television y ya no podrá reclamar
-posteriormente despues de haber recibido este documento. 
+$pdf->Write(6,utf8_decode("Este documento declara que el cliente está de acuerdo con la venta de su televisión y ya no podrá reclamar
+posteriormente despues de haber recibido el dinero y este documento. 
 
 "));
 
