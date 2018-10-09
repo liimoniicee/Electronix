@@ -1224,24 +1224,41 @@ html:
 
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
-
+'<Button type="submit" onclick="location.href="recepcion.php"" class= "btn btn-info btn-fill btn-wd" >Registrar y generar reporte</Button>'+
 
 
 '</form></div>',
+
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
-confirmButtonText: 'Registrar y generar reporte',
+confirmButtonText:  '</form> Registrar y generar reporte',
 cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
 
+ }).then(function (isConfirm) {
+   if(isConfirm){swal(
+'Orden registrada!',
+'Éxito al registrar',
+'success'
+)
+}if(isConfirm =='cancel'){
+  swal(
+'Orden culera!',
+'Éxito al registrar',
+'success'
+)
+
+}
 
 
-})
+
+
+}).catch(swal.noop);
+
 };
 </script>
 

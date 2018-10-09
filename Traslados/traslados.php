@@ -271,8 +271,23 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                             <td><?php echo $dest ?></td>
                             <td><?php echo $fech ?></td>
                             <td>
+
                     <button onclick="swal_enruta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
-                    <button onclick="borrar_enruta(<?php echo $id ?>)" class="btn btn- btn-danger btn-icon remove"><i class="ti-close"></i></a>
+                    <?php
+
+if($dest == "Cliente"){
+
+    echo "
+    <button onclick='borrar_enruta($id)'class='btn btn- btn-danger btn-icon remove'><i class='ti-close'></i></a>
+
+    ";
+}else{  echo "
+
+
+
+";
+}
+?>
                     </td>
                     </tr>
                     <?php } ?>
