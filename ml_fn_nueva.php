@@ -22,13 +22,13 @@ $modelo = $_POST['modelo'];
 $etiqueta1 = $_POST['etiq1'];
 $etiqueta2 = $_POST['etiq2'];
 $ubicacion = $_POST['ubicacion'];
-
+$estado = $_POST['estado'];
 $precio = $_POST['precio'];
 $link = $_POST['link'];
 
 
 $sql = "INSERT INTO refacciones_tv(tipo, marca, modelo,ubicacion, estado, precio, etiqueta_1,etiqueta_2, link, id_personal)
-VALUES ('$tipo', '$marca', '$modelo', '$ubicacion', 'Publicada', '$precio','$etiqueta1','$etiqueta2','$link','$var_clave');";
+VALUES ('$tipo', '$marca', '$modelo', '$ubicacion', '$estado', '$precio','$etiqueta1','$etiqueta2','$link','$var_clave');";
 
 
 $res = $conn->query($sql);

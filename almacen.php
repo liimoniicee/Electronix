@@ -434,6 +434,10 @@ reverseButtons: true
 '<input input type="file"  id="img5"  name="img5" accept="image/png/jpg" class="form-control border-input" >'+
   '</div>'+
 
+  '<div class="col-md-6">'+
+'<label>Estado</label>' +
+'<select class="form-control form-control-sm" required textalign="center" name="estado" id="estado"><option value="" ></option><option value="Publicada" >Publicada</option><option value="Pendiente">Pendiente</option></select>' +
+  '</div>'+
 '</div></br>'+
 
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
