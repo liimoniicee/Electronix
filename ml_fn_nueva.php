@@ -23,26 +23,26 @@ $etiqueta2 = $_POST['etiq2'];
 $precio = $_POST['precio'];
 
 
-$micarpeta = "assets/galeria/almacen/$marca/$modelo";
+$micarpeta = "assets/galeria/almacen/$marca/$modelo/";
 if (!file_exists($micarpeta)) {
     mkdir($micarpeta, 0777, true);
 }
 
 
 $imagen1 = $_FILES['img1']['tmp_name'];
-$destino = "assets/galeria/almacen/$marca/$modelo". $_FILES['img1']['name'];
+$destino = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img1']['name'];
 
 $imagen2 = $_FILES['img2']['tmp_name'];
-$destino2 = "assets/galeria/almacen/$marca/$modelo". $_FILES['img2']['name'];
+$destino2 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img2']['name'];
 
 $imagen3 = $_FILES['img3']['tmp_name'];
-$destino3 = "assets/galeria/almacen/$marca/$modelo". $_FILES['img3']['name'];
+$destino3 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img3']['name'];
 
 $imagen4 = $_FILES['img4']['tmp_name'];
-$destino4 = "assets/galeria/almacen/$marca/$modelo". $_FILES['img4']['name'];
+$destino4 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img4']['name'];
 
 $imagen5 = $_FILES['img5']['tmp_name'];
-$destino5 = "assets/galeria/almacen/$marca/$modelo". $_FILES['img5']['name'];
+$destino5 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img5']['name'];
 
 
 move_uploaded_file($imagen1, $destino);
