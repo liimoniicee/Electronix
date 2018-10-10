@@ -385,7 +385,7 @@ reverseButtons: true
 '<div class="row">'+
 '<div class="col-md-6">'+
         '<label>Etiqueta 2</label>'+
-        '<input type="text" id="etiq2" name="etiq2"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" id="etiq2" name="etiq2"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" class="form-control border-input"></input>'+
 '</div>'+
 '<div class="col-md-6">'+
         '<label>Ubicacion</label>'+
