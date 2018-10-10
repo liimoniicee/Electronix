@@ -389,42 +389,41 @@ reverseButtons: true
 '</div>'+
 '<div class="col-md-6">'+
         '<label>Ubicacion</label>'+
-        '<input type="text" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Caja 25, Pie 35"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input name="ubicacion" id="ubicacion" type="text" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Caja 25, Pie 35"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
 '</div>'+
 '</div>'+
 
 '<div class="row">'+
-'<div class="col-md-6">'+
-        '<label>Precio</label>'+
-        '<input type="number"   id="precio" name="precio" required class="form-control border-input"></input>'+
-        '</div>'+
-        '<div class="col-md-6">'+
+'<div class="col-md-6">'+  
         '<label>Img delantera</label>' +
         '<input input type="file"  id="img1" name="img1" required accept="image/png/jpg" class="form-control border-input" required>'+
-'</div>'+
   '</div>'+
 
-'<div class="row">'+
 '<div class="col-md-6">'+
 '<label>img trasera</label>' +
 '<input input type="file"  id="img2" name="img2"  accept="image/png/jpg" class="form-control border-input" >'+
   '</div>'+
+  '</div>'+
+
+  '<div class="row">'+
 '<div class="col-md-6">'+
 '<label>Img etiqueta</label>' +
 '<input input type="file" id="img3" name="img3"  accept="image/png/jpg" class="form-control border-input" >'+
   '</div>'+
-'</div>'+
 
-'<div class="row">'+
 '<div class="col-md-6">'+
 '<label>Img tv</label>' +
 '<input input type="file" id="img4" name="img4"  accept="image/png/jpg" class="form-control border-input" >'+
   '</div>'+
+  '</div>'+
+
+'<div class="row">'+
 '<div class="col-md-6">'+
 '<label>Img etiqueta tv</label>' +
 '<input input type="file"  id="img5"  name="img5" accept="image/png/jpg" class="form-control border-input" >'+
   '</div>'+
-'</div><br></br>'+
+
+'</div></br>'+
 
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
    '</form></div>',

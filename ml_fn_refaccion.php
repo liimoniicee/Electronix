@@ -21,11 +21,9 @@ $consulta = "SELECT * FROM refacciones_tv WHERE Id_refacciones=$id";
   $response['data'] = array (
 
     "Id_refacciones"          =>  $id,
-    "link"        =>  $row["link"],
-    "nombre"         =>  $row["nombre"],
+    "tipo"         =>  $row["tipo"],
     "marca"         =>  $row["marca"],
     "modelo"        =>  $row["modelo"],
-    "cantidad"         =>  $row["cantidad"],
     "ubicacion"         =>  $row["ubicacion"],
     "estado"        =>  $row["estado"],
     "precio"         =>  $row["precio"],
@@ -33,6 +31,12 @@ $consulta = "SELECT * FROM refacciones_tv WHERE Id_refacciones=$id";
     "fecha_salida"        =>  $row["fecha_salida"],
     "etiqueta_1"         =>  $row["etiqueta_1"],
     "etiqueta_2"         =>  $row["etiqueta_2"],
+    "imagen1"         =>  $row["imagen1"],
+    "imagen2"         =>  $row["imagen2"],
+    "imagen3"         =>  $row["imagen3"],
+    "imagen4"         =>  $row["imagen4"],
+    "imagen5"         =>  $row["imagen5"],
+    "link"        =>  $row["link"],
     "id_personal"         =>  $row["id_personal"],
 
 
