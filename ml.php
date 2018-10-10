@@ -485,7 +485,7 @@ var id = id_equipo;
 
 
     swal({
-   title: 'Cambiar estado',
+   title: 'Publicar',
    html:
 '<div class="card-body"> <form action="ml_fn_refaccion.php" method="post" name="data" enctype="multipart/form-data">'+
 

@@ -373,19 +373,19 @@ reverseButtons: true
 '<div class="row">'+
 '<div class="col-md-6">'+
         '<label>Modelo</label>'+
-        '<input type="text"  name="modelo" id="modelo" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text"  name="modelo" id="modelo"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
 '</div>'+
 
 '<div class="col-md-6">'+
         '<label>Etiqueta 1</label>'+
-        '<input type="text" name="etiq1" id="etiq1" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" name="etiq1" id="etiq1"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
 '</div>'+
 '</div>'+
 
 '<div class="row">'+
 '<div class="col-md-6">'+
         '<label>Etiqueta 2</label>'+
-        '<input type="text" id="etiq2" name="etiq2" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+        '<input type="text" id="etiq2" name="etiq2"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
 '</div>'+
 '<div class="col-md-6">'+
         '<label>Ubicacion</label>'+
@@ -394,9 +394,20 @@ reverseButtons: true
 '</div>'+
 
 '<div class="row">'+
+'<div class="col-md-6">'+
+        '<label>Precio</label>'+
+        '<input type="number" id="precio" name="precio" required title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input"></input>'+
+'</div>'+
+'<div class="col-md-6">'+
+        '<label>Link</label>'+
+        '<input name="link" id="link" type="text" required placeholder="Link de Mercadolibre"  class="form-control border-input"></input>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
 '<div class="col-md-6">'+  
         '<label>Img delantera</label>' +
-        '<input input type="file"  id="img1" name="img1" required accept="image/png/jpg" class="form-control border-input" required>'+
+        '<input input type="file"  id="img1" name="img1"  accept="image/png/jpg" class="form-control border-input" >'+
   '</div>'+
 
 '<div class="col-md-6">'+
