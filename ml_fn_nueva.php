@@ -54,9 +54,9 @@ move_uploaded_file($imagen5, $destino5);
 
 $sql = "INSERT INTO refacciones_tv(tipo, marca, modelo,ubicacion, estado, precio, etiqueta_1,etiqueta_2, imagen1, imagen2, imagen3, imagen4, imagen5, id_personal)
 VALUES ('$tipo', '$marca', '$modelo', 'Almacen', 'Pendiente', '$precio', '$etiqueta1','$etiqueta2','$destino','$destino2','$destino3','$destino4','$destino5','$var_clave');";
+
+
 $res = $conn->query($sql);
-
-
 
 if (!$res) {
    printf("Errormessage: %s\n", $conn->error);
@@ -83,6 +83,7 @@ else{
   }).then((result) => {
     if (
       // Read more about handling dismissals
+
       result.dismiss === swal.DismissReason.timer
     ) {
       console.log('I was closed by the timer')
