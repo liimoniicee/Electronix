@@ -141,11 +141,10 @@ $res2 = $conn->query($sql2);
 //politicas 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,155);
-$pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo 
-falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de la presente hasta los 
-seis meses siguientes. 
-
-"));
+$pdf->Write(6,utf8_decode("Este documento declara que la televisión que esta apartando el cliente será entregada hasta cumplir con el 
+costo total de la misma, dicho equipo será almacenado, si al plazo en que se compromete en pagar no lo logra, 
+se dejará de apartar su equipo y si pide la devolución de su dinero, se penalizará con el 20% que ha dado, en caso de querer adquirir otro equipo
+no se penalizará y se dará de alta el nuevo equipo apartado/comprado."));
 
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(20,210);

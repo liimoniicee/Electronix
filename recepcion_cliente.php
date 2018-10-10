@@ -126,7 +126,7 @@ confirmButtonColor: '#3085d6',
 cancelButtonColor: '#d33',
 confirmButtonText: '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>',
 cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-
+showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true

@@ -956,7 +956,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo mano de obra</label>'+
-        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25"  onkeypress="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input20"  id="swal-input20"  type="number" maxlength="25"  onchange="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -993,7 +993,11 @@ html:
 '</div>'+
 
 '<div class="col-md-12">'+
-
+  '<div class="form-group">'+
+        '<label>Valor de equipo</label>'+
+        '<input name="swal-input25"  id="swal-input25"  type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar costos, estado y solicitud de traslado</Button>'+
 
@@ -1126,12 +1130,12 @@ function operaciones()
   var mano =document.getElementById('swal-input20').value;
   var abono =document.getElementById('swal-input21').value;
 
-  var suma =parseInt(refaccion)+parseInt(mano);
+   suma =parseInt(refaccion)+parseInt(mano);
 
-  var total =parseInt(suma)-parseInt(abono);
+   total =parseInt(suma)-parseInt(abono);
 
-  var subtotal =parseInt(document.getElementById('swal-input22').value= suma);
-  var totalt =parseInt(document.getElementById('swal-input23').value= total);
+   subtotal =parseInt(document.getElementById('swal-input22').value= suma);
+   totalt =parseInt(document.getElementById('swal-input23').value= total);
 
 
 }

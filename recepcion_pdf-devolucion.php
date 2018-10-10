@@ -7,7 +7,7 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
-$id = $_POST ['swal-input0'];
+$id = $_POST ['swal-input00'];
 $id_equipo = $_POST ['swal-input1'];
 
 $nom = $_POST ['swal-input3'];
@@ -17,10 +17,6 @@ $marca= $_POST ['swal-input7'];
 $modelo = $_POST ['swal-input8'];
 $serie = $_POST ['swal-input9'];
 $falla= $_POST ['swal-input12'];
-
-
-
-
 
 
 $sql = "UPDATE reparar_tv set estado='Devuelto', ubicacion='Cliente', costo_total='200' ,fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";

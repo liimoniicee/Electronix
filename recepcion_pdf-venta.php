@@ -162,7 +162,7 @@ $res4 = $conn->query($sql4);
 //politicas
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(17,170);
-$pdf->Write(6,utf8_decode("Esta poliza de garantía solo es valida sobre la mano de obra, por lo tanto no aplica si su equipo
+$pdf->Write(6,utf8_decode("Esta poliza de garantía protege las tarjetas de su televisión por lo tanto no aplica si su equipo
 falla por otra causa (Humedad, descargas eléctricas o golpes) la garantía comienza a partir de la fecha de emisión de la presente hasta los
 seis meses siguientes.
 
