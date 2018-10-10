@@ -124,7 +124,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                   <p class="bs-component">
                     <button class="btn btn-info" onclick="location='admin_ctrl_empleados.php'"><i class="ti-settings"></i>Control de empleados</button>
                     <button class="btn btn-info" onclick="location='admin_ventas.php'"><i class="ti-money"></i>Ventas</button>
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-settings"></i>Editar solicitudes</button>
+                    <button class="btn btn-info" onclick="location='admin_editar_solicitudes.php'"><i class="ti-settings"></i>Editar solicitudes</button>
                     <button class="btn btn-info" onclick="aviso();"><i class="ti-shopping-cart"></i>Compras</button>
                     <button class="btn btn-info" onclick="location='#'"><i class="ti-list"></i>Contratos</button>
                     <button class="btn btn-info" onclick="location='#'"><i class="ti-alert"></i>avisos</button>

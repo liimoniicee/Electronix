@@ -172,7 +172,7 @@ verificar_sesion();
 
 
                                           <td>
-                                          <button onclick="reporte(<?php echo $id_equipo?>), enviarorden(<?php echo $id_equipo ?>);" class="btn btn-simple btn-success btn-icon edit" title="Crear reporte"><i class="btn-sm btn-secondary ti-agenda"></i></button>
+                                          <button onclick="reporte(<?php echo $id_equipo?>);" class="btn btn-simple btn-success btn-icon edit" title="Crear reporte"><i class="btn-sm btn-secondary ti-agenda"></i></button>
 
 
                                           </td>

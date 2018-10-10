@@ -121,6 +121,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Almacen' and estado='pen
 
 <div class="col-lg-12">
             <p class="bs-component">
+              <button class="btn btn-info" type="button"  onclick="nueva();" >Insertar pieza</button>
               <button class="btn btn-danger" onclick="location='almacen.php'"><i class="ti-thumb-down"></i>Almacen sin clasificar</button>
               <button class="btn btn-success" type="button" onclick="location='almacen_clasificados.php'"><i class="ti-thumb-up"></i>Almacen clasificados</button>
 
@@ -345,6 +346,101 @@ reverseButtons: true
 };
 
 </script>
+
+
+ <script type="text/javascript">
+//ventana de nuevo cliente
+    function nueva(){
+
+
+    swal({
+   title: 'Nueva publicacion',
+   html:
+'<div class="card-body"> <form action="ml_fn_nueva.php" method="post" name="data" enctype="multipart/form-data">'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<label>Tipo</label>'+
+'<input type="text" name="tipo"  id="tipo" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Tarjeta Main"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();"  class="form-control border-input" >' +//Id Equipo
+'</div>'+
+
+'<div class="col-md-6">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" pattern="[A-Za-z ]+" placeholder="Ejem. Samsung"  title="Sólo letras" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+        '<label>Modelo</label>'+
+        '<input type="text"  name="modelo" id="modelo" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+        '<label>Etiqueta 1</label>'+
+        '<input type="text" name="etiq1" id="etiq1" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+        '<label>Etiqueta 2</label>'+
+        '<input type="text" id="etiq2" name="etiq2" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+'</div>'+
+'<div class="col-md-6">'+
+        '<label>Ubicacion</label>'+
+        '<input type="text" pattern="[A-Za-z0-9 ]+" placeholder="Ejem. Caja 25, Pie 35"  title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input"></input>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+        '<label>Precio</label>'+
+        '<input type="number"   id="precio" name="precio" required class="form-control border-input"></input>'+
+        '</div>'+
+        '<div class="col-md-6">'+
+        '<label>Img delantera</label>' +
+        '<input input type="file"  id="img1" name="img1" required accept="image/png/jpg" class="form-control border-input" required>'+
+'</div>'+
+  '</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<label>img trasera</label>' +
+'<input input type="file"  id="img2" name="img2"  accept="image/png/jpg" class="form-control border-input" >'+
+  '</div>'+
+'<div class="col-md-6">'+
+'<label>Img etiqueta</label>' +
+'<input input type="file" id="img3" name="img3"  accept="image/png/jpg" class="form-control border-input" >'+
+  '</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+'<label>Img tv</label>' +
+'<input input type="file" id="img4" name="img4"  accept="image/png/jpg" class="form-control border-input" >'+
+  '</div>'+
+'<div class="col-md-6">'+
+'<label>Img etiqueta tv</label>' +
+'<input input type="file"  id="img5"  name="img5" accept="image/png/jpg" class="form-control border-input" >'+
+  '</div>'+
+'</div><br></br>'+
+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Confirmar</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> ',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+
+  };
+  </script>
 
 
   </body>
