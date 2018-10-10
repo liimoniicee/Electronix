@@ -9,7 +9,8 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
 
-
+$aprovacion="SELECT * from
+solicitudes_refacciones where estado = 'Encontrada'";
 
 $consulta = "SELECT
 id_folio, nombre, apellidos,direccion, celular, correo, puntos
@@ -151,17 +152,21 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                       <input name='test' type='radio' /> Equipos reparados
                     </label>
 
-                      <label class="btn btn-danger" id='look-me'>
+                      <label class="btn btn-warning" id='look-me'>
                       <input name='test' type='radio' /> Equipos sin solucion
                     </label>
 
-                    <label class="btn btn-warning" id='look-me2'>
+                    <label class="btn btn-danger" id='look-me2'>
                       <input name='test' type='radio' /> Equipos valorados
                     </label>
 
-                        <button class="btn btn-info" type="button" onclick="aviso();">Nuevo aviso</button>
+                    <label class="btn btn-info" id='look-me3'>
+                      <input name='test' type='radio' /> Pendientes de aprovación
+                    </label>
 
-                        <button class="btn btn-success" type="button" onclick="location.href='recepcion_ventas.php'" >Ventas</button>
+                        <button class="btn btn-success" type="button" onclick="aviso();">Nuevo aviso</button>
+
+                        <button class="btn btn-warning" type="button" onclick="location.href='recepcion_ventas.php'" >Ventas</button>
 
 
 
@@ -471,6 +476,54 @@ if($ubicacion == "Recepcion"){
         <?php } ?>
         <tbody></br>
             Resultado de valorados
+      </tbody>
+  </table>
+</div></div></div>
+
+
+ <div id='show-me-three3'>
+                    <div class="tile">
+                      <div class="tile-body">
+          <table id="a-tables" class="table table-hover table-dark table-responsive">
+    <thead>
+
+        <th data-field="id">ID Solicitud</th>
+      <th data-field="fecha" data-sortable="true">Tipo de tarjeta</th>
+      <th data-field="estatus" data-sortable="true">Ubicación</th>
+      <th data-field="estatus" data-sortable="true">Precio</th>    
+      <th class="disabled-sorting">Acción</th>
+
+    </thead>
+    <?php
+     $ejecutar = mysqli_query($conn, $aprovacion);
+     while($fila=mysqli_fetch_array($ejecutar)){
+        $id_solicitud          = $fila['id_solicitud'];
+        $tipo           = $fila['tipo'];
+        $ubicacion          = $fila['ubicacion'];
+        $precio          = $fila['precio'];
+        $id_equipo          = $fila['id_equipo'];
+
+   
+
+
+?>
+                    <tr>
+                        <td width="8%"><?php echo $id_solicitud ?></td>
+                        <td width="14%"><?php echo $tipo ?></td>
+                        <td width="14%"><?php echo $ubicacion ?></td>
+                        <td width="14%"><?php echo $precio ?></td>
+                    
+                        <td width="14%">
+                          <?php
+                          echo "
+                        <a href='#' onclick='abono($id), enviarmod( $id),enviarorden($id_equipo);' class='btn btn-simple btn-success btn-icon' title='Abonar refacción' ><i class='ti-money'></i></a>
+         
+                      </td>"; ?>
+
+          </tr>
+        <?php } ?>
+        <tbody></br>
+            Equipos pendientes de aprovacion
       </tbody>
   </table>
 </div></div></div>
@@ -797,6 +850,7 @@ function enviarorden(id){
 
 </script>
 
+
  <script type="text/javascript">
  //Script para mandar ID para generar la orden
 function actualizar(id){
@@ -838,6 +892,58 @@ function actualizar(id){
 
 </script>
 
+<script>
+
+//Script para mandar ID para generar la orden
+function aprobacion(id){
+$.ajax({
+
+    // la URL para la petición
+    url : 'ml_fn_aprovacion.php',
+    // la información a enviar
+    // (también es posible utilizar una cadena de datos)
+    data : {
+      id : id
+    },
+    // especifica si será una petición POST o GET
+    type : 'POST',
+    // el tipo de información que se espera de respuesta
+    dataType : 'json',
+    // código a ejecutar si la petición es satisfactoria;
+    // la respuesta es pasada como argumento a la función
+    success : function(data) {
+      //Manda Llamar id,nombre y apellido
+      $("#swal-solicitud").val(data.data.id_solicitud);
+      $("#swal-input0").val(data.data.tipo);
+      $("#swal-input1").val(data.data.etiqueta);
+      $("#swal-input2").val(data.data.solicitud);
+      $("#swal-input3").val(data.data.estado);
+      $("#swal-input4").val(data.data.ubicacion);
+      $("#swal-precio").val(data.data.precio);
+      $("#swal-input6").val(data.data.id_personal);
+      $("#swal-input7").val(data.data.id_equipo);
+      $("#swal-input8").val(data.data.fecha);
+ 
+
+
+
+
+
+    },
+    // código a ejecutar si la petición falla;
+    // son pasados como argumentos a la función
+    // el objeto de la petición en crudo y código de estatus de la petición
+    error : function(xhr, status) {
+
+    },
+    // código a ejecutar sin importar si la petición falló o no
+    complete : function(xhr, status) {
+
+    }
+});
+}
+
+</script>
 
 <script type="text/javascript">
 //ventana orden de servición
@@ -1863,6 +1969,77 @@ function operaciones()
 
 </script>
 
+  <script type="text/javascript">
+    //ventana actualizar cliente
+    function abono(id){
+      
+    swal({
+    title: 'Abonos',
+    html:
+    '<div class="card-body"> <form target="_blank" action="recepcion_pdf_abono.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    //Manda Llamar id,nombre y apellido
+    '<input name="swal-input00" type="hidden" id="swal-input00" value="'+id+'" class="form-control border-input" readonly >' +
+    '<input name="swal-solicitud" type="text" id="swal-solicitud" class="form-control border-input" readonly >' +
+    '<input name="swal-input1" type="hidden" id="swal-input1" class="form-control border-input" readonly >' +
+    '<input name="swal-input3" type="hidden" id="swal-input3" class="form-control border-input" readonly >' +
+    '<input name="swal-input4" type="hidden" id="swal-input4" class="form-control border-input" readonly >' +
+
+    '<div class="col-md-12">'+
+      '<div class="form-group">'+
+
+      '<label>Precio de refacción</label>'+
+            '<input type="number" name="swal-precio" id="swal-precio"  readonly class="form-control border-input">'+
+
+      '<label>Cantidad abonada</label>'+
+            '<input type="number" name="swal-input21" id="swal-input21"  readonly class="form-control border-input">'+
+
+            '<label>Cantidad que abona</label>'+
+            '<input type="number" name="swal-input25" id="swal-input25" equired placeholder="Escribir con punto decimal" onchange="operaciones_abono();" class="form-control border-input">'+
+
+            '<label>Cantidad total abonada</label>'+
+            '<input type="number" name="swal-input26" id="swal-input26"  readonly class="form-control border-input">'+
+        '</div>'+
+    '</div>'+
+
+
+    '<div class="col-md-12">'+
+    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</Button>'+
+
+    '</form></div>',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: '</form> Actualizar solicitud',
+    cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+    showConfirmButton: false,
+    focusConfirm: false,
+    buttonsStyling: false,
+    reverseButtons: true
+    })
+
+    };
+
+    </script>
+
+<script type="text/javascript">
+
+function operaciones_abono()
+{
+  var abonada =document.getElementById('swal-input21').value;
+  var abono =document.getElementById('swal-input25').value;
+  var abonot =document.getElementById('swal-input26').value;
+
+
+   suma =parseInt(abonada)+parseInt(abono);
+
+   totalt =parseInt(document.getElementById('swal-input26').value= suma);
+
+
+}
+
+
+</script>
+
 </div>
 </div>
 
@@ -1870,3 +2047,4 @@ function operaciones()
 
 
 </html>
+

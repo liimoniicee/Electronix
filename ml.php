@@ -11,8 +11,8 @@ $var_clave= $_SESSION['clave'];
 
 
 $solicitud_taller = "SELECT *
-FROM reparar_tv
-WHERE estado='Necesita refaccion'";
+FROM solicitudes_refacciones
+WHERE solicitud='Pendiente'";
 
 $publicadas="SELECT * from refacciones_tv where estado = 'Publicada';";
 
@@ -200,36 +200,33 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
 
       <table id="a-tables" class="table table-dark table-hover table-responsive">
       <thead>
-      <th data-field="id">id_equipo</th>
-      <th data-field="folio" data-sortable="true">Folio</th>
-      <th data-field="equipo" data-sortable="true">equipo</th>
-      <th data-field="falla" data-sortable="true">falla</th>
-      <th data-field="fecha_ingreso" data-sortable="true">fecha_ingreso</th>
-      <th data-field="fecha_entregar" data-sortable="true">fecha_entregar</th>
-      <th data-field="ubicacion" data-sortable="true">ubicacion</th>
+      <th data-field="id">Id reporte</th>
+      <th data-field="folio" data-sortable="true">Parte que necesita</th>
+      <th data-field="folio" data-sortable="true">Etiquetas</th>
+      <th data-field="equipo" data-sortable="true">Estado</th>
+      <th data-field="falla" data-sortable="true">ID Equipo</th>
+  
       <th data-field="accion" data-sortable="true">Acción</th>
       </thead>
       <?php
-      $ejec2 = mysqli_query($conn, $solicitud_taller);
-      while($fila=mysqli_fetch_array($ejec2)){
-      $id_equipo          = $fila['id_equipo'];
-      $id           = $fila['id_folio'];
-      $equipo           = $fila['equipo'];
-      $falla          = $fila['falla'];
-      $fecha_ingreso        = $fila['fecha_ingreso'];
-      $fecha_entregar        = $fila['fecha_entregar'];
-      $ubicacion        = $fila['ubicacion'];
+      $ejec4 = mysqli_query($conn, $solicitud_taller);
+      while($fila=mysqli_fetch_array($ejec4)){
+      $id_solicitud          = $fila['id_solicitud'];
+      $tipo          = $fila['tipo'];
+      $etiqueta           = $fila['etiqueta'];
+      $estado           = $fila['estado'];
+      $id_equipo        = $fila['id_equipo'];
+     
 
 
       ?>
           <tr>
+              <td><?php echo $id_solicitud ?></td>
+              <td><?php echo $tipo ?></td>
+              <td><?php echo $etiqueta ?></td>
+              <td><?php echo $estado ?></td>
               <td><?php echo $id_equipo ?></td>
-              <td><?php echo $id ?></td>
-              <td><?php echo $equipo ?></td>
-              <td><?php echo $falla ?></td>
-              <td><?php echo $fecha_ingreso ?></td>
-              <td><?php echo $fecha_entregar ?></td>
-              <td><?php echo $ubicacion ?></a></td>
+            
               <td>
               <button onclick="solicitud_pieza(<?php echo $id_equipo?>), mod_solicitud_pieza(<?php echo $id_equipo?>);" title="Solicitar pieza" class="btn btn-simple btn-success btn-icon edit"><i ></i></button>
               </td>
@@ -340,7 +337,6 @@ $.ajax({
     // la respuesta es pasada como argumento a la función
     success : function(data) {
       //Manda Llamar id,nombre y apellido
-      $("#swal-input00").val(data.data.Id_refacciones);
       $("#swal-input0").val(data.data.nombre);
       $("#swal-input1").val(data.data.marca);
       $("#swal-input2").val(data.data.modelo);
@@ -437,11 +433,10 @@ var id = id_equipo;
         '<label>Modelo</label>'+
         '<input type="text" name="swal-input2" readonly id="swal-input2" required class="form-control border-input"></input>'+
 
-        '<label>Modelo</label>'+
-        '<input type="text" name="swal-input3" readonly id="swal-input3" required class="form-control border-input"></input>'+
-
+       
         '<label>Ubicación</label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="swal-input4" id="swal-input4"><option value="" ></option><option value="inventario" >inventario</option><option value="mercado">Mercado Libre</option><option value="no encontrada">No encontrada</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="swal-input4" id="swal-input4"><option value="" ></option><option value="Almacen" >Almacen</option><option value="Mercado libre">Mercado libre</option><option value="No encontrada">No encontrada</option></select>' +
+
 
 '<div class="col-md-12 entradas" style="display:none;">'+
 '<label>Costo de refacción</label>'+
@@ -463,10 +458,16 @@ var id = id_equipo;
     reverseButtons: true
   })
   $("#swal-input4").change(function(){
-    if(this.value != 'no encontrada'){
+    if(this.value != 'No encontrada'){
       $(".entradas").show();
-    }else{
+    }
+    if(this.value != 'Almacen'){
+      $(".entradas").show();
+    }
+    if(this.value != 'Mercado libre'){
       $(".entradas").hide();
+    }else{
+
     }
   })
 

@@ -9,7 +9,7 @@ $response = array();
 if(isset($_POST['id_equipo'])){
   $id_equipo = $_POST['id_equipo'];
 
-$consulta = "SELECT marca, modelo, parte FROM reparar_tv r, reportes_tecnicos e WHERE r.id_equipo = e.id_equipo and r.id_equipo = $id_equipo";
+$consulta = "SELECT marca, modelo FROM reparar_tv WHERE id_equipo = $id_equipo";
 
 
    $resultado = $conn->query($consulta);
@@ -22,7 +22,6 @@ $consulta = "SELECT marca, modelo, parte FROM reparar_tv r, reportes_tecnicos e 
 
     "marc"        =>  $row["marca"],
     "mod"         =>  $row["modelo"],
-    "par"         =>  $row["parte"],
 
   );
    }
