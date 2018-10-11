@@ -27,6 +27,36 @@ $precio = $_POST['precio'];
 $link = $_POST['link'];
 
 
+$micarpeta = "assets/galeria/almacen/$marca/$modelo/";
+if (!file_exists($micarpeta)) {
+    mkdir($micarpeta, 0777, true);
+}
+
+
+$imagen1 = $_FILES['img1']['tmp_name'];
+$destino = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img1']['name'];
+
+$imagen2 = $_FILES['img2']['tmp_name'];
+$destino2 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img2']['name'];
+
+$imagen3 = $_FILES['img3']['tmp_name'];
+$destino3 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img3']['name'];
+
+$imagen4 = $_FILES['img4']['tmp_name'];
+$destino4 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img4']['name'];
+
+$imagen5 = $_FILES['img5']['tmp_name'];
+$destino5 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img5']['name'];
+
+
+move_uploaded_file($imagen1, $destino);
+move_uploaded_file($imagen2, $destino2);
+move_uploaded_file($imagen3, $destino3);
+move_uploaded_file($imagen4, $destino4);
+move_uploaded_file($imagen5, $destino5);
+
+
+
 $sql = "INSERT INTO refacciones_tv(tipo, marca, modelo,ubicacion, estado, precio, etiqueta_1,etiqueta_2, link, id_personal)
 VALUES ('$tipo', '$marca', '$modelo', '$ubicacion', '$estado', '$precio','$etiqueta1','$etiqueta2','$link','$var_clave');";
 
@@ -37,36 +67,8 @@ if (!$res) {
    printf("Errormessage: %s\n", $conn->error);
 }
 else{
-  
-/*
-$micarpeta = "assets/galeria/almacen/$marca/$modelo/";
-if (!file_exists($micarpeta)) {
-    mkdir($micarpeta, 0777, true);
-}
 
 
-$imagen1 = $_FILES['img1']['tmp_name1'];
-$destino = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img1']['name1'];
-
-$imagen2 = $_FILES['img2']['tmp_name2'];
-$destino2 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img2']['name2'];
-
-$imagen3 = $_FILES['img3']['tmp_name3'];
-$destino3 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img3']['name3'];
-
-$imagen4 = $_FILES['img4']['tmp_name4'];
-$destino4 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img4']['name4'];
-
-$imagen5 = $_FILES['img5']['tmp_name5'];
-$destino5 = "assets/galeria/almacen/$marca/$modelo/". $_FILES['img5']['name5'];
-
-
-move_uploaded_file($imagen1, $destino);
-move_uploaded_file($imagen2, $destino2);
-move_uploaded_file($imagen3, $destino3);
-move_uploaded_file($imagen4, $destino4);
-move_uploaded_file($imagen5, $destino5);
-*/
 ?>
 
    <body>
@@ -81,8 +83,8 @@ move_uploaded_file($imagen5, $destino5);
       timerInterval = setInterval(() => {
         swal.getContent().querySelector('strong')
           .textContent = swal.getTimerLeft()
-      }, 100)
-   
+      }, 50000)
+
     },
     onClose: () => {
       clearInterval(timerInterval)
@@ -94,7 +96,7 @@ move_uploaded_file($imagen5, $destino5);
       result.dismiss === swal.DismissReason.timer
     ) {
       console.log('I was closed by the timer')
-     
+
     window.location.href = "almacen.php";
     }
   });
