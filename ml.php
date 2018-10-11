@@ -198,7 +198,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
         </div>
       <!-- comienza tabla 2 -->
 
-  <div id='show-me-two'>
+  <div id='show-me-two' style='display:none; border:2px solid #ccc'>>
 
 
 <table id="a-tables" class="table table-dark table-hover table-responsive">
