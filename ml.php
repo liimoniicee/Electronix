@@ -126,9 +126,10 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
 
           <div class="col-lg-12">
             <p class="bs-component">
-              <button class="btn btn-success" type="button" id='watch-me'>Publicadas</button>
+            <button class="btn btn-info" type="button" id='watch-me'>Pendientes</button>
+              <button class="btn btn-success" type="button" id='see-me'>Publicadas</button>
               <button class="btn btn-danger" type="button" onclick="location='recepcion_e_sin_repar.php'">Vendidas</button>
-              <button class="btn btn-warning" type="button" id='see-me'>Solicitudes de taller</button>
+              <button class="btn btn-warning" type="button" id='look-me'>Solicitudes de taller</button>
 
   </p>
 </div>
@@ -195,10 +196,70 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
         </div>
 
         </div>
-
-
       <!-- comienza tabla 2 -->
-        <div id='show-me-two' style='display:none; border:2px solid #ccc'>
+
+  <div id='show-me-two'>
+
+
+<table id="a-tables" class="table table-dark table-hover table-responsive">
+<thead>
+<th data-field="folio" data-sortable="true">Nombre</th>
+<th data-field="equipo" data-sortable="true">Marca</th>
+<th data-field="falla" data-sortable="true">Modelo</th>
+<th data-field="fecha_entregar" data-sortable="true">Ubicación</th>
+<th data-field="ubicacion" data-sortable="true">Precio</th>
+<th data-field="fecha_ingreso" data-sortable="true">Fecha solicitud</th>
+<th data-field="fecha_entregar" data-sortable="true">Etiqueta 1</th>
+<th data-field="fecha_entregar" data-sortable="true">Etiqueta 2</th>
+
+
+<th data-field="accion" data-sortable="true">Acción</th>
+</thead>
+<?php
+$ejec3 = mysqli_query($conn, $publicadas);
+while($fila=mysqli_fetch_array($ejec3)){
+$id           = $fila['Id_refacciones'];
+$tipo           = $fila['tipo'];
+$marca           = $fila['marca'];
+$modelo          = $fila['modelo'];
+$ubicacion        = $fila['ubicacion'];
+$precio        = $fila['precio'];
+$fecha_entrada           = $fila['fecha_entrada'];
+$etiqueta_1          = $fila['etiqueta_1'];
+$etiqueta_2        = $fila['etiqueta_2'];
+$imagen        = $fila['imagen1'];
+
+?>
+    <tr>
+
+        <td><?php echo $tipo ?></td>
+        <td><?php echo $marca ?></td>
+        <td><?php echo $modelo ?></td>
+        <td><?php echo $ubicacion ?></td>
+        <td><?php echo $precio ?></a></td>
+        <td><?php echo $fecha_entrada ?></td>
+        <td><?php echo $etiqueta_1 ?></td>
+        <td><?php echo $etiqueta_2 ?></a></td>
+
+        <td>
+        <button onclick="estado(<?php echo $id?>), refaccion(<?php echo $id?>);" title="Cambiar estado" class="btn btn-simple btn-warning btn-sm"><i class="ti-star"></i></button>
+        <button onclick="estado(<?php echo $id?>), refaccion(<?php echo $id?>);" title="Abrir ubicación" class="btn btn-simple btn-primary btn-sm"><i class="ti-folder"></i></button>
+        <a href='<?php echo $imagen?>'>Abrir imagen</a>
+        </td>
+
+
+
+</tr>
+<?php } ?>
+<tbody></br>
+Equipos publicados
+</tbody>
+</table>
+  </div>
+
+  </div>
+      <!-- comienza tabla 3 -->
+        <div id='show-me-three' style='display:none; border:2px solid #ccc'>
 
 
       <table id="a-tables" class="table table-dark table-hover table-responsive">
@@ -277,47 +338,147 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
     <script src="assets/js/common-scripts.js"></script>
 
     <script type="text/javascript">
-    $(document).ready(function ()
+  $(document).ready(function ()
+   {
+     //primero
+    $("#watch-me").click(function()
+    {
+     $("#show-me:hidden").show('slow');
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#watch-me").click(function()
+    {
+      if($('watch-me').prop('checked')===false)
      {
-       //primero
-      $("#watch-me").click(function()
-      {
-       $("#show-me:hidden").show('slow');
-       $("#show-me-two").hide();
-       $("#show-me-three").hide();
-       $("#show-me-three2").hide();
-       $("#show-me-three5").hide();
-       $("#show-me-three3").hide();
-       $("#show-me-three4").hide();
-       });
-       $("#watch-me").click(function()
-      {
-        if($('watch-me').prop('checked')===false)
-       {
-        $('#show-me').hide();
-       }
-      });
-
-      //segundo
-      $("#see-me").click(function()
-      {
-        $("#show-me-two:hidden").show('slow');
-       $("#show-me").hide();
-       $("#show-me-three").hide();
-       $("#show-me-three2").hide();
-       $("#show-me-three5").hide();
-       $("#show-me-three3").hide();
-       $("#show-me-three4").hide();
-       });
-       $("#see-me").click(function()
-      {
-        if($('see-me-two').prop('checked')===false)
-       {
-        $('#show-me-two').hide();
-       }
-      });
+      $('#show-me').hide();
+     }
     });
-</script>
+
+    //segundo
+    $("#see-me").click(function()
+    {
+      $("#show-me-two:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#see-me").click(function()
+    {
+      if($('see-me-two').prop('checked')===false)
+     {
+      $('#show-me-two').hide();
+     }
+    });
+
+    //tercero
+    $("#look-me").click(function()
+    {
+      $("#show-me-three:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me").click(function()
+    {
+      if($('see-me-three').prop('checked')===false)
+     {
+      $('#show-me-three').hide();
+     }
+    });
+
+    //cuarto
+    $("#look-me2").click(function()
+    {
+      $("#show-me-three2:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me2").click(function()
+    {
+      if($('see-me-three2').prop('checked')===false)
+     {
+      $('#show-me-three2').hide();
+     }
+    });
+
+      //quinto
+    $("#look-me3").click(function()
+    {
+      $("#show-me-three3:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me3").click(function()
+    {
+      if($('see-me-three3').prop('checked')===false)
+     {
+      $('#show-me-three3').hide();
+     }
+    });
+
+
+    //sexto
+    $("#look-me4").click(function()
+    {
+      $("#show-me-three4:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three4').prop('checked')===false)
+     {
+      $('#show-me-three4').hide();
+     }
+    });
+
+    //septimo
+    $("#look-me5").click(function()
+    {
+      $("#show-me-three5:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three4").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three5').prop('checked')===false)
+     {
+      $('#show-me-three5').hide();
+     }
+    });
+
+
+   });
+
+
+  </script>
 
 <script>
 
