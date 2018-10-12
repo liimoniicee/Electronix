@@ -233,7 +233,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                     <div class="tile">
                       <div class="tile-body">
 
-<table id="a-tables" class="table table-dark table-hover table-responsive">
+<table id="tabla2" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
@@ -335,7 +335,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                     <div class="tile">
                       <div class="tile-body">
 
-                      <table id="a-tables" class="table table-dark table-hover table-responsive">
+                      <table id="tabla3" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
@@ -411,7 +411,7 @@ if($ubicacion == "Recepcion"){
   <div class="tile">
                       <div class="tile-body">
 
-          <table id="a-tables" class="table table-dark table-hover table-responsive">
+          <table id="tabla4" class="table table-dark table-hover table-responsive">
     <thead>
         <!--<th data-field="state" data-checkbox="true"></th>-->
         <th data-field="id">id_equipo</th>
@@ -484,7 +484,7 @@ if($ubicacion == "Recepcion"){
  <div id='show-me-three3'>
                     <div class="tile">
                       <div class="tile-body">
-          <table id="a-tables" class="table table-hover table-dark table-responsive">
+          <table id="tabla5" class="table table-hover table-dark table-responsive">
     <thead>
 
         <th data-field="id">ID Solicitud</th>
@@ -2038,6 +2038,15 @@ function operaciones_abono()
 }
 
 
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#tabla2').DataTable();
+    $('#tabla3').DataTable();
+    $('#tabla4').DataTable();
+    $('#tabla5').DataTable();
+} );
 </script>
 
 </div>
