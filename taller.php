@@ -21,14 +21,14 @@ estado = 'Reparada';";
 
 
 $pendientes = "SELECT
-equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+equipo, id_folio, falla, id_equipo, modelo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
 estado = 'Pendiente' and ubicacion='Taller';";
 
 $revisados = "SELECT
-equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+equipo, modelo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
@@ -42,7 +42,7 @@ WHERE
 estado = 'En reparacion' and ubicacion='Taller';";
 
 $sinsolucion = "SELECT
-equipo, id_folio, falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
+equipo, id_folio, falla, id_equipo, fecha_ingreso, modelo, fecha_entregar, fecha_egreso, servicio, estado, ubicacion
 FROM
 reparar_tv
 WHERE
@@ -279,6 +279,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
     <thead>
     <th data-field="id">ID equipo</th>
                               <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="equipo" data-sortable="true">Modelo</th>
+
                               <th data-field="falla" data-sortable="true">Falla</th>
                               <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
                               <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
@@ -291,6 +293,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
         $id_equipo          = $fila['id_equipo'];
         $id           = $fila['id_folio'];
         $equipo           = $fila['equipo'];
+        $modelo           = $fila['modelo'];
+
         $falla          = $fila['falla'];
         $fecha_ingreso        = $fila['fecha_ingreso'];
         $fecha_entregar        = $fila['fecha_entregar'];
@@ -301,6 +305,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                     <tr>
                         <td><?php echo $id_equipo ?></td>
                         <td><?php echo $equipo ?></td>
+                        <td><?php echo $modelo ?></td>
+
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
                         <td><?php echo $fecha_entregar ?></td>
@@ -387,6 +393,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                     <!--<th data-field="state" data-checkbox="true"></th>-->
                                     <th data-field="id">ID equipo</th>
                               <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="equipo" data-sortable="true">Modelo</th>
+
                               <th data-field="falla" data-sortable="true">Falla</th>
                               <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
                               <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
@@ -400,6 +408,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                     $id_equipo          = $fila['id_equipo'];
                                     $id           = $fila['id_folio'];
                                     $equipo           = $fila['equipo'];
+                                    $modelo           = $fila['modelo'];
                                     $falla          = $fila['falla'];
                                     $fecha_ingreso        = $fila['fecha_ingreso'];
                                     $fecha_entregar        = $fila['fecha_entregar'];
@@ -410,6 +419,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                                       <tr>
                                           <td><?php echo $id_equipo ?></td>
                                           <td><?php echo $equipo ?></td>
+                                          <td><?php echo $modelo ?></td>
                                           <td><?php echo $falla ?></td>
                                           <td><?php echo $fecha_ingreso ?></td>
                                           <td><?php echo $fecha_entregar ?></td>
@@ -454,6 +464,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                   <!--<th data-field="state" data-checkbox="true"></th>-->
                   <th data-field="id">ID equipo</th>
                               <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="equipo" data-sortable="true">Modelo</th>
                               <th data-field="falla" data-sortable="true">Falla</th>
                               <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
                               <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
@@ -467,6 +478,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                   $id_equipo          = $fila['id_equipo'];
                   $id           = $fila['id_folio'];
                   $equipo           = $fila['equipo'];
+                  $modelo           = $fila['modelo'];
                   $falla          = $fila['falla'];
                   $fecha_ingreso        = $fila['fecha_ingreso'];
                   $fecha_entregar        = $fila['fecha_entregar'];
@@ -478,6 +490,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                     <tr>
                         <td><?php echo $id_equipo ?></td>
                         <td><?php echo $equipo ?></td>
+                        <td><?php echo $modelo ?></td>
                         <td><?php echo $falla ?></td>
                         <td><?php echo $fecha_ingreso ?></td>
                         <td><?php echo $fecha_entregar ?></td>
@@ -515,6 +528,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
               <!--<th data-field="state" data-checkbox="true"></th>-->
               <th data-field="id">ID equipo</th>
                               <th data-field="equipo" data-sortable="true">Equipo</th>
+                              <th data-field="equipo" data-sortable="true">Modelo</th>
                               <th data-field="falla" data-sortable="true">Falla</th>
                               <th data-field="fecha_ingreso" data-sortable="true">Fecha ingreso</th>
                               <th data-field="fecha_entregar" data-sortable="true">Fecha reparacion</th>
@@ -528,6 +542,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
               $id_equipo          = $fila['id_equipo'];
               $id           = $fila['id_folio'];
               $equipo           = $fila['equipo'];
+              $modelo           = $fila['modelo'];
               $falla          = $fila['falla'];
               $fecha_ingreso        = $fila['fecha_ingreso'];
               $fecha_entregar        = $fila['fecha_entregar'];
@@ -536,6 +551,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
                 <tr>
                     <td><?php echo $id_equipo ?></td>
                     <td><?php echo $equipo ?></td>
+                    <td><?php echo $modelo ?></td>
                     <td><?php echo $falla ?></td>
                     <td><?php echo $fecha_ingreso ?></td>
                     <td><?php echo $fecha_entregar ?></td>
