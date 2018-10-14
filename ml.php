@@ -183,7 +183,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Mercado' and estado='pen
               <td><?php echo $etiqueta_2 ?></a></td>
 
               <td>
-              <button onclick="estado(<?php echo $id?>), refaccion(<?php echo $id?>);" title="Cambiar estado" class="btn btn-simple btn-warning btn-sm"><i class="ti-star"></i></button>
+              <button onclick="estado(<?php echo $id?>), refaccion(<?php echo $id?>);" title="Cambiar estado" class="btn btn-simple btn-info btn-sm"><i class="ti-star"></i></button>
               <button onclick="estado(<?php echo $id?>), refaccion(<?php echo $id?>);" title="Abrir ubicación" class="btn btn-simple btn-primary btn-sm"><i class="ti-folder"></i></button>
               <a href='<?php echo $imagen?>'>Abrir imagen</a>
               </td>

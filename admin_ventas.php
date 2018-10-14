@@ -14,6 +14,12 @@ FROM avisos where tipo= 'Administrador' and estado='pendiente'order by fecha des
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estado='pendiente' order by fecha desc;";
 
+$sum_vendidas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Vendida';";
+
+$sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publicada';";
+
+
+
 
 ?>
 <html lang="es">
@@ -57,6 +63,23 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
 
       }
       ?>
+
+   <?php
+          $ejec01 = mysqli_query($conn, $sum_publicadas);
+        while($fila=mysqli_fetch_array($ejec01)){
+            $num_pub     = $fila['SUM(precio)'];
+
+      }
+      ?>
+
+        <?php
+          $ejec01 = mysqli_query($conn, $sum_vendidas);
+        while($fila=mysqli_fetch_array($ejec01)){
+            $num_ven     = $fila['SUM(precio)'];
+
+      }
+      ?>
+     
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
@@ -124,7 +147,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                   <p class="bs-component">
                     <button class="btn btn-info" onclick="location='#'"><i class="ti-settings"></i>Ventas total</button>
                     <button class="btn btn-info" onclick="location='#'"><i class="ti-money"></i>Ventas tv</button>
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-settings"></i>Ventas refacciones</button>
+                    <button class="btn btn-info" id="look-me"><i class="ti-settings"></i>Ventas refacciones vendidas por mes</button>
+                    <button class="btn btn-info" id="look-me2"><i class="ti-settings"></i>Ventas refacciones publicadas por mes</button>
+
         </p>
       </div>
       <div class="card-body">
@@ -144,6 +169,57 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
       </div>
       <div class="card">
       <div class="resultados"><canvas id="grafico"></canvas></div>
+    </div>
+
+    <!-- tabla 3k-->
+
+  <div id='show-me-three'  style='display:none; border:2px solid #ccc'>
+
+<script>
+            $(document).ready(mostrarResultados(2018));
+                function mostrarResultados(year){
+                    $('.resultados').html('<canvas id="grafico"></canvas>');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'admin_fn_procesa_ventas_refacciones.php',
+                        data: 'year='+year,
+                        dataType: 'JSON',
+                        success:function(response){
+                            var Datos = {
+                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    datasets : [
+                                        {
+                                          label: "Ganancias de ventas de refaccion en mercado libre por mes",
+                                          backgroundColor: '#0C83B6',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data : response
+                                        }
+                                        
+                                    ]
+                                }
+                            var contexto = document.getElementById('grafico').getContext('2d');
+                            window.Barra = new Chart(contexto,{
+                                      type: 'bar',
+                                            data: Datos,
+                                                options: {}
+                                                  });
+                            Barra.clear();
+                        }
+
+                        
+                    });
+                    return false;
+                }
+    </script>
+<h3>Total refacciones vendidas en mercado libre: $<?php echo $num_pub ?></h3>
+    </div>
+    <!-- tabla 4k-->
+
+    <div id='show-me-three2'  style='display:none; border:2px solid #ccc'>
+
+
+<h3>Total refacciones publicadas en Mercado libre: $<?php echo $num_ven?></h3>
+
     </div>
   </body>
 
@@ -189,40 +265,150 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
     <script src="assets/js/common-scripts.js"></script>
     <script src="assets/js/jquery.js"></script>
 
-    <script>
-            $(document).ready(mostrarResultados(2018));
-                function mostrarResultados(year){
-                    $('.resultados').html('<canvas id="grafico"></canvas>');
-                    $.ajax({
-                        type: 'POST',
-                        url: 'admin_fn_procesa_ventas.php',
-                        data: 'year='+year,
-                        dataType: 'JSON',
-                        success:function(response){
-                            var Datos = {
-                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                                    datasets : [
-                                        {
-                                          label: "Ganancias de ventas totales",
-                                          backgroundColor: '#0C83B6',
-                                          borderColor: 'rgb(255, 99, 132)',
-                                          data : response
-                                        }
-                                    ]
-                                }
-                            var contexto = document.getElementById('grafico').getContext('2d');
-                            window.Barra = new Chart(contexto,{
-                                      type: 'bar',
-                                            data: Datos,
-                                                options: {}
-                                                  });
-                            Barra.clear();
-                        }
-                    });
-                    return false;
-                }
-    </script>
+    
 
+ <script type="text/javascript">
+  $(document).ready(function ()
+   {
+     //primero
+    $("#watch-me").click(function()
+    {
+     $("#show-me:hidden").show('slow');
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#watch-me").click(function()
+    {
+      if($('watch-me').prop('checked')===false)
+     {
+      $('#show-me').hide();
+     }
+    });
+
+    //segundo
+    $("#see-me").click(function()
+    {
+      $("#show-me-two:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#see-me").click(function()
+    {
+      if($('see-me-two').prop('checked')===false)
+     {
+      $('#show-me-two').hide();
+     }
+    });
+
+    //tercero
+    $("#look-me").click(function()
+    {
+      $("#show-me-three:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me").click(function()
+    {
+      if($('see-me-three').prop('checked')===false)
+     {
+      $('#show-me-three').hide();
+     }
+    });
+
+    //cuarto
+    $("#look-me2").click(function()
+    {
+      $("#show-me-three2:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me2").click(function()
+    {
+      if($('see-me-three2').prop('checked')===false)
+     {
+      $('#show-me-three2').hide();
+     }
+    });
+
+      //quinto
+    $("#look-me3").click(function()
+    {
+      $("#show-me-three3:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me3").click(function()
+    {
+      if($('see-me-three3').prop('checked')===false)
+     {
+      $('#show-me-three3').hide();
+     }
+    });
+
+
+    //sexto
+    $("#look-me4").click(function()
+    {
+      $("#show-me-three4:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three4').prop('checked')===false)
+     {
+      $('#show-me-three4').hide();
+     }
+    });
+
+    //septimo
+    $("#look-me5").click(function()
+    {
+      $("#show-me-three5:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three4").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three5').prop('checked')===false)
+     {
+      $('#show-me-three5').hide();
+     }
+    });
+
+
+   });
+
+
+  </script>
 
   </body>
 
