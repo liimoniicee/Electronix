@@ -26,7 +26,7 @@ class Model{
 	    	$total = array();
 	    	for($i=0; $i<12; $i++){
 	    		$month = $i+1;
-	    		$sql = $this->db->query("SELECT SUM(precio) AS total FROM refacciones_tv WHERE MONTH(fecha_salida) = '$month' AND YEAR(fecha_salida) = '$year' AND estado='Vendida' LIMIT 1");
+	    		$sql = $this->db->query("SELECT SUM(costo) AS total FROM ventas_tv WHERE MONTH(fecha_egreso) = '$month' AND YEAR(fecha_egreso) = '$year' AND estado='Vendida' LIMIT 1");
 	    		$total[$i] = 0;
 	    		foreach ($sql as $key){ $total[$i] = ($key['total'] == null)? 0 : $key['total']; }
 	    	}

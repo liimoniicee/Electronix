@@ -18,6 +18,9 @@ $sum_vendidas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Vendida';
 
 $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publicada';";
 
+$sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
+
+
 
 
 
@@ -80,6 +83,14 @@ $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publica
       }
       ?>
      
+     <?php
+          $ejec01 = mysqli_query($conn, $sum_tv_ventas);
+        while($fila=mysqli_fetch_array($ejec01)){
+            $num_ven_tv     = $fila['SUM(costo)'];
+
+      }
+      ?>
+
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
           <ul class="app-notification dropdown-menu dropdown-menu-right">
             <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
@@ -145,14 +156,25 @@ $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publica
 
                 <div class="col-lg-12">
                   <p class="bs-component">
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-settings"></i>Ventas total</button>
+                    <button class="btn btn-info" id="watch-me"><i class="ti-settings"></i>Ventas total</button>
                     <button class="btn btn-info" onclick="location='#'"><i class="ti-money"></i>Ventas tv</button>
                     <button class="btn btn-info" id="look-me"><i class="ti-settings"></i>Ventas refacciones vendidas por mes</button>
                     <button class="btn btn-info" id="look-me2"><i class="ti-settings"></i>Ventas refacciones publicadas por mes</button>
 
         </p>
       </div>
-      <div class="card-body">
+      
+      <div class="card">
+      <div class="resultados"><canvas id="grafico"></canvas></div>
+      </div>
+
+    </div>
+
+   
+<!-- tabla 1-->
+
+    <div id='show-me'>
+
         <div class="col-sm-2">
           <select class="form-control form-control-sm" onChange="mostrarResultados(this.value);">
               <?php
@@ -166,14 +188,8 @@ $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publica
               ?>
           </select>
         </div>
-      </div>
-      <div class="card">
-      <div class="resultados"><canvas id="grafico"></canvas></div>
-    </div>
 
-    <!-- tabla 3k-->
 
-  <div id='show-me-three'  style='display:none; border:2px solid #ccc'>
 
 <script>
             $(document).ready(mostrarResultados(2018));
@@ -181,7 +197,7 @@ $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publica
                     $('.resultados').html('<canvas id="grafico"></canvas>');
                     $.ajax({
                         type: 'POST',
-                        url: 'admin_fn_procesa_ventas_refacciones.php',
+                        url: 'admin_fn_procesa_ventasx.php',
                         data: 'year='+year,
                         dataType: 'JSON',
                         success:function(response){
@@ -189,7 +205,77 @@ $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publica
                                     labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                                     datasets : [
                                         {
-                                          label: "Ganancias de ventas de refaccion en mercado libre por mes",
+                                          label: "Ganancias de ventas de television mes",
+                                          backgroundColor: '#0C83B6',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data : response
+                                        }
+                                        
+                                    ]
+                                }
+
+                          
+                            var contexto = document.getElementById('grafico').getContext('2d');
+                            window.Barra = new Chart(contexto,{
+                                      type: 'bar',
+                                            data: Datos,Datos2,
+                                                options: {}
+                                                  });
+                            Barra.clear();
+                        }
+
+                        
+                    });
+                    return false;
+                }
+    </script>
+
+<h3>Total ventas de televisiones: $<?php echo $num_ven_tv?></h3>
+
+    </div>
+
+    <!-- tabla 3k-->
+
+  <div id='show-me-three'  style='display:none; border:2px solid #ccc'>
+
+
+<h3>Total refacciones vendidas en mercado libre: $<?php echo $num_pub ?></h3>
+    </div>
+    <!-- tabla 4k-->
+
+    <div id='show-me-three2'  style='display:none; border:2px solid #ccc'>
+ 
+    <div class="col-sm-2">
+          <select class="form-control form-control-sm" onChange="mostrarResultados1(this.value);">
+              <?php
+                  for($i=2017;$i<2030;$i++){
+                      if($i == 2018){
+                          echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                      }else{
+                          echo '<option value="'.$i.'">'.$i.'</option>';
+                      }
+                  }
+              ?>
+          </select>
+        </div>
+
+
+
+<script>
+            $(document).ready(mostrarResultados1(2018));
+                function mostrarResultados1(year){
+                    $('.resultados').html('<canvas id="grafico"></canvas>');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'admin_fn_procesa_ventas_publicadas.php',
+                        data: 'year='+year,
+                        dataType: 'JSON',
+                        success:function(response){
+                            var Datos = {
+                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    datasets : [
+                                        {
+                                          label: "Ganancias de ventas de refaccion en Mercado libre por mes",
                                           backgroundColor: '#0C83B6',
                                           borderColor: 'rgb(255, 99, 132)',
                                           data : response
@@ -211,12 +297,6 @@ $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publica
                     return false;
                 }
     </script>
-<h3>Total refacciones vendidas en mercado libre: $<?php echo $num_pub ?></h3>
-    </div>
-    <!-- tabla 4k-->
-
-    <div id='show-me-three2'  style='display:none; border:2px solid #ccc'>
-
 
 <h3>Total refacciones publicadas en Mercado libre: $<?php echo $num_ven?></h3>
 
