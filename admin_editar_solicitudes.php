@@ -10,8 +10,8 @@ $var_clave= $_SESSION['clave'];
 
 $tecnico = "SELECT * from personal where tipo = 'Tecnico';";
 
-$total_equipos ="SELECT id_equipo, marca, modelo, falla, comentarios, fecha_ingreso, servicio, estado, ubicacion, id_folio, id_personal
-                from reparar_tv";
+$total_equipos ="SELECT *
+                from reparar_tv r, clientes c where r.id_folio = c.id_folio";
 
 $clientes = "SELECT
              id_folio, nombre, apellidos,direccion, celular, correo, puntos
@@ -171,17 +171,18 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                     <table id="a-tables"  class="table table-dark table-hover table-responsive">
                     <thead>
 
-                      <th data-field="id">id_equipo</th>
-                    <th >Marca</th>
-                    <th>Modelo</th>
-                    <th>Falla</th>
-                    <th>Comentarios</th>
-                    <th>Ingreso</th>
-                    <th>Servicio</th>
-                    <th>Estado</th>
-                    <th>Ubicación</th>
-                    <th>Personal</th>
-                    <th>Acción</th>
+                      <th width="8%">id_equipo</th>
+                    <th width="7%">Marca</th>
+                    <th width="8%">Modelo</th>
+                    <th width="7%">Nombre</th>
+                    <th width="7%">Apellidos</th>
+                    <th width="7%">Direccion</th>
+                    <th width="7%">Coreo</th>
+                    <th width="6%">Celular</th>
+                    <th width="7%">Estado</th>
+                    <th width="7%">Ubicación</th>
+                    <th width="7%">Personal</th>
+                    <th width="7%">Acción</th>
 
                     </thead>
                     <?php
@@ -190,10 +191,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                       $id_equipo      = $fila['id_equipo'];
                       $marc           = $fila['marca'];
                       $mod            = $fila['modelo'];
-                      $falla          = $fila['falla'];
-                      $come           = $fila['comentarios'];
-                      $fech_ing       = $fila['fecha_ingreso'];
-                      $servi          = $fila['servicio'];
+                      $falla          = $fila['nombre'];
+                      $come           = $fila['apellidos'];
+                      $fech_ing       = $fila['direccion'];
+                      $servi          = $fila['correo'];
+                      $celu          = $fila['celular'];
                       $est            = $fila['estado'];
                       $ubi            = $fila['ubicacion'];
                       $id             = $fila['id_folio'];
@@ -207,14 +209,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
         <td><?php echo $come ?></td>
         <td><?php echo $fech_ing ?></td>
         <td><?php echo $servi ?></td>
+        <td><?php echo $celu ?></td>
         <td><?php echo $est ?></td>
         <td><?php echo $ubi ?></td>
         <td><?php echo $id_p ?></td>
+        <?php
+        echo "
         <td>
-          <button type="button" data-id="<?php echo $id_equipo ?>" class="open-AddBookDialog btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-    Launch demo modal
-  </button>
-        </td>
+          <a href='recepcion_historial_cliente.php?id=$id'  title='Historial'><i class='btn-sm btn-secondary ti-agenda'></i></a>
+        </td>";
+        ?>
                         </tr>
                       <?php } ?>
                       <tbody></br>
