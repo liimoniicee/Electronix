@@ -149,7 +149,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
       <div class="resultados"><canvas id="grafico"></canvas></div>
 
 
-      <h2>putitos</h2>
     </div>
   </body>
 

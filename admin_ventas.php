@@ -156,26 +156,15 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
 
                 <div class="col-lg-12">
                   <p class="bs-component">
-                    <button class="btn btn-info" id="watch-me"><i class="ti-settings"></i>Ventas total</button>
+                    <button class="btn btn-info" ><i class="ti-settings"></i>Ventas total</button>
                     <button class="btn btn-info" onclick="location='#'"><i class="ti-money"></i>Ventas tv</button>
-                    <button class="btn btn-info" id="look-me"><i class="ti-settings"></i>Ventas refacciones vendidas por mes</button>
-                    <button class="btn btn-info" id="look-me2"><i class="ti-settings"></i>Ventas refacciones publicadas por mes</button>
+                    <button class="btn btn-info" onclick="location='admin_ventas.php'"></i>Ventas refacciones vendidas por mes</button>
+                    <button class="btn btn-info"  id="watch-me"><i class="ti-settings"></i>Ventas refacciones publicadas por mes</button>
 
         </p>
       </div>
       
-      <div class="card">
-      <div class="resultados"><canvas id="grafico"></canvas></div>
-      </div>
-
-    </div>
-
-   
-<!-- tabla 1-->
-
-    <div id='show-me'>
-
-        <div class="col-sm-2">
+      <div class="col-sm-2">
           <select class="form-control form-control-sm" onChange="mostrarResultados(this.value);">
               <?php
                   for($i=2017;$i<2030;$i++){
@@ -188,10 +177,64 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
               ?>
           </select>
         </div>
+        
+      <div class="card">
+      <div class="resultados"><canvas id="grafico"></canvas></div>
+      </div>
+     
+    </div>
 
+   
+  
 
+<!-- tabla 1-->
+
+    <div id='show-me'>
 
 <script>
+            $(document).ready(mostrarResultados(2018));
+                function mostrarResultados(year){
+                    $('.resultados').html('<canvas id="grafico"></canvas>');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'admin_fn_procesa_ventas_publicadas.php',
+                        data: 'year='+year,
+                        dataType: 'JSON',
+                        success:function(response){
+                            var Datos = {
+                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    datasets : [
+                                        {
+                                          label: "Refacciones publicadas en Mercado libre por mes",
+                                          backgroundColor: '#0C83B6',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data : response
+                                        }
+                                        
+                                    ]
+                                }
+                            var contexto = document.getElementById('grafico').getContext('2d');
+                            window.Barra = new Chart(contexto,{
+                                      type: 'bar',
+                                            data: Datos,
+                                                options: {}
+                                                  });
+                            Barra.clear();
+                        }
+
+                        
+                    });
+                    return false;
+                }
+    </script>
+
+<h3>Total refacciones publicadas en Mercado libre: $<?php echo $num_pub?></h3>
+
+    </div>
+
+<!--
+<script>
+
             $(document).ready(mostrarResultados(2018));
                 function mostrarResultados(year){
                     $('.resultados').html('<canvas id="grafico"></canvas>');
@@ -230,10 +273,9 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
                 }
     </script>
 
-<h3>Total ventas de televisiones: $<?php echo $num_ven_tv?></h3>
 
     </div>
-
+-->
     <!-- tabla 3k-->
 
   <div id='show-me-three'  style='display:none; border:2px solid #ccc'>
@@ -244,61 +286,10 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
     <!-- tabla 4k-->
 
     <div id='show-me-three2'  style='display:none; border:2px solid #ccc'>
- 
-    <div class="col-sm-2">
-          <select class="form-control form-control-sm" onChange="mostrarResultados1(this.value);">
-              <?php
-                  for($i=2017;$i<2030;$i++){
-                      if($i == 2018){
-                          echo '<option value="'.$i.'" selected>'.$i.'</option>';
-                      }else{
-                          echo '<option value="'.$i.'">'.$i.'</option>';
-                      }
-                  }
-              ?>
-          </select>
-        </div>
 
 
 
-<script>
-            $(document).ready(mostrarResultados1(2018));
-                function mostrarResultados1(year){
-                    $('.resultados').html('<canvas id="grafico"></canvas>');
-                    $.ajax({
-                        type: 'POST',
-                        url: 'admin_fn_procesa_ventas_publicadas.php',
-                        data: 'year='+year,
-                        dataType: 'JSON',
-                        success:function(response){
-                            var Datos = {
-                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                                    datasets : [
-                                        {
-                                          label: "Ganancias de ventas de refaccion en Mercado libre por mes",
-                                          backgroundColor: '#0C83B6',
-                                          borderColor: 'rgb(255, 99, 132)',
-                                          data : response
-                                        }
-                                        
-                                    ]
-                                }
-                            var contexto = document.getElementById('grafico').getContext('2d');
-                            window.Barra = new Chart(contexto,{
-                                      type: 'bar',
-                                            data: Datos,
-                                                options: {}
-                                                  });
-                            Barra.clear();
-                        }
 
-                        
-                    });
-                    return false;
-                }
-    </script>
-
-<h3>Total refacciones publicadas en Mercado libre: $<?php echo $num_ven?></h3>
 
     </div>
   </body>
