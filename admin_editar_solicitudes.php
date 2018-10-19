@@ -697,186 +697,143 @@ function enviarreporte(id_equipo){
 </script>
 <!-- termina el mod ajax -->
 
-<!-- comienzan los modal -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- body modal -->
-    <div class="row">
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >id del equipo</label>
-                  <input type="text" name="bookId" id="bookId" readonly class="form-control border-input" >
-              </div>
-          </div>
+<script type="text/javascript">
+//ventana orden de servición
+function orden(id){
 
-          <?php
 
-          ?>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label>Equipo</label>
-                  <input type="text" name="nom" id="nom"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Marca</label>
-                  <input type="text" name="ape" id="ape"   value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Medolo</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Serie</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
+swal({
+title: 'Nueva orden de servicio',
+html:
+'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Accesorios</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Falla</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Comentarios</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="form-group">
-                  <label >Fecha de ingreso</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="form-group">
-                  <label >inicio reparacion</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
+'<input type="text" value="'+id+'" id="swal-input0" name="swal-input0" class="form-control border-input" >' +
+'<input type="hidden" name="swal-input1" id="swal-input1" class="form-control border-input" >' +
+'<input type="hidden" name="swal-input2" id="swal-input2" class="form-control border-input" >' +
 
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Fecha egreso</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Servicio</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Presupuesto</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Mano de obra</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Abono</label>
-                  <input type="text"  value="" class="form-control border-input" >
-              </div>
-          </div>
+'<div class="row">'+
+'<div class="col-md-3">'+
+  '<div class="form-group">'+
+        '<label>Equipo</label>'+
+        '<select class="form-control form-control-sm" textalign="center" required name="equipo" id="equipo"><option value="" ></option><option value="Television" >Televisión</option>'+
+        '<option value="Ventiladores">Ventiladores</option>'+
+        '<option value="Tarjeta madre">Tarjetas madre</option>'+
+        '<option value="Audio">Audio</option>'+
+        '<option value="Fuente de poder">Fuentes de poder</option>'+
+        '</select>' +
+    '</div>'+
+'</div>'+
+'<div class="col-md-3">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" maxlength="25" pattern="[A-Za-z]+" title="Sólo letras"  onkeyup="this.value = this.value.toUpperCase();"  required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'<div class="col-md-3">'+
+  '<div class="form-group">'+
+        '<label>Marca</label>'+
+        '<input type="text" name="marca" id="marca" maxlength="25" pattern="[A-Za-z]+" title="Sólo letras"  onkeyup="this.value = this.value.toUpperCase();"  required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
 
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Restante</label>
-                  <input type="text" value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Costo total</label>
-                  <input type="text" value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Estado</label>
-                  <input type="text" value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Ubicacion</label>
-                  <input type="text" value="" class="form-control border-input" >
-              </div>
-          </div>
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >Puntos</label>
-                  <input type="text" value="" class="form-control border-input" >
-              </div>
-          </div>
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >id del personal</label>
-                  <input type="text" value="" class="form-control border-input" >
-              </div>
-          </div>
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Falla</label>'+
+        '<input type="text" name="falla" id="falla" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
-          <div class="col-md-2">
-              <div class="form-group">
-                  <label >id folio</label>
-                  <input type="text" value="" class="form-control border-input" >
-              </div>
-          </div>
-</div>
-        <!-- termina body modal -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- termina modal -->
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Serie</label>'+
+        '<input type="text" name="serie" id="serie" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
 
-<script>
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Accesorios</label>'+
+        '<input type="text" name="acce" id="acce" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
 
-$(document).on("click", ".open-AddBookDialog", function () {
-     var myBookId = $(this).data('id');
-     $(".modal-body #bookId").val( myBookId );
-});
+'<div class="col-md-12">'+
+'<div class="form-group">'+
+        '<label>Tipo de servicio</label>'+
+        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="" ></option><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
+
+        '<label>Comentarios</label>'+
+        '<textarea type="text" name="comen" id="comen" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+    '</div>'+
+    '<div class="form-group">'+
+        '<label>Modelo</label>'+
+        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
+    '</div>'+
+    '</div>'+
+
+
+'<div class="col-md-12">'+
+'<Button type="submit" onclick="location.href="recepcion.php"" class= "btn btn-info btn-fill btn-wd" >Registrar y generar reporte</Button>'+
+
+
+'</form></div>',
+
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText:  '</form> Registrar y generar reporte',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+customClass: 'swal-wide',
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+
+ }).then(function (isConfirm) {
+   if(isConfirm){swal(
+'Orden registrada!',
+'Éxito al registrar',
+'success'
+)
+}if(isConfirm =='cancel'){
+  swal(
+'Orden culera!',
+'Éxito al registrar',
+'success'
+)
+
+}
+
+
+
+
+}).catch(swal.noop);
+
+};
 </script>
 
 
-
+<style>
+.swal-wide{
+    width:70% !important;
+}
+</style>
 
 
   <?php
