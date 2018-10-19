@@ -134,7 +134,7 @@ $clientes = "SELECT * from clientes;";
       <main class="app-content">
         <div class="app-title">
           <div>
-            <h3><i class="fa fa-dashboard"></i>Administrador - editar soliciutdes</h3>
+            <h3><i class="fa fa-dashboard"></i>Administrador - Editar equipos en taller</h3>
             <p>Dar un buen servicio es nuestra prioridad</p>
           </div>
         </div>
