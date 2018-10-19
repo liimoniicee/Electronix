@@ -25,14 +25,14 @@ $valor= $_POST ['valor'];
 $estado= $_POST ['estado'];
 $ubicacion= $_POST ['ubicacion'];
 $tecnico= $_POST ['tecnico'];
-$id_folio= $_POST ['id_cliente'];
+$id_folio= $_POST ['cliente'];
 
 
 
   
 
 
-$sql = "UPDATE reparar_tv set equipo='$equipo', marca='$marca', modelo='$modelo', serie='$serie', accesorios='$accesorios', falla='$falla', comentarios='$comentarios', servicio='$servicio', presupuesto='$refaccion', mano_obra='$mano', abono='$abono', restante='$restante', costo_total='$total', valor='$valor', estado='$estado' , ubicacion='$ubicacion', id_personal='$tecnico'  where id_equipo='$id_equipo';";
+$sql = "UPDATE reparar_tv set equipo='$equipo', marca='$marca', modelo='$modelo', serie='$serie', accesorios='$accesorios', falla='$falla', comentarios='$comentarios', servicio='$servicio', presupuesto='$refaccion', mano_obra='$mano', abono='$abono', restante='$restante', costo_total='$total', valor='$valor', estado='$estado' , ubicacion='$ubicacion',id_folio='$id_folio',  id_personal='$tecnico'  where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
  if (!$res) {
   printf("Errormessage: %s\n", $conn->error);

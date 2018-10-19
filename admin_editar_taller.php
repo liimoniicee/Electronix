@@ -822,6 +822,7 @@ function enviarreporte(id){
      // la respuesta es pasada como argumento a la función
      success : function(data) {
        //Manda Llamar id,nombre y apellido
+       $("#id_cliente").val(data.data.id);
 
        $("#id_equipo").val(data.data.id_e);
        $("#equipo").val(data.data.equi);
@@ -1070,14 +1071,9 @@ html:
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Id Cliente</label>'+
-        '<select class="form-control form-control-sm" textalign="center"  name="id_cliente" id="id_cliente">'+
-  '<option value="" ></option>'+
-  <?php
-  $ejec7 = mysqli_query($conn, $clientes);
-  while($fila=mysqli_fetch_array($ejec7)){?>
-  '<?php echo '<option value="'.$fila["id_folio"].'">'.$fila["id_folio"].'</option>'; ?>'+
-  <?php } ?>
-  '</select>' +    '</div>'+
+        '<input name="cliente"  id="cliente" type="number"  required value="<?php echo $id ?>" readonly class="form-control border-input">'+
+
+'</div>'+
 '</div>'+
 
 
