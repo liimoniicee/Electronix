@@ -180,7 +180,7 @@ $clientes = "SELECT * from clientes;";
 
 
 <!-- comienza tabla 2 -->
-                  <div id='show-me-two'>
+                  <div id='show-me'>
                       <div class="tile">
                         <div class="tile-body">
 
@@ -248,7 +248,7 @@ $clientes = "SELECT * from clientes;";
                     <!--Termina tabla 2-->
 
                     <!--Comienza tabla 3-->
-                  <div id='show-me-three' style='display:none; border:2px solid #ccc'>
+                  <div id='show-me-two' style='display:none; border:2px solid #ccc'>
                     <div class="tile">
                       <div class="tile-body">
 
@@ -318,7 +318,7 @@ $clientes = "SELECT * from clientes;";
                     </div>
                     <!-- Termina tabla 4 -->
 
-                <div id='show-me-three2' style='display:none; border:2px solid #ccc'>
+                <div id='show-me-three' style='display:none; border:2px solid #ccc'>
 
                   <div class="tile">
                     <div class="tile-body">
@@ -387,7 +387,7 @@ $id_p           = $fila['id_personal'];
 
                   </div>
                     <!-- Termina tabla 4 -->
-                    <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
+                    <div id='show-me-three2' style='display:none; border:2px solid #ccc'>
                       <div class="tile">
                         <div class="tile-body">
 
@@ -458,7 +458,7 @@ $id_p           = $fila['id_personal'];
 
                     <!-- Comienza tabla 5 -->
 
-              <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
+              <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
                 <div class="tile">
                   <div class="tile-body">
 
@@ -529,7 +529,7 @@ $id_p           = $fila['id_personal'];
                 <!-- Comienza tabla 6 -->
 
 
-                              <div id='show-me-three5' style='display:none; border:2px solid #ccc'>
+                              <div id='show-me-three4' style='display:none; border:2px solid #ccc'>
                                 <div class="tile">
                                   <div class="tile-body">
 
