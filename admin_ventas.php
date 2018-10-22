@@ -14,7 +14,6 @@ FROM avisos where tipo= 'Administrador' and estado='pendiente'order by fecha des
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estado='pendiente' order by fecha desc;";
 
-$sum_vendidas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Vendida';";
 
 $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publicada';";
 
@@ -31,7 +30,9 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
 
 <script src="assets\js\plugins/bootstrap-notify.min.js"></script>
 
-
+<script src="assets\js/highcharts.js"></script>
+<script src="assets\js/modules/exporting.js"></script>
+<script src="assets\js/modules/export-data.js"></script>
 
 
     <!-- Open Graph Meta-->
@@ -75,13 +76,7 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
       }
       ?>
 
-        <?php
-          $ejec01 = mysqli_query($conn, $sum_vendidas);
-        while($fila=mysqli_fetch_array($ejec01)){
-            $num_ven     = $fila['SUM(precio)'];
-
-      }
-      ?>
+  
      
      <?php
           $ejec01 = mysqli_query($conn, $sum_tv_ventas);
@@ -156,10 +151,10 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
 
                 <div class="col-lg-12">
                   <p class="bs-component">
-                    <button class="btn btn-info" ><i class="ti-settings"></i>Ventas total</button>
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-money"></i>Ventas tv</button>
-                    <button class="btn btn-info" onclick="location='admin_ventas.php'"></i>Ventas refacciones vendidas por mes</button>
-                    <button class="btn btn-info"  id="watch-me"><i class="ti-settings"></i>Ventas refacciones publicadas por mes</button>
+                    <button class="btn btn-info"  id="watch-me"><i class="ti-settings"></i>Ventas total</button>
+                    <button class="btn btn-info"  id="see-me"><i class="ti-money"></i>Ventas tv</button>
+                    <button class="btn btn-info" id="look-me"></i>Ventas refacciones vendidas por mes</button>
+                    <button class="btn btn-info"  id="look-me2"><i class="ti-settings"></i>Ventas refacciones publicadas por mes</button>
 
         </p>
       </div>
@@ -178,11 +173,9 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
           </select>
         </div>
         
-      <div class="card">
-      <div class="resultados"><canvas id="grafico"></canvas></div>
+ 
       </div>
      
-    </div>
 
    
   
@@ -191,42 +184,131 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
 
     <div id='show-me'>
 
-<script>
-            $(document).ready(mostrarResultados(2018));
-                function mostrarResultados(year){
-                    $('.resultados').html('<canvas id="grafico"></canvas>');
-                    $.ajax({
-                        type: 'POST',
-                        url: 'admin_fn_procesa_ventas_publicadas.php',
-                        data: 'year='+year,
-                        dataType: 'JSON',
-                        success:function(response){
-                            var Datos = {
-                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                                    datasets : [
-                                        {
-                                          label: "Refacciones publicadas en Mercado libre por mes",
-                                          backgroundColor: '#0C83B6',
-                                          borderColor: 'rgb(255, 99, 132)',
-                                          data : response
-                                        }
-                                        
-                                    ]
-                                }
-                            var contexto = document.getElementById('grafico').getContext('2d');
-                            window.Barra = new Chart(contexto,{
-                                      type: 'bar',
-                                            data: Datos,
-                                                options: {}
-                                                  });
-                            Barra.clear();
-                        }
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-                        
-                    });
-                    return false;
-                }
-    </script>
+
+<script type="text/javascript">
+
+// Create the chart
+Highcharts.chart('container', {
+chart: {
+type: 'column'
+},
+title: { 
+text: 'Estadisticas de Mercado libre al día . <?php echo date("Y-m-d");?>'
+},
+subtitle: {
+text: 'Pasa el raton para ver las estadísticas'
+},
+xAxis: {
+type: 'column'
+},
+yAxis: {
+title: {
+text: 'Total refacciones publicadas en Mercadolibre'
+}
+
+},
+legend: {
+enabled: false
+},
+plotOptions: {
+series: {
+borderWidth: 0,
+dataLabels: {
+    enabled: true,
+    format: '{point.y:.1f}$'
+}
+}
+},
+
+tooltip: {
+headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}$</b> en publicaciones<br/>'
+},
+
+"series": [
+{
+"name": "Browsers",
+"colorByPoint": true,
+"data": [
+               <?php
+
+include 'conexion.php';
+
+                     $sum_publicadass = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publicada';";
+
+$ejecutar = mysqli_query($conn, $sum_publicadass);
+$i = 0;
+$fecha_actual=date("d/m/Y");
+while($row=mysqli_fetch_array($ejecutar)){
+
+$var_marca     =     $row['SUM(precio)'];
+
+    $i++;
+
+?>
+    {
+        "name": "Total refacciones publicadas en Mercadolibre",
+        "y": <?php echo $row['SUM(precio)']; ?> ,
+        "drilldown": "Chrome"
+    },
+  <?php }     ?>
+]
+},
+{
+"name": "Browsers",
+"colorByPoint": true,
+"data": [
+               <?php
+
+include 'conexion.php';
+
+$sum_vendidass = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Vendida';";
+
+$ejecutar = mysqli_query($conn, $sum_vendidass);
+$i = 0;
+$fecha_actual=date("d/m/Y");
+while($row2=mysqli_fetch_array($ejecutar)){
+
+$var_marca     =     $row2['SUM(precio)'];
+
+    $i++;
+
+?>
+    {
+        "name": "Total refacciones vendidas en Mercadolibre",
+        "y": <?php echo $row2['SUM(precio)']; ?> ,
+        "drilldown": "Chrome"
+    },
+  <?php }     ?>
+]
+}
+]
+
+});
+
+
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+ <div id='show-me-two' style='display:none; border:2px solid #ccc'>
+
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+
+
 
 <h3>Total refacciones publicadas en Mercado libre: $<?php echo $num_pub?></h3>
 
@@ -285,9 +367,7 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
     </div>
     <!-- tabla 4k-->
 
-    <div id='show-me-three2'  style='display:none; border:2px solid #ccc'>
-
-
+   
 
 
 

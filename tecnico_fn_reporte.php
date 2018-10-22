@@ -16,6 +16,7 @@ $proc = $_POST['swal-input2'];
 $estado = $_POST['swal-input3'];
 $parte = $_POST['swal-input4'];
 $estado2 = $_POST['swal-input5'];
+$tipo= $_POST['tipo'];
 
 
 $micarpeta = "assets/galeria/reporte/$var_clave/$id_equipo";
@@ -39,13 +40,7 @@ move_uploaded_file($imagen3, $destino3);
 
 
 
-$sql = "Update reparar_tv set estado='Diagnosticada' where id_equipo='$id_equipo'";
-$res = $conn->query($sql);
 
-
-$sql3 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)
-VALUES ('$var_clave', 'Equipo $id_equipo revisado por tecnico', 'Pendiente', 'Taller');";
-$res3 = $conn->query($sql3);
 
 if($estado == 'Necesita refaccion'){
   $sql1 = "INSERT INTO reportes_tecnicos (falla_especifica, solucion_especifica, conclusion,solicitud, parte, estado, imagen1,imagen2,imagen3, id_personal, id_equipo)
@@ -53,7 +48,11 @@ if($estado == 'Necesita refaccion'){
 
   $res1 = $conn->query($sql1);
 
- 
+  $sql4 = "INSERT INTO solicitudes_refacciones (tipo, etiqueta, solicitud, estado, ubicacion, id_personal,id_equipo,)
+  VALUES ('$tipo', '$parte', 'Pendiente','Autorizacion pendiente','$var_clave','$id_equipo');";
+
+  $res4 = $conn->query($sql4);
+
    echo "<script>window.open('tecnico.php','_self')</script>";
 }else{
   $sql2 = "INSERT INTO reportes_tecnicos (falla_especifica, solucion_especifica, conclusion, solicitud, parte, estado, imagen1,imagen2,imagen3, id_personal, id_equipo)

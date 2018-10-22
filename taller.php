@@ -143,7 +143,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Taller' and estado='pend
       <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
       <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
-      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+      <li><a class="app-menu__item" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
 
     </aside>
@@ -1003,7 +1003,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Estado del equipo</label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solucion</option></option><option value="Necesita refaccion">Necesita refaccion</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="swal-input24" id="swal-input24"><option value="" ></option><option value="Reparada" >Reparada</option><option value="Sin solucion">Sin solucion</option></option><option value="Necesita refaccion">Necesita refaccion</option></select>' +
     '</div>'+
 '</div>'+
 '</div>'+

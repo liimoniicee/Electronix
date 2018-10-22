@@ -34,7 +34,7 @@ $sql2 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
 VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id sin solución, en ruta a recepcion, solicitar cambio a cliente', 'Pendiente', 'Recepcion');";
 $res2 = $conn->query($sql2);
 
-$sql3 = "UPDATE reparar_tv set presupuesto = $pre, mano_obra =$man, abono=$abo, restante= $res, costo_total= $tot, valor=$val, estado='$est', ubicacion='Taller en ruta a Recepcion' where id_equipo= $id;";
+$sql3 = "UPDATE reparar_tv set presupuesto ='$pre', mano_obra ='$man', abono='$abo', restante='$res', costo_total='$tot', valor='$val', estado='$est', ubicacion='Taller en ruta a Recepcion' where id_equipo='$id';";
 $res3 = $conn->query($sql3);
 
 }if($est =='Reparada'){
@@ -48,13 +48,21 @@ $res7 = $conn->query($sql7);
 VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id reparado traslado pendiente a recepcion marcar a cliente', 'Pendiente', 'Recepcion');";
 $res4 = $conn->query($sql4);
   
-$sql5 = "UPDATE reparar_tv set presupuesto = $pre, mano_obra =$man, abono=$abo, restante= $res, costo_total= $tot,valor=$val, estado='$est', ubicacion='Taller en ruta a Recepcion' where id_equipo= $id;";
+$sql5 = "UPDATE reparar_tv set presupuesto ='$pre', mano_obra ='$man', abono='$abo', restante='$res', costo_total= '$tot', valor='$val', estado='$est', ubicacion='Taller en ruta a Recepcion' where id_equipo='$id';";
 $res5 = $conn->query($sql5);
   }else{
 
 $sql6 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
-VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id necesita refaccion, traslado pendiente a recepcion, marcar a cliente', 'Pendiente', 'Recepcion');";
+VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id necesita refaccion, traslado pendiente a recepcion, marcar a cliente', 'Pendiente', 'Mercado libre');";
 $res6 = $conn->query($sql6);
+
+$sql8 = "UPDATE reparar_tv set presupuesto ='$pre', mano_obra ='$man', abono='$abo', restante='$res', costo_total= '$tot', valor='$val', estado='$est', ubicacion='Taller en espera de refacción' where id_equipo='$id';";
+$res8 = $conn->query($sql8);
+
+$sql9 = "INSERT INTO solicitudes_refacciones(id_personal, fecha, aviso, estado, tipo)
+VALUES ('$var_clave', CURRENT_TIMESTAMP, 'Equipo numero $id necesita refaccion, traslado pendiente a recepcion, marcar a cliente', 'Pendiente', 'Mercado libre');";
+$res9 = $conn->query($sql9);
+
 }
 
   echo "<script>window.open('taller.php','_self')</script>";

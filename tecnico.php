@@ -513,8 +513,10 @@ var id = id_equipo;
 
 
 '<div class="col-md-12 entradas" style="display:none;">'+
-'<label># de pieza que necesita</label>'+
-'<input type="text" name="swal-input4" value="NA" id="swal-input4" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"  ><br></br>'+
+'<label>Tipo de refaccion</label>'+
+'<input input type="text" name="tipo"  value="NA" id="tipo" placeholder="Tarjeta main, Tcon" title="Sólo letras y números" class="form-control border-input"  ></br>'+
+'<label>Etiquetas de la tarjeta</label>'+
+'<input type="text" name="swal-input4" value="NA" id="swal-input4" placeholder="EAX64582814,BN94-9865A" title="Sólo letras y números" class="form-control border-input"  ></br>'+
 '</div>'+
 '</div>'+
 '</div>'+
@@ -535,6 +537,7 @@ var id = id_equipo;
 $("#swal-input3").change(function(){
   if(this.value == 'Necesita refaccion'){
     $(".entradas").show();
+
   }else{
     $(".entradas").hide();
   }

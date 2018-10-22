@@ -1008,14 +1008,14 @@ html:
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Mano de obra</label>'+
-        '<input name="mano"  id="mano" type="number" required  class="form-control border-input">'+
+        '<input name="mano"  id="mano" type="number" required onchange="operaciones();"  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Abono</label>'+
-        '<input name="abono"  id="abono" type="number"   required  class="form-control border-input">'+
+        '<input name="abono"  id="abono" type="number"   required onchange="operaciones();"  class="form-control border-input">'+
 
 
 '</div>'+
@@ -1024,7 +1024,7 @@ html:
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Restante</label>'+
-        '<input name="restante"  id="restante" type="text"  required  class="form-control border-input">'+
+        '<input name="restante"  id="restante" type="text" readonly required  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -1036,7 +1036,7 @@ html:
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Costo total</label>'+
-        '<input type="number" name="total" id="total"  required  class="form-control border-input">'+
+        '<input type="number" name="total" id="total"  readonly required  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -1050,7 +1050,7 @@ html:
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Estado </label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="estado" id="estado"><option value="" ></option><option value="Pendiente" >Pendiente</option><option value="A cambio" >A cambio</option><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solucion</option></option><option value="Necesita refaccion">Necesita refaccion</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="estado" id="estado"><option value="" ></option><option value="Pendiente" >Pendiente</option><option value="Entregado" >Entregado</option><option value="Diagnosticada" >Diagnosticada</option><option value="A cambio" >A cambio</option><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solucion</option></option><option value="Necesita refaccion">Necesita refaccion</option></select>' +
 
 
 '</div>'+
@@ -1125,16 +1125,16 @@ reverseButtons: true
 
 function operaciones()
 {
-  var refaccion =document.getElementById('swal-input19').value;
-  var mano =document.getElementById('swal-input20').value;
-  var abono =document.getElementById('swal-input21').value;
+  var refaccion =document.getElementById('refaccion').value;
+  var mano =document.getElementById('mano').value;
+  var abono =document.getElementById('abono').value;
 
    suma =parseInt(refaccion)+parseInt(mano);
 
    total =parseInt(suma)-parseInt(abono);
 
-   subtotal =parseInt(document.getElementById('swal-input22').value= suma);
-   totalt =parseInt(document.getElementById('swal-input23').value= total);
+   subtotal =parseInt(document.getElementById('total').value= suma);
+   totalt =parseInt(document.getElementById('restante').value= total);
 
 
 }
