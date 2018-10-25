@@ -1050,7 +1050,7 @@ html:
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Estado </label>'+
-        '<select class="form-control form-control-sm" required textalign="center" name="estado" id="estado"><option value="" ></option><option value="Pendiente" >Pendiente</option><option value="Entregado" >Entregado</option><option value="Diagnosticada" >Diagnosticada</option><option value="A cambio" >A cambio</option><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solucion</option></option><option value="Necesita refaccion">Necesita refaccion</option></select>' +
+        '<select class="form-control form-control-sm" required textalign="center" name="estado" id="estado"><option value="" ></option><option value="Pendiente" >Pendiente</option><option value="Entregado" >Entregado</option><option value="Diagnosticada" >Diagnosticada</option><option value="A cambio" >A cambio</option><option value="Reparada" >Reparado</option><option value="Sin solucion">Sin solucion</option></option><option value="Necesita refaccion">Necesita refaccion</option><option value="Devuelto">Devuelto</option></select>' +
 
 
 '</div>'+
