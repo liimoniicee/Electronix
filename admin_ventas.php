@@ -229,14 +229,14 @@ pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y
 
 "series": [
 {
-"name": "Browsers",
+"name": "Gráfica 1",
 "colorByPoint": true,
 "data": [
                <?php
 
 include 'conexion.php';
 
-                     $sum_publicadass = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publicada';";
+$sum_publicadass = "SELECT SUM(precio),fecha_entrada FROM refacciones_tv  WHERE estado='Publicada' LIMIT 1 ;";
 
 $ejecutar = mysqli_query($conn, $sum_publicadass);
 $i = 0;
@@ -257,7 +257,7 @@ $var_marca     =     $row['SUM(precio)'];
 ]
 },
 {
-"name": "Browsers",
+"name": "Grafica 2",
 "colorByPoint": true,
 "data": [
                <?php

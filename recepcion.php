@@ -1553,7 +1553,9 @@ reverseButtons: true
    '<label>Correo</label>' +
    '<input input type="text" name="cor" id="cor" class="form-control border-input">' +
    '<label>Celular</label>' +
-   '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+   '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required>'+
+   '<label>Como nos conoció</label>' +
+   '<select class="form-control form-control-sm" required textalign="center" name="conocio" id="conocio"><option value="" ></option><option value="Recomendacion" >Recomendación</option><option value="Redes sociales">Redes sociales</option></option><option value="Atraccion">Atracción</option><option value="Publicidad impresa">Publicidad impresa</option><option value="Anuncios internet">Anuncios internet</option></select></br>' +
    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar cliente</Button>'+
    '</form></div>',
    showCancelButton: true,

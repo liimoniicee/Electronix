@@ -9,6 +9,7 @@ $ape = $_POST['ape'];
 $cor = $_POST['cor'];
 $cel = $_POST['cel'];
 $dire = $_POST['dire'];
+$conocio = $_POST['conocio'];
 $consu = "SELECT * FROM CLIENTES WHERE celular = $cel";
 $resu = $conn->query($consu);
 if($resu->num_rows > 0){
@@ -30,8 +31,8 @@ if($resu->num_rows > 0){
 <?php
 header('recepcion.php');
 }else{
-  $sql = "INSERT INTO clientes (id_folio, nombre, apellidos, direccion, correo, celular, fecha, puntos)
-  VALUES (NULL, '$nom', '$ape', '$dire', '$cor', '$cel', CURRENT_TIMESTAMP, '0');";
+  $sql = "INSERT INTO clientes (id_folio, nombre, apellidos, direccion, correo, celular, fecha, puntos,conocio)
+  VALUES (NULL, '$nom', '$ape', '$dire', '$cor', '$cel', CURRENT_TIMESTAMP, '0','$conocio');";
   $res = $conn->query($sql);
   if (!$res) {
      printf("Errormessage: %s\n", $conn->error);
