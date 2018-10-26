@@ -1070,9 +1070,10 @@ html:
 '<div class="row">'+
 '<div class="col-md-3">'+
   '<div class="form-group">'+
+  /*
         '<label>Id Cliente</label>'+
         '<input name="cliente"  id="cliente" type="number"  required value="<?php echo $id ?>" readonly class="form-control border-input">'+
-
+*/
 '</div>'+
 '</div>'+
 

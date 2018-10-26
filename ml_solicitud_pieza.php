@@ -10,7 +10,7 @@ $response = array();
   $costo = $_POST['swal-input5'];
   $id_equipo = $_POST['swal-input0'];
 
-$consulta = "update reparar_tv set presupuesto='$costo', estado ='Autorizacion taller' WHERE id_equipo = $id_equipo";
+$consulta = "UPDATE reparar_tv set presupuesto='$costo', estado ='Autorizacion taller' WHERE id_equipo = $id_equipo";
 
 
 $resultado = $conn->query($consulta);
