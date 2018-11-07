@@ -956,7 +956,7 @@ html:
 '<div class="card-body"> <form target="_blank" action="recepcion_pdf-cambio.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 //Manda Llamar id,nombre y apellido
 '<h5>Equipo que deja a cambio</h5>'+
-        '<input type="hidden" name="swal-input0" id="swal-input0" value="'+id+'" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input00" id="swal-input00" value="'+id+'" readonly class="form-control border-input">'+
         '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+

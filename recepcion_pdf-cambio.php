@@ -7,7 +7,7 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
-$id = $_POST ['swal-input0'];
+$id = $_POST ['swal-input00'];
 $id_equipo = $_POST ['swal-input1'];
 $nom = $_POST ['swal-input3'];
 $ape= $_POST ['swal-input4'];
@@ -29,7 +29,7 @@ $costo= $_POST ['costo'];
 $restante= $_POST ['swal-input52'];
 
 $tipo= $_POST ['compra'];
-$abono= $_POST ['costo1'];
+$abono1= $_POST ['costo1'];
 
 
 
