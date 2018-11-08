@@ -11,7 +11,7 @@ $var_clave= $_SESSION['clave'];
 $id = $_GET ['id'];
 //Tabla para ver todos los equipos
 $consulta = "SELECT
-equipo, marca,modelo,falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion, abono,restante
+equipo, marca,modelo,falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion,presupuesto,mano_obra, abono,restante
 FROM reparar_tv  WHERE id_folio = '$id';";
 
 $consulta1= "SELECT * from ventas_tv where id_folio ='$id';";
@@ -209,6 +209,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="fecha_egreso" data-sortable="true">Salida</th>
       <th data-field="estado" data-sortable="true">Estado</th>
       <th data-field="ubicacion" data-sortable="true">Ubicación</th>
+      <th data-field="abono" data-sortable="true">Refaccion</th>
+      <th data-field="abono" data-sortable="true">Mano de obra</th>
       <th data-field="abono" data-sortable="true">Abonado</th>
       <th data-field="restante" data-sortable="true">Restante</th>
       <th data-field="servicio" data-sortable="true">Servicio</th>
@@ -229,6 +231,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
         $fecha_egreso        = $fila['fecha_egreso'];
         $estado        = $fila['estado'];
         $ubicacion        = $fila['ubicacion'];
+        $refaccion        = $fila['presupuesto'];
+        $mano        = $fila['mano_obra'];
+
         $abono        = $fila['abono'];
         $restante        = $fila['restante'];
         $servicio        = $fila['servicio'];
@@ -245,6 +250,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                         <td><?php echo $fecha_egreso ?></td>
                         <td><?php echo $estado ?></td>
                         <td><?php echo $ubicacion ?></td>
+                        <td><?php echo $refaccion?></td>
+                        <td><?php echo $mano?></td>
+
                         <td><?php echo $abono?></td>
                         <td><?php echo $restante ?></td>
                         <td><?php echo $servicio ?></td>
@@ -270,7 +278,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
                           ";
                       
-                    }
+                    }elseif($estado == "Diagnosticada" or $estado=="Sin solucion" or $estado=="Reparada"){
+                      echo "
+
+                      <button onclick='reporte($id_equipo), enviarreporte($id_equipo);' title='Ver reporte' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-agenda'></i></button>
+                  
+
+                      ";
+                  
+                }
                       ?>
 </td>
           </tr>
@@ -447,7 +463,46 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
 
     </script>
 
+<script>
+//Script para mandar ID para generar la orden
+function enviarreporte(id_equipo){
+ $.ajax({
+     // la URL para la petición
+     url : 'recepcion_fn_reporte.php',
+     // la información a enviar
+     // (también es posible utilizar una cadena de datos)
+     data : {
+      id_equipo : id_equipo
+     },
+     // especifica si será una petición POST o GET
+     type : 'POST',
+     // el tipo de información que se espera de respuesta
+     dataType : 'json',
+     // código a ejecutar si la petición es satisfactoria;
+     // la respuesta es pasada como argumento a la función
+     success : function(data) {
+       //Manda Llamar id,nombre y apellido
+       $("#swal-input0").val(data.data.id_equipo);
+       $("#swal-input1").val(data.data.falla);
+       $("#swal-input2").val(data.data.solu);
+       $("#swal-input3").val(data.data.conc);
+       $("#swal-input4").val(data.data.part);
+       $("#swal-input5").val(data.data.pers);
+     },
+     // código a ejecutar si la petición falla;
+     // son pasados como argumentos a la función
+     // el objeto de la petición en crudo y código de estatus de la petición
+     error : function(xhr, status) {
 
+     },
+     // código a ejecutar sin importar si la petición falló o no
+     complete : function(xhr, status) {
+
+     }
+ });
+}
+
+</script>
 
     <script type="text/javascript">
     //ventana actualizar cliente
@@ -719,5 +774,70 @@ buttonsStyling: false,
 reverseButtons: true
 
 })
+};
+</script>
+
+<script type="text/javascript">
+//ventana actualizar cliente
+function reporte(id_equipo){
+
+
+swal({
+title: 'Reporte de tecnico',
+html:
+'<div class="card-body"> <form action="#" method="post" name="data" content="text/html; charset=utf-8" >'+
+
+'<input type="hidden" name="swal-input0"  id="swal-input0" class="form-control border-input" readonly >' +//Id Equipo
+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Falla revisada</label>'+
+        '<textarea type="text" name="swal-input1" id="swal-input1"  readonly class="form-control border-input"></textarea>'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Procedimiento que se realizó</label>'+
+        '<textarea type="text" readonly name="swal-input2" id="swal-input2"  class="form-control border-input"></textarea>'+
+        '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Estado de reparación</label>'+
+        '<input type="text" name="swal-input3" id="swal-input3"  required readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-12">'+
+  '<div class="form-group">'+
+        '<label>Parte que necesita</label>'+
+        '<input type="text" name="swal-input4" id="swal-input4"  required readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+
+'<div class="col-md-12">'+
+
+
+
+'</form></div>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true
+})
+
 };
 </script>
