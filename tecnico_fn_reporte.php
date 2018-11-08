@@ -53,6 +53,10 @@ if($estado == 'Necesita refaccion'){
 
   $res4 = $conn->query($sql4);
 
+
+  $sql = "UPDATE reparar_tv set estado='Diagnosticada' where id_equipo='$id_equipo';";
+  $res = $conn->query($sql);
+
    echo "<script>window.open('tecnico.php','_self')</script>";
 }else{
   $sql2 = "INSERT INTO reportes_tecnicos (falla_especifica, solucion_especifica, conclusion, solicitud, parte, estado, imagen1,imagen2,imagen3, id_personal, id_equipo)
@@ -60,6 +64,9 @@ if($estado == 'Necesita refaccion'){
 
 
   $res2 = $conn->query($sql2);
+
+  $sql5 = "UPDATE reparar_tv set estado='Diagnosticada' where id_equipo='$id_equipo';";
+  $res = $conn->query($sql5);
 
  
    echo "<script>window.open('tecnico.php','_self')</script>";
