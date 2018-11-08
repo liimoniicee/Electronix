@@ -1001,7 +1001,7 @@ html:
 '<div class="col-md-3">'+
   '<div class="form-group">'+
         '<label>Costo refacción</label>'+
-        '<input type="number" name="refaccion" id="refaccion"  required  class="form-control border-input">'+
+        '<input type="number" name="refaccion" id="refaccion" onchange="operaciones();" required  class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
