@@ -119,47 +119,55 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
       </div>
       <div class="card text-black bg-primary mb-3">
         <div class="card-body">
+        <div class="col-sm-12" align="center">
+             <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <form id='form-id'>
 
-                <div class="col-lg-12">
-                  <p class="bs-component">
-                    <button class="btn btn-danger" onclick="location='admin_ctrl_empleados.php'"><i class="ti-settings"></i>Control de empleados</button>
-                    <button class="btn btn-info" onclick="location='admin_ventas.php'"><i class="ti-money"></i>Ventas</button>
-                    <button class="btn btn-success" onclick="location='admin_editar_solicitudes.php'"><i class="ti-settings"></i>Editar solicitudes</button>
-                    <button class="btn btn-warning" onclick="location='admin_editar_taller.php'"><i class="ti-settings"></i>Editar taller</button>
-                    <button class="btn btn-danger" onclick="aviso();"><i class="ti-shopping-cart"></i>Compras</button>
-                    <button class="btn btn-info" onclick="location='#'"><i class="ti-list"></i>Contratos</button>
-                    <button class="btn btn-success" onclick="location='#'"><i class="ti-alert"></i>avisos</button>
-        </p>
-      </div>
-      <div class="card-body">
-        <div class="col-sm-2">
-          <select class="form-control form-control-sm" onChange="mostrarResultados(this.value);">
-              <?php
-                  for($i=2017;$i<2030;$i++){
-                      if($i == 2018){
-                          echo '<option value="'.$i.'" selected>'.$i.'</option>';
-                      }else{
-                          echo '<option value="'.$i.'">'.$i.'</option>';
-                      }
-                  }
-              ?>
-          </select>
-        </div>
-      </div>
+                    <label class="btn btn-danger active" onclick="location='admin_ctrl_empleados.php'" >
+                      <a  /> Control de empleados
+                      </label>
+
+                    <label class="btn btn-success" onclick="location='admin_ventas.php'">
+                      <input name='test' type='radio' /> Ventas
+                    </label>
+
+                      <label class="btn btn-warning" onclick="location='admin_editar_solicitudes.php'">
+                      <input name='test' type='radio' /> Editar solicitudes
+                    </label>
+
+                    <label class="btn btn-danger" onclick="location='admin_editar_taller.php'">
+                      <input name='test' type='radio' /> Editar taller
+                    </label>
+
+                    <label class="btn btn-info" onclick="aviso();">
+                      <input name='test' type='radio' /> Nuevo aviso
+                    </label>
+
+                    <label class="btn btn-info" onclick="location='admin_editar_vehiculos.php'">
+                      <input name='test' type='radio' /> Control de vehículos
+                    </label>
+
+                    <label class="btn btn-info" onclick="location.href='recepcion_ventas.php'" >
+                      <input name='test' type='radio' /> Ventas
+                    </label>
+
+
+
+
+
+                  </form>
+                </div>
+
+
+
+             
+
       <div class="card">
       <div class="resultados"><canvas id="grafico"></canvas></div>
 
 
     </div>
   </body>
-
-
-
-
-
-    </div>
-    </div>
-
 
 </main>
     <!-- Essential javascripts for application to work-->
@@ -195,41 +203,184 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
     <script src="assets/js/common-scripts.js"></script>
     <script src="assets/js/jquery.js"></script>
 
-    <script>
-            $(document).ready(mostrarResultados(2018));
-                function mostrarResultados(year){
-                    $('.resultados').html('<canvas id="grafico"></canvas>');
-                    $.ajax({
-                        type: 'POST',
-                        url: 'admin_fn_procesa.php',
-                        data: 'year='+year,
-                        dataType: 'JSON',
-                        success:function(response){
-                            var Datos = {
-                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                                    datasets : [
-                                        {
-                                          label: "Ganancias de ventas",
-                                          backgroundColor: '#0C83B6',
-                                          borderColor: 'rgb(255, 99, 132)',
-                                          data : response
-                                        }
-                                    ]
-                                }
-                            var contexto = document.getElementById('grafico').getContext('2d');
-                            window.Barra = new Chart(contexto,{
-                                      type: 'bar',
-                                            data: Datos,
-                                                options: {}
-                                                  });
-                            Barra.clear();
-                        }
-                    });
-                    return false;
-                }
-    </script>
+ <script type="text/javascript">
+  $(document).ready(function ()
+   {
+     //primero
+    $("#watch-me").click(function()
+    {
+     $("#show-me:hidden").show('slow');
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#watch-me").click(function()
+    {
+      if($('watch-me').prop('checked')===false)
+     {
+      $('#show-me').hide();
+     }
+    });
+
+    //segundo
+    $("#see-me").click(function()
+    {
+      $("#show-me-two:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#see-me").click(function()
+    {
+      if($('see-me-two').prop('checked')===false)
+     {
+      $('#show-me-two').hide();
+     }
+    });
+
+    //tercero
+    $("#look-me").click(function()
+    {
+      $("#show-me-three:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me").click(function()
+    {
+      if($('see-me-three').prop('checked')===false)
+     {
+      $('#show-me-three').hide();
+     }
+    });
+
+    //cuarto
+    $("#look-me2").click(function()
+    {
+      $("#show-me-three2:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me2").click(function()
+    {
+      if($('see-me-three2').prop('checked')===false)
+     {
+      $('#show-me-three2').hide();
+     }
+    });
+
+      //quinto
+    $("#look-me3").click(function()
+    {
+      $("#show-me-three3:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me3").click(function()
+    {
+      if($('see-me-three3').prop('checked')===false)
+     {
+      $('#show-me-three3').hide();
+     }
+    });
 
 
+    //sexto
+    $("#look-me4").click(function()
+    {
+      $("#show-me-three4:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three4').prop('checked')===false)
+     {
+      $('#show-me-three4').hide();
+     }
+    });
+
+    //septimo
+    $("#look-me5").click(function()
+    {
+      $("#show-me-three5:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three4").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three5').prop('checked')===false)
+     {
+      $('#show-me-three5').hide();
+     }
+    });
+
+
+   });
+
+
+  </script>
+  
+
+<script type="text/javascript">
+//Nuevo Aviso
+    function aviso(){
+
+
+    swal({
+   title: 'Nuevo aviso',
+   html:
+   '<div class="col-lg-12"> <form action="recepcion_fn_aviso.php" method="post" name="data">'+
+
+   '<label>A quien va dirigido</label>' +
+   '<select class="form-control form-control-sm" required textalign="center" name="receptor" id="receptor"><option value="" ></option><option value="Administrador" >Administrador</option><option value="Jefe de taller">Jefe de taller</option></select>' +
+
+
+   '<label>Aviso</label>' +
+   '<textarea type="text" name="aviso" id="aviso" pattern="[A-Za-z0-9 ]+" required title="Sólo letras y números" class="form-control border-input"></textarea>'+
+
+'<br>'+
+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Enviar notificación</Button>'+
+   '</form></div>',
+   type: 'warning',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> Registrar aviso',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+  };
+  </script>
   </body>
 
 
