@@ -40,7 +40,7 @@ $clientes = "SELECT * from clientes;";
 
 ?>
 
-?>
+
 <html lang="es">
   <head>
 <script src="assets\js\push.js/push.min.js" > </script>

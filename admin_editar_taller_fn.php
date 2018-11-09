@@ -27,14 +27,16 @@ $ubicacion= $_POST ['ubicacion'];
 $tecnico= $_POST ['tecnico'];
 //$id_folio= $_POST ['cliente'];
 
-
-$sql = "UPDATE reparar_tv set equipo='$equipo', marca='$marca', modelo='$modelo', serie='$serie', accesorios='$accesorios', falla='$falla', comentarios='$comentarios', servicio='$servicio', presupuesto='$refaccion', mano_obra='$mano', abono='$abono', restante='$restante', costo_total='$total', valor='$valor', estado='$estado' , ubicacion='$ubicacion', id_personal='$tecnico'  where id_equipo='$id_equipo';";
+if($estado=="Entregado" or $estado=="Devuelto" or $estado=="Obsequiada" or $estado=="Adjudicada" or $estado=="A cambio"){
+$sql = "UPDATE reparar_tv set equipo='$equipo', marca='$marca', modelo='$modelo', serie='$serie', accesorios='$accesorios', falla='$falla', comentarios='$comentarios', fecha_egreso=CURRENT_TIMESTAMP, servicio='$servicio', presupuesto='$refaccion', mano_obra='$mano', abono='$abono', restante='$restante', costo_total='$total', valor='$valor', estado='$estado' , ubicacion='$ubicacion', id_personal='$tecnico'  where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
- if (!$res) {
-  printf("Errormessage: %s\n", $conn->error);
+ echo "<script>window.open('admin_editar_taller.php','_self')</script>";
+
 }
 else{
- echo "<script>window.open('admin_editar_taller.php','_self')</script>";}
-
+  $sql1 = "UPDATE reparar_tv set equipo='$equipo', marca='$marca', modelo='$modelo', serie='$serie', accesorios='$accesorios', falla='$falla', comentarios='$comentarios', fecha_entregar=CURRENT_TIMESTAMP, servicio='$servicio', presupuesto='$refaccion', mano_obra='$mano', abono='$abono', restante='$restante', costo_total='$total', valor='$valor', estado='$estado' , ubicacion='$ubicacion', id_personal='$tecnico'  where id_equipo='$id_equipo';";
+  $res = $conn->query($sql1);
+  echo "<script>window.open('admin_editar_taller.php','_self')</script>";
+}
 
 ?>

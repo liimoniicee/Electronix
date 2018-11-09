@@ -210,7 +210,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
       <th data-field="estado" data-sortable="true">Estado</th>
       <th data-field="ubicacion" data-sortable="true">Ubicación</th>
       <th data-field="abono" data-sortable="true">Refaccion</th>
-      <th data-field="abono" data-sortable="true">Mano de obra</th>
+      <th data-field="abono" data-sortable="true">Trabajo</th>
       <th data-field="abono" data-sortable="true">Abonado</th>
       <th data-field="restante" data-sortable="true">Restante</th>
       <th data-field="servicio" data-sortable="true">Servicio</th>
