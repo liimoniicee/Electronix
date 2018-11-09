@@ -131,11 +131,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                     <form id='form-id'>
 
                       <label class="btn btn-success active" id='watch-me'>
-                        <input name='test' type='radio' checked /> Equipos en taller
+                        <input name='test' type='radio' checked /> Vehículos de traslados
                         </label>
 
                         <label class="btn btn-warning" onclick="vehiculo();">
                         <input name='test' type='radio' /> Nuevo vehículo
+                        </label>
+
+                      <label class="btn btn-danger" onclick="marca();">
+                        <input name='test' type='radio' /> Nueva marca 
                       </label>
 
                        
@@ -463,7 +467,7 @@ function enviarreporte(id_equipo){
 
    '<label>Marcas</label>' +
 
-  '<select class="form-control form-control-sm" textalign="center"  name="marcas" id="marcas">'+
+  '<select class="form-control form-control-sm" textalign="center" required name="marcas" id="marcas">'+
   '<option value="" ></option>'+
   <?php
   $ejec7 = mysqli_query($conn, $marcas);
@@ -473,20 +477,20 @@ function enviarreporte(id_equipo){
   '</select>' +
 
    '<label>Modelo</label>' +
-   '<input type="text" name="modelo" id="modelo" readonly class="form-control border-input">'+
+   '<input type="text" name="modelo" id="modelo" required class="form-control border-input">'+
 
    '<label>Año</label>' +
-   '<input type="text" name="ano" id="ano" maxlength="4" pattern="[0123456789]" title="Sólo números" class="form-control border-input">'+
+   '<input type="text" name="ano" id="ano" maxlength="4" pattern="[0123456789]" title="Sólo números" required class="form-control border-input">'+
 
    '<label>Tipo</label>' +
-   '<input type="text" name="tipo" id="tipo"  class="form-control border-input">'+
+   '<select class="form-control form-control-sm" required textalign="center" name="tipo" id="tipo"><option value="" ></option><option value="Automovil" >Automovil</option><option value="Camioneta">Camioneta</option></option><option value="Van">Van</option></select>' +
 
    '<label>Estado</label>' +
-   '<input type="text" name="tipo" id="tipo" readonly class="form-control border-input">'+
+   '<select class="form-control form-control-sm" required textalign="center" name="estado" id="estado"><option value="" ></option><option value="Activo" >Activo</option><option value="En reparacion">En reparación(Servicio)</option></select>' +
 
 '<br>'+
 
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Enviar notificación</Button>'+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar nuevo vehículo</Button>'+
    '</form></div>',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
@@ -501,140 +505,39 @@ function enviarreporte(id_equipo){
   };
   </script>
 
+<script type="text/javascript">
+//Nuevo Aviso
+    function marca(){
 
+
+    swal({
+   title: 'Nuevo marca de vehículo',
+   html:
+   '<div class="col-lg-12"> <form action="recepcion_fn_aviso.php" method="post" name="data">'+
+
+   '<label>Marcas</label>' +
+   '<input type="text" name="marcas" id="marcas" pattern="[A-Za-z ]+" title="Sólo letras" require class="form-control border-input">'+
+
+  
+'<br>'+
+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar nuevo marca</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> Registrar aviso',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+  };
+  </script>
 
 <!-- termina el mod ajax -->
 
-<script type="text/javascript">
-//ventana orden de servición
-function orden(id){
-
-
-swal({
-title: 'Nueva orden de servicio',
-html:
-'<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
-
-'<input type="text" value="'+id+'" id="swal-input0" name="swal-input0" class="form-control border-input" >' +
-'<input type="hidden" name="swal-input1" id="swal-input1" class="form-control border-input" >' +
-'<input type="hidden" name="swal-input2" id="swal-input2" class="form-control border-input" >' +
-
-'<div class="row">'+
-'<div class="col-md-3">'+
-  '<div class="form-group">'+
-        '<label>Equipo</label>'+
-        '<select class="form-control form-control-sm" textalign="center" required name="equipo" id="equipo"><option value="" ></option><option value="Television" >Televisión</option>'+
-        '<option value="Ventiladores">Ventiladores</option>'+
-        '<option value="Tarjeta madre">Tarjetas madre</option>'+
-        '<option value="Audio">Audio</option>'+
-        '<option value="Fuente de poder">Fuentes de poder</option>'+
-        '</select>' +
-    '</div>'+
-'</div>'+
-'<div class="col-md-3">'+
-  '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="marca" id="marca" maxlength="25" pattern="[A-Za-z]+" title="Sólo letras"  onkeyup="this.value = this.value.toUpperCase();"  required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'<div class="col-md-3">'+
-  '<div class="form-group">'+
-        '<label>Marca</label>'+
-        '<input type="text" name="marca" id="marca" maxlength="25" pattern="[A-Za-z]+" title="Sólo letras"  onkeyup="this.value = this.value.toUpperCase();"  required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Falla</label>'+
-        '<input type="text" name="falla" id="falla" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Serie</label>'+
-        '<input type="text" name="serie" id="serie" pattern="[A-Za-z0-9]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" maxlength="25" required class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>Accesorios</label>'+
-        '<input type="text" name="acce" id="acce" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'</div>'+
-
-'<div class="col-md-12">'+
-'<div class="form-group">'+
-        '<label>Tipo de servicio</label>'+
-        '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="" ></option><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
-
-        '<label>Comentarios</label>'+
-        '<textarea type="text" name="comen" id="comen" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
-    '</div>'+
-    '<div class="form-group">'+
-        '<label>Modelo</label>'+
-        '<input type="text" name="modelo" id="modelo" maxlength="25" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" onkeyup="this.value = this.value.toUpperCase();" required class="form-control border-input">'+
-    '</div>'+
-    '</div>'+
-
-
-'<div class="col-md-12">'+
-'<Button type="submit" onclick="location.href="recepcion.php"" class= "btn btn-info btn-fill btn-wd" >Registrar y generar reporte</Button>'+
-
-
-'</form></div>',
-
-showCancelButton: true,
-confirmButtonColor: '#3085d6',
-cancelButtonColor: '#d33',
-confirmButtonText:  '</form> Registrar y generar reporte',
-cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-showConfirmButton: false,
-customClass: 'swal-wide',
-focusConfirm: false,
-buttonsStyling: false,
-reverseButtons: true
-
- }).then(function (isConfirm) {
-   if(isConfirm){swal(
-'Orden registrada!',
-'Éxito al registrar',
-'success'
-)
-}if(isConfirm =='cancel'){
-  swal(
-'Orden culera!',
-'Éxito al registrar',
-'success'
-)
-
-}
-
-
-
-
-}).catch(swal.noop);
-
-};
-</script>
 
 
 <style>
