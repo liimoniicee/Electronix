@@ -16,7 +16,7 @@ $pendientes ="SELECT *
                 from reparar_tv r, clientes c where r.id_folio = c.id_folio and r.estado='Pendiente'";
 
 
-carros c, marcas m where c.car_id_marca = m.id_marca
+
 $revisados ="SELECT *
 from reparar_tv r, clientes c where r.id_folio = c.id_folio and r.estado='Diagnosticada'";
 

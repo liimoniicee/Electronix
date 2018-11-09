@@ -1,17 +1,3 @@
-CREATE TABLE IF NOT EXISTS `marcas` (
-  `id_marca` int(11) NOT NULL AUTO_INCREMENT,
-  `marca` varchar(25) NOT NULL,
-  `mar_estado` varchar(25) NOT NULL,
-  PRIMARY KEY (`id_marca`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Volcado de datos para la tabla `marcas`
---
-
-INSERT INTO `marcas` (`id_marca`, `marca`, `mar_estado`) VALUES
-(1, 'Ford', 'En servicio'),
-(2, 'Nissan', 'En servicio');
 
 
 CREATE TABLE IF NOT EXISTS `carros` (
