@@ -46,7 +46,7 @@ $res4 = $conn->query($sql4);
     while($row = $resu->fetch_assoc()) {
       $idingreso   =  $row["id_ingresos"];
     }*/
-  $sql2 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' ingresos_id_ingresos='$idingreso' WHERE idventa_tv = '$idventa';";
+  $sql2 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' WHERE idventa_tv = '$idventa';";
   $res2 = $conn->query($sql2);
 //}
 

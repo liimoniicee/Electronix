@@ -159,7 +159,21 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                 </div>
 
 
-
+  <div class="card-body">
+        <div class="col-sm-2">
+          <select class="form-control form-control-sm" onChange="mostrarResultados(this.value);">
+              <?php
+                  for($i=2017;$i<2030;$i++){
+                      if($i == 2018){
+                          echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                      }else{
+                          echo '<option value="'.$i.'">'.$i.'</option>';
+                      }
+                  }
+              ?>
+          </select>
+        </div>
+      </div>
              
 
       <div class="card">
@@ -203,6 +217,40 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
     <script src="assets/js/common-scripts.js"></script>
     <script src="assets/js/jquery.js"></script>
 
+ <script>
+            $(document).ready(mostrarResultados(2018));
+                function mostrarResultados(year){
+                    $('.resultados').html('<canvas id="grafico"></canvas>');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'admin_fn_procesa.php',
+                        data: 'year='+year,
+                        dataType: 'JSON',
+                        success:function(response){
+                            var Datos = {
+                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    datasets : [
+                                        {
+                                          label: "Ganancias de ventas",
+                                          backgroundColor: '#0C83B6',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data : response
+                                        }
+                                    ]
+                                }
+                            var contexto = document.getElementById('grafico').getContext('2d');
+                            window.Barra = new Chart(contexto,{
+                                      type: 'bar',
+                                            data: Datos,
+                                                options: {}
+                                                  });
+                            Barra.clear();
+                        }
+                    });
+                    return false;
+                }
+    </script>
+    
  <script type="text/javascript">
   $(document).ready(function ()
    {

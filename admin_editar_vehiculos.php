@@ -463,7 +463,7 @@ function enviarreporte(id_equipo){
     swal({
    title: 'Nuevo vehículo para traslado',
    html:
-   '<div class="col-lg-12"> <form action="recepcion_fn_aviso.php" method="post" name="data">'+
+   '<div class="col-lg-12"> <form action="admin_fn_editar_vehiculo.php" method="post" name="data">'+
 
    '<label>Marcas</label>' +
 
@@ -480,7 +480,7 @@ function enviarreporte(id_equipo){
    '<input type="text" name="modelo" id="modelo" required class="form-control border-input">'+
 
    '<label>Año</label>' +
-   '<input type="text" name="ano" id="ano" maxlength="4" pattern="[0123456789]" title="Sólo números" required class="form-control border-input">'+
+   '<input type="number" name="ano" id="ano" maxlength="4"  title="Sólo números" required class="form-control border-input">'+
 
    '<label>Tipo</label>' +
    '<select class="form-control form-control-sm" required textalign="center" name="tipo" id="tipo"><option value="" ></option><option value="Automovil" >Automovil</option><option value="Camioneta">Camioneta</option></option><option value="Van">Van</option></select>' +
@@ -511,17 +511,17 @@ function enviarreporte(id_equipo){
 
 
     swal({
-   title: 'Nuevo marca de vehículo',
+   title: 'Nueva marca de vehículo',
    html:
-   '<div class="col-lg-12"> <form action="recepcion_fn_aviso.php" method="post" name="data">'+
+   '<div class="col-lg-12"> <form action="admin_fn_editar_marca.php" method="post" name="data">'+
 
    '<label>Marcas</label>' +
-   '<input type="text" name="marcas" id="marcas" pattern="[A-Za-z ]+" title="Sólo letras" require class="form-control border-input">'+
+   '<input type="text" name="marcas" id="marcas" pattern="[A-Za-z ]+" title="Sólo letras" placeholder="Ejem. Ford" require class="form-control border-input">'+
 
   
 '<br>'+
 
-   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar nuevo marca</Button>'+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar nueva marca</Button>'+
    '</form></div>',
    showCancelButton: true,
    confirmButtonColor: '#3085d6',
