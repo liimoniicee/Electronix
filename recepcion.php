@@ -55,6 +55,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="refresh" content="300" >
+
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
