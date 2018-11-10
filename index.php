@@ -42,6 +42,7 @@ include 'conexion.php';
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Electroinca RSH LOGIN</title>
   </head>
   <body>

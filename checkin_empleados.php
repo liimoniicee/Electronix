@@ -6,7 +6,7 @@
  </head>
 <!-- Sweet Alert 2 plugin -->
 <script src= "assets/js/sweetalert2.js"></script>
-
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
 <?php
 include'conexion.php';
@@ -32,7 +32,7 @@ if($resu->num_rows > 0){
    <script>
    swal({
  title: "Error!",
- text: "ya has checado entrada el dia de hoy!",
+ text: "ya has checado entrada el día de hoy!",
  type: "error"
  }).then(function() {
  // Redirect the user

@@ -7,6 +7,7 @@
 
 <!-- Sweet Alert 2 plugin -->
 <script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
 <?php
 //realizamos nuestra conexion con la base de datos para realizar modificaciones
@@ -76,7 +77,7 @@ if($resu->num_rows > 0){
    <script>
    swal({
  title: "Error!",
- text: "Ya has checado salida el dia de hoy!",
+ text: "Ya has checado salida el día de hoy!",
  type: "error"
  }).then(function() {
  // Redirect the user
