@@ -79,16 +79,15 @@ if($resultado->num_rows > 0){
 	}else{
 
     echo "<script>alert('Usuario o contraseña invalidos!')</script>";
-        echo "<script>window.open('index.html','_self')</script>";}
+        echo "<script>window.open('index.php','_self')</script>";}
 
 
 	}else{
-	header("location:index.html");
+	header("location:index.php");
 	}
 
 
 //} else{
-//	header("location:index.html");
 //}
 
 

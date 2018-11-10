@@ -14,7 +14,6 @@ verificar_sesion();
  $var_tipo = $_SESSION['tipo'];
  if($var_tipo != "Tecnico") {
   //echo "<script>alert('No tienes acceso a esta página!')</script>";
-    //echo "<script>window.open('index.html','_self')</script>";
     header("Location: Error_restrinccion.html");
   }
  $pendientes = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
@@ -52,7 +51,7 @@ verificar_sesion();
 </head>pp sidebar-mini rtl">
 
 
-    <header class="app-header"><a class="app-header__logo" href="index.html">ID de Usuario: <?php echo $var_clave ?></a>
+    <header class="app-header"><a class="app-header__logo" href="index.php">ID de Usuario: <?php echo $var_clave ?></a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">

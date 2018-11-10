@@ -1,6 +1,40 @@
 <!DOCTYPE html>
+
+<?php
+session_start();
+include 'fuctions.php';
+include 'conexion.php';
+//verificar_sesion();
+
+            $var_tipo = $_SESSION['tipo'];
+
+                        if($var_tipo == "Administrador") {
+                          header("Location: administrador.php");
+                        }
+                        if($var_tipo == "Recepcion") {
+                            header("Location: recepcion.php");
+                          }
+                          if($var_tipo == "Mercado libre") {
+                            header("Location: ml.php");
+                          }
+                          if($var_tipo == "Tecnico") {
+                            header("Location: tecnico.php");
+                          }
+                          if($var_tipo == "Traslado") {
+                            header("Location: /traslados/traslados.php");
+                          }
+                          if($var_tipo == "Almacen") {
+                            header("Location: almacen.php");
+                          }
+                          if($var_tipo == "Jefe de taller") {
+                            header("Location: taller.php");
+                          }
+                  
+                        ?>
 <html>
   <head>
+    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,7 +80,7 @@
         </form>
 
  <!-- Recuperar contraseña css-->
-        <form class="forget-form" action="index.html">
+        <form class="forget-form" action="index.php">
           <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Olvidó su contraseña  ?</h3>
           <div class="form-group">
             <label class="control-label">Correo</label>
