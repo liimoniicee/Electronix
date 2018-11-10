@@ -15,7 +15,7 @@ if(isset($_POST['id_equipo'])){
   FROM clientes LEFT JOIN reparar_Tv USING(id_folio) where estado = 'Reparada'and id_folio = $id
   union all SELECT id_equipo, id_personal,nombre,apellidos,celular,correo, equipo, marca, modelo,serie, accesorios, falla, comentarios, fecha_ingreso,fecha_entregar, servicio,ubicacion,presupuesto,mano_obra,abono,restante,costo_total,estado
   FROM clientes LEFT JOIN reparar_otros USING(id_folio) where estado = 'Reparada'and id_folio = $id";*/
-$consulta = "SELECT * from reportes_tecnicos where id_equipo = $id_equipo";
+$consulta = "SELECT * from reportes_tecnicos where id_equipo = $id_equipo ORDER BY FECHA DESC LIMIT 1";
               
 
    $resultado = $conn->query($consulta);

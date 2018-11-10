@@ -7,6 +7,12 @@ verificar_sesion();
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 
+$var_tipo = $_SESSION['tipo'];
+if($var_tipo != "Jefe de taller") {
+ //echo "<script>alert('No tienes acceso a esta página!')</script>";
+   //echo "<script>window.open('index.html','_self')</script>";
+   header("Location: Error_restrinccion.html");
+ }
 $tecnico = "SELECT * from personal where tipo = 'Tecnico';";
 
 $total_equipos ="SELECT id_equipo, marca, modelo, falla, comentarios, fecha_ingreso, servicio, estado, ubicacion, id_folio, id_personal
@@ -966,7 +972,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Costo de refacción</label>'+
-        '<input name="swal-input19"  id="swal-input19"  type="number" maxlength="25" placeholder="Con decimal" required class="form-control border-input">'+
+        '<input name="swal-input19"  id="swal-input19"  type="number" maxlength="25" onchange="operaciones();" placeholder="Con decimal" required class="form-control border-input">'+
     '</div>'+
 '</div>'+
 '<div class="col-md-6">'+

@@ -37,7 +37,7 @@ $res2 = $conn->query($sql2);
 $sql3 = "UPDATE reparar_tv set presupuesto ='$pre', mano_obra ='$man', abono='$abo', restante='$res', costo_total='$tot', valor='$val', estado='$est', ubicacion='Taller en ruta a Recepcion' where id_equipo='$id';";
 $res3 = $conn->query($sql3);
 
-}if($est =='Reparada'){
+}elseif($est =='Reparada'){
 
   
 $sql7 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)

@@ -7,7 +7,13 @@ verificar_sesion();
 
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
+$var_tipo = $_SESSION['tipo'];
 
+if($var_tipo != "Administrador") {
+ //echo "<script>alert('No tienes acceso a esta página!')</script>";
+   //echo "<script>window.open('index.html','_self')</script>";
+   header("Location: Error_restrinccion.html");
+ }
 $reparados ="SELECT *
 from reparar_tv r, clientes c where r.id_folio = c.id_folio and r.estado='Reparada'";
 

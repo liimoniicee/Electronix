@@ -11,7 +11,12 @@ verificar_sesion();
 //variables
  $var_name=$_SESSION['nombre'];
  $var_clave= $_SESSION['clave'];
-
+ $var_tipo = $_SESSION['tipo'];
+ if($var_tipo != "Tecnico") {
+  //echo "<script>alert('No tienes acceso a esta página!')</script>";
+    //echo "<script>window.open('index.html','_self')</script>";
+    header("Location: Error_restrinccion.html");
+  }
  $pendientes = "SELECT id_equipo,equipo, marca,modelo, falla, comentarios
  FROM reparar_tv
  WHERE estado='En reparacion' and id_personal='$var_clave';";

@@ -7,7 +7,13 @@ verificar_sesion();
 
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
+$var_tipo = $_SESSION['tipo'];
 
+if($var_tipo != "Recepcion") {
+ //echo "<script>alert('No tienes acceso a esta página!')</script>";
+   //echo "<script>window.open('index.html','_self')</script>";
+   header("Location: Error_restrinccion.html");
+ }
 
 $aprovacion="SELECT * from
 solicitudes_refacciones where estado = 'Encontrada'";
@@ -1325,7 +1331,7 @@ html:
     '</div>'+
     '</div>'+
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+'<Button type="submit" onclick="javascript:window.location.reload();" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
 '</form></div>',
 
 showCancelButton: true,
@@ -1478,7 +1484,7 @@ html:
 '<label>Apellidos</label>' +
 '<input input type="text" name="swal-input2" id="swal-input2" pattern="[A-Za-z]+" title="Sólo letras"  class="form-control border-input maxlength="25" required>' +
 '<label>Direccion</label>' +
-'<input input type="text" name="swal-input3" id="swal-input3" class="form-control border-input maxlength="25" required>' +
+'<input input type="text" name="swal-input3" id="swal-input3" pattern="[A-Za-z0-9 ]+" class="form-control border-input maxlength="25" required>' +
 '<label>Correo</label>' +
 '<input input type="email" name="swal-input4" id="swal-input4" class="form-control border-input ">' +
 '<label>Celular</label>' +
@@ -1658,7 +1664,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Ubicacion</label>'+
-        '<input type="text" name="ubicacion" id="ubicacion"  pattern="[A-Za-z]+" title="Sólo letras"  value="Recepcion" readonly required class="form-control border-input">'+
+        '<input type="text" name="ubicacion" id="ubicacion"  pattern="[A-Za-z0-9 ]+" title="Sólo letras"  value="Recepcion" readonly required class="form-control border-input">'+
 
     '</div>'+
 '</div>'+
@@ -1679,10 +1685,10 @@ html:
   '<div class="form-group">'+
 
   '<label>Direccion</label>'+
-        '<textarea type="text" required name="dire" dire="dire" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+        '<textarea type="text" required name="dire" dire="dire" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
 
         '<label>Comentarios</label>'+
-        '<textarea type="text" required name="comen" id="comen" pattern="[A-Za-z0-9]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
+        '<textarea type="text" required name="comen" id="comen" pattern="[A-Za-z0-9 ]+" title="Sólo letras y números" class="form-control border-input"></textarea>'+
     '</div>'+
     '</div>'+
 
