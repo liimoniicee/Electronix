@@ -42,7 +42,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <!-- Main CSS-->
+    <meta http-equiv="refresh" content="60" >
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
     <!-- Font-icon css-->
 <link href= "../assets/css/themify-icons.css" rel="stylesheet">

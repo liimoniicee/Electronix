@@ -33,7 +33,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Main CSS-->
+    <meta http-equiv="refresh" content="300" >
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
     <link href= "assets/css/themify-icons.css" rel="stylesheet">

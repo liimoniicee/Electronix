@@ -58,7 +58,7 @@ $en_ruta = "SELECT
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <!-- Main CSS-->
+    <meta http-equiv="refresh" content="300" >
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
     <!-- Font-icon css-->
