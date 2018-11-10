@@ -32,7 +32,7 @@ if($resu->num_rows > 0){
    <script>
    swal({
  title: "Error!",
- text: "ya has checado entrada el día de hoy!",
+ text: "ya has checado entrada el dia de hoy!",
  type: "error"
  }).then(function() {
  // Redirect the user
@@ -87,8 +87,8 @@ $sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_pe
       }).then(function() {
       // Redirect the user
       <?php
-      if($tipo == "Administrador"){
-       ?>
+ if($tipo == "Administrador"){
+  ?>
       window.location.href = "administrador.php";
      <?php }elseif($tipo == "Traslado"){ ?>
 
@@ -127,8 +127,8 @@ $sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_pe
      }).then(function() {
      // Redirect the user
      <?php
-     if($tipo == "Administrador"){
-      ?>
+ if($tipo == "Administrador"){
+  ?>
      window.location.href = "administrador.php";
     <?php }elseif($tipo == "Traslado"){ ?>
 

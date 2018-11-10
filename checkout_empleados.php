@@ -76,7 +76,7 @@ if($resu->num_rows > 0){
    <script>
    swal({
  title: "Error!",
- text: "Ya has checado salida el día de hoy!",
+ text: "Ya has checado salida el dia de hoy!",
  type: "error"
  }).then(function() {
  // Redirect the user
