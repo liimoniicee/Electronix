@@ -1332,7 +1332,7 @@ html:
     '</div>'+
     '</div>'+
 '<div class="col-md-12">'+
-'<Button type="submit" onclick="javascript:window.location.reload();" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+'<Button type="submit" onclick="recargar()" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
 '</form></div>',
 
 showCancelButton: true,
@@ -1366,7 +1366,14 @@ reverseButtons: true
 }).catch(swal.noop);
 
 };
+
+function recargar() 
+{
+  location.reload(true); 
+}
+
 </script>
+
 
 
 <script type="text/javascript">
