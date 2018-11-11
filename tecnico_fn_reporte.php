@@ -2,8 +2,7 @@
 <script src= "assets/js/sweetalert2.js"></script>
 
 <?php
-session_start();
-include 'fuctions.php';
+include 'check_sesion.php';include 'fuctions.php';
 include 'conexion.php';
 verificar_sesion();
 

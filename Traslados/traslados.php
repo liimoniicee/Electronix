@@ -1,7 +1,8 @@
 <?php
-session_start();
-include 'fuctions.php';
-include 'conexion.php';
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
+verificar_sesion();
 verificar_sesion();
  $ahora = time(); //obtenemos la fecha actual a partir de la función time().
  $formateado= date('Y-m-d', $ahora) ; // obtenemos la cadena en el formato YYYY-MM-DD

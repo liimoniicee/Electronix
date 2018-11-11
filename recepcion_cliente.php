@@ -29,7 +29,7 @@ if($resu->num_rows > 0){
 </body>
 
 <?php
-header('recepcion.php');
+echo "<script>window.open('recepcion.php','_self')</script>";
 }else{
   $sql = "INSERT INTO clientes (id_folio, nombre, apellidos, direccion, correo, celular, fecha, puntos,conocio)
   VALUES (NULL, '$nom', '$ape', '$dire', '$cor', '$cel', CURRENT_TIMESTAMP, '0','$conocio');";

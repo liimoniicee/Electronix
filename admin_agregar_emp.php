@@ -38,7 +38,8 @@ window.location.href = "admin_ctrl_empleados.php";
 </body>
 
 <?php
-header('admin_ctrl_empleados.php');
+
+echo "<script>window.open('admin_ctrl_empleados.php','_self')</script>";
 }else{
 
 $sql = "INSERT INTO personal (tipo, usuario, contrasena, nombre, apellidos, correo, celular)

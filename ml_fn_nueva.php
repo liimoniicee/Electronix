@@ -9,7 +9,7 @@
 
 
  <?php
-session_start();
+include 'check_sesion.php';
 include 'fuctions.php';
 include 'conexion.php';
 verificar_sesion();

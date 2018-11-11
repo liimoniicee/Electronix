@@ -37,7 +37,7 @@ console.log('The Ok Button was clicked.');
 </body>
 
 <?php
-header('Traslados.php');
+echo "<script>window.open('Traslados.php','_self')</script>";
 }else{
 
 $sql = "INSERT INTO clientes (id_folio, nombre, apellidos, direccion, correo, celular, fecha, puntos)

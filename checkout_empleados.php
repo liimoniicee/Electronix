@@ -12,7 +12,7 @@
 <?php
 //realizamos nuestra conexion con la base de datos para realizar modificaciones
 include'conexion.php';
-session_start();
+include 'check_sesion.php';
 
 date_default_timezone_set('America/Mazatlan');
 $diahoy = date("Y-m-d");

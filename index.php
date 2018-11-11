@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-
 <?php
-session_start();
-include 'fuctions.php';
-include 'conexion.php';
+include'fuctions.php';
+include'conexion.php';
 //verificar_sesion();
 
             $var_tipo = $_SESSION['tipo'];
@@ -31,6 +28,7 @@ include 'conexion.php';
                           }
                   
                         ?>
+<!DOCTYPE html>
 <html>
   <head>
     

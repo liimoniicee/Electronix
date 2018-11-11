@@ -1,8 +1,7 @@
-
 <?php
-session_start();
-include 'fuctions.php';
-include 'conexion.php';
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
 verificar_sesion();
 
 $var_name=$_SESSION['nombre'];
@@ -11,7 +10,7 @@ $var_tipo = $_SESSION['tipo'];
 
 if($var_tipo != "Administrador" && $var_tipo != "Almacen" ) {
   //echo "<script>alert('No tienes acceso a esta página!')</script>";
-   header("Location: Error_restrinccion.html");
+   echo "<script>window.open('Error_restrinccion.html','_self')</script>";
  }
 
 $consulta = "SELECT * from reparar_tv where ubicacion = 'Almacen';";

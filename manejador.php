@@ -1,14 +1,5 @@
-<head>
-     <link rel="stylesheet" media="screen" type="text/css" />
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-</head>
-
 <?php
-
-
-session_start();
+include'check_sesion.php';
 include 'conexion.php';
 //if(isset($_POST['submit']))
 //{
@@ -18,9 +9,6 @@ if ( (isset($_POST['user'])) || (isset($_POST['pass'])) ){
 
     $var_user = $_POST['user'];
 	$var_contra = md5($_POST['pass']);
-
-
-
 
 
 
@@ -43,7 +31,7 @@ if($resultado->num_rows > 0){
   	    $_SESSION['nombre']=$var_nombre;
         $_SESSION['tipo'] = $row["tipo"];
 
-  		header("location:checkin_empleados.php");
+		echo "<script>window.open('checkin_empleados.php','_self')</script>";
 
 }//aqui termina el while
 
@@ -63,3 +51,9 @@ if($resultado->num_rows > 0){
 
 
 ?>
+<head>
+     <link rel="stylesheet" media="screen" type="text/css" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+</head>

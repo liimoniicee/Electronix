@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <?php
-session_start();
-include 'fuctions.php';
-include 'conexion.php';
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
 verificar_sesion();
 
 $var_name=$_SESSION['nombre'];
@@ -24,6 +23,8 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
 
 
 ?>
+<!DOCTYPE html>
+
 <html lang="es">
   <head>
 <script src="assets\js\push.js/push.min.js" > </script>
