@@ -13,7 +13,6 @@ if($var_tipo != "Administrador" && $var_tipo != "Mercado libre" ) {
    echo "<script>window.open('Error_restrinccion.html','_self')</script>";
  }
 
-
 $solicitud_taller = "SELECT *
 FROM solicitudes_refacciones
 WHERE solicitud='Pendiente'";

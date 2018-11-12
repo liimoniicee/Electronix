@@ -1,13 +1,46 @@
+<?php
+include'fuctions.php';
+include'conexion.php';
+//verificar_sesion();
+
+            $var_tipo = $_SESSION['tipo'];
+
+                        if($var_tipo == "Administrador") {
+                          header("Location: administrador.php");
+                        }
+                        if($var_tipo == "Recepcion") {
+                            header("Location: recepcion.php");
+                          }
+                          if($var_tipo == "Mercado libre") {
+                            header("Location: ml.php");
+                          }
+                          if($var_tipo == "Tecnico") {
+                            header("Location: tecnico.php");
+                          }
+                          if($var_tipo == "Traslado") {
+                            header("Location: /traslados/traslados.php");
+                          }
+                          if($var_tipo == "Almacen") {
+                            header("Location: almacen.php");
+                          }
+                          if($var_tipo == "Jefe de taller") {
+                            header("Location: taller.php");
+                          }
+                  
+                        ?>
 <!DOCTYPE html>
 <html>
   <head>
+    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title>Electroinca RSH LOGIN</title>
   </head>
   <body>
@@ -62,12 +95,12 @@
       </div>
     </section>
     <!-- Essential javascripts for application to work-->
-    <script src="../assets/js/jquery-3.2.1.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="../assets/js/plugins/pace.min.js"></script>
+    <script src="js/plugins/pace.min.js"></script>
     <script type="text/javascript">
       // Login Page Flipbox control
       $('.login-content [data-toggle="flip"]').click(function() {

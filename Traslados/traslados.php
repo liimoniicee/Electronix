@@ -3,33 +3,39 @@ include'check_sesion.php';
 include'fuctions.php';
 include'conexion.php';
 verificar_sesion();
-verificar_sesion();
  $ahora = time(); //obtenemos la fecha actual a partir de la función time().
  $formateado= date('Y-m-d', $ahora) ; // obtenemos la cadena en el formato YYYY-MM-DD
 //variables
  $var_name=$_SESSION['nombre'];
  $var_clave= $_SESSION['clave'];
+ $var_tipo = $_SESSION['tipo'];
+
  //consulta para llenar la tabla
+ if($var_tipo != "Traslado") {
+  //echo "<script>alert('No tienes acceso a esta página!')</script>";
+    echo "<script>window.open('Error_restrinccion.html','_self')</script>";
+  }
+
  $pendiente = "SELECT
  *
  FROM
  traslado where estado='Pendiente';";
+
  $entregado = "SELECT
 *
 FROM
 traslado where id_personal='$var_clave' and estado='Entregado';";
-$concretar = "SELECT
-*
-FROM
-traslado where id_personal='$var_clave' and estado='Recoleccion';";
-$en_ruta = "SELECT
- *
- FROM
- traslado where id_personal='$var_clave' and estado='En ruta';";
-$avisos = "SELECT
-*
-FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+
+$concretar = "SELECT * FROM traslado where id_personal='$var_clave' and estado='Recoleccion';";
+
+$en_ruta = "SELECT * FROM traslado where id_personal='$var_clave' and estado='En ruta';";
+ 
+$avisos = "SELECT * FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+
+$vehiculos = "SELECT * FROM carros where id_personal_traslado='$var_clave'";
+
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+
 ?>
 
 
@@ -555,8 +561,16 @@ html:
 '</div>'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
-        '<label># carro</label>'+
-        '<input type="text" name="swal-input8" id="swal-input8" readonly class="form-control border-input">'+
+
+  '<select class="form-control form-control-sm" textalign="center"  required name="swal-input8" id="swal-input8">'+
+  '<option value="" ></option>'+
+  <?php
+  $ejec7 = mysqli_query($conn, $vehiculos);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["id_carro"].'">'.$fila["car_modelo"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
+
     '</div>'+
 '</div>'+
 '</div>'+
@@ -652,7 +666,14 @@ reverseButtons: true
    '<div class="col-md-6">'+
      '<div class="form-group">'+
            '<label># carro</label>'+
-           '<input type="text" name="swal-input8" id="swal-input8" class="form-control border-input">'+
+           '<select class="form-control form-control-sm" textalign="center"  required name="swal-input8" id="swal-input8">'+
+  '<option value="" ></option>'+
+  <?php
+  $ejec7 = mysqli_query($conn, $vehiculos);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["id_carro"].'">'.$fila["car_modelo"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
        '</div>'+
    '</div>'+
    '</div>'+

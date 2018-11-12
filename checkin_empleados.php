@@ -41,7 +41,7 @@ if($resu->num_rows > 0){
  window.location.href = "administrador.php";
 <?php }elseif($tipo == "Traslado"){ ?>
 
-window.location.href = "Traslados/traslados.php";
+window.location.href = "traslados/traslados.php";
 
   <?php }elseif($tipo == "Recepcion"){ ?>
 
@@ -91,7 +91,7 @@ $sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_pe
       window.location.href = "administrador.php";
      <?php }elseif($tipo == "Traslado"){ ?>
 
-     window.location.href = "Traslados/traslados.php";
+     window.location.href = "traslados/traslados.php";
 
        <?php }elseif($tipo == "Recepcion"){ ?>
 
@@ -131,7 +131,7 @@ $sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_pe
      window.location.href = "administrador.php";
     <?php }elseif($tipo == "Traslado"){ ?>
 
-    window.location.href = "Traslados/traslados.php";
+    window.location.href = "traslados/traslados.php";
 
       <?php }elseif($tipo == "Recepcion"){ ?>
 

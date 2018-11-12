@@ -1,7 +1,3 @@
- <link rel="stylesheet" type="text/css" href="assets/css/main.css">
- <script src="assets/js/sweetalert2.all.min.js"></script>
- <script src="assets/js/sweetalert2.js"></script>
-
 <?php
 require 'conexion.php';
 $nom = $_POST['nom'];
@@ -15,6 +11,10 @@ $resu = $conn->query($consu);
 if($resu->num_rows > 0){
 ?>
 <body>
+<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+ <script src="assets/js/sweetalert2.all.min.js"></script>
+ <script src="assets/js/sweetalert2.js"></script>
+ <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <script>
   swal({
     type: 'error',

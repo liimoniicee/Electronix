@@ -36,18 +36,17 @@ if($resultado->num_rows > 0){
 
 		echo "<script>window.open('checkin_empleados.php','_self')</script>";
 
-}//aqui termina el while
+}
+//aqui termina el while
 
 	}else{
 
     echo "<script>alert('Usuario o contraseña invalidos!')</script>";
-        echo "<script>window.open('index.php','_self')</script>";}
-
-
-	}else{
-	header("location:index.php");
+		echo "<script>window.open('index.php','_self')</script>";
 	}
 
+
+}
 
 //} else{
 //}

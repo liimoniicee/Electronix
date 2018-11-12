@@ -12,12 +12,14 @@ if($var_tipo != "Administrador") {
  //echo "<script>alert('No tienes acceso a esta página!')</script>";
    echo "<script>window.open('Error_restrinccion.html','_self')</script>";
  }
-$vehiculos = "SELECT id_carro, marca, car_modelo, car_ano, car_tipo, car_estado
+$vehiculos = "SELECT c.id_carro, m.marca, c.car_modelo, c.car_ano, c.car_tipo, c.car_estado,c.id_personal_traslado 
 FROM carros c, marcas m
 WHERE c.car_id_marca = m.id_marca";
 
 
 $marcas = "SELECT * from marcas;";
+
+$traslado_p = "SELECT id_personal, nombre ,tipo from personal  where tipo ='Traslado' ";
 
 
 $avisos = "SELECT
@@ -167,6 +169,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                     <th width="7%">Año</th>
                     <th width="7%">Tipo</th>
                     <th width="7%">Estado</th>
+                    <th width="7%">Id traslado</th>
                     <th width="7%">Acción</th>
 
                    
@@ -175,28 +178,41 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                     <?php
                     $ejec1 = mysqli_query($conn, $vehiculos);
                     while($fila=mysqli_fetch_array($ejec1)){
-                      $idcarro      = $fila['id_carro'];
+                      $id      = $fila['id_carro'];
                       $marca           = $fila['marca'];
                       $mod            = $fila['car_modelo'];
                       $ano          = $fila['car_ano'];
                       $tipo           = $fila['car_tipo'];
                       $estado       = $fila['car_estado'];
+                      $traslado       = $fila['id_personal_traslado'];
+
                   
         ?>
         <tr>
-        <td><?php echo $idcarro ?></td>
+        <td><?php echo $id ?></td>
         <td><?php echo $marca ?></td>
         <td><?php echo $mod ?></td>
         <td><?php echo $ano ?></td>
         <td><?php echo $tipo ?></td>
         <td><?php echo $estado ?></td>
-    
-        <?php
-        echo "
-        <td>
-          <a href='recepcion_historial_cliente.php?id=$idcarro'  title='Historial'><i class='btn-sm btn-secondary ti-agenda'></i></a>
-        </td>";
-        ?>
+        <td><?php echo $traslado ?></td>
+
+
+                <td>
+                <button onclick='modificar_vehiculos(<?php echo "$id" ; ?>), enviarvehiculo(<?php echo "$id" ; ?>);' title='Actualizar' class='btn btn-simple btn-warning btn-icon edit'><i class='ti-pencil-alt'></i></button>
+
+                <?php
+
+                if($estado == "Activo"){
+                echo "
+                <button onclick='asignar($id), enviarvehiculo($id);' title='Asignar personal de traslado' class='btn btn-simple btn-primary btn-icon edit'><i class='ti-user'></i></button>
+                ";
+                   }else{  echo "
+                                                             ";
+                        }               
+              ?>
+                </td>
+
                         </tr>
                       <?php } ?>
                       <tbody></br>
@@ -459,6 +475,118 @@ function enviarreporte(id_equipo){
 </script>
 
 
+<script>
+//Script para mandar ID para generar la orden
+function enviarvehiculo(id){
+ $.ajax({
+     // la URL para la petición
+     url : 'admin_fn_editar_modificar_vehiculos_traslado.php',
+     // la información a enviar
+     // (también es posible utilizar una cadena de datos)
+     data : {
+      id : id
+     },
+     // especifica si será una petición POST o GET
+     type : 'POST',
+     // el tipo de información que se espera de respuesta
+     dataType : 'json',
+     // código a ejecutar si la petición es satisfactoria;
+     // la respuesta es pasada como argumento a la función
+     success : function(data) {
+       //Manda Llamar id,nombre y apellido
+       $("#id_carro").val(data.data.id);
+       $("#marca").val(data.data.marca);
+       $("#modelo").val(data.data.modelo);
+       $("#ano").val(data.data.ano);
+       $("#tipo").val(data.data.tipo);
+       $("#estado").val(data.data.estado);
+       $("#personal").val(data.data.personal);
+
+     },
+     // código a ejecutar si la petición falla;
+     // son pasados como argumentos a la función
+     // el objeto de la petición en crudo y código de estatus de la petición
+     error : function(xhr, status) {
+
+     },
+     // código a ejecutar sin importar si la petición falló o no
+     complete : function(xhr, status) {
+
+     }
+ });
+}
+
+</script>
+
+ <script type="text/javascript">
+    function modificar_vehiculos(id){
+    swal({
+   title: 'Actualizar vehículo',
+   html:
+   '<form action="admin_fn_editar_modificar_vehiculos.php" method="post" name="data">'+
+   //'<label for="exampleInputEmail1">id</label>' +
+   '<input name="swal-input0" type="hidden" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
+   '<input name="personal" type="hidden" id="personal" class="form-control border-input" readonly>' +
+
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Marca</label>'+
+           '<select class="form-control form-control-sm" textalign="center" required name="marca" id="marca">'+
+  '<option value="" ></option>'+
+  <?php
+  $ejec7 = mysqli_query($conn, $marcas);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["id_marca"].'">'.$fila["marca"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
+       '</div>'+
+   '</div>'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Modelo</label>'+
+           '<input type="text" id="modelo" name="modelo"  class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '</div>'+
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Año</label>'+
+           '<input type="number" name="ano" id="ano"  class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Tipo</label>'+
+           '<select class="form-control form-control-sm" required textalign="center" name="tipo" id="tipo"><option value="" ></option><option value="Automovil" >Automovil</option><option value="Camioneta">Camioneta</option></option><option value="Van">Van</option></select>' +
+       '</div>'+
+   '</div>'+
+   '</div>'+
+   '<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Estado</label>'+
+           '<select class="form-control form-control-sm" required textalign="center" name="estado" id="estado"><option value="" ></option><option value="Activo" >Activo</option><option value="Inactivo" >Inactivo</option><option value="En reparacion">En reparación(Servicio)</option></select>' +
+       '</div>'+
+   '</div>'+
+  
+   '</div>'+
+   '</div>'+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar vehículo</Button>'+
+   '</form>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> A por él',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+  };
+  </script>
 
 <script type="text/javascript">
 //Nuevo Aviso
@@ -541,7 +669,42 @@ function enviarreporte(id_equipo){
   };
   </script>
 
-<!-- termina el mod ajax -->
+<script type="text/javascript">
+//Nuevo Aviso
+    function asignar(id){
+
+
+    swal({
+   title: 'Asignar vehículo a personal de traslado',
+   html:
+   '<div class="col-lg-12"> <form action="admin_fn_editar_asignar_vehiculos.php" method="post" name="data">'+
+   '<input name="swal-input0" type="hidden" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
+   '<label>Personal de traslado</label>' +
+   '<select class="form-control form-control-sm" textalign="center" required name="personal" id="personal">'+
+  '<option value="" ></option>'+
+  <?php
+  $ejec7 = mysqli_query($conn, $traslado_p);
+  while($fila=mysqli_fetch_array($ejec7)){?>
+  '<?php echo '<option value="'.$fila["id_personal"].'">'.$fila["nombre"].'</option>'; ?>'+
+  <?php } ?>
+  '</select>' +
+  
+'<br>'+
+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Asignar</Button>'+
+   '</form></div>',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> Registrar aviso',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true
+  })
+  };
+  </script>
 
 
 
