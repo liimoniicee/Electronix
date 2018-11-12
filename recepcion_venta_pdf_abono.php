@@ -28,7 +28,7 @@ if (!$res) {
 }
 else{
   echo "<script>alert('Abono agregado al cliente con el folio=$$id')</script>";
-  echo "<script>window.open('Recepcion.php','_self')</script>";}
+  echo "<script>window.open('recepcion.php','_self')</script>";}
 */
 require 'assets/fpdf/fpdf.php';
 $pdf = new FPDF('P','mm',array(160,120));

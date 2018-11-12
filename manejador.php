@@ -12,8 +12,11 @@ if ( (isset($_POST['user'])) || (isset($_POST['pass'])) ){
 
 
 
-$query = "SELECT id_personal, usuario, nombre, apellidos, contrasena, tipo FROM personal where usuario ='$var_user' and contrasena = '$var_contra'";
-$resultado = $conn->query($query);
+
+
+
+$consulta = "SELECT id_personal,tipo,usuario,nombre,apellidos FROM personal WHERE usuario ='$var_user' AND contrasena = '$var_contra'";
+$resultado = $conn->query($consulta);
 
 
 if($resultado->num_rows > 0){
