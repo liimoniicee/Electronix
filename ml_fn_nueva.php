@@ -1,17 +1,7 @@
-
-<head>
-
- <!--  Paper Dashboard core CSS    -->
- <link href="assets/css/main.css" rel="stylesheet"/>
- </head>
-<!-- Sweet Alert 2 plugin -->
-<script src= "assets/js/sweetalert2.js"></script>
-
-
- <?php
-include 'check_sesion.php';
-include 'fuctions.php';
-include 'conexion.php';
+<?php
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
 verificar_sesion();
 
 $var_clave= $_SESSION['clave'];
@@ -72,6 +62,14 @@ else{
 ?>
 
    <body>
+   
+<head>
+
+<!--  Paper Dashboard core CSS    -->
+<link href="assets/css/main.css" rel="stylesheet"/>
+</head>
+<!-- Sweet Alert 2 plugin -->
+<script src= "assets/js/sweetalert2.js"></script>
    <script>
   let timerInterval
   swal({

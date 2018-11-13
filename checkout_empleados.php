@@ -1,18 +1,6 @@
-
-<head>
-
-  <link href= "assets/css/main.css" rel="stylesheet" />
-
-</head>
-
-<!-- Sweet Alert 2 plugin -->
-<script src= "assets/js/sweetalert2.js"></script>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-
 <?php
-//realizamos nuestra conexion con la base de datos para realizar modificaciones
 include'conexion.php';
-include 'check_sesion.php';
+include'check_sesion.php';
 
 date_default_timezone_set('America/Mazatlan');
 $diahoy = date("Y-m-d");
@@ -37,6 +25,16 @@ if($resu->num_rows > 0){
         //si la consulta devuelve un estado verdadero entonces hace lo siguiente
         ?>
          <body>
+         
+<head>
+
+<link href= "assets/css/main.css" rel="stylesheet" />
+
+</head>
+
+<!-- Sweet Alert 2 plugin -->
+<script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
          <script>
          swal({
         title: "Exito!",

@@ -2,9 +2,9 @@
 <script src= "assets/js/sweetalert2.js"></script>
 
 <?php
-include 'check_sesion.php';
-include 'fuctions.php';
-include 'conexion.php';
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
 verificar_sesion();
 
 $var_name=$_SESSION['nombre'];

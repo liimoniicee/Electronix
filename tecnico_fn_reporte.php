@@ -1,10 +1,9 @@
-
-<script src= "assets/js/sweetalert2.js"></script>
-
 <?php
-include 'check_sesion.php';include 'fuctions.php';
-include 'conexion.php';
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
 verificar_sesion();
+//<script src= "assets/js/sweetalert2.js"></script>
 
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
