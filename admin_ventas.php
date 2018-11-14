@@ -13,14 +13,9 @@ FROM avisos where tipo= 'Administrador' and estado='pendiente'order by fecha des
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estado='pendiente' order by fecha desc;";
 
-
 $sum_publicadas = "SELECT SUM(precio) FROM refacciones_tv where estado= 'Publicada';";
 
 $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
-
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -172,18 +167,11 @@ $sum_tv_ventas = "SELECT SUM(costo) FROM ventas_tv where estado= 'Vendida';";
                   }
               ?>
           </select>
-        </div>
-        
- 
-      </div>
-     
-
-   
-  
-
+        </div>      
+      </div>   
 <!-- tabla 1-->
 
-    <div id='show-me'>
+<div id='show-me'>
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 

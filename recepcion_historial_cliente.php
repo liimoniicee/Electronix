@@ -142,10 +142,10 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     <div class="card-header">
       <div class="row">
       <div class="col-md-2">
-        <label>Cliente</label>
+        <label>ID Cliente #</label>
         <input type="text" value="<?php echo $id ?>" readonly class="form-control border-input">
   </div>
-</div>
+
 </div>
             <div class="row">
 

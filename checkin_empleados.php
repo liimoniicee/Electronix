@@ -1,6 +1,7 @@
 <?php
 include'check_sesion.php';
 include'conexion.php';
+
 date_default_timezone_set('America/Mazatlan');
 $diahoy = date("Y-m-d");
 $horahoy = date("H:i:s");
