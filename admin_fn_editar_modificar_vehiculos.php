@@ -18,7 +18,15 @@ $personal= $_POST ['personal'];
 
 $sql = "UPDATE carros set car_id_marca='$marca', car_modelo='$modelo', car_ano='$ano',
 car_tipo='$tipo', car_estado='$estado' where id_carro='$id';";
-echo "<script>window.open('admin_editar_vehiculos.php','_self')</script>";
+$res = $conn->query($sql);
+
+if (!$res) {
+    printf("Errormessage: %s\n", $conn->error);
+ }
+ else{
+    echo "<script>window.open('admin_editar_vehiculos.php','_self')</script>";
+}
+
 
 
 ?>

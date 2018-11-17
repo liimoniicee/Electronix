@@ -14,18 +14,13 @@ if($var_tipo != "Administrador") {
  }
 
 
-
 $empleados = "SELECT *
 FROM
 personal";
 
 $comision = "SELECT *
 FROM personal
-WHERE tipo ='Tecnico';
-";
-
-
-
+WHERE tipo ='Tecnico';";
 
 $avisos = "SELECT
 *
@@ -42,9 +37,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
 <script src="assets\js\plugins/bootstrap-notify.min.js"></script>
 
-
-
-
     <!-- Open Graph Meta-->
     <title>Control de empleados</title>
     <meta charset="utf-8">
@@ -53,9 +45,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-
-
-
 
     <!-- Font-icon css-->
   <link href= "assets/css/themify-icons.css" rel="stylesheet">
@@ -106,14 +95,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
         <!-- User Menu-->
         <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
 
-
       </ul>
     </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-
-
 
       </div>
       <ul class="app-menu">
@@ -125,7 +111,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
       <li><a class="app-menu__item active" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
 </ul>
-
 
 
 

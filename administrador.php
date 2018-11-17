@@ -149,11 +149,15 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
                       <input name='test' type='radio' /> Nuevo aviso
                     </label>
 
-                    <label class="btn btn-info" onclick="location='admin_editar_vehiculos.php'">
+                    <label class="btn btn-danger" onclick="location='admin_editar_vehiculos.php'">
                       <input name='test' type='radio' /> Control de vehículos
                     </label>
 
-                    <label class="btn btn-info" onclick="location.href='recepcion_ventas.php'" >
+                    <label class="btn btn-success" onclick="location.href='admin_editar_recepciones.php'" >
+                      <input name='test' type='radio' /> Recepciones
+                    </label>
+
+                          <label class="btn btn-warning" onclick="location.href='recepcion_ventas.php'" >
                       <input name='test' type='radio' /> Ventas
                     </label>
 
