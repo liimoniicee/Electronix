@@ -18,6 +18,7 @@ $empleados = "SELECT *
 FROM
 personal";
 
+$sucursal ="SELECT * from recepciones where situacion='Activo';";
 $comision = "SELECT *
 FROM personal
 WHERE tipo ='Tecnico';";
@@ -602,6 +603,17 @@ var totals = [0, 0, 0, 0, 0];
          '<input input type="text" name="cor" id="cor" class="form-control border-input maxlength="25" required>' +
          '<label>Celular</label>' +
          '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+         '<label>Sucursal/Colonia</label>' +
+
+          '<select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">'+
+          '<option value="" ></option>'+
+          <?php
+          $ejec7 = mysqli_query($conn, $sucursal);
+          while($fila=mysqli_fetch_array($ejec7)){?>
+          '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
+          <?php } ?>
+          '</select>' +
+          '</br>'+
          '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar empleado</Button>'+
          '</form></div>',
 

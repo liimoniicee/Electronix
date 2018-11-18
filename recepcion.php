@@ -12,6 +12,10 @@ if($var_tipo != "Administrador" && $var_tipo != "Recepcion" ) {
  //echo "<script>alert('No tienes acceso a esta página!')</script>";
    echo "<script>window.open('Error_restrinccion.html','_self')</script>";
  }
+$recepcion ="SELECT r.colonia
+FROM personal p, recepciones r
+WHERE p.id_personal =$var_clave
+AND p.rec_id_recepcion = r.id_recepcion;";
 
 $aprovacion="SELECT * from
 solicitudes_refacciones where estado = 'Encontrada'";
@@ -1551,6 +1555,7 @@ reverseButtons: true
 
   <script type="text/javascript">
 //ventana de nuevo cliente
+var sucursal = <?php echo $recepcion;?>;
     function nuevo(){
 
 
@@ -1558,6 +1563,7 @@ reverseButtons: true
    title: 'Agregar cliente',
    html:
    '<div class="col-lg-12"> <form action="recepcion_cliente.php" method="post" name="data">'+
+   '<input input type="text" name="suc" id="suc" value="'+sucursal+'" class="form-control border-input">' +
    '<label>Nombre(s)</label>' +
    '<input input type="text" name="nom" id="nom" pattern="[A-Za-z ]+" title="Sólo letras" class="form-control border-input maxlength="25" required>' +
    '<label>Apellidos</label>' +
