@@ -12,7 +12,7 @@ if($var_tipo != "Administrador" && $var_tipo != "Recepcion" ) {
  //echo "<script>alert('No tienes acceso a esta página!')</script>";
    echo "<script>window.open('Error_restrinccion.html','_self')</script>";
  }
-$recepcion ="SELECT r.colonia
+$recepcion ="SELECT r.id_recepcion, r.colonia
 FROM personal p, recepciones r
 WHERE p.id_personal =$var_clave
 AND p.rec_id_recepcion = r.id_recepcion;";
@@ -1331,6 +1331,16 @@ html:
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
         '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
+        '<label>Sucursal</label>'+
+        '<select class="form-control form-control-sm" textalign="center" required name="sucursal" id="sucursal">'+
+  '<option value="" ></option>'+
+        <?php
+        $ejec8 = mysqli_query($conn, $recepcion);
+        while($fila=mysqli_fetch_array($ejec8)){?>
+        '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
+        <?php } ?>
+  '</select>' +
+
         '<label>Comentarios</label>'+
         '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
     '</div>'+
@@ -1555,7 +1565,6 @@ reverseButtons: true
 
   <script type="text/javascript">
 //ventana de nuevo cliente
-var sucursal = <?php echo $recepcion;?>;
     function nuevo(){
 
 
@@ -1563,7 +1572,7 @@ var sucursal = <?php echo $recepcion;?>;
    title: 'Agregar cliente',
    html:
    '<div class="col-lg-12"> <form action="recepcion_cliente.php" method="post" name="data">'+
-   '<input input type="text" name="suc" id="suc" value="'+sucursal+'" class="form-control border-input">' +
+   '<input input type="text" name="suc" id="suc" value="" class="form-control border-input">' +
    '<label>Nombre(s)</label>' +
    '<input input type="text" name="nom" id="nom" pattern="[A-Za-z ]+" title="Sólo letras" class="form-control border-input maxlength="25" required>' +
    '<label>Apellidos</label>' +

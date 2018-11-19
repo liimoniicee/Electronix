@@ -32,7 +32,19 @@ $tipo= $_POST ['compra'];
 $abono1= $_POST ['costo1'];
 
 
+$recepcion ="SELECT r.colonia
+FROM reparar_tv p, recepciones r
+WHERE p.id_folio =$id
+AND p.rec_id_recepcion = r.id_recepcion
+ORDER BY fecha_ingreso desc";
 
+ $resu = $conn->query($recepcion);
+ if($resu->num_rows > 0){
+ 
+  while($row = $resu->fetch_assoc()) {
+    $sux   =  $row["colonia"];
+   }
+  }
 
   
 
@@ -46,7 +58,7 @@ $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_to
   $res1 = $conn->query($sql1);
 
   $sql3 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_folio, id_personal)
-  VALUES ('Pendiente', 'Recepcion', 'Almacen', '$id_equipo', '$id', '$var_clave');";
+  VALUES ('Pendiente', 'Recepcion $sux', 'Almacen', '$id_equipo', '$id', '$var_clave');";
   $res3 = $conn->query($sql3);
 
  }else{

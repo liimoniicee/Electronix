@@ -20,12 +20,25 @@ $ape= $_POST ['swal-input2'];
   $servicio=$_POST['servicio'];
  $accesorio=$_POST['acce'];
  $comentario=$_POST['comen'];
+ $sucursal=$_POST['sucursal'];
 
+ $sucur= "SELECT colonia from recepciones where id_recepcion='$sucursal'";
+ $resu = $conn->query($sucur);
+ if($resu->num_rows > 0){
+ 
+  while($row = $resu->fetch_assoc()) {
+    $sux   =  $row["colonia"];
+   }
+  }
+
+
+
+ //echo "<script>alert('No tienes acceso a esta página! $sucur')</script>";
 //checar la validacion(no funciona el else:v)
 if($servicio=="Compra"){
 
-  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
-  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
+  $sql = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio,rec_id_recepcion)
+  VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id','$sucursal');";
   $res = $conn->query($sql);
  
  
@@ -37,7 +50,7 @@ if($servicio=="Compra"){
     $idequipo   =  $row["id_equipo"];
    }
    $sql2 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_folio, id_personal)
-   VALUES ('Pendiente', 'Recepcion', 'Taller', '$idequipo', '$id', '$var_clave');";
+   VALUES ('Pendiente', 'Recepcion $sux ', 'Taller', '$idequipo', '$id', '$var_clave');";
    $res2 = $conn->query($sql2);
  
    $sql3 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)
@@ -49,8 +62,8 @@ if($servicio=="Compra"){
 }else{
 
 
- $sql4 = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio)
- VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id');";
+ $sql4 = "INSERT INTO reparar_tv(equipo, marca, modelo, serie,accesorios, falla, comentarios, servicio, estado,ubicacion, id_folio,rec_id_recepcion)
+ VALUES ('$equipo', '$marca', '$modelo', '$serie','$accesorio', '$falla', '$comentario', '$servicio', 'Pendiente','Recepcion', '$id','$sucursal');";
  $res4 = $conn->query($sql4);
 
 
@@ -62,7 +75,7 @@ if($resu->num_rows > 0){
    $idequipo   =  $row["id_equipo"];
   }
   $sql5 = "INSERT INTO traslado(estado,ubicacion, destino, id_equipo, id_folio, id_personal)
-  VALUES ('Pendiente', 'Recepcion','Taller', '$idequipo', '$id', '$var_clave');";
+  VALUES ('Pendiente', 'Recepcion $sux','Taller', '$idequipo', '$id', '$var_clave');";
   $res5 = $conn->query($sql5);
 
   $sql6 = "INSERT INTO avisos(id_personal, aviso, estado, tipo)

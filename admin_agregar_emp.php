@@ -14,6 +14,8 @@ $ape = $_POST['ape'];
 $cor = $_POST['cor'];
 $cel = $_POST['cel'];
 $usu = $_POST['usu'];
+$suc = $_POST['sucu'];
+
 $pass = md5($_POST['pass']);
 
 $consu = "SELECT * FROM personal WHERE celular = $cel";
@@ -42,8 +44,8 @@ window.location.href = "admin_ctrl_empleados.php";
 echo "<script>window.open('admin_ctrl_empleados.php','_self')</script>";
 }else{
 
-$sql = "INSERT INTO personal (tipo, usuario, contrasena, nombre, apellidos, correo, celular)
-VALUES ('$tipo','$usu','$pass', '$nom', '$ape', '$cor', '$cel');";
+$sql = "INSERT INTO personal (tipo, usuario, contrasena, nombre, apellidos, correo, celular, rec_id_recepcion)
+VALUES ('$tipo','$usu','$pass', '$nom', '$ape', '$cor', '$cel','$suc');";
 $res = $conn->query($sql);
 echo "<script>window.open('admin_ctrl_empleados.php','_self')</script>";
 

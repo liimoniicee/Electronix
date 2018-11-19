@@ -17,17 +17,26 @@ $tot = $_POST['swal-input23'];
 $est = $_POST['swal-input24'];
 $val = $_POST['swal-input25'];
 
+$recepcion ="SELECT r.colonia
+FROM reparar_tv p, recepciones r
+WHERE p.id_folio =$id
+AND p.rec_id_recepcion = r.id_recepcion
+ORDER BY fecha_ingreso desc";
 
-
-
-
+ $resu = $conn->query($recepcion);
+ if($resu->num_rows > 0){
+ 
+  while($row = $resu->fetch_assoc()) {
+    $sux   =  $row["colonia"];
+   }
+  }
 
 
 if($est =='Sin solucion'){
 
 
   $sql1 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)
-  VALUES ('Pendiente', 'Taller', 'Recepcion', '$id', '$var_clave');";
+  VALUES ('Pendiente', 'Taller', 'Recepcion $sux', '$id', '$var_clave');";
   $res1 = $conn->query($sql1);
 
 $sql2 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
@@ -41,7 +50,7 @@ $res3 = $conn->query($sql3);
 
   
 $sql7 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)
-VALUES ('Pendiente', 'Taller', 'Recepcion', '$id', '$var_clave');";
+VALUES ('Pendiente', 'Taller', 'Recepcion $sux', '$id', '$var_clave');";
 $res7 = $conn->query($sql7);
 
   $sql4 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)

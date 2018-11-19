@@ -16,12 +16,26 @@ $marca= $_POST ['swal-input7'];
 $modelo = $_POST ['swal-input8'];
 $valor =  $_POST ['swal-input25'];
 
+$recepcion ="SELECT r.colonia
+FROM reparar_tv p, recepciones r
+WHERE p.id_folio =$id
+AND p.rec_id_recepcion = r.id_recepcion
+ORDER BY fecha_ingreso desc";
+
+ $resu = $conn->query($recepcion);
+ if($resu->num_rows > 0){
+ 
+  while($row = $resu->fetch_assoc()) {
+    $sux   =  $row["colonia"];
+   }
+  }
+
   
 $sql = "UPDATE reparar_tv set estado='Comprada',fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
   $sql3 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_folio, id_personal,tipo)
-  VALUES ('Pendiente', 'Recepcion', 'Almacen', '$id_equipo', '$id', '$var_clave','Compra');";
+  VALUES ('Pendiente', 'Recepcion $sux', 'Almacen', '$id_equipo', '$id', '$var_clave','Compra');";
   $res3 = $conn->query($sql3);
 
  

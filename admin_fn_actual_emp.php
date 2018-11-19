@@ -27,6 +27,8 @@ if(isset($_POST['id'])){
     "ape"        =>  $row["apellidos"],
     "cel"        =>  $row["celular"],
     "cor"        =>  $row["correo"],
+    "sucu"        =>  $row["rec_id_recepcion"],
+
 
   );
    }

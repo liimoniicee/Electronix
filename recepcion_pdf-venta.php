@@ -24,8 +24,18 @@ $abono = $_POST ['costo1'];
 $diahoy = date("Y-m-d");
 $horahoy = date("H:i:s");
 
+$recepcion ="SELECT  r.colonia
+FROM personal p, recepciones r
+WHERE p.id_personal =$var_clave
+AND p.rec_id_recepcion = r.id_recepcion;";
 
-
+ $resu = $conn->query($recepcion);
+ if($resu->num_rows > 0){
+ 
+  while($row = $resu->fetch_assoc()) {
+    $sux   =  $row["colonia"];
+   }
+  }
 
 if($tipo == 'Apartado'){
 
@@ -33,7 +43,7 @@ if($tipo == 'Apartado'){
   $res = $conn->query($sql1);
 
 
-$sql4 = "INSERT into traslado(estado,ubicacion,destino,id_equipo,id_folio,tipo) VALUES('Pendiente','Recepcion','Almacen','$idventa','$id','Venta');";
+$sql4 = "INSERT into traslado(estado,ubicacion,destino,id_equipo,id_folio,tipo) VALUES('Pendiente','Recepcion $sux','Almacen','$idventa','$id','Venta');";
 $res4 = $conn->query($sql4);
 
 }else{

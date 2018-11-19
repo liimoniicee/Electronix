@@ -6,6 +6,12 @@ $cor = $_POST['cor'];
 $cel = $_POST['cel'];
 $dire = $_POST['dire'];
 $conocio = $_POST['conocio'];
+
+$recepcion ="SELECT r.id_recepcion, r.colonia
+FROM personal p, recepciones r
+WHERE p.id_personal =$var_clave
+AND p.rec_id_recepcion = r.id_recepcion;";
+
 $consu = "SELECT * FROM CLIENTES WHERE celular = $cel";
 $resu = $conn->query($consu);
 if($resu->num_rows > 0){
@@ -115,6 +121,17 @@ echo "<script>window.open('recepcion.php','_self')</script>";
 '<div class="form-group">'+
         '<label>Tipo de servicio</label>'+
         '<select class="form-control form-control-sm" text-align="center" required name="servicio" id="servicio"><option value="Reparacion">Reparación</option><option value="Compra">Compra</option><option value="Revision">Revisión</option></select>' +
+       
+        '<label>Sucursal</label>'+
+        '<select class="form-control form-control-sm" textalign="center" required name="sucursal" id="sucursal">'+
+  '<option value="" ></option>'+
+        <?php
+        $ejec8 = mysqli_query($conn, $recepcion);
+        while($fila=mysqli_fetch_array($ejec8)){?>
+        '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
+        <?php } ?>
+  '</select>' +
+
         '<label>Comentarios</label>'+
         '<textarea type="text" name="comen" id="comen"  class="form-control border-input"></textarea>'+
     '</div>'+

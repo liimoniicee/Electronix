@@ -14,9 +14,9 @@ if($var_tipo != "Administrador") {
  }
 
 
-$empleados = "SELECT *
-FROM
-personal";
+$empleados = "SELECT p.id_personal, p.tipo, p.usuario, p.contrasena, p.nombre, p.apellidos, p.correo, p.celular, p.sueldo, r.colonia
+FROM personal p, recepciones r
+WHERE p.rec_id_recepcion = r.id_recepcion";
 
 $sucursal ="SELECT * from recepciones where situacion='Activo';";
 $comision = "SELECT *
@@ -174,6 +174,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       <th>apellidos</th>
       <th>Correo</th>
       <th>Celular</th>
+      <th>Sucursal</th>
+
       <th class="disabled-sorting">Acción</th>
 
     </thead>
@@ -188,6 +190,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
         $ape        = $fila['apellidos'];
         $cor        = $fila['correo'];
         $cel        = $fila['celular'];
+        $suc        = $fila['colonia'];
+
 
 ?>
                     <tr>
@@ -199,6 +203,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                         <td width="14%"><?php echo $ape ?></td>
                         <td width="8%"><?php echo $cor ?></td>
                         <td width="8%"><?php echo $cel ?></td>
+                        <td width="8%"><?php echo $suc ?></td>
                         <td width="14%">
                         <a href="#" onclick="actual_emp(<?php echo $id ?>), actual_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
                         <a href="#" onclick="borrar_emp(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
@@ -605,7 +610,7 @@ var totals = [0, 0, 0, 0, 0];
          '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
          '<label>Sucursal/Colonia</label>' +
 
-          '<select class="form-control form-control-sm" textalign="center"  required name="tv_venta" id="tv_venta">'+
+          '<select class="form-control form-control-sm" textalign="center"  required name="sucu" id="sucu">'+
           '<option value="" ></option>'+
           <?php
           $ejec7 = mysqli_query($conn, $sucursal);
@@ -717,7 +722,7 @@ var totals = [0, 0, 0, 0, 0];
  swal({
  title: 'Actualizar empleado',
  html:
- '<div class="col-lg-12"> <form action="admin_actual_emp.php" method="post" name="data">'+
+ '<div class="col-lg-12"> <form action="admin_fn_actual_emp.php" method="post" name="data">'+
  '<input id="id" value="'+id+'" type="hidden">' +
  '<label>Usuario</label>' +
  '<input input type="text" name="usuario" id="usuario" class="form-control border-input maxlength="25" required>' +
@@ -731,6 +736,16 @@ var totals = [0, 0, 0, 0, 0];
  '<input input type="email" name="cor" id="cor" class="form-control border-input ">' +
  '<label>Celular</label>' +
  '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+ '<label>Sucursal/Colonia</label>' +
+
+          '<select class="form-control form-control-sm" textalign="center"  required name="sucu" id="sucu">'+
+          '<option value="" ></option>'+
+          <?php
+          $ejec7 = mysqli_query($conn, $sucursal);
+          while($fila=mysqli_fetch_array($ejec7)){?>
+          '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
+          <?php } ?>
+          '</select>' +
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar empleado</Button>'+
  '</form></div>',
  showCancelButton: true,
