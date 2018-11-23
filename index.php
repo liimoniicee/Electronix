@@ -53,7 +53,7 @@ include'conexion.php';
     </section>
     <section class="login-content">
       <div class="logo">
-        <h1>Electronica RSH</h1>
+        <h1>Club Tvs Login</h1>
       </div>
       <div class="login-box">
          <!-- Iniciar sesion css-->

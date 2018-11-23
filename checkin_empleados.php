@@ -65,7 +65,7 @@ window.location.href = "traslados/traslados.php";
                 window.location.href = "almacen.php";
 
                 <?php } ?>
-
+ra
  });
        </script>
 </body>

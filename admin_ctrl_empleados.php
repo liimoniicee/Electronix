@@ -8,6 +8,8 @@ $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 $var_tipo = $_SESSION['tipo'];
 
+$horahoy = date("H:i:s");
+
 if($var_tipo != "Administrador") {
  //echo "<script>alert('No tienes acceso a esta página!')</script>";
    echo "<script>window.open('Error_restrinccion.html','_self')</script>";
@@ -252,7 +254,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <div class="tile-body">
         <table id="tabla2" class="table table-hover table-dark table-responsive">
 <?php
-          $asistencia = "SELECT p.id_personal, p.nombre, a.fecha, a.hora_entrada, a.hora_salida
+          $asistencia = "SELECT p.id_personal, p.nombre, a.fecha, a.hora_entrada, a.hora_salida, a.horas_hoy, a.horas_total
           FROM
           personal p, asistencia a
           where p.id_personal = a.personal_id_personal";
@@ -265,6 +267,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <th>fecha</th>
     <th>Hora entrada</th>
     <th>Hora salida</th>
+    <th>Horas pendiente hoy</th>
+    <th>Horas pendiente en total</th>
+
   </thead>
   <?php
     $ejec2 = mysqli_query($conn, $asistencia);
@@ -274,6 +279,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
       $fech          = $fila['fecha'];
       $hora_e          = $fila['hora_entrada'];
       $hora_s          = $fila['hora_salida'];
+      $hora_hoy         = $fila['horas_hoy'];
+      $hora_tot        = $fila['horas_total'];
 
 
 ?>
@@ -283,6 +290,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                       <td width="14%"><?php echo $fech ?></td>
                       <td width="14%"><?php echo $hora_e ?></td>
                       <td width="14%"><?php echo $hora_s ?></td>
+                      <td width="14%"><?php echo $hora_hoy ?></td>
+                      <td width="14%"><?php echo $hora_tot ?></td>
 
         </tr>
       <?php } ?>
@@ -587,7 +596,10 @@ var totals = [0, 0, 0, 0, 0];
           swal({
          title: 'Agregar empleado',
          html:
-         '<div class="col-lg-12"> <form action="admin_agregar_emp.php" method="post" name="data">'+
+         '<div class="card-body"> <form action="admin_agregar_emp.php" method="post" name="data">'+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
          '<label>Tipo</label>'+
          '<select class="form-control form-control-sm" textalign="center" required name="tipo" id="tipo"><option value="Administrador" >Administrador</option>'+
          '<option value="Almacen">Almacen</option>'+
@@ -596,20 +608,76 @@ var totals = [0, 0, 0, 0, 0];
          '<option value="Tecnico">Tecnico</option>'+
          '<option value="Recepcion">Recepcion</option>'+
          '</select>' +
+         '</div>'+
+          '</div>'+
+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
          '<label>Usuario</label>' +
          '<input input type="text" name="usu" id="usu" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+
+            '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
+
+
          '<label>Contraseña</label>' +
          '<input input type="password" name="pass" id="pass" class="form-control border-input maxlength="25" required>' +
+
+          '</div>'+
+         '</div>'+
+         '</div>'+
+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
          '<label>Nombre(s)</label>' +
          '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
          '<label>Apellidos</label>' +
          '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+         '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
          '<label>Correo</label>' +
          '<input input type="text" name="cor" id="cor" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+         '</div>'+
+
+
+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
          '<label>Celular</label>' +
          '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+         '</div>'+
+         '</div>'+
+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
          '<label>Sueldo</label>' +
  '<input input type="number" name="sue" id="sue" class="form-control border-input type="number" required></br>'+
+
+      '</div>'+
+         '</div>'+
+
+           '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
          '<label>Sucursal/Colonia</label>' +
 
           '<select class="form-control form-control-sm" textalign="center"  required name="sucu" id="sucu">'+
@@ -620,6 +688,40 @@ var totals = [0, 0, 0, 0, 0];
           '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
           <?php } ?>
           '</select>' +
+          '</div>'+
+         '</div>'+
+         '</div>'+
+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
+         '<label>Horas que trabajará</label>' +
+         '<input input type="time" name="hra" id="hra" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
+         '<label>Hora de entrada</label>' +
+         '<input input type="time" name="hra_e" id="hra_e" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+         '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
+         '<label>Hora de salida</label>' +
+       
+        
+          '<input input type="time" name="hra_s" id="hra_s" onchange="operaciones();" class="form-control border-input maxlength="25" required>' +
+ 
+           '<input input type="number" name="hra_r" id="hra_r" onchange="operaciones();" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+         '</div>'+
+
+
           '</br>'+
          '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar empleado</Button>'+
          '</form></div>',
@@ -629,11 +731,23 @@ var totals = [0, 0, 0, 0, 0];
          cancelButtonColor: '#d33',
          cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
          showConfirmButton: false,
+         customClass: 'swal-wide',
          focusConfirm: false,
          buttonsStyling: false,
           reverseButtons: true
 
       })
+
+ $("#hra_r").change(function(){
+    if(this.value <='hra'){
+      $(".hra_e").hide();
+
+}else{  
+
+     }
+  })
+ 
+
 };
   </script>
 
@@ -836,6 +950,11 @@ reverseButtons: true
 </script>
 
 
+<style>
+.swal-wide{
+    width:60% !important;
+}
+</style>
 
 
 
@@ -945,6 +1064,25 @@ reverseButtons: true
 };
 </script>
 
+<script type="text/javascript">
+
+function operaciones()
+{
+  var salida =document.getElementById('hra_s').value;
+  var entrada =document.getElementById('hra_e').value;
+  var horario =document.getElementById('hra').value;
+
+ // var nepe =("H:i:s");  
+
+   suma =parseInt(salida)-parseInt(entrada);
+
+
+   totalt =parseInt(document.getElementById('hra_r').value= suma);
+
+
+}
+
+</script>
 
   </body>
 </html>

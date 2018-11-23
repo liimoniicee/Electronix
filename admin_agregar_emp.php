@@ -15,6 +15,10 @@ $cor = $_POST['cor'];
 $cel = $_POST['cel'];
 $usu = $_POST['usu'];
 $suc = $_POST['sucu'];
+$hora = $_POST['hra'];
+$hora_e = $_POST['hra_e'];
+$hora_s = $_POST['hra_s'];
+
 
 $pass = md5($_POST['pass']);
 
@@ -44,8 +48,8 @@ window.location.href = "admin_ctrl_empleados.php";
 echo "<script>window.open('admin_ctrl_empleados.php','_self')</script>";
 }else{
 
-$sql = "INSERT INTO personal (tipo, usuario, contrasena, nombre, apellidos, correo, celular, rec_id_recepcion)
-VALUES ('$tipo','$usu','$pass', '$nom', '$ape', '$cor', '$cel','$suc');";
+$sql = "INSERT INTO personal (tipo, usuario, contrasena, nombre, apellidos, correo, celular, rec_id_recepcion,horas,hora_entrada,hora_salida)
+VALUES ('$tipo','$usu','$pass', '$nom', '$ape', '$cor', '$cel','$suc','$hora','$hora_e','$hora_s');";
 $res = $conn->query($sql);
 echo "<script>window.open('admin_ctrl_empleados.php','_self')</script>";
 
