@@ -1,11 +1,10 @@
 <?php
-/*
 include'check_sesion.php';
 include'conexion.php';
-*/
+/*
 include'conexion.php';
 session_start();
-
+*/
 date_default_timezone_set('America/Mazatlan');
 $diahoy = date("Y-m-d");
 $horahoy = date("H:i:s");
@@ -29,10 +28,11 @@ if($resu->num_rows > 0){
 <link href="assets/css/main.css" rel="stylesheet"/>
 </head>
 <!-- Sweet Alert 2 plugin -->
-<script src= "assets/js/sweetalert2.js"></script>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
 
    <body>
+   <script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
    <script>
    swal({
  title: "Error!",
@@ -83,6 +83,8 @@ $sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_pe
     if ($conn->query($sql) === TRUE) {
       ?>
        <body>
+       <script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
        <script>
        swal({
       title: "Exito!",
@@ -123,6 +125,8 @@ $sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_pe
       //en caso contrario, el programa regresa un error con la informacion relacionada al respecto
       ?>
        <body>
+       <script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
        <script>
        swal({
      title: "Error!",

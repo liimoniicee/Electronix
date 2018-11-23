@@ -72,6 +72,8 @@ if($resu->num_rows > 0){
 
   ?>
    <body>
+   <script src= "assets/js/sweetalert2.js"></script>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
    <script>
    swal({
  title: "Error!",

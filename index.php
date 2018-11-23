@@ -31,6 +31,7 @@ include'conexion.php';
                         ?>
 <!DOCTYPE html>
 <html>
+
   <head>
     
 
@@ -42,9 +43,11 @@ include'conexion.php';
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Electroinca RSH LOGIN</title>
+    <title>Club tvs Login</title>
   </head>
   <body>
+  <script src= "assets/js/sweetalert2.js"></script>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <section class="material-half-bg">
       <div class="cover"></div>
     </section>
@@ -96,12 +99,12 @@ include'conexion.php';
       </div>
     </section>
     <!-- Essential javascripts for application to work-->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
     <!-- The javascript plugin to display page loading on top-->
-    <script src="js/plugins/pace.min.js"></script>
+    <script src="assets/js/plugins/pace.min.js"></script>
     <script type="text/javascript">
       // Login Page Flipbox control
       $('.login-content [data-toggle="flip"]').click(function() {
