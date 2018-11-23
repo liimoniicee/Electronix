@@ -134,7 +134,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
-      <button class="btn btn-success" onclick="agregar_empleado()">agregar empleado</button>
+      <button class="btn btn-success" onclick="agregar_empleado()">Agregar empleado</button>
          <form id='form-id'>
 
 
@@ -608,6 +608,8 @@ var totals = [0, 0, 0, 0, 0];
          '<input input type="text" name="cor" id="cor" class="form-control border-input maxlength="25" required>' +
          '<label>Celular</label>' +
          '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+         '<label>Sueldo</label>' +
+ '<input input type="number" name="sue" id="sue" class="form-control border-input type="number" required></br>'+
          '<label>Sucursal/Colonia</label>' +
 
           '<select class="form-control form-control-sm" textalign="center"  required name="sucu" id="sucu">'+
@@ -690,7 +692,7 @@ var totals = [0, 0, 0, 0, 0];
         // código a ejecutar si la petición es satisfactoria;
         // la respuesta es pasada como argumento a la función
         success : function(data) {
-
+          $("#tipo").val(data.data.tipo);
           $("#usuario").val(data.data.usu);
           $("#pass").val(data.data.pass);
           $("#nom").val(data.data.nom);
@@ -698,6 +700,8 @@ var totals = [0, 0, 0, 0, 0];
           $("#usu").val(data.data.dir);
           $("#cor").val(data.data.cor);
           $("#cel").val(data.data.cel);
+          $("#sue").val(data.data.sue);
+
 
         },
         // código a ejecutar si la petición falla;
@@ -722,8 +726,16 @@ var totals = [0, 0, 0, 0, 0];
  swal({
  title: 'Actualizar empleado',
  html:
- '<div class="col-lg-12"> <form action="admin_fn_actual_emp.php" method="post" name="data">'+
- '<input id="id" value="'+id+'" type="hidden">' +
+ '<div class="col-lg-12"> <form action="admin_fn_actualizar_ctrl_empleados.php" method="post" name="data">'+
+ '<input id="id" name="id" value="'+id+'" type="hidden">' +
+ '<label>Tipo</label>'+
+ '<select class="form-control form-control-sm" textalign="center" required name="tipo" id="tipo"><option value="Administrador" >Administrador</option>'+
+         '<option value="Almacen">Almacen</option>'+
+         '<option value="Jefe de Taller">Jefe de taller</option>'+
+         '<option value="Taller">Taller</option>'+
+         '<option value="Tecnico">Tecnico</option>'+
+         '<option value="Recepcion">Recepcion</option>'+
+         '</select>' +
  '<label>Usuario</label>' +
  '<input input type="text" name="usuario" id="usuario" class="form-control border-input maxlength="25" required>' +
  '<label>Contraseña</label>' +
@@ -736,6 +748,8 @@ var totals = [0, 0, 0, 0, 0];
  '<input input type="email" name="cor" id="cor" class="form-control border-input ">' +
  '<label>Celular</label>' +
  '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+ '<label>Sueldo</label>' +
+ '<input input type="number" name="sue" id="sue" class="form-control border-input type="number" required></br>'+
  '<label>Sucursal/Colonia</label>' +
 
           '<select class="form-control form-control-sm" textalign="center"  required name="sucu" id="sucu">'+
@@ -746,6 +760,7 @@ var totals = [0, 0, 0, 0, 0];
           '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
           <?php } ?>
           '</select>' +
+          '</br>'+
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar empleado</Button>'+
  '</form></div>',
  showCancelButton: true,

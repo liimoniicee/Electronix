@@ -1,6 +1,10 @@
 <?php
+/*
 include'check_sesion.php';
 include'conexion.php';
+*/
+include'conexion.php';
+session_start();
 
 date_default_timezone_set('America/Mazatlan');
 $diahoy = date("Y-m-d");

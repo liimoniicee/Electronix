@@ -118,7 +118,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
 
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-dashboard"></i>Recepción</h1>
+          <h1><i class="fa fa-dashboard"></i>Panel administrativo</h1>
           <p>Dar un buen servicio es nuestra prioridad</p>
         </div>
 
@@ -446,8 +446,8 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
 
 
    swal(
-  'Sistema integral reparacion de televisiones (SIRTV) 1.0',
-  'Creado por Francisco Israel Martínez Ayala',
+  'Sistema integral reparacion de televisiones (SIRTV) 0.5',
+  '',
   'success'
 )
 };

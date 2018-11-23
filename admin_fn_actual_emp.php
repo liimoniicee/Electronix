@@ -21,12 +21,14 @@ if(isset($_POST['id'])){
     while($row = $resultado->fetch_assoc()) {
   $response['data'] = array (
 
+    "tipo"        =>  $row["tipo"],
     "usu"        =>  $row["usuario"],
     "pass"       =>  md5($row["contrasena"]),
     "nom"        =>  $row["nombre"],
     "ape"        =>  $row["apellidos"],
     "cel"        =>  $row["celular"],
     "cor"        =>  $row["correo"],
+    "sue"        =>  $row["sueldo"],
     "sucu"        =>  $row["rec_id_recepcion"],
 
 

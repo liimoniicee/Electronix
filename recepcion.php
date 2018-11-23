@@ -1572,7 +1572,6 @@ reverseButtons: true
    title: 'Agregar cliente',
    html:
    '<div class="col-lg-12"> <form action="recepcion_cliente.php" method="post" name="data">'+
-   '<input input type="text" name="suc" id="suc" value="" class="form-control border-input">' +
    '<label>Nombre(s)</label>' +
    '<input input type="text" name="nom" id="nom" pattern="[A-Za-z ]+" title="Sólo letras" class="form-control border-input maxlength="25" required>' +
    '<label>Apellidos</label>' +

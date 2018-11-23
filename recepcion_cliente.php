@@ -1,5 +1,9 @@
 <?php
+include'check_sesion.php';
+include'fuctions.php';
 require 'conexion.php';
+$var_clave= $_SESSION['clave'];
+
 $nom = $_POST['nom'];
 $ape = $_POST['ape'];
 $cor = $_POST['cor'];
@@ -7,10 +11,9 @@ $cel = $_POST['cel'];
 $dire = $_POST['dire'];
 $conocio = $_POST['conocio'];
 
-$recepcion ="SELECT r.id_recepcion, r.colonia
-FROM personal p, recepciones r
-WHERE p.id_personal =$var_clave
-AND p.rec_id_recepcion = r.id_recepcion;";
+
+
+ //echo "<script>alert('No tienes acceso a esta página! $var_clave')</script>";
 
 $consu = "SELECT * FROM CLIENTES WHERE celular = $cel";
 $resu = $conn->query($consu);
@@ -59,10 +62,20 @@ echo "<script>window.open('recepcion.php','_self')</script>";
   //aqui termina el while
   }
   }else{}
+    $recepcion ="SELECT r.id_recepcion, r.colonia
+      FROM personal p, recepciones r
+      WHERE p.id_personal =$var_clave
+      AND p.rec_id_recepcion = r.id_recepcion;";
+
     ?>
     <body>
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+ <script src="assets/js/sweetalert2.all.min.js"></script>
+ <script src="assets/js/sweetalert2.js"></script>
+ <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <script type="text/javascript">
   var cel = <?php echo $cel; ?>;
+  
     swal({
     title: 'Nueva orden de servicio',
     html:
@@ -124,7 +137,7 @@ echo "<script>window.open('recepcion.php','_self')</script>";
        
         '<label>Sucursal</label>'+
         '<select class="form-control form-control-sm" textalign="center" required name="sucursal" id="sucursal">'+
-  '<option value="" ></option>'+
+        '<option value="" ></option>'+
         <?php
         $ejec8 = mysqli_query($conn, $recepcion);
         while($fila=mysqli_fetch_array($ejec8)){?>
@@ -149,7 +162,7 @@ focusConfirm: false,
 buttonsStyling: false,
 reverseButtons: true
 })
-
+  
     </script>
 
   </body>
