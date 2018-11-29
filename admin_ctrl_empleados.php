@@ -675,7 +675,7 @@ var totals = [0, 0, 0, 0, 0];
       '</div>'+
          '</div>'+
 
-           '<div class="col-md-4">'+
+           '<div class="col-md-4"  >  '+
             '<div class="form-group">'+
 
          '<label>Sucursal/Colonia</label>' +
@@ -696,34 +696,48 @@ var totals = [0, 0, 0, 0, 0];
           '<div class="col-md-4">'+
             '<div class="form-group">'+
 
-         '<label>Horas que trabajará</label>' +
-         '<input input type="time" name="hra" id="hra" class="form-control border-input maxlength="25" required>' +
+       
+         '<label>Hora de entrada</label>' +
+         '<input input type="time" name="hra_e" id="hra_e" class="form-control border-input maxlength="25" required>' +
          '</div>'+
+         '</div>'+
+
+         '<div class="col-md-4">'+
+            '<div class="form-group">'+
+
+         '<label>Hora de salida</label>' +     
+        '<input input type="time" name="hra_s" id="hra_s" onchange="operaciones();" class="form-control border-input maxlength="25" required>' +
+ 
+        '</div>'+
          '</div>'+
 
           '<div class="col-md-4">'+
             '<div class="form-group">'+
 
-         '<label>Hora de entrada</label>' +
-         '<input input type="time" name="hra_e" id="hra_e" class="form-control border-input maxlength="25" required>' +
+         '<label>Horas que trabajará</label>' +     
+        '<input input type="number" name="hra_r" id="hra_r" readonly class="form-control border-input maxlength="25" required>' +
+ 
+        '</div>'+
          '</div>'+
          '</div>'+
-         '<div class="col-md-4">'+
+
+'<div class="row">'+
+          '<div class="col-md-4 com" style="display:none;" >'+
             '<div class="form-group">'+
 
-         '<label>Hora de salida</label>' +
        
+         '<label>¿Hora de comida? </label>' +          '</br>'+
+
+         '<input input type="checkbox" name="hra_c" id="hra_c" onclick="comida();" class="check" maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+
         
-          '<input input type="time" name="hra_s" id="hra_s" onchange="operaciones();" class="form-control border-input maxlength="25" required>' +
- 
-           '<input input type="number" name="hra_r" id="hra_r" onchange="operaciones();" class="form-control border-input maxlength="25" required>' +
-         '</div>'+
-         '</div>'+
          '</div>'+
 
 
           '</br>'+
-         '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Agregar empleado</Button>'+
+         '<Button type="submit" id="confirmar" name="confirmar" class= "btn btn-info btn-fill btn-wd">Agregar empleado</Button>'+
          '</form></div>',
 
          showCancelButton: true,
@@ -738,19 +752,49 @@ var totals = [0, 0, 0, 0, 0];
 
       })
 
- $("#hra_r").change(function(){
-    if(this.value <='hra'){
-      $(".hra_e").hide();
+ $("#check").change(function(){
+    if(this.value != '0'){
+      $(".com").show();
 
-}else{  
+}else{
 
-     }
+}
+
   })
  
 
 };
   </script>
 
+<script type="text/javascript">
+function operaciones()
+{
+  var salida =document.getElementById('hra_s').value;
+  var entrada =document.getElementById('hra_e').value;
+  suma =parseInt(salida)-parseInt(entrada);
+  totalt =parseInt(document.getElementById('hra_r').value= suma);
+}
+</script>
+
+
+<script type="text/javascript">
+function comida()
+{
+  var horas =document.getElementById('hra_r').value;
+  suma =parseInt(horas)+parseInt(1);
+  totalt =parseInt(document.getElementById('hra_r').value= suma);
+//  hra_c.Checked = !(hra_c.Checked);
+document.getElementById("hra_c").disabled = true;
+
+
+}
+</script>
+
+<script>
+function desactivar() {
+    document.getElementById("hra_c").disabled = true;
+}
+</script>
 
   <script>
   function borrar_emp(id){
@@ -1064,25 +1108,7 @@ reverseButtons: true
 };
 </script>
 
-<script type="text/javascript">
 
-function operaciones()
-{
-  var salida =document.getElementById('hra_s').value;
-  var entrada =document.getElementById('hra_e').value;
-  var horario =document.getElementById('hra').value;
-
- // var nepe =("H:i:s");  
-
-   suma =parseInt(salida)-parseInt(entrada);
-
-
-   totalt =parseInt(document.getElementById('hra_r').value= suma);
-
-
-}
-
-</script>
 
   </body>
 </html>

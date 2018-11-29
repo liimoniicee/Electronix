@@ -15,7 +15,7 @@ $cor = $_POST['cor'];
 $cel = $_POST['cel'];
 $usu = $_POST['usu'];
 $suc = $_POST['sucu'];
-$hora = $_POST['hra'];
+$hora = $_POST['hra_r'];
 $hora_e = $_POST['hra_e'];
 $hora_s = $_POST['hra_s'];
 

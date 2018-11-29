@@ -1,6 +1,6 @@
 <?php
 include'check_sesion.php';
-include 'conexion.php';
+include'conexion.php';
 //if(isset($_POST['submit']))
 //{
 
