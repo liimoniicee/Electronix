@@ -4,7 +4,7 @@ include'fuctions.php';
 include'conexion.php';
 verificar_sesion();
 
-entaar_name=$_SESSION['nombre'];
+$var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
 $var_tipo = $_SESSION['tipo'];
 
