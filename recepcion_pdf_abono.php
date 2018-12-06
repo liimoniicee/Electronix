@@ -97,6 +97,8 @@ $pdf->SetFont('Arial','',18);
 $pdf->SetXY(30,120);
 $pdf->Write(5,utf8_decode('Electronica RSH'));
 
+$filename="assets\Documents/orden/Abonos $id $id_equipo.pdf";
+$pdf->Output($filename,'F');
 $pdf->Output();
 
 ?>

@@ -22,6 +22,11 @@ $ape= $_POST ['swal-input2'];
  $comentario=$_POST['comen'];
  $sucursal=$_POST['sucursal'];
 
+
+$user=getenv("HOMEDRIVE") . getenv("HOMEPATH");
+
+
+
  $sucur= "SELECT colonia from recepciones where id_recepcion='$sucursal'";
  $resu = $conn->query($sucur);
  if($resu->num_rows > 0){
@@ -221,6 +226,10 @@ $pdf->SetFont('Arial','',12);
 $pdf->SetXY(80,270);
 $pdf->Write(6,'Oficina: 688-28-96');
 
+//$filename=echo"' $user'/Google Drive\Respaldo Electronica RSH\Documentos Clientes\orden de servicio/Orden $id $modelo.pdf";
+$filename="assets\Documents/orden/Orden $id $modelo.pdf";
+$pdf->Output($filename,'F');
 
 $pdf->Output();
+
 ?>

@@ -268,7 +268,8 @@ $pdf->SetFont('Arial','',12);
 $pdf->SetXY(80,270);
 $pdf->Write(6,'Oficina: 688-28-96');
 
-
+$filename="assets\Documents/orden/Garantia a cambio $id $modelo.pdf";
+$pdf->Output($filename,'F');
 $pdf->Output();
 
 ?>
