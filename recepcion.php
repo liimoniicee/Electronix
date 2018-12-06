@@ -228,8 +228,9 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
                           echo "
                         <a href='#' onclick='alerta1($id), enviarmod( $id);' title='Actualizar cliente' ><i class='btn-sm btn-warning ti-pencil-alt'></i></a>
                         <a href='#' onclick='orden($id), enviarmod( $id);' title='Nueva orden'><i class='btn-sm btn-success ti-plus'></i></a>
-                        <a href='recepcion_historial_cliente.php?id=$id'  title='Historial'><i class='btn-sm btn-secondary ti-agenda'></i></a>
-                      </td>"; ?>
+                        <a href='recepcion_historial_cliente.php?id=", base64_encode($id), "'  title='Historial'><i class='btn-sm btn-secondary ti-agenda'></i></a>
+                      </td>"; 
+                      ?>
 
           </tr>
         <?php } ?>

@@ -12,7 +12,7 @@ if($var_tipo != "Administrador" && $var_tipo != "Recepcion" ) {
   //echo "<script>alert('No tienes acceso a esta página!')</script>";
    echo "<script>window.open('Error_restrinccion.html','_self')</script>";
  }
-$id = $_GET ['id'];
+$id = base64_decode($_GET ['id']);
 //Tabla para ver todos los equipos
 $consulta = "SELECT
 equipo, marca,modelo,falla, id_equipo, fecha_ingreso, fecha_entregar, fecha_egreso, servicio, estado, ubicacion,presupuesto,mano_obra, abono,restante
