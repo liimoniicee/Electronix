@@ -492,7 +492,7 @@ if($ubicacion == "Recepcion"){
 </div></div></div>
 
 
- <div id='show-me-three3'>
+ <div id='show-me-three3' style='display:none; border:2px solid #ccc'>
                     <div class="tile">
                       <div class="tile-body">
           <table id="tabla5" class="table table-hover table-dark table-responsive">
