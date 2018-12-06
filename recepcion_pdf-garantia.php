@@ -1,4 +1,4 @@
-<?php   
+﻿<?php   
 session_start();
 include 'fuctions.php';
 include 'conexion.php';
@@ -175,7 +175,7 @@ $pdf->SetFont('Arial','',12);
 $pdf->SetXY(80,270);
 $pdf->Write(6,'Oficina: 688-28-96');
 
-$filename="assets\Documents/orden/Garantia $id $modelo.pdf";
+$filename="assets\Documents/Garantia/Garantia $id $modelo.pdf";
 $pdf->Output($filename,'F');
 $pdf->Output();
 ?>
