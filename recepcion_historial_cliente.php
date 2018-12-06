@@ -20,6 +20,14 @@ FROM reparar_tv  WHERE id_folio = '$id';";
 
 $consulta1= "SELECT * from ventas_tv where id_folio ='$id';";
 
+$puntos= "SELECT sum(puntos) total from puntos where id_folio ='$id';";
+
+$ejec0 = mysqli_query($conn, $puntos);
+while($fila=mysqli_fetch_array($ejec0)){
+    $punto     = $fila['total'];
+
+}
+
 $cons = "SELECT * FROM clientes WHERE id_folio = $id";
 $resu = $conn->query($cons);
 
@@ -192,7 +200,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
               <div class="col-md-2">
                   <div class="form-group">
                       <label >Puntos</label>
-                      <input type="text" readonly value="<?php echo $pun ?>" class="form-control border-input">
+                      <input type="text" readonly value="<?php echo $punto ?>" class="form-control border-input">
                   </div>
               </div>
             </div>

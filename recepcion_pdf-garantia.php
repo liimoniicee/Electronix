@@ -18,13 +18,15 @@ $serie = $_POST ['swal-input9'];
 $falla= $_POST ['swal-input12'];
 $costo_total= $_POST ['swal-input23'];
 
-
+$puntos = $costo_total*.03;
 
 
 $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante='0' ,fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
-  
+$sql2 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos','$id','$id_equipo');";
+$res = $conn->query($sql2);
+
 //checar la validacion(no funciona el else:v)
 
 
