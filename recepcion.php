@@ -45,6 +45,10 @@ $venta="SELECT * from ventas_tv where estado='En venta'";
 $avisos = "SELECT * FROM avisos where tipo= 'Recepcion' and estado='pendiente'  order by fecha desc;";
 
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='pendiente'";
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -824,6 +828,7 @@ function enviarorden(id){
        $("#swal-input2").val(data.data.id_pe);
        $("#swal-input3").val(data.data.nom);
        $("#swal-input4").val(data.data.ape);
+       $("#puntos").val(data.data.pun);
        $("#swal-input5").val(data.data.cel);
        $("#swal-input6").val(data.data.equi);
        $("#swal-input7").val(data.data.mar);
@@ -1952,6 +1957,23 @@ html:
 '</div>'+
 '</div>'+
 
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Puntos acumulados</label>'+
+        '<input type="number" name="puntos" id="puntos" readonly class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>¿Aplicar descuento?</label>'+
+        '</br>'+
+        '<input input type="checkbox" name="desc" id="desc" onclick="descuento();"  class="check"  >' +
+    '</div>'+
+'</div>'+
+'</div>'+
 
 '<div class="col-md-12">'+
 '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
@@ -1976,7 +1998,7 @@ reverseButtons: true
 
 function operaciones()
 {
-  var abono =document.getElementById('swal-input21').value;
+  var abono =document.getElementById('swal-input23').value;
   var valor =document.getElementById('swal-input50').value;
   var costo =document.getElementById('costo').value;
   var costo1 =document.getElementById('costo1').value;
@@ -1992,6 +2014,26 @@ function operaciones()
 
 
 </script>
+
+
+
+<script type="text/javascript">
+
+function descuento()
+{
+  var total =document.getElementById('swal-input23').value;
+  var puntos =document.getElementById('puntos').value;
+ 
+  suma =parseInt(total)-parseInt(puntos);
+
+  totalt =parseInt(document.getElementById('swal-input23').value= suma);
+  totalt =parseInt(document.getElementById('puntos').value= 0);
+
+  document.getElementById("desc").disabled = true;
+
+}
+</script>
+
 
   <script type="text/javascript">
     //ventana actualizar cliente
