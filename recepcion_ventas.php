@@ -360,6 +360,24 @@ function mod_vender(id){
 '</div>'+
 '</div>'+
 
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Puntos acumulados</label>'+
+        '<input type="number" name="puntos" id="puntos" readonly class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>¿Aplicar descuento?</label>'+
+        '</br>'+
+        '<input input type="checkbox" name="desc" id="desc" onclick="descuento();"  class="check"  >' +
+    '</div>'+
+'</div>'+
+'</div>'+
+
  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
 
  '</form></div>',
@@ -398,6 +416,8 @@ $.ajax({
 
   $("#nombre").val(data.data.nom);
   $("#apellidos").val(data.data.ape);
+  $("#puntos").val(data.data.pun);
+
 
 })
 .fail(function(){
@@ -410,6 +430,22 @@ alert('hubo un error')
 
 </script>
 
+<script type="text/javascript">
+
+function descuento()
+{
+  var total =document.getElementById('costo').value;
+  var puntos =document.getElementById('puntos').value;
+ 
+  suma =parseInt(total)-parseInt(puntos);
+
+  totalt =parseInt(document.getElementById('costo').value= suma);
+  totalt =parseInt(document.getElementById('puntos').value= 0);
+
+  document.getElementById("desc").disabled = true;
+
+}
+</script>
 
   </body>
 </html>

@@ -974,7 +974,7 @@ html:
 //Manda Llamar id,nombre y apellido
 '<h5>Equipo que deja a cambio</h5>'+
         '<input type="hidden" name="swal-input00" id="swal-input00" value="'+id+'" readonly class="form-control border-input">'+
-        '<input type="text" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
+        '<input type="hidden" name="swal-input1" id="swal-input1" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
         '<input type="hidden" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
@@ -1030,10 +1030,6 @@ html:
 '</div>'+
 '</div>'+
 
-
-
-
-
 '<h5>Costos</h5>'+
 
 '<div class="row">'+
@@ -1061,7 +1057,7 @@ html:
 '<div class="col-md-6">'+
   '<div class="form-group">'+
         '<label>Abono del cliente</label>'+
-        '<input type="text" name="swal-input21" id="swal-input21"  readonly class="form-control border-input">'+
+        '<input type="text" name="swal-input21" id="swal-input21" onchange="operaciones();" readonly class="form-control border-input">'+
     '</div>'+
 '</div>'+
 
@@ -1085,6 +1081,24 @@ html:
   '<div class="form-group">'+
         '<label>Total a pagar</label>'+
         '<input type="text" name="swal-input52" id="swal-input52" required readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Puntos acumulados</label>'+
+        '<input type="number" name="puntos" id="puntos" readonly class="form-control border-input">'+
+
+    '</div>'+
+'</div>'+
+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>¿Aplicar descuento?</label>'+
+        '</br>'+
+        '<input input type="checkbox" name="desc" id="desc" onclick="descuento1();"  class="check"  >' +
     '</div>'+
 '</div>'+
 '</div>'+
@@ -1998,18 +2012,16 @@ reverseButtons: true
 
 function operaciones()
 {
-  var abono =document.getElementById('swal-input23').value;
+  var abono =document.getElementById('swal-input21').value;
   var valor =document.getElementById('swal-input50').value;
   var costo =document.getElementById('costo').value;
   var costo1 =document.getElementById('costo1').value;
 
+  suma =parseInt(abono)+parseInt(valor)+parseInt(costo1);
 
-   suma =parseInt(abono)+parseInt(valor)+parseInt(costo1);
+  sub =parseInt(costo)-parseInt(suma);
 
-   sub =parseInt(costo)-parseInt(suma);
-
-   total =parseInt(document.getElementById('swal-input52').value= sub);
-
+  total =parseInt(document.getElementById('swal-input52').value= sub);
 }
 
 
@@ -2034,6 +2046,22 @@ function descuento()
 }
 </script>
 
+<script type="text/javascript">
+
+function descuento1()
+{
+  var total =document.getElementById('swal-input52').value;
+  var puntos =document.getElementById('puntos').value;
+ 
+  suma =parseInt(total)-parseInt(puntos);
+
+  totalt =parseInt(document.getElementById('swal-input52').value= suma);
+  totalt =parseInt(document.getElementById('puntos').value= 0);
+
+  document.getElementById("desc").disabled = true;
+
+}
+</script>
 
   <script type="text/javascript">
     //ventana actualizar cliente

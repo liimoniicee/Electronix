@@ -21,6 +21,7 @@ $idventa= $_POST ['tv_venta'];
 $marca1= $_POST ['marca'];
 $modelo1= $_POST ['modelo'];
 
+$puntos= $_POST ['puntos'];
 
 
 $abono= $_POST ['swal-input21'];
@@ -30,6 +31,10 @@ $restante= $_POST ['swal-input52'];
 
 $tipo= $_POST ['compra'];
 $abono1= $_POST ['costo1'];
+
+$puntos_por = $restante*.03;
+
+$puntos_sum= "SELECT sum(puntos) total from puntos where id_folio ='$id';"; 
 
 
 $recepcion ="SELECT r.colonia
@@ -52,18 +57,68 @@ ORDER BY fecha_ingreso desc";
 $sql = "UPDATE reparar_tv set estado='A cambio', ubicacion='Recepcion', costo_total='$costo' ,fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
- if($tipo=="Apartado"){
+ if($tipo=="Apartado"and $puntos=="0"){
 
   $sql1 = "UPDATE ventas_tv set estado ='Apartada' , costo='$restante', ubicacion='Pendiente traslado' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' , abono='$abono' id_equipo='$id_equipo' WHERE idventa_tv = '$idventa';";
   $res1 = $conn->query($sql1);
 
-  $sql3 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_folio, id_personal)
+  $sql2 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_folio, id_personal)
   VALUES ('Pendiente', 'Recepcion $sux', 'Almacen', '$id_equipo', '$id', '$var_clave');";
-  $res3 = $conn->query($sql3);
+  $res2 = $conn->query($sql2);
+
+  $puntosp= "UPDATE clientes, puntos set clientes.puntos='0', puntos.puntos='0' where clientes.id_folio =$id and puntos.id_folio=$id;";
+  $res3 = $conn->query($puntosp);   
+ 
+  $sql4 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos_por','$id','$id_equipo');";
+  $res4 = $conn->query($sql4);  
+ 
+  $resu = $conn->query($puntos_sum);
+    if($resu->num_rows > 0){
+ 
+    while($row = $resu->fetch_assoc()) {
+      $punto_tot   =  $row["total"];
+     }
+    }
+
+  $sql5 ="UPDATE clientes SET puntos=$punto_tot WHERE id_folio='$id';";
+  $res5 = $conn->query($sql5);
+ }
+ if($tipo=="Contado" and $puntos=="0"){
+
+  $sql2 = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' , idvendedor='$var_clave', ubicacion='Cliente', tipo='$tipo',id_equipo='$id_equipo' where idventa_tv='$idventa';";
+  $res2 = $conn->query($sql2);
+
+  $puntosp= "UPDATE clientes, puntos set clientes.puntos='0', puntos.puntos='0' where clientes.id_folio =$id and puntos.id_folio=$id;";
+  $res3 = $conn->query($puntosp);   
+ 
+  $sql4 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos_por','$id','$id_equipo');";
+  $res4 = $conn->query($sql4);  
+ 
+  $resu = $conn->query($puntos_sum);
+    if($resu->num_rows > 0){
+ 
+    while($row = $resu->fetch_assoc()) {
+      $punto_tot   =  $row["total"];
+     }
+    }
+
+  $sql5 ="UPDATE clientes SET puntos=$punto_tot WHERE id_folio='$id';";
+  $res5 = $conn->query($sql5);
 
  }else{
- $sql2 = "UPDATE ventas_tv set estado='Vendida', costo='$restante',fecha_egreso=CURRENT_TIMESTAMP ,id_folio='$id' , idvendedor='$var_clave', ubicacion='Cliente', tipo='$tipo',id_equipo='$id_equipo' where idventa_tv='$idventa';";
- $res2 = $conn->query($sql2);
+  $sql4 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos_por','$id','$id_equipo');";
+  $res4 = $conn->query($sql4);  
+ 
+  $resu = $conn->query($puntos_sum);
+    if($resu->num_rows > 0){
+ 
+    while($row = $resu->fetch_assoc()) {
+      $punto_tot   =  $row["total"];
+     }
+    }
+
+  $sql5 ="UPDATE clientes SET puntos=$punto_tot WHERE id_folio='$id';";
+  $res5 = $conn->query($sql5);
  }
 //Generador de PDF
 //inserccion

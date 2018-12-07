@@ -41,10 +41,6 @@ CREATE TABLE IF NOT EXISTS `puntos` (
 -- Volcado de datos para la tabla `puntos`
 --
 
-INSERT INTO `puntos` (`id_puntos`, `puntos`, `id_folio`, `id_equipo`, `fecha`) VALUES
-(1, 60, 4415, 1, '2018-12-06 22:43:05'),
-(2, 75, 4415, 2, '2018-12-06 22:43:30'),
-(3, 60, 4415, 1, '2018-12-06 22:44:13');
 
 --
 -- Restricciones para tablas volcadas

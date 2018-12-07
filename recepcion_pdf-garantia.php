@@ -26,9 +26,7 @@ $puntos_por = $costo_total*.03;
 $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante='0' ,fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
- $puntos_sum= "SELECT sum(puntos) total from puntos where id_folio ='$id';";
-
- 
+ $puntos_sum= "SELECT sum(puntos) total from puntos where id_folio ='$id';"; 
 
  if($puntos=="0"){
 

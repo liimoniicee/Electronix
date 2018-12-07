@@ -26,6 +26,8 @@ if(isset($_POST['id'])){
     "dir"        =>  $row["direccion"],
     "cel"        =>  $row["celular"],
     "cor"        =>  $row["correo"],
+    "pun"        =>  $row["puntos"],
+
 
   );
    }

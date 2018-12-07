@@ -19,6 +19,10 @@ $modelo = $_POST ['mod'];
 $serie = $_POST ['ser'];
 $costo_total= $_POST ['costo'];
 
+$puntos= $_POST ['puntos'];
+
+$puntos_por = $costo_total*.03;
+
 $tipo = $_POST ['compra'];
 $abono = $_POST ['costo1'];
 $diahoy = date("Y-m-d");
@@ -37,14 +41,34 @@ AND p.rec_id_recepcion = r.id_recepcion;";
    }
   }
 
-if($tipo == 'Apartado'){
+  $puntos_sum= "SELECT sum(puntos) total from puntos where id_folio ='$id';"; 
+
+if($tipo == 'Apartado' and $puntos=='0'){
 
   $sql1 = "UPDATE ventas_tv set estado ='Apartada' , ubicacion='Pendiente traslado' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' , abono='$abono' WHERE idventa_tv = '$idventa';";
   $res = $conn->query($sql1);
 
 
-$sql4 = "INSERT into traslado(estado,ubicacion,destino,id_equipo,id_folio,tipo) VALUES('Pendiente','Recepcion $sux','Almacen','$idventa','$id','Venta');";
-$res4 = $conn->query($sql4);
+$sql2 = "INSERT into traslado(estado,ubicacion,destino,id_equipo,id_folio,tipo) VALUES('Pendiente','Recepcion $sux','Almacen','$idventa','$id','Venta');";
+$res2 = $conn->query($sql2);
+
+$puntosp= "UPDATE clientes, puntos set clientes.puntos='0', puntos.puntos='0' where clientes.id_folio =$id and puntos.id_folio=$id;";
+  $res3 = $conn->query($puntosp);   
+ 
+  $sql4 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos_por','$id','$idventa');";
+  $res4 = $conn->query($sql4);  
+ 
+  $resu = $conn->query($puntos_sum);
+    if($resu->num_rows > 0){
+ 
+    while($row = $resu->fetch_assoc()) {
+      $punto_tot   =  $row["total"];
+     }
+    }
+
+  $sql5 ="UPDATE clientes SET puntos=$punto_tot WHERE id_folio='$id';";
+  $res5 = $conn->query($sql5);
+  
 
 }else{
 
@@ -56,10 +80,22 @@ $res4 = $conn->query($sql4);
     while($row = $resu->fetch_assoc()) {
       $idingreso   =  $row["id_ingresos"];
     }*/
-  $sql2 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' WHERE idventa_tv = '$idventa';";
-  $res2 = $conn->query($sql2);
-//}
+  $sql6 = "UPDATE ventas_tv set estado ='Vendida' ,ubicacion='Cliente' ,fecha_egreso=CURRENT_TIMESTAMP ,idvendedor='$var_clave', id_folio='$id' , tipo='$tipo' WHERE idventa_tv = '$idventa';";
+  $res6 = $conn->query($sql6);
 
+  $sql7 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos_por','$id','$idventa');";
+$res7 = $conn->query($sql7);
+
+$resu = $conn->query($puntos_sum);
+ if($resu->num_rows > 0){
+ 
+    while($row = $resu->fetch_assoc()) {
+      $punto_tot   =  $row["total"];
+     }
+    }
+
+$sql8 ="UPDATE clientes SET puntos=$punto_tot WHERE id_folio='$id';";
+$res8 = $conn->query($sql8);
 
 }
 
