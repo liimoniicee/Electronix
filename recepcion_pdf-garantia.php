@@ -18,43 +18,56 @@ $serie = $_POST ['swal-input9'];
 $falla= $_POST ['swal-input12'];
 $costo_total= $_POST ['swal-input23'];
 
-$puntox= $_POST ['puntos'];
+$puntos= $_POST ['puntos'];
 
-$puntos = $costo_total*.03;
+$puntos_por = $costo_total*.03;
 
 
 $sql = "UPDATE reparar_tv set estado='Entregado', ubicacion='Cliente', restante='0' ,fecha_egreso=CURRENT_TIMESTAMP where id_equipo='$id_equipo';";
  $res = $conn->query($sql);
 
+ $puntos_sum= "SELECT sum(puntos) total from puntos where id_folio ='$id';";
 
-
- if($puntox=="0"){
-
-  $puntos= "UPDATE clientes, puntos set clientes.puntos='0', puntos.puntos='0' where clientes.id_folio =$id and puntos.id_folio=$id;";
-  $res = $conn->query($puntos);
-
-   
  
+
+ if($puntos=="0"){
+
+  $puntosp= "UPDATE clientes, puntos set clientes.puntos='0', puntos.puntos='0' where clientes.id_folio =$id and puntos.id_folio=$id;";
+  $res1 = $conn->query($puntosp);   
+ 
+  $sql2 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos_por','$id','$id_equipo');";
+  $res2 = $conn->query($sql2);  
+ 
+  $resu = $conn->query($puntos_sum);
+    if($resu->num_rows > 0){
+ 
+    while($row = $resu->fetch_assoc()) {
+      $punto_tot   =  $row["total"];
+     }
+    }
+
+  $sql3 ="UPDATE clientes SET puntos=$punto_tot WHERE id_folio='$id';";
+  $res3 = $conn->query($sql3);
+
 }else{
-
  
+$sql4 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos_por','$id','$id_equipo');";
+$res4 = $conn->query($sql4);
+
+$resu = $conn->query($puntos_sum);
+ if($resu->num_rows > 0){
+ 
+    while($row = $resu->fetch_assoc()) {
+      $punto_tot   =  $row["total"];
+     }
+    }
+
+$sql5 ="UPDATE clientes SET puntos=$punto_tot WHERE id_folio='$id';";
+$res5 = $conn->query($sql5);
 
 }
 
-$sql2 ="INSERT into puntos (puntos,id_folio,id_equipo) values('$puntos','$id','$id_equipo');";
-    $res = $conn->query($sql2);
-    
-$puntos= "SELECT sum(puntos) total from puntos where id_folio ='$id';";
-$ejec0 = mysqli_query($conn, $puntos);
-while($fila=mysqli_fetch_array($ejec0)){
-    $punto     = $fila['total'];
 
-    
-
-
-$sql3 ="UPDATE clientes SET puntos=$punto WHERE id_folio='$id';";
-$res = $conn->query($sql3);
- }
 
 //checar la validacion(no funciona el else:v)
 
