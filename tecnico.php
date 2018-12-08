@@ -536,7 +536,7 @@ var id = id_equipo;
  showConfirmButton: false,
  focusConfirm: false,
  buttonsStyling: false,
-  reverseButtons: true
+  reverseButtons: true, allowOutsideClick: false
 })
 $("#swal-input3").change(function(){
   if(this.value == 'Necesita refaccion'){

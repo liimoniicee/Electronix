@@ -598,7 +598,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 }).then(function (result) {
 
 swal(
@@ -714,7 +714,7 @@ swal(
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   }).then(function (result) {
 
    swal(
@@ -830,7 +830,7 @@ swal(
   showConfirmButton: false,
   focusConfirm: false,
   buttonsStyling: false,
-   reverseButtons: true
+   reverseButtons: true, allowOutsideClick: false
  }).then(function (result) {
 
   swal(
@@ -983,7 +983,7 @@ swal(
   showConfirmButton: false,
   focusConfirm: false,
   buttonsStyling: false,
-   reverseButtons: true
+   reverseButtons: true, allowOutsideClick: false
  }).then(function (result) {
 
   swal(

@@ -808,7 +808,7 @@ showConfirmButton: false,
 customClass: 'swal-wide',
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 
  }).then(function (isConfirm) {
    if(isConfirm){swal(

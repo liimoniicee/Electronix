@@ -1115,7 +1115,9 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false,
+allowOutsideClick: false
+
 })
 
  $("#compra").change(function(){
@@ -1276,7 +1278,8 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
+
 })
 
 };
@@ -1377,7 +1380,8 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, 
+allowOutsideClick: false
 
  }).then(function (isConfirm) {
    if(isConfirm){swal(
@@ -1473,7 +1477,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
  $("#compra").change(function(){
@@ -1542,7 +1546,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
   };
 
@@ -1578,7 +1582,7 @@ reverseButtons: true
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
   };
   </script>
@@ -1614,7 +1618,7 @@ reverseButtons: true
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
 
 })
 };
@@ -1680,7 +1684,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -1749,7 +1753,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 
 })
 };
@@ -1866,7 +1870,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -2001,7 +2005,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -2108,7 +2112,7 @@ function descuento1()
     showConfirmButton: false,
     focusConfirm: false,
     buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
     })
 
     };

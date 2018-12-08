@@ -6,18 +6,18 @@ $response = array();
 
 if ($_POST['delete']) {
 
-    $pid = intval($_POST['delete']);
-    $query = "DELETE FROM personal WHERE id_personal='$pid';";
+    $id = intval($_POST['delete']);
+    $query = "DELETE FROM personal WHERE id_personal='$id';";
     $stmt = $conn->prepare($query);
     $stmt->execute();
 
     if ($stmt) {
         $response['status']  = 'success';
- $response['message'] = 'Product Deleted Successfully ...';
+ $response['message'] = 'Usuario eliminado correctamente ...';
 
     } else {
         $response['status']  = 'error';
- $response['message'] = 'Unable to delete product ...';
+ $response['message'] = 'Imposible borrar usuario ...';
     }
     echo json_encode($response);
 }

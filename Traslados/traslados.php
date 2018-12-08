@@ -598,7 +598,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 };
 </script>
@@ -701,7 +701,7 @@ reverseButtons: true
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
   };
   </script>
@@ -798,7 +798,7 @@ reverseButtons: true
   showConfirmButton: false,
   focusConfirm: false,
   buttonsStyling: false,
-   reverseButtons: true
+   reverseButtons: true, allowOutsideClick: false
  })
  };
  </script>
@@ -930,7 +930,7 @@ reverseButtons: true
   showConfirmButton: false,
   focusConfirm: false,
   buttonsStyling: false,
-   reverseButtons: true
+   reverseButtons: true, allowOutsideClick: false
  })
  };
  </script>
@@ -1023,7 +1023,7 @@ Push.create("<?php echo $fech_avi; ?>", {
  showConfirmButton: false,
  focusConfirm: false,
  buttonsStyling: false,
-  reverseButtons: true
+  reverseButtons: true, allowOutsideClick: false
 })
 };
 </script>

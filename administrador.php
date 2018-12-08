@@ -435,7 +435,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
   };
   </script>
