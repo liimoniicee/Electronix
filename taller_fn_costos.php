@@ -17,9 +17,12 @@ $tot = $_POST['swal-input23'];
 $est = $_POST['swal-input24'];
 $val = $_POST['swal-input25'];
 
+$id_c = $_POST['swal-input00'];
+
+
 $recepcion ="SELECT r.colonia
 FROM reparar_tv p, recepciones r
-WHERE p.id_folio =$id
+WHERE p.id_folio =$id_c
 AND p.rec_id_recepcion = r.id_recepcion
 ORDER BY fecha_ingreso desc";
 
@@ -35,8 +38,8 @@ ORDER BY fecha_ingreso desc";
 if($est =='Sin solucion'){
 
 
-  $sql1 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)
-  VALUES ('Pendiente', 'Taller', 'Recepcion $sux', '$id', '$var_clave');";
+  $sql1 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo,id_folio)
+  VALUES ('Pendiente', 'Taller', 'Recepcion $sux', '$id','$id_c');";
   $res1 = $conn->query($sql1);
 
 $sql2 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
@@ -49,8 +52,8 @@ $res3 = $conn->query($sql3);
 }elseif($est =='Reparada'){
 
   
-$sql7 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo, id_personal)
-VALUES ('Pendiente', 'Taller', 'Recepcion $sux', '$id', '$var_clave');";
+$sql7 = "INSERT INTO traslado(estado, ubicacion, destino, id_equipo,id_folio)
+VALUES ('Pendiente', 'Taller', 'Recepcion $sux', '$id', '$id_c');";
 $res7 = $conn->query($sql7);
 
   $sql4 = "INSERT INTO avisos(id_personal, fecha, aviso, estado, tipo)
