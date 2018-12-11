@@ -74,7 +74,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
     <body class="app sidebar-mini rtl">
 
 
-      <header class="app-header"><a class="app-header__logo" href="index.php">ID de Usuario: <?php echo $var_clave ?></a>
+      <header class="app-header"><a class="app-header__logo" onclick="faqs();">ID de Usuario: <?php echo $var_clave ?></a>
         <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
         <!-- Navbar Right Menu-->
         <ul class="app-nav">
@@ -853,3 +853,16 @@ reverseButtons: true, allowOutsideClick: false
 
 };
 </script>
+
+  <script type="text/javascript">
+//Nuevo Aviso
+    function faqs(){
+
+
+   swal(
+  'Sistema integral reparacion de televisiones (SIRTV) 0.5',
+  'Creado por Francisco Israel Martínez Ayala 2018',
+  'success'
+)
+};
+  </script>
