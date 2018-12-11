@@ -2,10 +2,10 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "857bd8752611d6158af80f3052fc7f52";
 $dbname = "electronicax";
 
-//$dbname = md5("electronicax");
+//$password = md5("electronicax");
 
 // Crear connection
 $conn = @mysqli_connect($servername, $username, $password, $dbname);
