@@ -440,15 +440,14 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
   };
   </script>
 
- 
- <script type="text/javascript">
+  <script type="text/javascript">
 //Nuevo Aviso
     function faqs(){
 
 
    swal(
   'Sistema integral reparacion de televisiones (SIRTV) 0.5',
-  'Creado por Francisco Israel Martínez Ayala',
+  '',
   'success'
 )
 };
