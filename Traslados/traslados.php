@@ -358,7 +358,7 @@ if($dest == "Cliente"){
   <!-- Google analytics script-->
   <!-- js placed at the end of the document so the pages load faster -->
  <!-- Essential javascripts for application to work-->
- <script src="assets/js/jquery-3.2.1.min.js"></script>
+ <script src="../assets/js/jquery-3.2.1.min.js"></script>
   <script src="../assets/js/popper.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
   <script src="../assets/js/main.js"></script>
@@ -366,8 +366,6 @@ if($dest == "Cliente"){
   <script src="../assets/js/plugins/pace.min.js"></script>
    <!-- Page specific javascripts-->
   <script type="text/javascript" src="../assets/js/plugins/moment.min.js"></script>
-  <script type="text/javascript" src="../assets/js/plugins/jquery-ui.custom.min.js"></script>
-  <script type="text/javascript" src="../assets/js/plugins/fullcalendar.min.js"></script>
 
   <!-- Data table plugin-->
   <script type="text/javascript" src="../assets/js/plugins/jquery.dataTables.min.js"></script>
@@ -504,7 +502,7 @@ if($dest == "Cliente"){
 <script type="text/javascript">
 function swal_por_concretar(id){
 swal({
-title: 'Editar solicitud',
+title: 'Confirmar en ruta',
 html:
 '<form action="actual_concre.php" method="post" name="data">'+
 //'<label for="exampleInputEmail1">id</label>' +
@@ -552,17 +550,18 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-'<div class="row">'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
-        '<label>equipo</label>'+
-        '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
-    '</div>'+
-'</div>'+
-'<div class="col-md-6">'+
-  '<div class="form-group">'+
 
-  '<select class="form-control form-control-sm" textalign="center"  required name="swal-input8" id="swal-input8">'+
+'<div class="row">'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label>Equipo</label>'+
+           '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
+       '</div>'+
+   '</div>'+
+   '<div class="col-md-6">'+
+     '<div class="form-group">'+
+           '<label># carro</label>'+
+           '<select disabled class="form-control form-control-sm" textalign="center"  required name="swal-input8" id="swal-input8">'+
   '<option value="" ></option>'+
   <?php
   $ejec7 = mysqli_query($conn, $vehiculos);
@@ -570,10 +569,10 @@ html:
   '<?php echo '<option value="'.$fila["id_carro"].'">'.$fila["car_modelo"].'</option>'; ?>'+
   <?php } ?>
   '</select>' +
+       '</div>'+
+   '</div>'+
+   '</div>'+
 
-    '</div>'+
-'</div>'+
-'</div>'+
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -598,7 +597,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 };
 </script>
@@ -608,12 +607,12 @@ reverseButtons: true
   <script type="text/javascript">
     function swal_traslados(id){
     swal({
-   title: 'Actualizar Status',
+   title: 'Seleccionar traslado',
    html:
    '<form action="actual_status.php" method="post" name="data">'+
    //'<label for="exampleInputEmail1">id</label>' +
-   '<input name="swal-input0" type="text" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
-   '<input name="swal-input11" type="text" id="swal-input11" class="form-control border-input" readonly>' +
+   '<input name="swal-input0" type="hidden" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
+   '<input name="swal-input11" type="hidden" id="swal-input11" class="form-control border-input" readonly>' +
    '<div class="row">'+
    '<div class="col-md-6">'+
      '<div class="form-group">'+
@@ -659,7 +658,7 @@ reverseButtons: true
    '<div class="row">'+
    '<div class="col-md-6">'+
      '<div class="form-group">'+
-           '<label>equipo</label>'+
+           '<label>Equipo</label>'+
            '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
        '</div>'+
    '</div>'+
@@ -701,7 +700,7 @@ reverseButtons: true
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
   };
   </script>
@@ -798,7 +797,7 @@ reverseButtons: true
   showConfirmButton: false,
   focusConfirm: false,
   buttonsStyling: false,
-   reverseButtons: true
+   reverseButtons: true, allowOutsideClick: false
  })
  };
  </script>
@@ -841,99 +840,7 @@ reverseButtons: true
 
 
 <!-- entregados -->
-<script type="text/javascript">
-  function swal_entregados(id){
-  swal({
- title: 'Editar solicitud',
- html:
- '<form action="actual_status.php" method="post" name="data">'+
- //'<label for="exampleInputEmail1">id</label>' +
- '<input name="swal-input0" type="text" id="swal-input0" class="form-control border-input" readonly>' +
- '<input name="swal-input11" type="text" id="swal-input11" class="form-control border-input" readonly>' +
- '<div class="row">'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Estado</label>'+
-         '<input type="text" id="swal-input1" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Direccion</label>'+
-         '<input type="text" id="swal-input2" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '</div>'+
- '<div class="row">'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Comentarios</label>'+
-         '<input type="text" name="swal-input3" id="swal-input3" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Ubicación</label>'+
-         '<input type="text" name="swal-input4" id="swal-input4" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '</div>'+
- '<div class="row">'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Destino</label>'+
-         '<input type="text" name="swal-input5" id="swal-input5" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Fecha de solicitud</label>'+
-         '<input type="text" name="swal-input6" id="swal-input6" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '</div>'+
- '<div class="row">'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>equipo</label>'+
-         '<input type="text" name="swal-input7" id="swal-input7" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label># carro</label>'+
-         '<input type="text" name="swal-input8" id="swal-input8" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '</div>'+
- '<div class="row">'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Personal</label>'+
-         '<input type="text" name="swal-input9" id="swal-input9" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '<div class="col-md-6">'+
-   '<div class="form-group">'+
-         '<label>Folio</label>'+
-         '<input type="text" name="swal-input10" id="swal-input10" readonly class="form-control border-input">'+
-     '</div>'+
- '</div>'+
- '</div>'+
-  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar</Button>'+
-  '</form>',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: '</form> Actualizar',
-  cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
-  showConfirmButton: false,
-  focusConfirm: false,
-  buttonsStyling: false,
-   reverseButtons: true
- })
- };
- </script>
+
 
  <script>
  function borrar_entregados(id){
@@ -968,34 +875,6 @@ reverseButtons: true
  }
  </script>
 
-<!-- entregados -->
-
-  <div class="content-panel">
-<div class="col-lg-7">
-
-
-</div>
-</div>
-
-</body>
-</html>
-
-  <?php
-  //notificacion tipo facebook
-              $ejec = mysqli_query($conn, $avisos);
-            while($fila=mysqli_fetch_array($ejec)){
-                $avi     = $fila['aviso'];
-                $fech_avi     = $fila['fecha'];
-          ?>
-
-<script>
-Push.create("<?php echo $fech_avi; ?>", {
-  body:"<?php echo $avi; ?>",
-  icon:"assets/img/alert1.png",
-  timeout:10000
-});
-</script>
-
 <script type="text/javascript">
 //ventana de nuevo cliente
   function nuevo_cliente(){
@@ -1023,10 +902,39 @@ Push.create("<?php echo $fech_avi; ?>", {
  showConfirmButton: false,
  focusConfirm: false,
  buttonsStyling: false,
-  reverseButtons: true
+ reverseButtons: true, 
+ allowOutsideClick: false
 })
 };
 </script>
+
+  <div class="content-panel">
+<div class="col-lg-7">
+
+
+</div>
+</div>
+
+</body>
+</html>
+
+  <?php
+  //notificacion tipo facebook
+              $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+                $avi     = $fila['aviso'];
+                $fech_avi     = $fila['fecha'];
+          ?>
+
+<script>
+Push.create("<?php echo $fech_avi; ?>", {
+  body:"<?php echo $avi; ?>",
+  icon:"assets/img/alert1.png",
+  timeout:10000
+});
+</script>
+
+
 
 
 <?php } ?>

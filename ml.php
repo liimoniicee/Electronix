@@ -692,7 +692,7 @@ var id = id_equipo;
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
   $("#swal-input4").change(function(){
     if(this.value != 'No encontrada'){
@@ -806,7 +806,7 @@ var id = id_equipo;
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
  
 
@@ -914,7 +914,7 @@ var id = id_equipo;
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
  
 

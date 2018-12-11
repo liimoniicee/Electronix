@@ -722,13 +722,13 @@ var totals = [0, 0, 0, 0, 0];
          '</div>'+
 
 '<div class="row">'+
-          '<div class="col-md-4 com" style="display:none;" >'+
+          '<div class="col-md-4 com"  >'+
             '<div class="form-group">'+
 
        
          '<label>¿Hora de comida? </label>' +          '</br>'+
 
-         '<input input type="checkbox" name="hra_c" id="hra_c" onclick="comida();" class="check" maxlength="25" required>' +
+         '<input input type="checkbox" name="hra_c" id="hra_c" onclick="comida();" class="check" maxlength="25" >' +
          '</div>'+
          '</div>'+
 
@@ -748,7 +748,9 @@ var totals = [0, 0, 0, 0, 0];
          customClass: 'swal-wide',
          focusConfirm: false,
          buttonsStyling: false,
-          reverseButtons: true
+          reverseButtons: true, allowOutsideClick: false,
+          allowOutsideClick: false
+
 
       })
 
@@ -817,7 +819,7 @@ function desactivar() {
           dataType: 'json'
        })
        .done(function(response){
-          swal('Deleted!', response.message, response.status).then(function(){
+          swal('Borrado exitosamente!', response.message, response.status).then(function(){
               location.reload();
           });
 
@@ -929,7 +931,9 @@ function desactivar() {
  showConfirmButton: false,
  focusConfirm: false,
  buttonsStyling: false,
- reverseButtons: true
+ reverseButtons: true, allowOutsideClick: false,
+ allowOutsideClick: false
+
  })
    };
 
@@ -987,7 +991,9 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false,
+allowOutsideClick: false
+
 })
   };
 
@@ -1102,7 +1108,9 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false,
+allowOutsideClick: false
+
 })
 
 };

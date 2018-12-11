@@ -167,7 +167,7 @@ var cel = <?php echo $cel ?>
   showConfirmButton: false,
   focusConfirm: false,
   buttonsStyling: false,
-  reverseButtons: true
+  reverseButtons: true, allowOutsideClick: false
   })
 
 

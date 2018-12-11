@@ -831,6 +831,7 @@ function enviarorden(id){
        $("#swal-input0").val(data.data.id);
        $("#swal-input1").val(data.data.id_e);
        $("#swal-input2").val(data.data.id_pe);
+       $("#swal-input00").val(data.data.id_c);
        $("#swal-input3").val(data.data.nom);
        $("#swal-input4").val(data.data.ape);
        $("#swal-input21").val(data.data.abono);
@@ -947,7 +948,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -965,6 +966,8 @@ html:
 '<div class="card-body"> <form action="taller_fn_costos.php" method="post" name="data" content="text/html; charset=utf-8" >'+
 
 '<input type="hidden" name="swal-input1" value="'+id+'"  id="swal-input1" class="form-control border-input" readonly >' +//Id Equipo
+'<input type="hidden" name="swal-input00" id="swal-input00" class="form-control border-input" readonly >' +//Id cliente
+
 '<h5>Escribir todos los campos sin excepción.</h5>'+
 
 '<div class="row">'+
@@ -1031,7 +1034,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -1094,7 +1097,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -1136,7 +1139,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };

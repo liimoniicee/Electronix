@@ -55,7 +55,6 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Recepcion' and estado='p
   <head>
 <script src="assets\js\push.js/push.min.js" > </script>
 
-<script src="assets\js\plugins/bootstrap-notify.min.js"></script>
 
     <!-- Open Graph Meta-->
     <title>Recepcion</title>
@@ -555,7 +554,7 @@ if($ubicacion == "Recepcion"){
     <!-- Google analytics script-->
     <!-- js placed at the end of the document so the pages load faster -->
    <!-- Essential javascripts for application to work-->
-   <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
@@ -563,8 +562,6 @@ if($ubicacion == "Recepcion"){
     <script src="assets/js/plugins/pace.min.js"></script>
      <!-- Page specific javascripts-->
     <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
 
     <!-- Data table plugin-->
     <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
@@ -1115,7 +1112,9 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false,
+allowOutsideClick: false
+
 })
 
  $("#compra").change(function(){
@@ -1276,7 +1275,8 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
+
 })
 
 };
@@ -1377,7 +1377,8 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, 
+allowOutsideClick: false
 
  }).then(function (isConfirm) {
    if(isConfirm){swal(
@@ -1473,7 +1474,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
  $("#compra").change(function(){
@@ -1542,7 +1543,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
   };
 
@@ -1578,7 +1579,7 @@ reverseButtons: true
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
   };
   </script>
@@ -1614,7 +1615,7 @@ reverseButtons: true
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
 
 })
 };
@@ -1680,7 +1681,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -1698,8 +1699,8 @@ html:
 '<div class="card-body"> <form action="recepcion_fn_traslado.php"  method="post" name="data" content="text/html; charset=utf-8" >'+
 '<label>Id equipo</label>'+
 
-'<input type="text" name="swal-input00"  id="swal-input00" readonly class="form-control border-input" >' +
-'<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id Equipo
+'<input type="text" name="swal-input1"  id="swal-input1" readonly class="form-control border-input" >' +  //id equipo
+'<input type="hidden" name="id_folio" id="id_folio"value="'+id+'" class="form-control border-input" readonly >' +//Id cliente
 
 
 '<div class="row">'+
@@ -1749,7 +1750,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 
 })
 };
@@ -1866,7 +1867,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -2001,7 +2002,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };
@@ -2108,7 +2109,7 @@ function descuento1()
     showConfirmButton: false,
     focusConfirm: false,
     buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
     })
 
     };

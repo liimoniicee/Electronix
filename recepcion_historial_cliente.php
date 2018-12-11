@@ -624,7 +624,7 @@ function enviarreporte(id_equipo){
     showConfirmButton: false,
     focusConfirm: false,
     buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
     })
 
     };
@@ -671,7 +671,7 @@ function enviarreporte(id_equipo){
     showConfirmButton: false,
     focusConfirm: false,
     buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
     })
 
     };
@@ -783,7 +783,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 
 })
 };
@@ -848,7 +848,7 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true
+reverseButtons: true, allowOutsideClick: false
 })
 
 };

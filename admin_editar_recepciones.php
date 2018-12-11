@@ -555,7 +555,9 @@ function enviarecepcion(id){
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false,
+    allowOutsideClick: false
+
   })
   };
   </script>
@@ -603,7 +605,9 @@ function enviarecepcion(id){
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false,
+    allowOutsideClick: false
+
   })
   };
   </script>

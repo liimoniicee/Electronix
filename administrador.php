@@ -42,7 +42,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
     <link rel="stylesheet" type="text/css" href="assets/css/chartist.css">
 
     <!-- Font-icon css-->
-  <link href= "css/themify-icons.css" rel="stylesheet">
+  <link href= "assets/css/themify-icons.css" rel="stylesheet">
 <link rel="shortcut icon" href="assets/img/favicon.ico">
   </head>
   <body class="app sidebar-mini rtl">
@@ -435,7 +435,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
    showConfirmButton: false,
    focusConfirm: false,
    buttonsStyling: false,
-    reverseButtons: true
+    reverseButtons: true, allowOutsideClick: false
   })
   };
   </script>

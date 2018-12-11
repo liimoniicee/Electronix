@@ -23,8 +23,11 @@ $query = "UPDATE
 traslado
 SET
 estado = 'Entregado',
-ubicacion = '$des',
-fecha_finalizado = '$formateado'
+ubicacion = 'Recepcion',
+destino = 'Recepcion',
+
+fecha_finalizado= CURRENT_TIMESTAMP
+
 WHERE
 id_traslado='$id'";
 
@@ -90,6 +93,20 @@ id_equipo='$id_equipo'";
     $res8 = $conn->query($query8);
   
 
+    $query = "UPDATE
+    traslado
+    SET
+    estado = 'Entregado',
+    ubicacion = 'Cliente',
+    destino = 'Cliente',
+    
+    fecha_finalizado= CURRENT_TIMESTAMP
+    
+    WHERE
+    id_traslado='$id'";
+    
+    $res = $conn->query($query);
+
 }else{
 
     //enquipo en reparacion cuando se mueve hacia el taller
@@ -97,7 +114,7 @@ id_equipo='$id_equipo'";
     reparar_tv
     SET
     id_personal = '$var_clave',
-    ubicacion= '$des'
+    ubicacion= 'Recepcion'
     WHERE
     id_equipo='$id_equipo'";
     

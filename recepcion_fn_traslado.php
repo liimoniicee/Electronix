@@ -6,12 +6,11 @@ verificar_sesion();
 
 $var_name=$_SESSION['nombre'];
 $var_clave= $_SESSION['clave'];
-
 $id = $_POST ['id_folio'];
-$id_equipo = $_POST ['swal-input00'];
 $ubi = $_POST ['ubicacion'];
 $des= $_POST ['destino'];
 
+$id_equipo= $_POST['swal-input1'];
 $direccion= $_POST ['dire'];
 $comentarios = $_POST ['comen'];
 
@@ -26,7 +25,7 @@ $sql = "UPDATE reparar_tv set ubicacion = '$ubi en ruta a $des' where id_equipo=
 $res = $conn->query($sql);
 //checar la validacion(no funciona el else:v)
 
-echo "<script>window.open('recepcion_e_reparados.php','_self')</script>";
+echo "<script>window.open('recepcion.php','_self')</script>";
 
 
 ?>
