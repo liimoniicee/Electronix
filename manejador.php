@@ -1,28 +1,37 @@
 <?php
-// Este archivo es protegido por la ley del derechos de propiedad literaria. La ingenieria inversa de este codigo se prohibe estrictamente.
-eval(gzinflate(base64_decode('
-rVTRbtowFH0GiX+4i5ACEo1XVXtZIVW1MW3S1k6l
-0x6qKnKTy2Lq2KntFKqWj9o37MdmOxBStPVlgwfi
-3HPPPffca07i7vikzMtel4mUVxmGaY7pbaJRMyki
-GwmPWzEpcNV6TwibD5jWaAb95Ov57PIq1NVNwUx4
-PRy68GOva7PnMIA9WKVRORA8Pe2HSqq1Dw19dq8L
-9tO/pypxSTCB5xxWRsdHrTijqI0X2Zt9suOaafvt
-W6yuuHHoYDb9PH13CSxLSlRaCspHhpVyVOmKKiZH
-QhY3Cke0RM5ZJjV8uDj/AlssfP84vZjCBgyTsFEa
-wunZe6hVaRSuVtgSGgZWVF+h15FJ15cNiIP4rkL1
-MGgkbrVbp3fog1hURaLkUkMMr2ujOsuccbQguXRk
-LewcTZon1gmZDqyvj1vH6s48WC6vgvoY7Bzdtlw2
-kMaEDYrLH47FxXeEEQQQRM8ZPNrZ2lC5Q81CyKku
-maLCoN5OCKDT6Sez6Wz26fzsKkw5vcfwukluDctz
-WLjfkl1GLSW8nrSEHde7tId0QlrUjS6rrINpLiEY
-61Sx0sRLJjK5jGSJYlDfEyYSLEqO1mbtL8UotFeH
-z8PhmGySAk+1dreB3lUMDKqC2W1ADn5gvtAaucbH
-7bI/r0o5KjMIv202TDYr9esnBSbuqR/Iq72SL2q3
-z7h6QW9nXU/B/xCyho08+1gHTuJed5zbtuONpWPO
-xC0o5JNAmweOOkc0ARSYMWpfpQpRBGAeSpwEBleG
-pFoHQJr0ujholU6C3JhSvyUkzcRCRymXVTbn1O5V
-KgtCF3RFOLvRZOEvCjmKDqPDzSGyzkYLHcRNN//A
-r5e2BW8+sRWio9aLv9f5sw37fecK5/9Fh2NzoyB+
-Fvav/Dc=
-')));
-?>	
+include'check_sesion.php';
+include'conexion.php';
+//if(isset($_POST['submit']))
+//{
+if ( (isset($_POST['user'])) || (isset($_POST['pass'])) ){
+    $var_user = $_POST['user'];
+	$var_contra = md5($_POST['pass']);
+$consulta = "SELECT id_personal,tipo,usuario,nombre,apellidos FROM personal WHERE usuario ='$var_user' AND contrasena = '$var_contra'";
+$resultado = $conn->query($consulta);
+if($resultado->num_rows > 0){
+	while($row = $resultado->fetch_assoc()) {
+	$var_nombre = $row["nombre"];
+	$var_apellidop = $row["apellidos"];
+	$log_nom = $var_nombre. " ".$var_apellidop;
+	$tipo = $row["tipo"];
+	//Aspirantes
+  		$_SESSION['clave'] = $row["id_personal"];
+  	    $_SESSION['nombre']=$var_nombre;
+        $_SESSION['tipo'] = $row["tipo"];
+		echo "<script>window.open('checkin_empleados.php','_self')</script>";
+}
+//aqui termina el while
+	}else{
+    echo "<script>alert('Usuario o contraseña invalidos!')</script>";
+		echo "<script>window.open('index.php','_self')</script>";
+	}
+}
+//} else{
+//}
+?>
+<head>
+     <link rel="stylesheet" media="screen" type="text/css" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+</head>

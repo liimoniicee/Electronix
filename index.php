@@ -45,7 +45,7 @@ include'conexion.php';
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>Club tvs Login</title>
+    <title>SIRTV 1.0 LOGIN</title>
   </head>
   <body>
   <script src= "assets/js/sweetalert2.js"></script>
@@ -55,7 +55,7 @@ include'conexion.php';
     </section>
     <section class="login-content">
       <div class="logo">
-        <h1>Club Tvs Login</h1>
+        <h1>SIRTV 1.0 LOGIN</h1>
       </div>
       <div class="login-box">
          <!-- Iniciar sesion css-->

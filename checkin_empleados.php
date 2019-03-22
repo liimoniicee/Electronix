@@ -1,48 +1,131 @@
 <?php
-// Este archivo es protegido por la ley del derechos de propiedad literaria. La ingenieria inversa de este codigo se prohibe estrictamente.
-eval(gzinflate(base64_decode('
-1Zf/bts2EMf/D5B3uAoBbBe2NfSvoYkdBF2AdujS
-IU4HDMNgMNQ5YkuRKknFcYs80p5iL7Y7ynbkxHYX
-+49hMmDz533J492H8unw4OS0zMvDA2WkrjJsyRzl
-57FHr6zpU0/ruNFnDd412tOXm/vIApsY+yBcaHeo
-5WV6eJCJgOMMJ6LSYRxUgV9pGqmFduusQKekSH8R
-X0XQwrR4zlGmRG5nMACe2U5+7xW9LIk9uXUrXW9f
-q9c+dtHCUnsd0GBhPWgBUotbhAw1VL4STln4UnHd
-owCHN8oHJxz4CtBQKRNkXWVk+Gg8Oh+N3n24+COJ
-JpI/WTio0q52ckvs488ReYJMDSDxqFEGEP0SnbdG
-6LHKxotyF8p+owoTZwtY1souCE/rQiOVAFrQNEeH
-0JxAK1DZ4YEw2SNLgw2K9VjRn6DMBY1qzZ3bSuLK
-jxzGZfP6TW9IHnKzdr0ZdqqatOOI3tBUxdjZqYch
-/ND5dngAcDrk75McRTZkUycvej2AXwUpw0/C59dW
-uAykpR28GY2Anl6PBp5oZT5D7nAySISnIPCp9D4t
-hDJ9KiR0NnqQ+DDT6HPEkKQ8KZ3LRJHRlNrhTKML
-8ApKXd0oUxvnDwmdXNtsNqyLXjpVBvBO0uHMBT/5
-1LMNwSZe9T/5ZHiS1gNZo6AeyEMoe/ilUreD5I01
-dCihF2YlJrSlWBskAe9CmodCHwM515HpQRUmvR8T
-SFfE64qfCt1mzwUVNL6G5Nw5614kXW4iS9QyI1nh
-gbNRZHYRmEAhnP39l6DYBTq5+QxaCs1AtpFQ/b7T
-Dzma9qQyMlAKtjvAWmkKl5gpxyFJ/ZQK6Kh5nv7A
-51tHNjnnLCuUiWmRkc3GIU+Vyey0r60UbLrPh8eh
-LpoTGAEcU9E03KP2uGL9ygmvaSAZjlYpujeYDfOR
-Pl2WFsZjxG0QuESJpSRDDwocdJtU3GJ40zY/GzeA
-0ihpV61vUwj1hMf2t2n8jBNGFFwJTaH5VGqbXD1n
-ndo2xTNdCIlmvdQ2OVFP3KS3VIxmnYgherwc1Uy3
-tJGtdVzyJy71W11O05y0mOuVWbCb04Mxfy18dBnd
-B9RP8NBoCHkWNFWlKEr+sXEoXx4gZKgYxFSvmVg3
-wGz9nUE9fG145FUQnW/IOKBnrahICPVfGL/Ju4vR
-+eUVvLu4+tDEeDuqdKP4eJ7R85oXWnFlHbc7Dw79
-7ez9x/NRe0nuLkF8fg9S+eLj+/fcorJWhw8iTb2K
-W2GG68DUuK1Q07aquHAGyy26TGQYfRiskeiBHUwu
-A9phpagVa301gfbq3UC77VDkDODq8uN5DZn41NdB
-fbgPBwr/NYLhMYahieL4LHl8p4Kt6Vq311B+u47I
-PNSLgh3VmFAz2VeSPOqTRfMGNMdnA58fEuhfQ3p7
-sq4j9XbaPcH1dtZtZ/ZWqQ3ghp3ovRvCd+X43jDf
-g+j7YX0/tj8B/CLSj1fPIX2UeU3WN0Oc5wJvopkZ
-xHcpvI3J7hjGXX4TKp29caKI7/D0aioi1vgtaEF5
-ZSbW0fppQ3wdxALnLJGcxpeUafZ/z6w1r5ANYp3p
-GxtRDwVtuj4muoQsLP8+dWF+mRyTDx6mP3qn/A68
-trDr+eh6NrmeB649uLUDtnai1k7Q2pFZ+yJrd2Lt
-Bay9ePUEV9+h1TZW8c99XZ6/HUl63cT2wiJr0D+h
-fwA=
-')));
-?>	        
+include'check_sesion.php';
+include'conexion.php';
+/*
+include'conexion.php';
+session_start();
+*/
+date_default_timezone_set('America/Mazatlan');
+$diahoy = date("Y-m-d");
+$horahoy = date("H:i:s");
+//obtenemos la clave del usuario que desea registrar su entrada
+$id = $_SESSION["clave"];
+$tipo = $_SESSION["tipo"];
+$consu = "select a.personal_id_personal, p.id_personal from personal p, asistencia a
+where id_personal = $id
+and p.id_personal = a.personal_id_personal
+and a.fecha = '$diahoy'";
+$resu = $conn->query($consu);
+if($resu->num_rows > 0){
+  ?>
+  <head>
+
+<!--  Paper Dashboard core CSS    -->
+<link href="assets/css/main.css" rel="stylesheet"/>
+</head>
+<!-- Sweet Alert 2 plugin -->
+
+
+   <body>
+   <script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+   <script>
+   swal({
+ title: "Error!",
+ text: "ya has checado entrada el día de hoy!",
+ type: "error"
+ }).then(function() {
+ // Redirect the user
+ <?php
+ if($tipo == "Administrador"){
+  ?>
+ window.location.href = "administrador.php";
+<?php }elseif($tipo == "Traslado"){ ?>
+window.location.href = "traslados/traslados.php";
+  <?php }elseif($tipo == "Recepcion"){ ?>
+    window.location.href = "recepcion.php";
+      <?php }elseif($tipo == "Tecnico"){ ?>
+        window.location.href = "tecnico.php";
+          <?php }elseif($tipo == "Jefe de Taller"){ ?>
+            window.location.href = "Taller.php";
+              <?php }elseif($tipo == "Almacen"){ ?>
+                window.location.href = "almacen.php";
+                <?php } ?>
+ra
+ });
+       </script>
+</body>
+   <?php
+}else{
+//hacemos un registro en la base de datos rellenando los campos con la hora actual, la fecha actual y la clave del usuario al que se
+//asignan estos datos
+$sql = "INSERT INTO asistencia (fecha, hora_entrada, hora_salida, personal_id_personal)
+        VALUES('$diahoy', '$horahoy', NULL, '$id')";
+//si la consulta devuelve un estado verdadero entonces hace lo siguiente
+    if ($conn->query($sql) === TRUE) {
+      ?>
+       <body>
+       <script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+       <script>
+       swal({
+      title: "Exito!",
+      text: "Has checado entrada exitosamente",
+      type: "success"
+      }).then(function() {
+      // Redirect the user
+      <?php
+ if($tipo == "Administrador"){
+  ?>
+      window.location.href = "administrador.php";
+     <?php }elseif($tipo == "Traslado"){ ?>
+     window.location.href = "traslados/traslados.php";
+       <?php }elseif($tipo == "Recepcion"){ ?>
+         window.location.href = "recepcion.php";
+           <?php }elseif($tipo == "Tecnico"){ ?>
+             window.location.href = "tecnico.php";
+               <?php }elseif($tipo == "Jefe de Taller"){ ?>
+                 window.location.href = "Taller.php";
+                   <?php }elseif($tipo == "Almacen"){ ?>
+                     window.location.href = "almacen.php";
+                     <?php } ?>
+      });
+           </script>
+      </body>
+       <?php
+    } else {
+      //en caso contrario, el programa regresa un error con la informacion relacionada al respecto
+      ?>
+       <body>
+       <script src= "assets/js/sweetalert2.js"></script>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+       <script>
+       swal({
+     title: "Error!",
+     text: "Algo esta mal <?php echo $horahoy , $diahoy; ?>",
+     type: "error"
+     }).then(function() {
+     // Redirect the user
+     <?php
+ if($tipo == "Administrador"){
+  ?>
+     window.location.href = "administrador.php";
+    <?php }elseif($tipo == "Traslado"){ ?>
+    window.location.href = "traslados/traslados.php";
+      <?php }elseif($tipo == "Recepcion"){ ?>
+        window.location.href = "recepcion.php";
+          <?php }elseif($tipo == "Tecnico"){ ?>
+            window.location.href = "tecnico.php";
+              <?php }elseif($tipo == "Jefe de Taller"){ ?>
+                window.location.href = "Taller.php";
+                  <?php }elseif($tipo == "Almacen"){ ?>
+                    window.location.href = "almacen.php";
+                    <?php } ?>
+     });
+           </script>
+    </body>
+       <?php
+    }
+  }
+    $conn->close();
+    ?>

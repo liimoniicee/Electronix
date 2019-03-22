@@ -1,249 +1,1014 @@
 <?php
-// Este archivo es protegido por la ley del derechos de propiedad literaria. La ingenieria inversa de este codigo se prohibe estrictamente.
-eval(gzinflate(base64_decode('
-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
-v2S+QCNP7S6KkOsZ+HXC3DNeNco0E2HySxqXAL5I
-wXP5Nr0+nMjydqglbva+wJj2KqgiBdcOPHj840JO
-ZE/USGo3sa3v4NzFGIfVo+BZo6A8sM35gku7ZIlo
-K74gcdmd2PVmxwnjqdUBBwbG5xsGy/RqKPAWX1D+
-95UwT8GSOudRvArmc8RzvRLNF97s+zKJVsL8BWHi
-1TDP0HFM82Il0L9geHgJRUyapd2Qu4+92StQmOvA
-gOcv08se+IDxX4Pf3wJYy5erFdrc8spvsIIXtacg
-NMTe7f2E5n4frTzKVSk2OoOGjsW8xQdMOzpjaDyE
-9TsY61H9mp/BLK5firTAtJT645gLYr6bOTYGXZZj
-J3NGLAKBcDrWL2dGhWft7+gdiYaf1PCSWn0bLBSd
-d8q+hb4RxYe2KsmSlpqcVMktZIGKbiUES4jgn+HY
-mG6NMbDCCdnr3IOr+Cp9mj4ezZ7h0Wziz5iOxEpf
-Qmw9tQC623SPpNC1QJrS2GiQdzWQY9OAx2y61gZC
-oBvgMC4d0GLE1rgjq5yRrVyRLS32Vc3FcG3RXg3j
-thjyrTHgSG+LA4e/wmHGd42BbZqbXcZmHeEjGXg1
-4fv/pFUQQ5mctzI490yDk1kG55MOgxPMeXYHJuca
-i7PXkvdkm9BYL4VP3KiYKGsGxURx2+JAWuNeG8aq
-Vqn0ziiVTgbtr9B3b6vQ+4Wnegen+kWaesSZ/kjl
-+mzzIM+K1j0iPCtab6bXn20ehnFad4K1BwOSKg2p
-NYaBAH9YBKOV5AUo45RHYFbmVzReSde3GrQHXTHA
-9qDIHoiNF5QjoRdAwVhbmHeymjzpXk2eEl3XuqDs
-bbeiVNuabTug3Slt9UIktk8biWzOcvN0u52YapWp
-Nx0MhaRRg2zSc+BbmDba1auTW9Gy5bJ622XF1ku9
-zYJHHhpVjZiZu5GyKoW0/5ZK/yTAXScLcLOtlf77
-GhvtbPTf2xCbFtX2RgUpD5xUToLtrxpsrk4V1GWX
-lGMEIuVTOxgtotkHLqRwRuC7Gebcf5cUA9F0+OnT
-ZweOnE1avtV//2TrHZQ72Gy4g+2G7TccmhgUX0mY
-BuUSLOLxFY8KNqhGRAzRcFiPQMsXGpOyPZjtKBuB
-ubleA4EzMDhE7X5rdxDi7itau2Trpa5YPGnPxzAj
-8kaZWtq6clCd0LdcIkAXFcxdT9yI8DKso+HtUCLe
-KzJr2u0klRAxOxXzUqYw1FkLLfAyD6I+74KHUIAN
-SXzdGm+WK+pIHUxoktpIx20p+cCdBrsEdHV16O1P
-0XszPNssk5CYkGYm7B7nOcxmsP1InQKeY8Cf0CyL
-9QGAIiVXKX+rzKOq8Y/0gpE8YwGatSaCOvUXwf6a
-pnighsK6dl1EQU4klA30JpdnTkJCgVcLDBuGJJ2L
-R610wL4S7xl8NydxSkMypznYd0TjumWf6lXKPDI3
-eQP/Chtg9GS8N95tOyhHuptmaQYismGj6nDehu3E
-UbE2cGTIKfCsZgWRBwGRAcqQFQwV/EQrX/Amq0en
-o3fqNGEGY9ZFa28pUZ8wDsTVYF7Xl5epWIjW8Gkz
-nGq4y2gclOAULe8WO+YS49HDBGzwNacuv6aFdEuY
-Gq4tmSU7NsYEyVORsXW3PTPw9pbg9i/MHg38hzqt
-zB+Ov9aYB8ODJqvaZTO/YqwQZ8H3xjSON5xKZuvO
-AQrS5RImisIgdEscS8W0bubIpiM1CZqfsBorVI8G
-WgcOx7h4XA/mZSLO9w/ESXiAOqJxgMlGYn1Sh/hv
-8I+GdCHu34OGlXmNR55/frxD6n+FB4D1wtzPwewf
-eA+lk0kKDs5vMfDHou0OGdcuoT9UJ/iJajhmNFg4
-9Mo+FYsoH47nURIO/CKEwbYhowqUkGhOBhHeA/B4
-WC99kvCfIzIiu38jnxkOgsaNh3UHQ+2w3cgH9Qe6
-I8knReh1f7vlyxZ2iwjjAzfVNn3L9NaamHJKlilO
-F07UBnwITnkJyxtYGKIEDQyZpy28HuKKl3ibfLpK
-RshAk16x3ntYpzEMx/CUXDBjjAy+i76OxXYxmU6J
-v8RpaaYJAht1fsFwjBGTwdA8AcninHWCY2bXoPan
-b5qfCyMqPuecqLwZKkZ/OqmNm8YkWqts6hFdzztC
-TB9+MsEYDuOp1bWHOmsbmYqBOIOnNaCJBxupMNM+
-cCNkieain8fplW8FGwxgkVXTYKALIzZCekHt9QP7
-vB/Yk35gT1vBbhqNNuYqyi0sJFUO/XCc8TQb+Co3
-3h9Op9M5TFtmtLcR4DKkaPVbiayfb4ZWGGIyydlF
-mYSOZMjU+f49cMZ6I+H4fyMYmzJVioVshVzdTjAU
-hs2Eo0C30VUb6gjBLaUDOXbH8tFXufyppWNjrtri
-gZ/aVkAUjs1EJCgpL9olZG8LEdn7g2TkFiLSZ1j3
-thnXvbsY2L3NRla91Zm4TrDaDZSvM/ptymSCneMx
-tQI96QP0tAPohtTPDYtrrbU1mVxCd2hC0bzFOx5S
-AkOIGRYSZ2V1NQ/g/WpHNcWupskEsZm5T3z3mJ6/
-YwChxb5vvPsdBw/VQT4qiFHHS88MmsQRU7JkxSIN
-p14GFrxOikVP2Jv5n3V9RKQpW9UOETJY+dQFcsDM
-aKXzMRmJPBU5IfLZAdgk0xfHkMbRBTBBJcIQjpck
-cRY2soDF08xJMLWvbSMz671KOHUodFDIY8LGeeE+
-rb5nc4ZSJg+NezP9XqhD5H1w6Lanm7SR15VBI/nQ
-r9Xr6qa1WfXY1VIn5vrEKcdQrytaVeEHl7ifdMaR
-EjqHOhkFb8bCpRSVeSmFSDysC4uTJX0Xs+QCt6f2
-Pq9FsgdLOjhyNzxxNkI1Z47UabX3/0X7cyeDL1xB
-nzWH8F2ySD5tx6MOIbkF6z6Gdmvh6Uux+z3Ih7eT
-tyRdSmaKh48vbx+IK1/WmRS34QrN5OFz+fBxuPKh
-WaLTR27DjwCXLOSHePjo/DAk588w5arDzn1ZmZTL
-c7QYFDNZrJiJD2uZaaOoeCn21f0/16zTaUgmX9bz
-Iy/VZBMPW/ND07XJotfOD0JmULU1T+QJ+MmRPNps
-ccceky3tUdcgxUtqNWPhqTE3bMMLcx5b7ayO9LC/
-dKWH6btxN88O+8tw+KudAOMbGTsuwf5Ypl951v28
-fxv70FNdpY6TY2ndObwcraWHjeybLgPz/5Kd0CKQ
-4kgTppPqA0+9F4RoyfScXeDpDylc6vGjmw4fSIdp
-9uhDXxV3HH724VBec0heqiO2l6ZemjGurnLEm1q3
-5Z1J1B+9BMhDb6ARCEjXOX1D+fvfNmOivTgg73jN
-Rr5BztBdca2dk7eaxiRAK5vc3WT+n//W8opHSEL6
-nLjM1pQ7q2MH80UQ8Dx9Z7I/qNkfGIn18oOm/IrG
-nsv2207wbguwrV9G0Vfybit1j295vowKbbwm84gv
-aW2J1QWyC8S+hgofYCGJZfJ/2Hb1lfxYozvigiJF
-9Y5FMwZOj2gCtp9sug8TpWRmbE5RJavRauD7xH/4
-5PGzz8MvrCBeYKCp4MInT7qBsJMApDupbmVwumk1
-F+SaBO0TERy2PiFShDRyDEjiRePMwjNPAUohakGh
-7ig7Ka7jKLloAYDZe8l4ziQRueIaJpukV6/KAu+a
-O0K5bGvaBWRKE+6jwzOG1aUYdycD2HvzD6bEf2wk
-AuC+Ps5yKwVAb/6LbAi5YS80ELwfqDPmzUvrO4PH
-VXDYWkdEGovME5drF5lWScoXrDiOGT5+df1dOPDF
-iuQPZRcOdDNlEaxpx6x2ebmEBlW+ifzycFQVKJzS
-GBQpIoUBvvJDXH9oKr6ickmcWHt/Zml9ZfBJHPFd
-012+qrsCwfCz6n33jvo5mRAi9O34SF1iNyUPBlYJ
-gnWhVbp6ONYHFqE5zhe17eJysd5vqZgVslzcwUd5
-vcVyi6+5X7L3dqqvGXfMRKGcSta2ht7SOM6L97/l
-BNMKePq80i846vvEw+vs8IdOxHmpJAUwkpUMlkah
-OoqIP/CqFiAtgE+d56oQrdbNvfTyWp1sYTkVlPsn
-0YMdyYQ4tYj5IcWLhV8lleI06ck4qxVq24YYZ0XJ
-gRXsivzI8SSZocw4y9P4kumkucq1G4PJ9s7aTyIl
-j4FGufVTj5T42RxLzSqm/vjq5NSuwK0gqAjBmSrY
-1P8sChvVp7LtmzxNfGOfsHocg8lnU48Htph9mkjI
-jP8VkhimhL2LijSnKKbsgY8/+SLbjNVF3EYJCE5R
-5sNxsWBJW/KX/l+cypzpMWeYJOxsGbqbnDXxcxrF
-XXgl0a/SLB+Px0Cmf5LidhomIF9hqvcVT/ExKhYE
-h4ZgV3yGv8Vj7ljftD7faD53r4B1MmBjHbLSwVfk
-jdV7lfUFVnoat0kUKLeYkp9e/yDT/uA5Y0Ukpm0N
-BEJHKqmbJ2f13Vmu4El0aK+BJScnP97mcRlRbgEN
-Cro8j97/R4I3u2Zpjr+qQsoiiqO/i7RCCnM3ZHJH
-FkQyzY39bxRRIMcWiCiEoig0drltqpjO9aYkj/Be
-2fe/ic9UvSU4VUhK/np8auRyAqNJyzRChLH8KSAg
-0Oouelug7PB70hfgMnWyoHYPThVqMcts1MH738Po
-QvxA1BsWlAUaEZE1NMi1HKQ/n8NQ4CnZA3cIqq8K
-BtMcTQlYdAEpvxALB6IHOJQXe7DVvbPE0GNI77CZ
-xyG2VsVyKSBEHrf49Sh39957qM6qN6ChvAkstpJc
-SCxsgibCuLMhoawJiHsHLiCUtVLaAAwj3gTE6LsL
-CGUtgCxuArK4CYghVxcQyobOUcabjaUF1EvsiAhI
-nRSLNHfkIu8SDCn06fkbVgixtwUSbDpegqa/rgjC
-sJZU5i50jVPoTlPU3i34DlFLgL0c9ul2QqIl/uRS
-Bw/e/w4TPDFymKDnGa6DPSmwE7b1FRNtJtUKFV1n
-m0g1KjRenW/iKvDaDoPKyhCr8kpqFFZqiU4paQQ+
-4osR3q7VmkpSaXbEdxYUPHZ+k2FdbkkVxACQqNoj
-xicdJgZz4zNf/6yPSvyq9iY6ckT+mRvyj5UbsjI1
-o0dKhlhIdFqGfNky+rg2JeLjp0KsSynYLJXgrojp
-2Mn/qDv4q7bQ2whhSzD4b7l37uqm1s3mj7/J/Kfa
-4v3n5uo/9OZqPcqtofyeofqmmWJH65tR+hXxn7Wx
-n5Vxn7aYT5cZdct4/ao4fUfsvTPmvnmofVWEXUdC
-bmR0xDZeN0iUbjNdK8vVueWpsl7VBStQA97+9ycw
-raLwwLqaDe8zmdY/eexe7FG3Ne70kLeSPqo+aty7
-CvMFFUWW7qg/sLTwgO4s05DF8Cb8oh3147g76A1g
-98CiEFdhiJ/W5QzjIvysuMQi+RPA+sd0X4u6kMqf
-2DUuypn60BH508Dy3hltt2uzvbrcSm4WJtWVDSg+
-ynbHXU3nHiXo421vUsJZ5qsrlPSeabGYHQu+iLuK
-NASZvRDscQq/QV45ZeI3S0zASf2BFVpV6dWnXXq1
-GsrNFevTYTNQ2H6vkZSIxm8Wdt+yKoWmrUHXbavI
-sTb4zltXpWA5Tbp+dcHHa4PcvWtRHJKOO4Laobuu
-A+oBbV5c2gPcvqdUi4zuhbk2+eaFNQKw/fY1jUMA
-6xdxSY3c6YWp17WMrFtFVi0iG6wht1tCVqwg7QtI
-1/qx8fKxavVQ55sP5F0uztYf3kIHL+Nqy1lNRHFh
-0/4Xjz8hD1RwJimq3SjVSAW4+u8fVlcb6ti2G9nu
-Ede2otoC4TxBnHZMu0dEe6t4dks024ll35i03CaO
-3R7F3iqG3R3B3jJ+vV30elXs2j65uKRJMxoNheaS
-I2Lc4qKvRpBbXCxmHQlE2waRvluxhY311g62c5sc
-w/suBp9/Wm1VC4TD4WT38eM2+MK8fq7zqxdgsIVp
-va+tPmXdh7Dh8NkB5duEk+8+mNw7lLy+s5uFkTcJ
-It+YN3G4+/F3ZX9bF8Nq67tphP7I07BUO/TGmmqY
-oD0PIsoAJWrPAH9TYl2smKjfm1RdxG8dkGCBclxM
-y2I+euaRlXl9bdl8X2ivv9fxMB2yeAHzC/uennPa
-di7RN38szxM6gwhzXD3asZFG3ErlRtbhirU3qxlp
-d0aenfV4V32vr4wTclBEl/JHNddxQWpEyQb9/GH4
-sIoLa5M/745RP6YcA0/0DdOpnbm8ZrybU2YIVP+6
-yycibqVZsT0H7qp7tWEtFooe80AuKDLgpp/7Xx74
-ZxraU/kTIOs6LExaUbD3REm+XdQWZhWhBk9pC/HY
-Edf+YLyTIbXKnfgYTpD6JjGcIbx+OoiKMvxH9IZk
-zqjjC8lt4eo+cFzg4OHe4fP/BQ==
-')));
-?>	  
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
+verificar_sesion();
+$var_name=$_SESSION['nombre'];
+$var_clave= $_SESSION['clave'];
+$var_tipo = $_SESSION['tipo'];
+$horahoy = date("H:i:s");
+if($var_tipo != "Administrador") {
+ //echo "<script>alert('No tienes acceso a esta página!')</script>";
+   echo "<script>window.open('Error_restrinccion.html','_self')</script>";
+ }
+$empleados = "SELECT p.id_personal, p.tipo, p.usuario, p.contrasena, p.nombre, p.apellidos, p.correo, p.celular, p.sueldo, r.colonia
+FROM personal p, recepciones r
+WHERE p.rec_id_recepcion = r.id_recepcion";
+$sucursal ="SELECT * from recepciones where situacion='Activo';";
+$comision = "SELECT *
+FROM personal
+WHERE tipo ='Tecnico';";
+$avisos = "SELECT
+*
+FROM avisos where tipo= 'Administrador' and estado='pendiente'";
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
+?>
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+<script src="assets\js\push.js/push.min.js" > </script>
+
+<script src="assets\js\plugins/bootstrap-notify.min.js"></script>
+
+    <!-- Open Graph Meta-->
+    <title>Control de empleados</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+    <!-- Font-icon css-->
+  <link href= "assets/css/themify-icons.css" rel="stylesheet">
+<link rel="shortcut icon" href="assets/img/favicon.ico">
+  </head>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" onclick="faqs();">ID de Usuario: <?php echo $var_clave ?></a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="Search">
+          <button class="app-search__button"><i class="ti-search"></i></button>
+        </li>
+        <!--Notification Menu-->
+        <?php
+          $ejec0 = mysqli_query($conn, $num_avisos);
+        while($fila=mysqli_fetch_array($ejec0)){
+            $num_avi     = $fila['COUNT(*)'];
+      }
+      ?>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
+
+            <div class="app-notification__content">
+            <?php
+            $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+            $avi     = $fila['aviso'];
+            $fech_avi     = $fila['fecha'];
+            ?>
+
+              <li><a class="app-notification__item" href="javascript:;">
+
+                  <div>
+                    <p class="app-notification__message"><?php echo $avi; ?></p>
+                    <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
+                  </div></a></li>
+                <?php } ?>
+
+            </div>
+            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+          </ul>
+        </li>
+        <!-- User Menu-->
+        <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
+
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+
+      </div>
+      <ul class="app-menu">
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
+      <li><a class="app-menu__item" href="recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
+      <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon ti-settings"></i><span class="app-menu__label">Taller</span></a></li>
+      <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+      <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
+      <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
+      <li><a class="app-menu__item active" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+</ul>
+
+
+
+    </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i>Control de empleados</h1>
+          <p>Dar un buen servicio es nuestra prioridad</p>
+        </div>
+
+      </div>
+
+
+
+
+
+<div class="card text-black bg-primary mb-3">
+  <div class="card-body">
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+      <button class="btn btn-success" onclick="agregar_empleado()">Agregar empleado</button>
+         <form id='form-id'>
+
+
+           <label class="btn btn-info active" id='watch-me'>
+             <input name='test' type='radio' checked /> Empleados
+             </label>
+
+             <label class="btn btn-info" id='see-me'>
+             <input name='test' type='radio' /> Asistencia
+           </label>
+
+             <label class="btn btn-info" id='look-me'>
+             <input name='test' type='radio' /> Estadisticas
+           </label>
+
+           <label class="btn btn-info" id='look-me2'>
+             <input name='test' type='radio' /> Nomina
+           </label>
+
+
+
+         </form>
+       </div><br></br>
+
+
+  <div id="show-me">
+    <div class="tile">
+      <div class="tile-body text-center">
+          <table id="a-tables" class="table table-hover table-dark table-responsive">
+    <thead>
+
+        <th>id</th>
+      <th>tipo</th>
+      <th>usuario</th>
+      <th>contrasena</th>
+      <th>nombre</th>
+      <th>apellidos</th>
+      <th>Correo</th>
+      <th>Celular</th>
+      <th>Sucursal</th>
+
+      <th class="disabled-sorting">Acción</th>
+
+    </thead>
+    <?php
+      $ejec1 = mysqli_query($conn, $empleados);
+    while($fila=mysqli_fetch_array($ejec1)){
+        $id          = $fila['id_personal'];
+        $tip           = $fila['tipo'];
+        $usu          = $fila['usuario'];
+        $contra          = $fila['contrasena'];
+        $nom        = $fila['nombre'];
+        $ape        = $fila['apellidos'];
+        $cor        = $fila['correo'];
+        $cel        = $fila['celular'];
+        $suc        = $fila['colonia'];
+?>
+                    <tr>
+                        <td width="8%"><?php echo $id ?></td>
+                        <td width="14%"><?php echo $tip ?></td>
+                        <td width="14%"><?php echo $usu ?></td>
+                        <td width="14%" class="hidetext"><?php echo $contra ?></td>
+                        <td width="14%"><?php echo $nom ?></td>
+                        <td width="14%"><?php echo $ape ?></td>
+                        <td width="8%"><?php echo $cor ?></td>
+                        <td width="8%"><?php echo $cel ?></td>
+                        <td width="8%"><?php echo $suc ?></td>
+                        <td width="14%">
+                        <a href="#" onclick="actual_emp(<?php echo $id ?>), actual_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                        <a href="#" onclick="borrar_emp(<?php echo $id ?>);" title="Eliminar"><i class="btn-sm btn-danger ti-close"></i></a>
+                        </td>
+          </tr>
+        <?php } ?>
+        <tbody></br>
+            Empleados
+      </tbody>
+  </table>
+</div>
+</div>
+</div>
+<!-- termina tabla 1-->
+
+<!-- Empieza tabla 2-->
+<div id="show-me-two" style='display:none; border:2px solid #ccc'>
+  <div class="tile  text-center">
+    <div class="row">
+    <div class="col-sm-2">
+    <select class="form-control form-control-sm" name="fecha_asi" id="fecha_asi">
+    <option value="hoy">Hoy</option>
+    <option value="mes">Mes</option>
+    <option value="todas">Todas</option>
+    </select>
+  </div>
+  <div class="col-sm-2 sel_mes" style="display:none;">
+  <select class="form-control form-control-sm" name="tipo" id="selec_mes">
+  <option value="1">Enero</option>
+  <option value="2">Febrero</option>
+  <option value="3">Marzo</option>
+  <option value="4">Abril</option>
+  <option value="5">Mayo</option>
+  <option value="6">Junio</option>
+  <option value="7">Julio</option>
+  <option value="8">Agosto</option>
+  <option value="9">Semptiembre</option>
+  <option value="10">Octubre</option>
+  <option value="11">Noviembre</option>
+  <option value="12">Diciembre</option>
+  </select>
+</div>
+</div>
+
+
+    <div class="tile-body">
+        <table id="tabla2" class="table table-hover table-dark table-responsive">
+<?php
+          $asistencia = "SELECT p.id_personal, p.nombre, a.fecha, a.hora_entrada, a.hora_salida, a.horas_hoy, a.horas_total
+          FROM
+          personal p, asistencia a
+          where p.id_personal = a.personal_id_personal";
+          ?>
+
+  <thead>
+
+      <th>id</th>
+    <th>nombre</th>
+    <th>fecha</th>
+    <th>Hora entrada</th>
+    <th>Hora salida</th>
+    <th>Horas pendiente hoy</th>
+    <th>Horas pendiente en total</th>
+
+  </thead>
+  <?php
+    $ejec2 = mysqli_query($conn, $asistencia);
+  while($fila=mysqli_fetch_array($ejec2)){
+      $id          = $fila['id_personal'];
+      $nom           = $fila['nombre'];
+      $fech          = $fila['fecha'];
+      $hora_e          = $fila['hora_entrada'];
+      $hora_s          = $fila['hora_salida'];
+      $hora_hoy         = $fila['horas_hoy'];
+      $hora_tot        = $fila['horas_total'];
+?>
+                  <tr>
+                      <td width="8%"><?php echo $id ?></td>
+                      <td width="14%"><?php echo $nom ?></td>
+                      <td width="14%"><?php echo $fech ?></td>
+                      <td width="14%"><?php echo $hora_e ?></td>
+                      <td width="14%"><?php echo $hora_s ?></td>
+                      <td width="14%"><?php echo $hora_hoy ?></td>
+                      <td width="14%"><?php echo $hora_tot ?></td>
+
+        </tr>
+      <?php } ?>
+      <tbody></br>
+          Asistencia por día
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- termina tabla 2-->
+
+<!-- empieza tabla 3-->
+<div id="show-me-three" style='display:none; border:2px solid #ccc'>
+  <div class="tile text-center">
+    <div class="tile-body">
+        <table id="tabla3" class="table table-hover table-dark table-responsive">
+  <thead>
+
+      <th>id</th>
+    <th >tipo</th>
+    <th >usuario</th>
+    <th >nombre</th>
+    <th >apellidos</th>
+    <th class="disabled-sorting">Acción</th>
+
+  </thead>
+  <?php
+    $ejec1 = mysqli_query($conn, $comision);
+  while($fila=mysqli_fetch_array($ejec1)){
+      $id          = $fila['id_personal'];
+      $tip           = $fila['tipo'];
+      $usu          = $fila['usuario'];
+      $nom        = $fila['nombre'];
+      $ape        = $fila['apellidos'];
+?>
+                  <tr>
+                      <td width="8%"><?php echo $id ?></td>
+                      <td width="8%"><?php echo $tip ?></td>
+                      <td width="8%"><?php echo $usu ?></td>
+                      <td width="8%"><?php echo $nom ?></td>
+                      <td width="8%"><?php echo $ape ?></td>
+                      <td width="8%">
+                      <a href="#" onclick="bonificacion(<?php echo $id ?>), boni_mod(<?php echo $id ?>);" title="Modificar" ><i class="btn-sm btn-warning ti-pencil-alt"></i></a>
+                      <a href="#" onclick="historial_swal(<?php echo $id ?>);" title="Historial" ><i class="btn-sm btn-warning ti-list"></i></a>
+                      </td>
+        </tr>
+      <?php } ?>
+      <tbody></br>
+    Comisión de empleados
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- termina tabla 3-->
+
+<!-- empieza tabla 4 -->
+
+<div id="show-me-three2" style='display:none; border:2px solid #ccc'>
+  <div class="card-body bg-primary mb-3">
+
+            <div class="tile text-black">
+            <table id="tabla4" class="table table-hover table-dark table-responsive">
+          <thead>
+            <tr class="encabezado">
+          <th>id</th>
+
+          <th>nombre</th>
+          <th>apellidos</th>
+          <th>Correo</th>
+          <th>Sueldo</th>
+            </tr>
+          </thead>
+          <?php
+          $ejec1 = mysqli_query($conn, $empleados);
+          while($fila=mysqli_fetch_array($ejec1)){
+          $id          = $fila['id_personal'];
+          $nom        = $fila['nombre'];
+          $ape        = $fila['apellidos'];
+          $cor        = $fila['correo'];
+          $suel       = $fila['sueldo'];
+          ?>
+          <script>
+          var valor=<?php echo $suel ?>;
+          var total = parseInt(valor)*48;
+          </script>
+                      <tr>
+                          <td width="8%"><?php echo $id ?></td>
+                          <td width="14%"><?php echo $nom ?></td>
+                          <td width="14%"><?php echo $ape ?></td>
+                          <td width="8%"><?php echo $cor ?></td>
+                          <td width="8%"><script> document.write(parseInt(total)) </script></td>
+            </tr>
+            <?php } ?>
+            <tr class="total">
+              <td>su total:</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+            </tr>
+
+          <tbody></br>
+              Empleados
+          </tbody>
+          </table>
+        </div>
+        <div class="row text-white">
+
+          <div class="col-md-2">
+              <div class="form-group">
+                  <label >Total Nomina</label>
+                  <input type="text" readonly class="form-control border-input" >
+              </div>
+          </div>
+          <div class="col-md-2">
+              <div class="form-group">
+                  <label >Total de percepciones</label>
+                  <input type="text" readonly class="form-control border-input" >
+              </div>
+          </div>
+</div>
+
+
+</div>
+</div>
+
+    </main>
+    <!-- Essential javascripts for application to work-->
+
+    <!-- Page specific javascripts-->
+    <!-- Google analytics script-->
+    <!-- js placed at the end of the document so the pages load faster -->
+   <!-- Essential javascripts for application to work-->
+   <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="assets/js/plugins/pace.min.js"></script>
+     <!-- Page specific javascripts-->
+    <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
+
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
+
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+    <script src="assets/js/sweetalert2.js"></script>
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+
+
+    <script>
+    $(document).ready(function() {
+ CalcularTotal();
+});
+function CalcularTotal()
+{
+var totals = [0, 0, 0, 0, 0];
+ var $filas= $("#tabla4 tr:not('.total, .encabezado')");
+  $filas.each(function() {
+    $(this).find('td').each(function(i) {
+      if (i != 0)
+        totals[i - 1] += parseInt($(this).html());
+    });
+  });
+  $(".total td").each(function(i) {
+    if (i != 0)
+      $(this).html(totals[i - 1]);
+  });
+}
+    </script>
+
+    <!-- script para mostrar select despues de seleccionar un valor -->
+    <script>
+  /*  $(document).ready(function ()
+     {
+    $("#fecha_asi").change(function(){
+      if(this.value == 'mes'){
+        $(".sel_mes").show();
+      }else{
+        $(".sel_mes").hide();
+      }if(this.value == 'dia'){
+      }
+    })
+  });*/
+    </script>
+
+
+      <script type="text/javascript">
+      $(document).ready(function ()
+       {
+         //primero
+        $("#watch-me").click(function()
+        {
+         $("#show-me:hidden").show('slow');
+         $("#show-me-two").hide();
+         $("#show-me-three").hide();
+         $("#show-me-three2").hide();
+         $("#show-me-three5").hide();
+         $("#show-me-three3").hide();
+         $("#show-me-three4").hide();
+         });
+         $("#watch-me").click(function()
+        {
+          if($('watch-me').prop('checked')===false)
+         {
+          $('#show-me').hide();
+         }
+        });
+        //segundo
+        $("#see-me").click(function()
+        {
+          $("#show-me-two:hidden").show('slow');
+         $("#show-me").hide();
+         $("#show-me-three").hide();
+         $("#show-me-three2").hide();
+         $("#show-me-three5").hide();
+         $("#show-me-three3").hide();
+         $("#show-me-three4").hide();
+         });
+         $("#see-me").click(function()
+        {
+          if($('see-me-two').prop('checked')===false)
+         {
+          $('#show-me-two').hide();
+         }
+        });
+        //tercero
+        $("#look-me").click(function()
+        {
+          $("#show-me-three:hidden").show('slow');
+         $("#show-me").hide();
+         $("#show-me-two").hide();
+         $("#show-me-three2").hide();
+         $("#show-me-three5").hide();
+         $("#show-me-three3").hide();
+         $("#show-me-three4").hide();
+         });
+         $("#look-me").click(function()
+        {
+          if($('see-me-three').prop('checked')===false)
+         {
+          $('#show-me-three').hide();
+         }
+        });
+        //cuarto
+        $("#look-me2").click(function()
+        {
+          $("#show-me-three2:hidden").show('slow');
+         $("#show-me").hide();
+         $("#show-me-two").hide();
+         $("#show-me-three").hide();
+         $("#show-me-three5").hide();
+         });
+         $("#look-me2").click(function()
+        {
+          if($('see-me-three2').prop('checked')===false)
+         {
+          $('#show-me-three2').hide();
+         }
+        });
+       });
+      </script>
+      <script>
+      $(document).ready(function() {
+          $('#tabla2').DataTable();
+          $('#tabla3').DataTable();
+          $('#tabla4').DataTable();
+      } );
+      </script>
+
+
+  <script type="text/javascript">
+//ventana de nuevo cliente
+    function agregar_empleado(){
+          swal({
+         title: 'Agregar empleado',
+         html:
+         '<div class="card-body"> <form action="admin_agregar_emp.php" method="post" name="data">'+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Tipo</label>'+
+         '<select class="form-control form-control-sm" textalign="center" required name="tipo" id="tipo"><option value="Administrador" >Administrador</option>'+
+         '<option value="Almacen">Almacen</option>'+
+         '<option value="Jefe de Taller">Jefe de taller</option>'+
+         '<option value="Taller">Taller</option>'+
+         '<option value="Tecnico">Tecnico</option>'+
+         '<option value="Recepcion">Recepcion</option>'+
+         '</select>' +
+         '</div>'+
+          '</div>'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Usuario</label>' +
+         '<input input type="text" name="usu" id="usu" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+            '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Contraseña</label>' +
+         '<input input type="password" name="pass" id="pass" class="form-control border-input maxlength="25" required>' +
+          '</div>'+
+         '</div>'+
+         '</div>'+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Nombre(s)</label>' +
+         '<input input type="text" name="nom" id="nom" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Apellidos</label>' +
+         '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+         '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Correo</label>' +
+         '<input input type="text" name="cor" id="cor" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+         '</div>'+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Celular</label>' +
+         '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+         '</div>'+
+         '</div>'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Sueldo</label>' +
+ '<input input type="number" name="sue" id="sue" class="form-control border-input type="number" required></br>'+
+      '</div>'+
+         '</div>'+
+           '<div class="col-md-4"  >  '+
+            '<div class="form-group">'+
+         '<label>Sucursal/Colonia</label>' +
+          '<select class="form-control form-control-sm" textalign="center"  required name="sucu" id="sucu">'+
+          '<option value="" ></option>'+
+          <?php
+          $ejec7 = mysqli_query($conn, $sucursal);
+          while($fila=mysqli_fetch_array($ejec7)){?>
+          '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
+          <?php } ?>
+          '</select>' +
+          '</div>'+
+         '</div>'+
+         '</div>'+
+         '<div class="row">'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+       
+         '<label>Hora de entrada</label>' +
+         '<input input type="time" name="hra_e" id="hra_e" class="form-control border-input maxlength="25" required>' +
+         '</div>'+
+         '</div>'+
+         '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Hora de salida</label>' +     
+        '<input input type="time" name="hra_s" id="hra_s" onchange="operaciones();" class="form-control border-input maxlength="25" required>' +
+ 
+        '</div>'+
+         '</div>'+
+          '<div class="col-md-4">'+
+            '<div class="form-group">'+
+         '<label>Horas que trabajará</label>' +     
+        '<input input type="number" name="hra_r" id="hra_r" readonly class="form-control border-input maxlength="25" required>' +
+ 
+        '</div>'+
+         '</div>'+
+         '</div>'+
+'<div class="row">'+
+          '<div class="col-md-4 com"  >'+
+            '<div class="form-group">'+
+       
+         '<label>¿Hora de comida? </label>' +          '</br>'+
+         '<input input type="checkbox" name="hra_c" id="hra_c" onclick="comida();" class="check" maxlength="25" >' +
+         '</div>'+
+         '</div>'+
+        
+         '</div>'+
+          '</br>'+
+         '<Button type="submit" id="confirmar" name="confirmar" class= "btn btn-info btn-fill btn-wd">Agregar empleado</Button>'+
+         '</form></div>',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+         showConfirmButton: false,
+         customClass: 'swal-wide',
+         focusConfirm: false,
+         buttonsStyling: false,
+          reverseButtons: true, allowOutsideClick: false,
+          allowOutsideClick: false
+      })
+ $("#check").change(function(){
+    if(this.value != '0'){
+      $(".com").show();
+}else{
+}
+  })
+ 
+};
+  </script>
+
+<script type="text/javascript">
+function operaciones()
+{
+  var salida =document.getElementById('hra_s').value;
+  var entrada =document.getElementById('hra_e').value;
+  suma =parseInt(salida)-parseInt(entrada);
+  totalt =parseInt(document.getElementById('hra_r').value= suma);
+}
+</script>
+
+
+<script type="text/javascript">
+function comida()
+{
+  var horas =document.getElementById('hra_r').value;
+  suma =parseInt(horas)+parseInt(1);
+  totalt =parseInt(document.getElementById('hra_r').value= suma);
+//  hra_c.Checked = !(hra_c.Checked);
+document.getElementById("hra_c").disabled = true;
+}
+</script>
+
+<script>
+function desactivar() {
+    document.getElementById("hra_c").disabled = true;
+}
+</script>
+
+  <script>
+  function borrar_emp(id){
+  swal({
+     title: 'Estás seguro?',
+     text: "Esta acción no se puede revertir!",
+     type: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Si!, borralo',
+     showLoaderOnConfirm: true,
+     preConfirm: function() {
+       return new Promise(function(resolve) {
+         $.ajax({
+          url: 'admin_borrar_emp.php',
+          type: 'POST',
+          data: 'delete='+id,
+          dataType: 'json'
+       })
+       .done(function(response){
+          swal('Borrado exitosamente!', response.message, response.status).then(function(){
+              location.reload();
+          });
+       })
+       .fail(function(){
+          swal('Oops...', 'Something went wrong with ajax !', 'error');
+       });
+       });
+     },
+     allowOutsideClick: false
+  });
+  }
+  </script>
+
+
+   <script type="text/javascript">
+  function actual_mod(id){
+    $.ajax({
+        // la URL para la petición
+        url : 'admin_fn_actual_emp.php',
+        // la información a enviar
+        // (también es posible utilizar una cadena de datos)
+        data : {
+           id : id
+        },
+        // especifica si será una petición POST o GET
+        type : 'POST',
+        // el tipo de información que se espera de respuesta
+        dataType : 'json',
+        // código a ejecutar si la petición es satisfactoria;
+        // la respuesta es pasada como argumento a la función
+        success : function(data) {
+          $("#tipo").val(data.data.tipo);
+          $("#usuario").val(data.data.usu);
+          $("#pass").val(data.data.pass);
+          $("#nom").val(data.data.nom);
+          $("#ape").val(data.data.ape);
+          $("#usu").val(data.data.dir);
+          $("#cor").val(data.data.cor);
+          $("#cel").val(data.data.cel);
+          $("#sue").val(data.data.sue);
+        },
+        // código a ejecutar si la petición falla;
+        // son pasados como argumentos a la función
+        // el objeto de la petición en crudo y código de estatus de la petición
+        error : function(xhr, status) {
+        },
+        // código a ejecutar sin importar si la petición falló o no
+        complete : function(xhr, status) {
+        }
+    });
+  }
+  </script>
+
+  <script type="text/javascript">
+ //ventana actualizar cliente
+ function actual_emp(id){
+ swal({
+ title: 'Actualizar empleado',
+ html:
+ '<div class="col-lg-12"> <form action="admin_fn_actualizar_ctrl_empleados.php" method="post" name="data">'+
+ '<input id="id" name="id" value="'+id+'" type="hidden">' +
+ '<label>Tipo</label>'+
+ '<select class="form-control form-control-sm" textalign="center" required name="tipo" id="tipo"><option value="Administrador" >Administrador</option>'+
+         '<option value="Almacen">Almacen</option>'+
+         '<option value="Jefe de Taller">Jefe de taller</option>'+
+         '<option value="Taller">Taller</option>'+
+         '<option value="Tecnico">Tecnico</option>'+
+         '<option value="Recepcion">Recepcion</option>'+
+         '</select>' +
+ '<label>Usuario</label>' +
+ '<input input type="text" name="usuario" id="usuario" class="form-control border-input maxlength="25" required>' +
+ '<label>Contraseña</label>' +
+ '<input input type="password" name="pass" id="pass" class="form-control border-input maxlength="25" required>' +
+ '<label>Nombre(s)</label>' +
+ '<input input type="text" name="nom" id="nom"  class="form-control border-input maxlength="25" required>' +
+ '<label>Apellidos</label>' +
+ '<input input type="text" name="ape" id="ape" class="form-control border-input maxlength="25" required>' +
+ '<label>Correo</label>' +
+ '<input input type="email" name="cor" id="cor" class="form-control border-input ">' +
+ '<label>Celular</label>' +
+ '<input input type="number" name="cel" id="cel" class="form-control border-input type="number" required></br>'+
+ '<label>Sueldo</label>' +
+ '<input input type="number" name="sue" id="sue" class="form-control border-input type="number" required></br>'+
+ '<label>Sucursal/Colonia</label>' +
+          '<select class="form-control form-control-sm" textalign="center"  required name="sucu" id="sucu">'+
+          '<option value="" ></option>'+
+          <?php
+          $ejec7 = mysqli_query($conn, $sucursal);
+          while($fila=mysqli_fetch_array($ejec7)){?>
+          '<?php echo '<option value="'.$fila["id_recepcion"].'">'.$fila["colonia"].'</option>'; ?>'+
+          <?php } ?>
+          '</select>' +
+          '</br>'+
+ '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Actualizar empleado</Button>'+
+ '</form></div>',
+ showCancelButton: true,
+ confirmButtonColor: '#3085d6',
+ cancelButtonColor: '#d33',
+ confirmButtonText: 'Actualizar empleado',
+ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+ showConfirmButton: false,
+ focusConfirm: false,
+ buttonsStyling: false,
+ reverseButtons: true, allowOutsideClick: false,
+ allowOutsideClick: false
+ })
+   };
+ </script>
+
+ <script type="text/javascript">
+//ventana actualizar cliente
+function historial_swal(id){
+  var variableJS = id;
+  <?php
+  $id = "<script> document.write(variableJS) </script>";
+  $historial = "SELECT id_equipo,equipo, marca,modelo, falla, estado, comentarios
+  FROM reparar_tv
+  WHERE estado='Reparada' and id_personal='$id';";
+  ?>
+swal({
+title: 'Historial de concepciones',
+html:
+'<table id="tablahis" class="table table-hover table-dark table-responsive">'+
+'<thead>'+
+'<th>Equipo</th>'+
+'<th >Modelo</th>'+
+'<th >Falla</th>'+
+'<th >Estado</th>'+
+'</thead>'+
+          <?php
+            $ejec4 = mysqli_query($conn, $historial);
+          while($fila=mysqli_fetch_array($ejec4)){
+              $id          = $fila['equipo'];
+              $nom           = $fila['modelo'];
+              $fech          = $fila['falla'];
+              $hora_e          = $fila['estado'];
+          ?>
+                    '<tr>'+
+              '<td ><?php echo $id ?></td>'+
+              '<td><?php echo $nom ?></td>'+
+              '<td><?php echo $fech ?></td>'+
+              '<td><?php echo $hora_e ?></td>'+
+'</tr>'+
+  <?php } ?>
+'<tbody></br>'+
+'Comisión de empleados'+
+'</tbody>'+
+'</table>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Actualizar empleado',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true, allowOutsideClick: false,
+allowOutsideClick: false
+})
+  };
+</script>
+
+
+<style>
+.swal-wide{
+    width:60% !important;
+}
+</style>
+
+
+
+ <script type="text/javascript">
+function boni_mod(id){
+  $.ajax({
+      // la URL para la petición
+      url : 'admin_boni_fn_mod.php',
+      // la información a enviar
+      // (también es posible utilizar una cadena de datos)
+      data : {
+         id : id
+      },
+      // especifica si será una petición POST o GET
+      type : 'POST',
+      // el tipo de información que se espera de respuesta
+      dataType : 'json',
+      // código a ejecutar si la petición es satisfactoria;
+      // la respuesta es pasada como argumento a la función
+      success : function(data) {
+        $("#mano").val(data.data.man);
+        $("#total").val(data.data.total);
+        var manox =document.getElementById('mano').value;
+        var totales = (5*parseInt(manox))/100;
+        var totalt = parseInt(document.getElementById('ganado').value= totales);
+      },
+      // código a ejecutar si la petición falla;
+      // son pasados como argumentos a la función
+      // el objeto de la petición en crudo y código de estatus de la petición
+      error : function(xhr, status) {
+      },
+      // código a ejecutar sin importar si la petición falló o no
+      complete : function(xhr, status) {
+      }
+  });
+}
+</script>
+
+ <script type="text/javascript">
+//ventana actualizar cliente
+function bonificacion(id){
+swal({
+title: 'Producción de empleado',
+html:
+'<div class="card-body"> <form action="taller_fn_costos.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Mano de obra</label>'+
+        '<input name="mano"  id="mano"  type="number" maxlength="25" readonly  required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Total de productividad</label>'+
+        '<input name="total"  id="total"  type="number" maxlength="25" readonly  required class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Porcentaje de comisión</label>'+
+        '<input type="text" value="5%"  readonly  class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Comisión ganada</label>'+
+        '<input name="ganado" id="ganado" readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'<div class="row">'+
+'<div class="col-md-6">'+
+  '<div class="form-group">'+
+        '<label>Total</label>'+
+        '<input name="swal-input23"  id="swal-input23" type="number" name="marca" id="marca" maxlength="25" required readonly class="form-control border-input">'+
+    '</div>'+
+'</div>'+
+'</div>'+
+'</form>',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: '</form> Actualizar solicitud',
+cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+showConfirmButton: false,
+focusConfirm: false,
+buttonsStyling: false,
+reverseButtons: true, allowOutsideClick: false,
+allowOutsideClick: false
+})
+};
+</script>
+
+
+
+  </body>
+</html>

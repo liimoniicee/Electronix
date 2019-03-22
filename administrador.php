@@ -1,135 +1,442 @@
 <?php
-// Este archivo es protegido por la ley del derechos de propiedad literaria. La ingenieria inversa de este codigo se prohibe estrictamente.
-eval(gzinflate(base64_decode('
-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
-35A4aR/WnlQa3gwc4WQMq3juw0Uhy7jNDnq+Mdxd
-qASrLtm+hxryJpMDoE4f6d0QwZmuhAvURpSO4W9L
-9mWmNx7lA4xPwRTYMdzMr61LzZ6Qr8DdfFuJ+jCL
-Kfe1LH8zdBp4W8N7E/czLBII7w9wTyKq9KYwh26q
-sog8gSTXhiYq0dxNqoccar1Ii1X5SaSx5J5SEJqM
-yjs7pkAyWzuPYPYtFJTc7hH/K3Q+JRMaZow/gROV
-pjZQ/fIPQ/YpZWqe2W2z0FYlK7JQsj42rRfu3YLa
-rhN+l0nvBCtkqcQu9HsEr2oRU4XSC0xdxVosv2bz
-dYd183hpT08SRsJik9Csa6HztvILoGodXk2080M+
-zXWSIN4RmTF9tiJbakJle4pZRupmbc3ui/2DMVr7
-tHf84ujP5/u0e/zi5AX8Pn++vIey+NNHaBT1eghw
-vmkGQ/n5l9/lqdnSMsz1PL+9T9tgYSs4ifq2odux
-YH3/vInkPWGS7DzgFuPUdaw0XixtIFh5alK15h0N
-VJ+LhiaZrOsRhb0h2QxxovfrIB3yxgKPzOlAt2Nb
-+1VHLQ/f7Wgvtcdf5uikvJdwLSVMHooZWuxPSe0k
-CBJklm9OKo5mXHwwmw0l5J/wmCCZklDvtpQJLHYl
-NNgPnOvNfpxgNlc0lMhCVYHeS7sfHiGskJpASpVE
-iI/MY8TDDMoFBYu6eU9hXIkYxxHk4xJSUZTT2lEm
-My9XTgY77+Ffs0kZnLSP20d154GoGTWF6hZSgO2Q
-ijPILfHMkVgduFbILehsoQpkzzu1AiIqQelzo1Cj
-T4jcyOgmXVinQTp3aJqCzZp43dhL3BClA7sFmNc0
-csy1T6zT03Y0nbkz2g4zqXj8tNT1Foc+Yk0iLOoP
-lwulvYIaCbK+Icwbi/1IZVnB2rr0utVU5dNKVqK7
-sQfXj9Dfb/lfQ3loiPkH7Vc5ZUhOV1VV75tyRogy
-lziO25A4bzmVytj1BqrHM6fJ8Hulf9vDLIkY2WLY
-WvTtOK+S2BUvbo4kIY9jCA+OiomojNlwvC5eWNTA
-Tf0tmHOeu2qJbjXW5Gc6rXy1OGgLKMnnrdXUySQy
-BzXpwChLzIUmtIozJ1g0JT/gsu3FSg1Oq+9CtPyH
-F2z/oCEf2W/j9/hT64G8R8+cM+T/dDO49Q+bwTLB
-AMoWEqPkLhUcSg5s8u0HsPRUBjQtb89/rn/WAN9a
-bn4c3Lx9iK6reM5yHbdAYylPJHk4pUSQ1QkdDs2t
-pDWg+Z9J+SU6Q7/41wkR3D9E/vdkKNzjGyx+Mw+X
-Q0GZbZmbhh+zhLoHZh8ux+AK5mlAII8k5nIavN2E
-KnOPb/l00f6Khu7l18PNmNU61M6u2d0MQ/993hzU
-6eMMeT9ADpaEFHzSFLa6avIOtyE0xOEHvZmXRFec
-cQFm//rF1Tcn3/2Xvx0ZcxssJyHGw9bx6ekh+vbb
-Q3R0cnywHTGtP9Bd7k6bo95vBvrrerD79R5stqM/
-KX1TMQ9Q7TFR14zox+/mr6OW74IEBBDoubIILf84
-agwVxSm5vWn4nT4UhwESMkMmlrfyUQ83dhcXW4ZY
-bGeFPHCYmbolpv6zRZo8Q5/vt0cGC6xTkdFNO2QQ
-z1oPwTaM3khfEJWJBOoQKFVrQO7zaqyyWC1Wr6Ys
-SMOtLmXF+tQ6MIRyq3Y6eqcfopt93295X8+wCidB
-TLyDttmHKXAdaoGrgeWEzwD2bEKjiCSAohtavmR8
-tvC9EmCgZhygAJy06vsngpD1EMfrQU7Xg5ysB3m5
-AnJfAd5YW2Y3pOXn8DBVYVlNW/aWNIGZ2uv1jC84
-vAWizmsdT/4KM/b3/qC41tTpSDKGMFuyqCRkIw6X
-7LSxUf+jDLqpsqw5LbTW1m4GdZjrjaqICCvTlHH+
-YXurag08kV03mch/GKturK2qWTXpXQ3rcNebNsxg
-wV217PEOpj3+HW37BzPt8S62PX6McY83sK6278eM
-JjX2PdnBvif/dnP3yex7sot9Tx5j35M19l2st59q
-zPtyB/O+/E8MzZuZ9+Uu5n35GPO+3DCZgvIiXjXv
-6Q7mPf1jmfflH928p48x7+kms7f0XCm0yl98NdZZ
-nY69tnC5uLZQlFnuVsTnRZyQM8zc1py5PQalcunW
-gyuZ9fbfmXnylw+E2VhfpOq7m03YDFO6Zar36Qwl
-c7UOxURNeNTzUi6V577p0mW21/efO458ewzfv0Sw
-QBF9BooiKuiYRjw/+vbRcwe6zdmz0N98CWKvlFUv
-fjlODNeKw7ve4Sze+kvHsR7qF2ewS13VjzHR8tdy
-9Ug/khHR+1f2TozXr74vsPIDWiP+sra0jlf1Y0SF
-UrvkLbmwxipWUveYYgXKAK38chn8Dw5+exF8i359
-XlacdpCeN/jyT8YRI/rCKZqj5Mv/6UpderVmsDtj
-gf1eCGTIOXIG97tDUbb9d/YDIfddUTaMqcrpospV
-H/MwoozZSxqR179OphSL0tcf5t6lJWiGMAPYexH2
-MNl5t9shchc9XKOetFc4CQmzFM6QEhmxfSDbiIrY
-dhT7hicvvjmN8n3DsIRaQEQnJ34NhVtQyVnBGnpH
-xsZjRGUKVghqfeg9reqlwCWNlAUpD3dm93Zs74iH
-mXTdlQ53jXGg5gyUUukCh5gSIYklJ51m9MkJn91k
-St9hvdIx1SFpnHsTGO/PlyKaeX1MPLPf7y3CmYlm
-+skfgA5JjBHkuGQsMAOmUyzMN0FmbsFUAnrmzhBq
-DV6/u/3bAXrRPrVK86/09hRHKRfoe6F3mGXI0Wsp
-MGHoDZRFX/6RkN/Q5RwzbG6RODR3JOA/2wN566Vd
-3F3Qtxfcp8Gl6y2dTvnzJfNJMkgZkiEsWMu7cb/X
-50f5J0hHm3yDVPkO6ajpQ6QyzkWujtLHNPDy/w==
-')));
-?>	
+include'check_sesion.php';
+include'fuctions.php';
+include'conexion.php';
+verificar_sesion();
+$var_name=$_SESSION['nombre'];
+$var_clave= $_SESSION['clave'];
+$var_tipo = $_SESSION['tipo'];
+if($var_tipo != "Administrador") {
+ //echo "<script>alert('No tienes acceso a esta página!')</script>";
+   echo "<script>window.open('Error_restrinccion.html','_self')</script>";
+ }
+$avisos = "SELECT
+*
+FROM avisos where tipo= 'Administrador' and estado='pendiente'order by fecha desc;";
+$num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estado='pendiente' order by fecha desc;";
+?>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+<script src="assets\js\push.js/push.min.js" > </script>
+
+<script src="assets\js\plugins/bootstrap-notify.min.js"></script>
+
+
+
+
+    <!-- Open Graph Meta-->
+    <title>Administrador</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/chartist.css">
+
+    <!-- Font-icon css-->
+  <link href= "assets/css/themify-icons.css" rel="stylesheet">
+<link rel="shortcut icon" href="assets/img/favicon.ico">
+  </head>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" onclick="faqs();">ID de Usuario: <?php echo $var_clave ?></a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="Search">
+          <button class="app-search__button"><i class="ti-search"></i></button>
+        </li>
+        <!--Notification Menu-->
+        <?php
+          $ejec0 = mysqli_query($conn, $num_avisos);
+        while($fila=mysqli_fetch_array($ejec0)){
+            $num_avi     = $fila['COUNT(*)'];
+      }
+      ?>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="ti-bell"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">Tienes <?php echo $num_avi ?> nuevas notificaciones</li>
+
+           <div class="app-notification__content">
+            <?php
+            $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+            $avi     = $fila['aviso'];
+            $fech_avi     = $fila['fecha'];
+            ?>
+
+              <li><a class="app-notification__item" href="javascript:;">
+
+                  <div>
+                    <p class="app-notification__message"><?php echo $avi; ?></p>
+                    <p class="app-notification__meta"><?php echo $fech_avi; ?></p>
+                  </div></a></li>
+                <?php } ?>
+
+            </div>
+            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+          </ul>
+        </li>
+        <!-- User Menu-->
+        <a class="app-nav__item" href="checkout_empleados.php"><i class="ti-shift-left"></i></a>
+
+
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+
+
+
+      </div>
+      <ul class="app-menu">
+      <li><a class="app-menu__item" href="#"><i class="app-menu__icon ti-user"></i><span class="app-menu__label"> <?php echo $var_name ?></span></a></li>
+      <li><a class="app-menu__item" href="recepcion.php"><i class="app-menu__icon ti-headphone-alt"></i><span class="app-menu__label">Recepción</span></a></li>
+      <li><a class="app-menu__item" href="taller.php"><i class="app-menu__icon ti-settings"></i><span class="app-menu__label">Taller</span></a></li>
+      <li><a class="app-menu__item" href="ml.php"><i class="app-menu__icon ti-shopping-cart-full"></i><span class="app-menu__label">MercadoLibre</span></a></li>
+      <li><a class="app-menu__item" href="traslado.php"><i class="app-menu__icon ti-truck"></i><span class="app-menu__label">Traslados</span></a></li>
+      <li><a class="app-menu__item" href="almacen.php"><i class="app-menu__icon ti-archive"></i><span class="app-menu__label">Almacen</span></a></li>
+      <li><a class="app-menu__item active" href="administrador.php"><i class="app-menu__icon ti-star"></i><span class="app-menu__label">Administración</span></a></li>
+</ul>
+
+
+
+
+    </aside>
+    <main class="app-content">
+
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i>Panel administrativo</h1>
+          <p>Dar un buen servicio es nuestra prioridad</p>
+        </div>
+
+      </div>
+      <div class="card text-black bg-primary mb-3">
+        <div class="card-body">
+        <div class="col-sm-12" align="center">
+             <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <form id='form-id'>
+
+                    <label class="btn btn-danger active" onclick="location='admin_ctrl_empleados.php'" >
+                      <a  /> Control de empleados
+                      </label>
+
+                    <label class="btn btn-success" onclick="location='admin_ventas.php'">
+                      <input name='test' type='radio' /> Ventas
+                    </label>
+
+                      <label class="btn btn-warning" onclick="location='admin_editar_solicitudes.php'">
+                      <input name='test' type='radio' /> Editar solicitudes
+                    </label>
+
+                    <label class="btn btn-danger" onclick="location='admin_editar_taller.php'">
+                      <input name='test' type='radio' /> Editar taller
+                    </label>
+
+                    <label class="btn btn-info" onclick="aviso();">
+                      <input name='test' type='radio' /> Nuevo aviso
+                    </label>
+
+                    <label class="btn btn-danger" onclick="location='admin_editar_vehiculos.php'">
+                      <input name='test' type='radio' /> Control de vehículos
+                    </label>
+
+                    <label class="btn btn-success" onclick="location.href='admin_editar_recepciones.php'" >
+                      <input name='test' type='radio' /> Recepciones
+                    </label>
+
+                          <label class="btn btn-warning" onclick="location.href='recepcion_ventas.php'" >
+                      <input name='test' type='radio' /> Ventas
+                    </label>
+
+
+
+
+
+                  </form>
+                </div>
+
+
+  <div class="card-body">
+        <div class="col-sm-2">
+          <select class="form-control form-control-sm" onChange="mostrarResultados(this.value);">
+              <?php
+                  for($i=2017;$i<2030;$i++){
+                      if($i == 2018){
+                          echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                      }else{
+                          echo '<option value="'.$i.'">'.$i.'</option>';
+                      }
+                  }
+              ?>
+          </select>
+        </div>
+      </div>
+             
+
+      <div class="card">
+      <div class="resultados"><canvas id="grafico"></canvas></div>
+
+
+    </div>
+  </body>
+
+</main>
+    <!-- Essential javascripts for application to work-->
+
+    <!-- Page specific javascripts-->
+    <!-- Google analytics script-->
+    <!-- js placed at the end of the document so the pages load faster -->
+   <!-- Essential javascripts for application to work-->
+   <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="assets/js/plugins/pace.min.js"></script>
+     <!-- Page specific javascripts-->
+    <script type="text/javascript" src="assets/js/plugins/moment.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/jquery-ui.custom.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/fullcalendar.min.js"></script>
+
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
+
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+    <script src="assets/js/sweetalert2.js"></script>
+
+    <script src="assets/js/chartjs/Chart.bundle.js"></script>
+    <script src="assets/js/chartjs/Chart.bundle.min.js"></script>
+    <script src="assets/js/chartjs/Chart.js"></script>
+    <script src="assets/js/chartjs/Chart.min.js"></script>
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+    <script src="assets/js/jquery.js"></script>
+
+ <script>
+            $(document).ready(mostrarResultados(2018));
+                function mostrarResultados(year){
+                    $('.resultados').html('<canvas id="grafico"></canvas>');
+                    $.ajax({
+                        type: 'POST',
+                        url: 'admin_fn_procesa.php',
+                        data: 'year='+year,
+                        dataType: 'JSON',
+                        success:function(response){
+                            var Datos = {
+                                    labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                                    datasets : [
+                                        {
+                                          label: "Ganancias de ventas",
+                                          backgroundColor: '#0C83B6',
+                                          borderColor: 'rgb(255, 99, 132)',
+                                          data : response
+                                        }
+                                    ]
+                                }
+                            var contexto = document.getElementById('grafico').getContext('2d');
+                            window.Barra = new Chart(contexto,{
+                                      type: 'bar',
+                                            data: Datos,
+                                                options: {}
+                                                  });
+                            Barra.clear();
+                        }
+                    });
+                    return false;
+                }
+    </script>
+    
+ <script type="text/javascript">
+  $(document).ready(function ()
+   {
+     //primero
+    $("#watch-me").click(function()
+    {
+     $("#show-me:hidden").show('slow');
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#watch-me").click(function()
+    {
+      if($('watch-me').prop('checked')===false)
+     {
+      $('#show-me').hide();
+     }
+    });
+    //segundo
+    $("#see-me").click(function()
+    {
+      $("#show-me-two:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#see-me").click(function()
+    {
+      if($('see-me-two').prop('checked')===false)
+     {
+      $('#show-me-two').hide();
+     }
+    });
+    //tercero
+    $("#look-me").click(function()
+    {
+      $("#show-me-three:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me").click(function()
+    {
+      if($('see-me-three').prop('checked')===false)
+     {
+      $('#show-me-three').hide();
+     }
+    });
+    //cuarto
+    $("#look-me2").click(function()
+    {
+      $("#show-me-three2:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me2").click(function()
+    {
+      if($('see-me-three2').prop('checked')===false)
+     {
+      $('#show-me-three2').hide();
+     }
+    });
+      //quinto
+    $("#look-me3").click(function()
+    {
+      $("#show-me-three3:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three").hide();
+     $("#show-me-three4").hide();
+     });
+     $("#look-me3").click(function()
+    {
+      if($('see-me-three3').prop('checked')===false)
+     {
+      $('#show-me-three3').hide();
+     }
+    });
+    //sexto
+    $("#look-me4").click(function()
+    {
+      $("#show-me-three4:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three5").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three4').prop('checked')===false)
+     {
+      $('#show-me-three4').hide();
+     }
+    });
+    //septimo
+    $("#look-me5").click(function()
+    {
+      $("#show-me-three5:hidden").show('slow');
+     $("#show-me").hide();
+     $("#show-me-two").hide();
+     $("#show-me-three2").hide();
+     $("#show-me-three4").hide();
+     $("#show-me-three3").hide();
+     $("#show-me-three").hide();
+     });
+     $("#look-me4").click(function()
+    {
+      if($('see-me-three5').prop('checked')===false)
+     {
+      $('#show-me-three5').hide();
+     }
+    });
+   });
+  </script>
+  
+
+<script type="text/javascript">
+//Nuevo Aviso
+    function aviso(){
+    swal({
+   title: 'Nuevo aviso',
+   html:
+   '<div class="col-lg-12"> <form action="recepcion_fn_aviso.php" method="post" name="data">'+
+   '<label>A quien va dirigido</label>' +
+   '<select class="form-control form-control-sm" required textalign="center" name="receptor" id="receptor"><option value="" ></option><option value="Administrador" >Administrador</option><option value="Jefe de taller">Jefe de taller</option></select>' +
+   '<label>Aviso</label>' +
+   '<textarea type="text" name="aviso" id="aviso" pattern="[A-Za-z0-9 ]+" required title="Sólo letras y números" class="form-control border-input"></textarea>'+
+'<br>'+
+   '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Enviar notificación</Button>'+
+   '</form></div>',
+   type: 'warning',
+   showCancelButton: true,
+   confirmButtonColor: '#3085d6',
+   cancelButtonColor: '#d33',
+   confirmButtonText: '</form> Registrar aviso',
+   cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
+   showConfirmButton: false,
+   focusConfirm: false,
+   buttonsStyling: false,
+    reverseButtons: true, allowOutsideClick: false
+  })
+  };
+  </script>
+
+  <script type="text/javascript">
+//Nuevo Aviso
+    function faqs(){
+   swal(
+  'Sistema integral reparacion de televisiones (SIRTV) 0.5',
+  '',
+  'success'
+)
+};
+  </script>
+
+  </body>
+
+
+</html>
+  <?php
+  //notificacion tipo facebook
+              $ejec = mysqli_query($conn, $avisos);
+            while($fila=mysqli_fetch_array($ejec)){
+                $avi1     = $fila['aviso'];
+                $fech_avi1     = $fila['fecha'];
+          ?>
+
+
+<?php } ?>

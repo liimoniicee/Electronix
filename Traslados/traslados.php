@@ -9,33 +9,25 @@ verificar_sesion();
  $var_name=$_SESSION['nombre'];
  $var_clave= $_SESSION['clave'];
  $var_tipo = $_SESSION['tipo'];
-
  //consulta para llenar la tabla
  if($var_tipo != "Traslado") {
   //echo "<script>alert('No tienes acceso a esta página!')</script>";
     echo "<script>window.open('Error_restrinccion.html','_self')</script>";
   }
-
  $pendiente = "SELECT
  *
  FROM
  traslado where estado='Pendiente';";
-
  $entregado = "SELECT
 *
 FROM
 traslado where id_personal='$var_clave' and estado='Entregado';";
-
 $concretar = "SELECT * FROM traslado where id_personal='$var_clave' and estado='Recoleccion';";
-
 $en_ruta = "SELECT * FROM traslado where id_personal='$var_clave' and estado='En ruta';";
  
 $avisos = "SELECT * FROM avisos where tipo= 'Traslado' and estado='pendiente'";
-
 $vehiculos = "SELECT * FROM carros where id_personal_traslado='$var_clave'";
-
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
-
 ?>
 
 
@@ -51,6 +43,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta http-equiv="refresh" content="60" >
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.9/dist/sweetalert2.all.min.js"></script>
     <!-- Font-icon css-->
 <link href= "../assets/css/themify-icons.css" rel="stylesheet">
 <link rel="shortcut icon" href="../assets/img/favicon.ico">
@@ -59,7 +52,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
   <body class="app sidebar-mini rtl">
 
 
-    <header class="app-header"><a class="app-header__logo" onclick="faqs();">ID de Usuario: <?php echo $var_clave ?></a>
+    <header class="app-header"><a class="app-header__logo" href="index.php">ID de Usuario: <?php echo $var_clave ?></a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -281,17 +274,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
                     <button onclick="swal_enruta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
                     <?php
-
 if($dest == "Cliente"){
-
     echo "
     <button onclick='borrar_enruta($id)'class='btn btn- btn-danger btn-icon remove'><i class='ti-close'></i></a>
-
     ";
 }else{  echo "
-
-
-
 ";
 }
 ?>
@@ -473,7 +460,7 @@ if($dest == "Cliente"){
         // código a ejecutar si la petición es satisfactoria;
         // la respuesta es pasada como argumento a la función
         success : function(data) {
-          $("#swal-input0").val(data.data.id);
+          $("#swal-input11").val(data.data.id);
           $("#swal-input1").val(data.data.sta);
           $("#swal-input2").val(data.data.dir);
           $("#swal-input3").val(data.data.com);
@@ -550,7 +537,6 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-
 '<div class="row">'+
    '<div class="col-md-6">'+
      '<div class="form-group">'+
@@ -572,7 +558,6 @@ html:
        '</div>'+
    '</div>'+
    '</div>'+
-
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -611,8 +596,8 @@ reverseButtons: true, allowOutsideClick: false
    html:
    '<form action="actual_status.php" method="post" name="data">'+
    //'<label for="exampleInputEmail1">id</label>' +
-   '<input name="swal-input0" type="hidden" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
-   '<input name="swal-input11" type="hidden" id="swal-input11" class="form-control border-input" readonly>' +
+   '<input name="swal-input0" type="text" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
+   '<input name="swal-input11" type="text" id="swal-input11" class="form-control border-input" readonly>' +
    '<div class="row">'+
    '<div class="col-md-6">'+
      '<div class="form-group">'+
