@@ -79,7 +79,7 @@ echo "<script>window.open('recepcion.php','_self')</script>";
     swal({
     title: 'Nueva orden de servicio',
     html:
-    '<div class="card-body"> <form target="_blank" action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
+    '<div class="card-body"> <form action="recepcion_pdf-orden.php" method="post" name="data" content="text/html; charset=utf-8" >'+
     '<input type="hidden" name="swal-input0" value="<?php echo $id ?>" id="swal-input0" class="form-control border-input" readonly >' +
     '<input type="hidden" name="swal-input1" value="<?php echo $nom ?>"  id="swal-input1" class="form-control border-input" readonly >' +
     '<input type="hidden" name="swal-input2" value="<?php echo $ape ?>" id="swal-input2" class="form-control border-input" readonly >' +
@@ -150,7 +150,8 @@ echo "<script>window.open('recepcion.php','_self')</script>";
     '</div>'+
     '</div>'+
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+//'<Button type="submit" onclick="window.location.href = https://website.com/my-account;" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+'<input type="submit" onclick="window.location.href = http://localhost/Electronix/index.php;" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</input>'+
 '</form></div>',
 showCancelButton: true,
 confirmButtonColor: '#3085d6',
@@ -160,7 +161,8 @@ cancelButtonClass: 'btn btn-danger btn-fill btn-wd',
 showConfirmButton: false,
 focusConfirm: false,
 buttonsStyling: false,
-reverseButtons: true, allowOutsideClick: false
+reverseButtons: true, 
+allowOutsideClick: false
 })
   
     </script>
