@@ -173,7 +173,7 @@ posteriormente despues de haber recibido el dinero y este documento.
 //footer :v
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(20,210);
-$pdf->Write(6,utf8_decode("Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Díaz Ochoa."));
+$pdf->Write(6,utf8_decode("Sin mas por el momento quedamos a sus órdenes."));
 
 //direccion
 $pdf->SetFont('Arial','B',12);

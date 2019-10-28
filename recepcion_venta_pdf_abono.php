@@ -95,7 +95,7 @@ $pdf->Write(5,$abo);
 //footer
 $pdf->SetFont('Arial','',18);
 $pdf->SetXY(30,120);
-$pdf->Write(5,utf8_decode('Electronica RSH'));
+$pdf->Write(5,utf8_decode('CONTROLY'));
 
 $pdf->Output();
 

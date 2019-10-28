@@ -198,7 +198,7 @@ su equipo, en caso de que no desee una reparación, se le cobrara $200.00'));
 //footer :v
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(20,210);
-$pdf->Write(6,utf8_decode("Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Díaz Ochoa."));
+$pdf->Write(6,utf8_decode("Sin mas por el momento quedamos a sus órdenes."));
 
 //direccion
 $pdf->SetFont('Arial','B',12);
@@ -226,7 +226,7 @@ $pdf->SetFont('Arial','',12);
 $pdf->SetXY(80,270);
 $pdf->Write(6,'Oficina: 688-28-96');
 
-//$filename=echo"' $user'/Google Drive\Respaldo Electronica RSH\Documentos Clientes\orden de servicio/Orden $id $modelo.pdf";
+//$filename=echo"' $user'/Google Drive\Respaldo CONTROLY\Documentos Clientes\orden de servicio/Orden $id $modelo.pdf";
 $filename="assets\Documents/Orden/Orden $id $modelo.pdf";
 $pdf->Output($filename,'F');
 

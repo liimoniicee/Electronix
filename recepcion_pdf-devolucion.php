@@ -137,7 +137,7 @@ $pdf->Write(6,'Este documento declara que el cliente esta conciente que el equip
 //footer :v
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(20,210);
-$pdf->Write(6,'Sin mas por el momento queda de ustedes su seguro servidor Juan Jorge Diaz Ochoa.');
+$pdf->Write(6,'Sin mas por el momento quedamos a sus órdenes.');
 
 //direccion
 $pdf->SetFont('Arial','B',12);

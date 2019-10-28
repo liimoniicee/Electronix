@@ -556,8 +556,8 @@ $("#swal-input3").change(function(){
 
 
    swal(
-  'Sistema integral reparacion de televisiones (SIRTV) 0.5',
-  'Creado por Francisco Israel Martínez Ayala 2018',
+  'Sistema administrador de negocios de reparación multi-usuarios (CONTROLY) 0.5',
+  'Creado por Francisco Israel Martínez Ayala 2019',
   'success'
 )
 };

@@ -129,7 +129,7 @@ $var_clave= $_SESSION['clave'];
     <main class="app-content">
       <div class="app-title">
 
-          <h3><i class="fa fa-dashboard"></i>Electronica RSH</h3>
+          <h3><i class="fa fa-dashboard"></i>CONTROLY</h3>
 
 
       </div>

@@ -419,7 +419,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
 //Nuevo Aviso
     function faqs(){
    swal(
-  'Sistema integral reparacion de televisiones (SIRTV) 0.5',
+  'Sistema administrador de negocios de reparación multi-usuarios (CONTROLY) 0.5',
   '',
   'success'
 )
