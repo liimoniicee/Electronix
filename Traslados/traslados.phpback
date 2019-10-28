@@ -9,33 +9,22 @@ verificar_sesion();
  $var_name=$_SESSION['nombre'];
  $var_clave= $_SESSION['clave'];
  $var_tipo = $_SESSION['tipo'];
-
  //consulta para llenar la tabla
  if($var_tipo != "Traslado") {
   //echo "<script>alert('No tienes acceso a esta página!')</script>";
     echo "<script>window.open('Error_restrinccion.html','_self')</script>";
   }
-
  $pendiente = "SELECT
  *
  FROM
  traslado where estado='Pendiente';";
-
- $entregado = "SELECT
-*
-FROM
-traslado where id_personal='$var_clave' and estado='Entregado';";
-
+ $entregado = "SELECT * FROM traslado where id_personal='$var_clave' and estado='Entregado';";
 $concretar = "SELECT * FROM traslado where id_personal='$var_clave' and estado='Recoleccion';";
-
 $en_ruta = "SELECT * FROM traslado where id_personal='$var_clave' and estado='En ruta';";
  
 $avisos = "SELECT * FROM avisos where tipo= 'Traslado' and estado='pendiente'";
-
 $vehiculos = "SELECT * FROM carros where id_personal_traslado='$var_clave'";
-
 $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pendiente'";
-
 ?>
 
 
@@ -45,14 +34,21 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
     <!-- Open Graph Meta-->
     <title>Traslados</title>
+    <script src="../assets\js\push.js/push.min.js" > </script>
+
+
+    <!-- Open Graph Meta-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta http-equiv="refresh" content="60" >
+    <meta http-equiv="refresh" content="300" >
+
+    <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+
     <!-- Font-icon css-->
-<link href= "../assets/css/themify-icons.css" rel="stylesheet">
+  <link href= "../assets/css/themify-icons.css" rel="stylesheet">
 <link rel="shortcut icon" href="../assets/img/favicon.ico">
   </head>
 
@@ -190,6 +186,7 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
                             <td><?php echo $fech ?></td>
                             <td>
                             <button onclick="swal_traslados(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-truck"></i></button>
+                                
                             </td>
                           </tr>
                   <?php } ?>
@@ -281,17 +278,11 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Traslado' and estado='pe
 
                     <button onclick="swal_enruta(<?php echo $id ?>), enviarmod(<?php echo $id ?>);" class="btn btn-simple btn-default btn-icon edit"><i class="ti-check"></i></button>
                     <?php
-
 if($dest == "Cliente"){
-
     echo "
     <button onclick='borrar_enruta($id)'class='btn btn- btn-danger btn-icon remove'><i class='ti-close'></i></a>
-
     ";
 }else{  echo "
-
-
-
 ";
 }
 ?>
@@ -352,31 +343,31 @@ if($dest == "Cliente"){
           </div>
   </main>
 
-  <!-- Essential javascripts for application to work-->
+   <!-- Essential javascripts for application to work-->
 
-  <!-- Page specific javascripts-->
-  <!-- Google analytics script-->
-  <!-- js placed at the end of the document so the pages load faster -->
- <!-- Essential javascripts for application to work-->
- <script src="../assets/js/jquery-3.2.1.min.js"></script>
-  <script src="../assets/js/popper.min.js"></script>
-  <script src="../assets/js/bootstrap.min.js"></script>
-  <script src="../assets/js/main.js"></script>
-  <!-- The javascript plugin to display page loading on top-->
-  <script src="../assets/js/plugins/pace.min.js"></script>
-   <!-- Page specific javascripts-->
-  <script type="text/javascript" src="../assets/js/plugins/moment.min.js"></script>
+    <!-- Page specific javascripts-->
+    <!-- Google analytics script-->
+    <!-- js placed at the end of the document so the pages load faster -->
+   <!-- Essential javascripts for application to work-->
+   <script src="../assets/js/jquery-3.2.1.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="../assets/js/plugins/pace.min.js"></script>
+     <!-- Page specific javascripts-->
+    <script type="text/javascript" src="../assets/js/plugins/moment.min.js"></script>
 
-  <!-- Data table plugin-->
-  <script type="text/javascript" src="../assets/js/plugins/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="../assets/js/plugins/dataTables.bootstrap.min.js"></script>
-  <script type="text/javascript">$('#a-tables').DataTable();</script>
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="../assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../assets/js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#a-tables').DataTable();</script>
 
-  <script src="../assets/js/sweetalert2.all.min.js"></script>
-  <script src="../assets/js/sweetalert2.js"></script>
+    <script src="../assets/js/sweetalert2.all.min.js"></script>
+    <script src="../assets/js/sweetalert2.js"></script>
 
-  <!--common script for all pages-->
-  <script src="../assets/js/common-scripts.js"></script>
+    <!--common script for all pages-->
+    <script src="../assets/js/common-scripts.js"></script>
 
   <script type="text/javascript">
   $(document).ready(function ()
@@ -456,7 +447,7 @@ if($dest == "Cliente"){
    });
   </script>
   <!-- por concretar-->
-  <script>
+  <script type="text/javascript">
   function enviarmod(id){
     $.ajax({
         // la URL para la petición
@@ -473,7 +464,7 @@ if($dest == "Cliente"){
         // código a ejecutar si la petición es satisfactoria;
         // la respuesta es pasada como argumento a la función
         success : function(data) {
-          $("#swal-input0").val(data.data.id);
+          $("#swal-input11").val(data.data.id);
           $("#swal-input1").val(data.data.sta);
           $("#swal-input2").val(data.data.dir);
           $("#swal-input3").val(data.data.com);
@@ -550,7 +541,6 @@ html:
     '</div>'+
 '</div>'+
 '</div>'+
-
 '<div class="row">'+
    '<div class="col-md-6">'+
      '<div class="form-group">'+
@@ -572,7 +562,6 @@ html:
        '</div>'+
    '</div>'+
    '</div>'+
-
 '<div class="row">'+
 '<div class="col-md-6">'+
   '<div class="form-group">'+
@@ -611,13 +600,13 @@ reverseButtons: true, allowOutsideClick: false
    html:
    '<form action="actual_status.php" method="post" name="data">'+
    //'<label for="exampleInputEmail1">id</label>' +
-   '<input name="swal-input0" type="hidden" id="swal-input0" value="'+id+'"class="form-control border-input" readonly>' +
-   '<input name="swal-input11" type="hidden" id="swal-input11" class="form-control border-input" readonly>' +
+   '<input name="swal-input00" type="text" id="swal-input00" value="'+id+'" class="form-control border-input" readonly>' +
+   '<input name="swal-input11" type="text" id="swal-input11" class="form-control border-input" readonly>' +
    '<div class="row">'+
    '<div class="col-md-6">'+
      '<div class="form-group">'+
            '<label>Estado</label>'+
-           '<input type="text" id="swal-input1" readonly class="form-control border-input">'+
+           '<input type="text" id="swal-input1" name="swal-input1" readonly class="form-control border-input">'+
        '</div>'+
    '</div>'+
    '<div class="col-md-6">'+
@@ -930,7 +919,7 @@ reverseButtons: true, allowOutsideClick: false
 Push.create("<?php echo $fech_avi; ?>", {
   body:"<?php echo $avi; ?>",
   icon:"assets/img/alert1.png",
-  timeout:10000
+  timeout:100
 });
 </script>
 

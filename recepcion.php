@@ -1101,7 +1101,9 @@ html:
 '</div>'+
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Cambiar equipo y generar garantía</Button>'+
+//'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Cambiar equipo y generar garantía</Button>'+
+'<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Cambiar equipo y generar garantía</input>'+
+
 
 '</form></div>',
 showCancelButton: true,
@@ -1264,7 +1266,8 @@ html:
 '</div>'+
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Devolver equipo</Button>'+
+//'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Devolver equipo</Button>'+
+'<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Devolver equipo</input>'+
 
 '</form></div>',
 showCancelButton: true,
@@ -1366,8 +1369,8 @@ html:
     '</div>'+
     '</div>'+
 '<div class="col-md-12">'+
-//'<Button type="submit" onclick="recargar()" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
-'<input type="submit" onclick='window.location.href="http://www.hyperlinkcode.com/button-links.php"' class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</input>'+
+//'<Button type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+'<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</input>'+
 
 '</form></div>',
 
@@ -1411,6 +1414,13 @@ function recargar()
 
 </script>
 
+<script type="text/javascript">
+
+function recargar1() 
+{
+  location.reload(true); 
+}
+</script>
 
 
 <script type="text/javascript">
@@ -1465,7 +1475,9 @@ html:
 
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Pagar al cliente y solicitar traslado</Button>'+
+//'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Pagar al cliente y solicitar traslado</Button>'+
+'<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Pagar al cliente y solicitar traslado</input>'+
+
 
 '</form></div>',
 showCancelButton: true,
@@ -1993,7 +2005,10 @@ html:
 '</div>'+
 
 '<div class="col-md-12">'+
-'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+//'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Generar garantía</Button>'+
+'<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Generar garantía</input>'+
+
+
 
 '</form></div>',
 showCancelButton: true,
@@ -2100,7 +2115,9 @@ function descuento1()
 
 
     '<div class="col-md-12">'+
-    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</Button>'+
+    //'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</Button>'+
+    '<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</input>'+
+
 
     '</form></div>',
     showCancelButton: true,

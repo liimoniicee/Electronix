@@ -500,7 +500,16 @@ $num_avisos = "SELECT COUNT(*) FROM avisos where tipo= 'Administrador' and estad
     <script type="text/javascript">$('#a-tables').DataTable();</script>
 
 
-      <script type="text/javascript">
+    <script type="text/javascript">
+
+      function recargar1() 
+      {
+        location.reload(true); 
+      }
+      </script>
+
+
+  <script type="text/javascript">
       $(document).ready(function ()
        {
          //primero
@@ -794,7 +803,8 @@ html:
 
 
 '<div class="col-md-12">'+
-'<Button type="submit" onclick="location.href="recepcion.php"" class= "btn btn-info btn-fill btn-wd" >Registrar y generar reporte</Button>'+
+//'<Button type="submit" onclick="location.href="recepcion.php"" class= "btn btn-info btn-fill btn-wd" >Registrar y generar reporte</Button>'+
+'<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</input>'+
 
 
 '</form></div>',

@@ -660,7 +660,9 @@ function enviarreporte(id_equipo){
 
 
     '<div class="col-md-12">'+
-    '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</Button>'+
+    //'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</Button>'+
+    '<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Aceptar abono y generar ticket</input>'+
+
 
     '</form></div>',
     showCancelButton: true,

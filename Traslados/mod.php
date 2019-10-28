@@ -31,7 +31,7 @@ if(isset($_POST['id'])){
     "car"        =>  $row["id_carro"],
     "per"        =>  $row["id_personal"],
     "fol"        =>  $row["id_folio"],
-    "tipo"        =>  $row["tipo"]
+    "tipo"       =>  $row["tipo"]
 
   );
    }

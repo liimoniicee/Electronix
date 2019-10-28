@@ -378,7 +378,9 @@ function mod_vender(id){
 '</div>'+
 '</div>'+
 
- '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
+ //'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Vender producto</Button>'+
+ '<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Vender producto</input>'+
+
 
  '</form></div>',
  showCancelButton: true,
@@ -428,6 +430,14 @@ alert('hubo un error')
 
 };
 
+</script>
+
+<script type="text/javascript">
+
+function recargar1() 
+{
+  location.reload(true); 
+}
 </script>
 
 <script type="text/javascript">

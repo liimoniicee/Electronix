@@ -155,7 +155,9 @@ var cel = <?php echo $cel ?>
 
 
   '<div class="col-md-12">'+
-  '<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+  //'<Button type="submit" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</Button>'+
+  '<input type="submit" onclick="recargar1()" class= "btn btn-info btn-fill btn-wd">Registrar y generar reporte</input>'+
+
 
 
   '</form></div>',

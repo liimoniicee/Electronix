@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `almacen`
 --
-
+create database electronicax;
+use electronicax;
 DROP TABLE IF EXISTS `almacen`;
 CREATE TABLE IF NOT EXISTS `almacen` (
   `id_almacen` int(11) NOT NULL AUTO_INCREMENT,
